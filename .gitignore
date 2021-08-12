@@ -1,0 +1,6 @@
+crawler_venv/
+venv/
+htmlcov/
+sample.db
+*.pyc
+.coverage

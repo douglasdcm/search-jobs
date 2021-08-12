@@ -1,0 +1,1 @@
+This project is intended to use crawlers to search for positions in differet company pages and expose a way to users compare their curiculum against the positions to have a ranking of positions that matches the curriculum. 
