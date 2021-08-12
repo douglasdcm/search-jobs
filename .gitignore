@@ -4,3 +4,4 @@ htmlcov/
 sample.db
 *.pyc
 .coverage
+__pycache__/
