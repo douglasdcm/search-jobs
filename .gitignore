@@ -1,7 +1,7 @@
-crawler_venv/
+venv_crawler/
 venv/
 htmlcov/
-sample.db
+crawler.db
 *.pyc
 .coverage
 __pycache__/
