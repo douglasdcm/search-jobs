@@ -41,7 +41,7 @@ def install():
     print(msg)
     logging.info(msg)
 
-def compare(self):
+def compare():
     print("Not implemented yet. Work in progress...")
 
 def run():
