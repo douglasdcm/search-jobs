@@ -7,7 +7,9 @@ from database.db import Database
 from sqlite3 import connect
 from sys import argv
 
-logging.basicConfig(filename=LOGS_FILE, level=logging.INFO)
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    filename=LOGS_FILE, level=logging.INFO,  datefmt='%Y-%m-%d %H:%M:%S')
 
 def main(*args):
     for argumentos in args:
