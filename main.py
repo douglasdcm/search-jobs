@@ -23,8 +23,10 @@ Commands:
             install()
         elif "--run" in argumentos:
             run()
+        elif "--compare" in argumentos:
+            compare()
         else:
-            raise ComandoInvalido("Commando inválido.")
+            raise ComandoInvalido("Invalid command.\nTry main.py --help ")
 
 def install():
     msg = "Creating database..."
@@ -37,6 +39,9 @@ def install():
     print(msg)
     logging.info(msg)
 
+def compare(self):
+    print("Not implemented yet. Work in progress...")
+
 def run():
     try:
         msg = "Starting crawler..."
@@ -46,6 +51,8 @@ def run():
         chrome = ChromeDriver() 
         driver = chrome.start(url)
         Daitan(url, driver).run()
+        # Add new crawlers here...
+        # E.g. MyCompany(url, driver).run()
     finally:
         chrome.quit()
         msg = "Crawler finished."

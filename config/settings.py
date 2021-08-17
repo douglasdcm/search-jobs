@@ -7,4 +7,4 @@ URLS = {
     "daitan": "https://careers-br.daitan.com/pt/vagas/"
 }
 LOGS_FOLDER = "logs/"
-LOGS_FILE = LOGS_FOLDER + "log.txt"
+LOGS_FILE = LOGS_FOLDER + "crawler.log"
