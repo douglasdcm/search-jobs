@@ -1,6 +1,3 @@
-import logging
-from bs4 import element
-import selenium
 from automation.automation import BaseObjects
 from selenium.webdriver.common.by import By
 
