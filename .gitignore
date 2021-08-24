@@ -1,9 +1,7 @@
-venv_crawler/
-venv/
-htmlcov/
-logs/
+venv_crawler
+venv
+htmlcov
+logs
 crawler.db
 *.pyc
 .coverage
-__pycache__/
-

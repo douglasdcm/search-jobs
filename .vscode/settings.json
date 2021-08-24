@@ -1,5 +1,9 @@
 {
     "python.linting.pycodestyleEnabled": true,
     "python.linting.enabled": false,
-    "python.linting.pylintEnabled": false
+    "python.linting.pylintEnabled": false,
+    "files.watcherExclude": {
+        "**/venv_crawler/**": true,
+        "**/logs/**": true
+    }
 }
