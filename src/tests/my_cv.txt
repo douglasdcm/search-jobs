@@ -1,0 +1,26 @@
+
+Seniority
+SR
+
+Allocation City
+Campinas-SP
+Recife-PE
+Home Office
+About the Position
+We seek experienced technical writers to work on the reformatting and evolution of the technical documentation for a Private Cloud Platform solution aimed at enabling distributed Edge computing. 
+
+You will join a highly skilled team delivering a highly distributed private cloud platform supporting containerized applications in addition to supporting virtual machines and bare metal nodes.
+
+Responsibilities
+Convert existing docs from DITA to rst using an existing doc translator tool; 
+Make formatting type changes to the resulting rst files;
+Use sphinx doc build tools to make sure the rst files build the docs properly;
+Upload into git and generate gerrit reviews;
+Organize product documents based on existing or new information in order to get them ready for publishing.
+Essential Skills 
+Experience working as a technical writer for SW products, especially involving backend and/or infrastructure contexts;
+Solid experience producing English documentation;
+Able to communicate in English at a minimum according to the parameters of level C2 for understanding, speaking, and writing of the CEFR matrix
+Desirable Skills 
+Familiarity with git and gerrit
+RST knowledge

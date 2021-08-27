@@ -3,7 +3,11 @@
     "python.linting.enabled": false,
     "python.linting.pylintEnabled": false,
     "files.watcherExclude": {
-        "**/venv_crawler/**": true,
-        "**/logs/**": true
-    }
+        "**/env_crawler/**": true,
+        "**/logs/**": true,
+        "**/dist/**": true,
+        "**/.pytest_cache/**": true,
+        "**pkg_compare_cv.egg-info**": true
+    },
+    "git.ignoreLimitWarning": true
 }

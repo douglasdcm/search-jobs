@@ -1,3 +1,20 @@
+Metadata-Version: 2.1
+Name: pkg-compare-cv
+Version: 0.0.6
+Summary: A package to allow users to find the best position to their curriculum
+Home-page: https://github.com/douglasdcm/crawler_of_positions
+Author: Douglas Cardoso
+Author-email: douglas.dcm@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/douglasdcm/crawler_of_positions/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # Introduction
 This project is intended to use crawlers to search for positions in differet company pages and expose a way to users compare their curiculum against the positions to have a ranking of positions that matches the curriculum.
 # Getting started
@@ -14,3 +31,4 @@ If you want to add a new crawler, you need to follow the ICrawler protocol. So, 
 Steps to add a new crawler:
 - Add the crawler in a new file the crawler directory
 - Add this new crawler to main.py under the commented line
+
