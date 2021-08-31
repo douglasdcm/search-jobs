@@ -1,5 +1,5 @@
 import time, logging
-from src.settings import LOGS_FOLDER, TIMEOUT, DEBUG
+from src.settings import DRIVER_DIR, LOGS_FOLDER, TIMEOUT, DEBUG
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 
@@ -11,7 +11,7 @@ class ChromeDriver:
         chrome_options = Options()
         if DEBUG is False:
             chrome_options.add_argument("--headless")
-        self._driver = webdriver.Chrome(options=chrome_options)
+        self._driver = webdriver.Chrome(executable_path=DRIVER_DIR, options=chrome_options)
 
     def start(self, url):
         self._driver.get(url)

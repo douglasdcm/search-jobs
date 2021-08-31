@@ -1,26 +1,131 @@
-
-Seniority
-SR
-
-Allocation City
-Campinas-SP
-Recife-PE
-Home Office
-About the Position
-We seek experienced technical writers to work on the reformatting and evolution of the technical documentation for a Private Cloud Platform solution aimed at enabling distributed Edge computing. 
-
-You will join a highly skilled team delivering a highly distributed private cloud platform supporting containerized applications in addition to supporting virtual machines and bare metal nodes.
-
-Responsibilities
-Convert existing docs from DITA to rst using an existing doc translator tool; 
-Make formatting type changes to the resulting rst files;
-Use sphinx doc build tools to make sure the rst files build the docs properly;
-Upload into git and generate gerrit reviews;
-Organize product documents based on existing or new information in order to get them ready for publishing.
-Essential Skills 
-Experience working as a technical writer for SW products, especially involving backend and/or infrastructure contexts;
-Solid experience producing English documentation;
-Able to communicate in English at a minimum according to the parameters of level C2 for understanding, speaking, and writing of the CEFR matrix
-Desirable Skills 
-Familiarity with git and gerrit
-RST knowledge
+Contato
+douglas.dcm@gmail.com
+www.linkedin.com/in/douglas-
+cardosom (LinkedIn)
+Principais competências
+Automação de testes
+Testes
+Gestão de testes
+Languages
+Inglês (Full Professional)
+Francês (Elementary)
+Espanhol (Professional Working)
+Certifications
+ISTQB Certified Tester Foundation
+Level
+HP QuickTest
+Certified Tester Foundation Level -
+Performance Testing
+Douglas Cardoso, CTFLPT
+SDET(Software Development Engineer in Test) | Daitan Group
+Belo Horizonte
+Resumo
+Sou graduado em Matemática, pós-graduado em Inteligência
+Artificial, Análise e Projeto de Sistemas, e Gestão de Tecnologia da
+Informação. Autor do projeto TestRock! https://goo.gl/CbjbXB.
+Desde 2010 atuo na área de teste e qualidade de software e
+qualidade de processos.
+Possuo certificações ISTQB - Certified Tester Foundation Level/
+Performance Testing, HP QuickTest 11.
+Sou especialista nas ferramentas: HP ALM, HP Performance Center,
+AutoCad, JMeter e Excel.
+Experiência
+Daitan Group
+SDET(Software Development Engineer in Test)
+maio de 2021 - Present (4 meses)
+Belo Horizonte, Minas Gerais, Brasil
+CESAR
+Engenheiro de Qualidade de Software
+outubro de 2020 - maio de 2021 (8 meses)
+Recife, Pernambuco, Brazil
+Modular Mining
+Software QA Engineer
+abril de 2019 - outubro de 2020 (1 ano 7 meses)
+Belo Horizonte, Minas Gerais
+FITec
+Analista de testes de software Sr
+dezembro de 2017 - abril de 2019 (1 ano 5 meses)
+Belo Horizonte e Região, Brasil
+Atuando no projeto do RM da Ericsson efetuando o planejamento/execução
+de teste de software não funcionais como desempenho, estabilidade,
+segurança, robustez e instalação.
+Page 1 of 4Páginas Editora
+Ilustrador do livro Poli Escolhe
+janeiro de 2019 - fevereiro de 2019 (2 meses)
+Belo Horizonte, Minas Gerais
+Ilustração do livro infantil Poli Escolhe
+https://www.paginaseditora.com.br/product-page/poli-escolhe
+Cybertecnica
+Consultor de TI
+outubro de 2010 - dezembro de 2017 (7 anos 3 meses)
+Sao Paulo
+Quality Assurance - Business Technology Optimization - soluções de software
+que permitem a gestão eficiente dos processos, recursos e prioridades da
+área de TI, maximizando a qualidade, a performance e a disponibilidade das
+aplicações para o negócio.
+Acompanhamento de projetos, levantamento de requisitos junto ao usuário
+final para modelagem de soluções compatíveis com a necessidade do cliente,
+geração de relatórios, automatização de roteiros para testes funcionais e de
+performance, execução e documentação de evidências de testes.
+Ferramentas utilizadas:
+HP Quality Center
+HP Performance Center
+HP QuickTest (certificado)
+Principais Projetos:
+Vale SA
+Suporte estratégico à gestão de projeto;
+Elaboração de relatórios gerencias;
+Avaliação de conformidade de processos de teste e consistência de
+informações de relatórios para a gerência;
+Suporte e treinamento na ferramenta HP ALM e Jira.
+Quality assurance.
+(1 ano)
+Migração de mais de 100 projetos do HP QC 9.2 para HP ALM 11 (6 meses)
+Automatização de script funcionais com uso do HP QuickTest (2 meses)
+Análise de performance de sites com uso do HP Performance Center (1 ano)
+Petrobras
+Page 2 of 4Gerenciamento de defeitos e customização de funcionalidades no HP QC 10;
+suporte a equipe de automação de testes (6 meses)
+Cetip
+Migração de projetos e implantação do HP ALM 11.52 (1 mês)
+Implantação de processo de teste unitário para a equipe de DEV utilizando o
+HP ALM 11.52 (2 meses)
+Unisinos
+Migração integrada das ferramentas HP BAC 8 para HP BSM 9.24, mais de
+2000 monitores do HP SiteScope, HP BPM, HP ALM e scripts de HP LR (1
+mês)
+TestRock!
+Gerador de conteúdo
+janeiro de 2017 - março de 2017 (3 meses)
+Belo Horizonte Area, Brazil
+Vários estilos de teste de software, curiosidades, ferramentas e tudo em
+português.
+Excenge - Excelência em Engenharia ltda.
+Projetista Cadista
+março de 2008 - março de 2010 (2 anos 1 mês)
+Rio de janeiro
+Coordenação de equipe de desenhistas cadistas.
+Desenvolvimento de projetos de tubulação de produtos derivados de petróleo
+em bases de armazenamento assim como seus respectivos fluxogramas,
+isométricos, formas, armaduras, estruturas metálicas, drenagem, combate a
+incêndio e levantamento de material.
+Desenho de plantas planialtimétricas e topográficas, planos diretores, peças e
+equipamentos mecânicos e digitalização de imagens.
+Criação de comandos e aplicativos para AutoCad - autolisp e DCL -
+direcionados à prática de engenharias civil, mecânica, elétrica industrial e
+hidráulica, instalações prediais, arquitetura, urbanismo, contagem de material
+e uso geral.
+Formação acadêmica
+Pontifícia Universidade Católica de Minas Gerais
+Page 3 of 4Pós-graduação, Inteligência Artificial e Aprendizado de
+Máquina · (2019 - 2020)
+Pontifícia Universidade Católica de Minas Gerais
+Extensão, Gestão de Projetos Ágeis · (2017 - 2017)
+Pontifícia Universidade Católica de Minas Gerais
+Pós-graduação em Gestão de Tecnologia da Informação, Tecnologia da
+Informação · (2015 - 2016)
+PUC-Rio
+Pós-graduação em Análise e Projeto de Sistemas, Informática · (2011 - 2012)
+UERJ - Universidade do Estado do Rio de Janeiro
+Licenciatura, Matemática · (2003 - 2009)
+Page 4 of 4
