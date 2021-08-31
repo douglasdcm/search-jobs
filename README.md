@@ -24,7 +24,7 @@ e acesse http://localhost:5000
 <br><br>
 ![alt text](https://i.ibb.co/HH2cJZk/web-page.png)
 # Contribuindo
-Ajude este projeto a crescer adicionando novos crawlers. Que tal começar pelas empresas BPTW do Brasil de 2020: https://conteudo.gptw.com.br/150-melhores-2020.<br>
+Ajude este projeto a crescer adicionando novos crawlers. Que tal começar pelas empresas BPTW do Brasil de 2020? https://conteudo.gptw.com.br/150-melhores-2020.<br>
 Pull requests são bem-vindas. Para mudanças grandes crie uma issue para discutirmos o que está sendo modificado. Adicione os testes apropriados.
 
 Dê uma estrelinha se você gostou deste projeto :)
