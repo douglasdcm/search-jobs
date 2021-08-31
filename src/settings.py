@@ -7,7 +7,7 @@ LOGS_FOLDER = "logs/"
 
 DEBUG = False
 TIMEOUT = 30
-DATABASE = RESOURCES_DIR + "crawler_temp.db"
+DATABASE = RESOURCES_DIR + "crawler.db"
 TABELA = "positions"
 CAMPOS = "url, description"
 URLS = {
