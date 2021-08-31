@@ -6,7 +6,7 @@ Para usar o projeto basta salvar o conteúdo do seu currículo em um arquivo de 
 <br><code>$python main.py --compare /tmp/cv.py</code><br><br>
 O ranking de vagas mais similares será impresso. O projeto já vem com mais de 250 vagas pré-cadastradas para serem usadas.
 # Fazendo seu própiro crawler
-Se você quiser adicionar mais crawlers ao projeto, é bem simples. Em poucos minutos você consegue adicionar um novo crawler. Você precisa seguir o protocolo da classe "src/crawler/ICrawler.py::ICrawler" para que os campos certos sejam salvos no banco de dados. Faça isso:
+Se você quiser adicionar mais crawlers ao projeto é bem simples. Em poucos minutos você consegue adicionar um novo crawler. Você precisa seguir o protocolo da classe "src/crawler/ICrawler.py::ICrawler" para que os campos certos sejam salvos no banco de dados. Faça isso:
 - Adicione o crawler na pasta "src/crawler"
 - Adicone os Page Objects para o crawler na pasta "src/pages". Por exemplo, "scr/pages/my_crawler/vagas.py"
 - Edite o seu crawler para utilizar o novo Page Objects
@@ -24,6 +24,7 @@ e acesse http://localhost:5000
 <br><br>
 ![alt text](https://i.ibb.co/HH2cJZk/web-page.png)
 # Contribuindo
+Ajude este projeto a crescer adicionando novos crawlers. Que tal começar pelas empresas BPTW do Brasil de 2020: https://conteudo.gptw.com.br/150-melhores-2020.<br>
 Pull requests são bem-vindas. Para mudanças grandes crie uma issue para discutirmos o que está sendo modificado. Adicione os testes apropriados.
 
 Dê uma estrelinha se você gostou deste projeto :)
