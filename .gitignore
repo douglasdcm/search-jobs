@@ -6,3 +6,4 @@ crawler.db
 *.pyc
 .coverage
 dist
+pkg_compare_cv.egg-info
