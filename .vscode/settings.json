@@ -1,6 +1,7 @@
 {
     "python.linting.pycodestyleEnabled": true,
-    "python.linting.enabled": false,
+    "python.linting.pycodestyleArgs": ["--ignore=E303", "--max-line-length=100"],
+    "python.linting.enabled": true,
     "python.linting.pylintEnabled": false,
     "files.watcherExclude": {
         "**/env_crawler/**": true,

@@ -1,7 +1,7 @@
 #!flask/bin/python
-import os, sys
+import os
+import sys
 from src.settings import ROOT_DIR, DATABASE, TABELA, CAMPOS
-sys.path.append(ROOT_DIR)
 
 from flask import Flask, render_template, request
 from src.database.db import Database
@@ -9,20 +9,24 @@ from sqlite3 import connect
 from src.similarity.similarity import Similarity
 
 app = Flask(__name__)
+sys.path.append(ROOT_DIR)
+
 
 @app.route('/')
 def output():
-	# serve index template
-	return render_template('index.html')
+    # serve index template
+    return render_template('index.html')
 
-@app.route('/receiver', methods = ['POST'])
+
+@app.route('/receiver', methods=['POST'])
 def worker():
 
-	message = request.json['message']
-	return _compare(message)
+    message = request.json['message']
+    return _compare(message)
+
 
 def _compare(content):
-    
+
     cv = content
 
     db = Database(connect(DATABASE))
@@ -41,7 +45,8 @@ def _compare(content):
     table += '</table>'
     return table
 
+
 if __name__ == '__main__':
-	# run!
-	port = int(os.environ.get('PORT', 5000))
-	app.run(host='localhost', threaded=True, port=port)
+    # run!
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='localhost', threaded=True, port=port)

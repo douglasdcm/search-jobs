@@ -1,4 +1,6 @@
+import logging
 from src.exceptions.exceptions import ErroBancoDados
+from src.settings import DEBUG
 
 
 class Database:
@@ -14,17 +16,21 @@ class Database:
 
     def _liga_foreing_key_support(self):
         try:
+            cmd = "PRAGMA foreign_keys = OFF"
             items = self._cria_conexao()
             cur = items[1]
-            cur.execute("PRAGMA foreign_keys = OFF")
+            logging.info(cmd)
+            cur.execute(cmd)
         except Exception:
             raise ErroBancoDados("Não foi possível ligar o foreing_key_support.")
 
     def deleta_tabela(self, tabela):
         try:
+            cmd = f"drop table if exists {tabela}"
             items = self._cria_conexao()
             cur = items[1]
-            cur.execute(f"drop table if exists {tabela}")
+            logging.info(cmd)
+            cur.execute(cmd)
         except Exception:
             raise ErroBancoDados("Não foi possível deletar a tabela.")
 
@@ -76,8 +82,11 @@ class Database:
         mensagem_erro = "Não foi possível excluir o registro especificado."
         self._run(query, mensagem_erro)
 
-    def pega_todos_registros(self, tabela, campos="*"):
-        query = f"select {campos} from {tabela}"
+    def pega_todos_registros(self, tabela, campos="*", distinct=False):
+        query = "select"
+        if distinct:
+            query += " DISTINCT"
+        query += f" {campos} from {tabela}"
         mensagem_erro = "Não foi possível pegar os registros."
         return self._run(query, mensagem_erro)
 
@@ -91,12 +100,12 @@ class Database:
         else:
             return result
 
-    def pega_registro_por_nome(self, tabela, nome):
-        query = f"select * from {tabela} where nome = '{nome}'"
+    def pega_registro_por_condicao(self, tabela, condicao):
+        query = f"select * from {tabela} where {condicao}"
         mensagem_erro = "Não foi possível pegar o registro especificado."
         result = self._run(query, mensagem_erro)
         if result == []:
-            raise ErroBancoDados(f"Registro especificado '{nome}' não foi encontrado.")
+            raise ErroBancoDados(f"Registro especificado '{condicao}' não foi encontrado.")
         else:
             return result
 
@@ -114,6 +123,8 @@ class Database:
             (tuple): tupla com os registros do banco de dados
         """
         try:
+            if DEBUG:
+                logging.info("QUERY: {}".format(query))
             items = self._cria_conexao()
             con = items[0]
             cur = items[1]

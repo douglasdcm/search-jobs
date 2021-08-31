@@ -1,24 +1,50 @@
-import logging
-from pages.daitan.vagas import Vagas
-import requests
-from bs4 import BeautifulSoup as bs
-from crawler.icrawler import ICrawler
+from src.crawler import (
+    daitan,
+    dqrtech,
+    mms,
+    ciandt,
+    cesar
+)
+from src.settings import URLS
 
 
-class Factory(ICrawler):
 
-    def __init__(self, crawler):
-        self.crawler = crawler
-        self.url = crawler.get_url()
+class Factory():
 
-    def run(self):
-        msg = "Running crawler: '{}'".format(self.url)
-        print(msg)
-        logging.info(msg)
-        self.crawler.run()
-        msg = "Data saved."
-        print(msg)
-        logging.info(msg)
 
-    def _save(self, url, description):
-        self.crawler.save()
+    def get_crawlers(self):
+        """Retunr the list of enabled crawlers
+        Returns:
+            (list): list of tuples where the 1st item is the object of the crawler and se 2nd
+                informs if it is enable (True). If enabled, the crawler will be executed by the
+                server
+        """
+        crawlers = [
+            {
+                "company": daitan.Daitan(),
+                "url": URLS["Daitan"],
+                "enabled": False
+            },
+            {
+                "company": mms.Mms(),
+                "url": URLS["Mms"],
+                "enabled": False
+            },
+            {
+                "company": dqrtech.Dqrtech(),
+                "url": URLS["Dqrtech"],
+                "enabled": False
+            },
+            {
+                "company": ciandt.Ciandt(),
+                "url": URLS["Ciandt"],
+                "enabled": False
+            },
+            {
+                "company": cesar.Cesar(),
+                "url": URLS["Cesar"],
+                "enabled": True
+            },
+            # Add new crawlers bellow
+        ]
+        return crawlers
