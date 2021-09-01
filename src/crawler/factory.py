@@ -43,7 +43,7 @@ class Factory():
             {
                 "company": cesar.Cesar(),
                 "url": URLS["Cesar"],
-                "enabled": True
+                "enabled": False
             },
             # Add new crawlers bellow
         ]

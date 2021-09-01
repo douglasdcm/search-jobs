@@ -2,6 +2,8 @@
 This project is intended to use crawlers to search for positions in different company pages and expose a way to people compare their curriculum vitae (CV) against the positions to have a ranking of positions that matches the curriculum.
 # Getting started
 To use the crawler just copy the content of your CV in a text file e.g. "/tmp/cv.py", clone this repository, go to its root folder and run:
+<br><code>$python3 -m venv env</code>
+<br><code>$source env/bin/activate</code>
 <br><code>$pip install -r requirements.txt</code>
 <br><code>$sh make_dev.sh</code>
 <br><code>$python main.py --compare /tmp/cv.py</code><br><br>

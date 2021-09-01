@@ -2,6 +2,8 @@
 Este projeto utiliza crawlers para buscar por vagas em diferentes empresas e lhe permite comparar o seu currículo com essas vagas para achar as que são mais mais similares e relevantes para você.
 # Começando
 Para usar o projeto basta salvar o conteúdo do seu currículo em um arquivo de texto, por exemplo "/tmp/cv.txt", clonar o repositório, ir para a pasta raíz e executar:
+<br><code>$python3 -m venv env</code>
+<br><code>$source env/bin/activate</code>
 <br><code>$pip install -r requirements.txt</code>
 <br><code>$sh make_dev.sh</code>
 <br><code>$python main.py --compare /tmp/cv.py</code><br><br>

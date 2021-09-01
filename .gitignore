@@ -6,3 +6,4 @@ logs
 .coverage
 dist
 pkg_compare_cv.egg-info
+crawler.db
