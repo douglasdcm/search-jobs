@@ -2,7 +2,6 @@ beautifulsoup4==4.9.3
 bs4==0.0.1
 certifi==2021.5.30
 charset-normalizer==2.0.4
-chromedriver-py==92.0.4515.43
 click==8.0.1
 dataclasses==0.8
 Flask==2.0.1

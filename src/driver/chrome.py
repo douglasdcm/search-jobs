@@ -3,19 +3,20 @@ import traceback
 from src.settings import DRIVER_DIR, LOGS_FOLDER, TIMEOUT, DEBUG
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
-from chromedriver_py import binary_path 
 
 
 class ChromeDriver:
 
     def __init__(self) -> None:
         try:
+            GOOGLE_CHROME_SHIM = "/app/.apt/opt/google/chrome/google-chrome"
             logging.info("Starting driver.")
             chrome_options = Options()
             if DEBUG is False:
                 chrome_options.add_argument("--headless")
+                chrome_options.binary_location = GOOGLE_CHROME_SHIM
                 print(DRIVER_DIR)
-                self._driver = webdriver.Chrome(executable_path=binary_path, options=chrome_options)
+                self._driver = webdriver.Chrome(executable_path="chromedriver", options=chrome_options)
         except Exception as e:
             traceback.print_tb(e.__traceback__)
             raise
