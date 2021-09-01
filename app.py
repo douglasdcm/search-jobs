@@ -49,4 +49,4 @@ def _compare(content):
 if __name__ == '__main__':
     # run!
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='localhost', threaded=True, port=port)
+    app.run(host='0.0.0.0', threaded=True, port=port)

@@ -47,6 +47,3 @@ class Toy(ICrawler):
         for i in range(len(links)):
             descriptions.append(toy_descriptions[i])
         return descriptions
-
-
-
