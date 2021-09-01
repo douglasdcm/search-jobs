@@ -2,7 +2,6 @@ import time, logging
 from src.settings import DRIVER_DIR, LOGS_FOLDER, TIMEOUT, DEBUG
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
-from chromedriver_py import binary_path
 
 
 class ChromeDriver:
@@ -13,7 +12,8 @@ class ChromeDriver:
         if DEBUG is False:
             chrome_options.add_argument("--headless")
         try:
-            self._driver = webdriver.Chrome(executable_path=binary_path, options=chrome_options)
+            print(DRIVER_DIR)
+            self._driver = webdriver.Chrome(executable_path=DRIVER_DIR, options=chrome_options)
         except Exception as e:
             print(str(e))
 
