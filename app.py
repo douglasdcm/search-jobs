@@ -121,7 +121,7 @@ def _finish_driver(chrome):
 if __name__ == '__main__':
     # run!
     from waitress import serve
-    create_log_file()
+    # create_log_file()
     port = int(os.environ.get('PORT', 5000))
     serve(app, host="0.0.0.0", port=port)
     # app.run(host='0.0.0.0', threaded=True, port=port)
