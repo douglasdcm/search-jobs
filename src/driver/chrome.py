@@ -7,24 +7,30 @@ from selenium import webdriver
 class ChromeDriver:
 
     def __init__(self) -> None:
-        logging.info("Starting driver.")
-        chrome_options = Options()
-        if DEBUG is False:
-            chrome_options.add_argument("--headless")
         try:
-            print(DRIVER_DIR)
-            self._driver = webdriver.Chrome(executable_path=DRIVER_DIR, options=chrome_options)
+            logging.info("Starting driver.")
+            chrome_options = Options()
+            if DEBUG is False:
+                chrome_options.add_argument("--headless")
+                print(DRIVER_DIR)
+                self._driver = webdriver.Chrome(executable_path=DRIVER_DIR, options=chrome_options)
         except Exception as e:
             print(str(e))
 
     def start(self, url):
-        self._driver.get(url)
-        self._driver.implicitly_wait(TIMEOUT)
-        return self._driver
+        try:
+            self._driver.get(url)
+            self._driver.implicitly_wait(TIMEOUT)
+            return self._driver
+        except Exception as e:
+            print(str(e))
 
     def quit(self):
-        logging.info("Finishing driver and taking screeshot.")
-        file = "screenshot_" + time.strftime("%d-%m-%H-%M-%S") + ".png"
-        self._driver.save_screenshot(LOGS_FOLDER + file)
-        if DEBUG is False:
-            self._driver.quit()
+        try:
+            logging.info("Finishing driver and taking screeshot.")
+            file = "screenshot_" + time.strftime("%d-%m-%H-%M-%S") + ".png"
+            self._driver.save_screenshot(LOGS_FOLDER + file)
+            if DEBUG is False:
+                self._driver.quit()
+        except Exception as e:
+            print(str(e))
