@@ -9,7 +9,7 @@ class ChromeDriver:
 
     def __init__(self) -> None:
         try:
-            GOOGLE_CHROME_SHIM = "/app/.apt/opt/google/chrome/google-chrome"
+            GOOGLE_CHROME_SHIM = "/app/.apt/usr/bin/google-chrome-stable"
             logging.info("Starting driver.")
             chrome_options = Options()
             if DEBUG is False:
