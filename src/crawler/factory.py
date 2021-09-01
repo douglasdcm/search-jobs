@@ -23,27 +23,27 @@ class Factory():
             {
                 "company": daitan.Daitan(),
                 "url": URLS["Daitan"],
-                "enabled": False
+                "enabled": True
             },
             {
                 "company": mms.Mms(),
                 "url": URLS["Mms"],
-                "enabled": False
+                "enabled": True
             },
             {
                 "company": dqrtech.Dqrtech(),
                 "url": URLS["Dqrtech"],
-                "enabled": False
+                "enabled": True
             },
             {
                 "company": ciandt.Ciandt(),
                 "url": URLS["Ciandt"],
-                "enabled": False
+                "enabled": True
             },
             {
                 "company": cesar.Cesar(),
                 "url": URLS["Cesar"],
-                "enabled": False
+                "enabled": True
             },
             # Add new crawlers bellow
         ]

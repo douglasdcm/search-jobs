@@ -75,7 +75,6 @@ def compare(path_to_file):
 
 
 def sanity_check():
-    print(sys.path)
     crawlers = [{
                 "company": Toy(),
                 "url": "http://www.staggeringbeauty.com/",
