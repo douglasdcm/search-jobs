@@ -2,7 +2,8 @@
 import os
 import sys
 import logging
-from time import time
+import requests
+from time import time, sleep
 
 from src.settings import ROOT_DIR, DATABASE, TABELA, CAMPOS
 
@@ -17,6 +18,7 @@ from src.database.db import Database
 from src.similarity.similarity import Similarity
 from sqlite3 import connect
 from src.crawler.factory import Factory
+from src.helper.helper import create_log_file
 
 app = Flask(__name__)
 sys.path.append(ROOT_DIR)
@@ -35,9 +37,10 @@ def worker():
     return _compare(message)
 
 
-@app.route('/update', methods=['GET'])
+@app.route('/update', methods=['POST'])
 def update():
-    return _update()
+    _update()
+    return "204 No content"
 
 
 def _compare(content):
@@ -63,6 +66,7 @@ def _compare(content):
 
 def _update():
     try:
+        # sleep(30)
         scheduler = os.getenv('SCHEDULER')
         print(scheduler)
         current_date_and_time = int(time())
@@ -117,6 +121,7 @@ def _finish_driver(chrome):
 if __name__ == '__main__':
     # run!
     from waitress import serve
+    create_log_file()
     port = int(os.environ.get('PORT', 5000))
     serve(app, host="0.0.0.0", port=port)
     # app.run(host='0.0.0.0', threaded=True, port=port)

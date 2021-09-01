@@ -1,5 +1,6 @@
 import time, logging
 import traceback
+import os
 from src.settings import DRIVER_DIR, LOGS_FOLDER, TIMEOUT, DEBUG
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
@@ -9,14 +10,24 @@ class ChromeDriver:
 
     def __init__(self) -> None:
         try:
-            GOOGLE_CHROME_SHIM = "/app/.apt/usr/bin/google-chrome-stable"
-            logging.info("Starting driver.")
-            chrome_options = Options()
-            if DEBUG is False:
-                chrome_options.add_argument("--headless")
-                chrome_options.binary_location = GOOGLE_CHROME_SHIM
-                print(DRIVER_DIR)
-                self._driver = webdriver.Chrome(executable_path="chromedriver", options=chrome_options)
+            if os.getenv('GOOGLE_CHROME_SHIM') is not None:  # used by Heroku only
+                # GOOGLE_CHROME_SHIM = "/app/.apt/usr/bin/google-chrome-stable"
+                logging.info("Starting driver.")
+                chrome_options = Options()
+                if DEBUG is False:
+                    chrome_options.add_argument("--headless")
+                    chrome_options.binary_location = os.getenv('GOOGLE_CHROME_SHIM')
+                    print(DRIVER_DIR)
+                    self._driver = webdriver.Chrome(executable_path="chromedriver",
+                                                    options=chrome_options)
+            else:
+                logging.info("Starting driver.")
+                chrome_options = Options()
+                if DEBUG is False:
+                    chrome_options.add_argument("--headless")
+                    print(DRIVER_DIR)
+                    self._driver = webdriver.Chrome(executable_path=DRIVER_DIR,
+                                                    options=chrome_options)
         except Exception as e:
             traceback.print_tb(e.__traceback__)
             raise
