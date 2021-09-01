@@ -11,7 +11,10 @@ class ChromeDriver:
         chrome_options = Options()
         if DEBUG is False:
             chrome_options.add_argument("--headless")
-        self._driver = webdriver.Chrome(executable_path=DRIVER_DIR, options=chrome_options)
+        try:
+            self._driver = webdriver.Chrome(executable_path=DRIVER_DIR, options=chrome_options)
+        except Exception as e:
+            print(str(e))
 
     def start(self, url):
         self._driver.get(url)
