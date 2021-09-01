@@ -37,10 +37,9 @@ def worker():
     return _compare(message)
 
 
-@app.route('/update', methods=['POST'])
+@app.route('/update', methods=['GET'])
 def update():
-    _update()
-    return "204 No content"
+    return _update()
 
 
 def _compare(content):
@@ -53,7 +52,7 @@ def _compare(content):
     s = Similarity()
     result = s.return_similarity_by_cossine(cv, positions)
     table = '<table class="table table-striped" style="width:100%">'
-    table += '<tr><th>% Similaridade</th><th>Link da vaga</th></tr>' 
+    table += '<tr><th>% Similaridade</th><th>Link da vaga</th></tr>'
     i = 0
     for key, values in result.items():
         table += '<tr>'
@@ -92,9 +91,9 @@ def _update():
 def _run(crawlers=None):
     if crawlers is None:
         crawlers = Factory().get_crawlers()
-    chrome = ChromeDriver()
     for crawler in crawlers:
         try:
+            chrome = ChromeDriver()
             if crawler["enabled"]:
                 url = crawler["url"]
                 driver = chrome.start(url)
@@ -102,11 +101,11 @@ def _run(crawlers=None):
                 company.set_driver(driver)
                 company.set_url(url)
                 company.run()
+            _finish_driver(chrome)
         except Exception as e:
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             print(msg)
             logging.info(msg)
-    _finish_driver(chrome)
 
 
 def _finish_driver(chrome):
