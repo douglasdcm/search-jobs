@@ -3,11 +3,11 @@ import os
 ROOT_DIR = os.getcwd() + "/src/"
 RESOURCES_DIR = ROOT_DIR + "resources/"
 DRIVER_DIR = RESOURCES_DIR + "chromedriver"
-LOGS_FOLDER = "logs/"
+LOGS_FOLDER = ROOT_DIR + "logs/"
 
 DEBUG = False
 TIMEOUT = 30
-DATABASE = RESOURCES_DIR + "crawler.db"
+DATABASE = RESOURCES_DIR + "crawler_temp.db"
 TABELA = "positions"
 CAMPOS = "url, description"
 URLS = {
@@ -18,4 +18,4 @@ URLS = {
     "Cesar": "https://vagas.cesar.org.br/"
 }
 
-LOGS_FILE = LOGS_FOLDER + "crawler.log"
+LOGS_FILE = "crawler.log"
