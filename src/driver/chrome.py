@@ -1,4 +1,5 @@
 import time, logging
+import traceback
 from src.settings import DRIVER_DIR, LOGS_FOLDER, TIMEOUT, DEBUG
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
@@ -15,7 +16,7 @@ class ChromeDriver:
                 print(DRIVER_DIR)
                 self._driver = webdriver.Chrome(executable_path=DRIVER_DIR, options=chrome_options)
         except Exception as e:
-            print(str(e))
+            traceback.print_tb(e.__traceback__)
             raise
 
     def start(self, url):
@@ -24,7 +25,7 @@ class ChromeDriver:
             self._driver.implicitly_wait(TIMEOUT)
             return self._driver
         except Exception as e:
-            print(str(e))
+            traceback.print_tb(e.__traceback__)
             raise
 
     def quit(self):
@@ -35,5 +36,5 @@ class ChromeDriver:
             if DEBUG is False:
                 self._driver.quit()
         except Exception as e:
-            print(str(e))
+            traceback.print_tb(e.__traceback__)
             raise
