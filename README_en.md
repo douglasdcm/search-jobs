@@ -3,6 +3,7 @@ This project is intended to use crawlers to search for positions in different co
 # Getting started
 To use the crawler just copy the content of your CV in a text file e.g. "/tmp/cv.py", clone this repository, go to its root folder and run:
 <br><code>$pip install -r requirements.txt</code>
+<br><code>$sh make_dev.sh</code>
 <br><code>$python main.py --compare /tmp/cv.py</code><br><br>
 It will run the implemented crawlers, get the desired information from company pages and save it in database.
 After that you can compare your curriculum to find the positions that better fits it.

@@ -3,6 +3,7 @@ Este projeto utiliza crawlers para buscar por vagas em diferentes empresas e lhe
 # Começando
 Para usar o projeto basta salvar o conteúdo do seu currículo em um arquivo de texto, por exemplo "/tmp/cv.txt", clonar o repositório, ir para a pasta raíz e executar:
 <br><code>$pip install -r requirements.txt</code>
+<br><code>$sh make_dev.sh</code>
 <br><code>$python main.py --compare /tmp/cv.py</code><br><br>
 O ranking de vagas mais similares será impresso. O projeto já vem com mais de 250 vagas pré-cadastradas para serem usadas.
 # Fazendo seu própiro crawler
