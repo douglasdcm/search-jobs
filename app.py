@@ -66,7 +66,7 @@ def _update():
         scheduler = os.getenv('SCHEDULER')
         print(scheduler)
         current_date_and_time = int(time())
-        hours_added = 86400  # 24h in timestamp
+        hours_added = 30  # 24h in timestamp
         if scheduler is None:
             os.environ['LAST_EXECUTION'] = str(current_date_and_time)
             os.environ['SCHEDULER'] = str(current_date_and_time + hours_added)
