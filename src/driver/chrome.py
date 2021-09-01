@@ -16,6 +16,7 @@ class ChromeDriver:
                 self._driver = webdriver.Chrome(executable_path=DRIVER_DIR, options=chrome_options)
         except Exception as e:
             print(str(e))
+            raise
 
     def start(self, url):
         try:
@@ -24,6 +25,7 @@ class ChromeDriver:
             return self._driver
         except Exception as e:
             print(str(e))
+            raise
 
     def quit(self):
         try:
@@ -34,3 +36,4 @@ class ChromeDriver:
                 self._driver.quit()
         except Exception as e:
             print(str(e))
+            raise
