@@ -2,8 +2,7 @@
 import os
 import sys
 import logging
-import requests
-from time import time, sleep
+from time import time
 
 from src.settings import ROOT_DIR, DATABASE, TABELA, CAMPOS
 
@@ -65,11 +64,10 @@ def _compare(content):
 
 def _update():
     try:
-        # sleep(30)
         scheduler = os.getenv('SCHEDULER')
         print(scheduler)
         current_date_and_time = int(time())
-        hours_added = 30  # 24h in timestamp (86400)
+        hours_added = 86400  # 24h in timestamp (86400)
         if scheduler is None:
             os.environ['LAST_EXECUTION'] = str(current_date_and_time)
             os.environ['SCHEDULER'] = str(current_date_and_time + hours_added)
@@ -120,7 +118,6 @@ def _finish_driver(chrome):
 if __name__ == '__main__':
     # run!
     from waitress import serve
-    create_log_file()
     port = int(os.environ.get('PORT', 5000))
     serve(app, host="0.0.0.0", port=port)
     # app.run(host='0.0.0.0', threaded=True, port=port)

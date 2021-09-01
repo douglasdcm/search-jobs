@@ -1,4 +1,5 @@
-import time, logging
+import time
+import logging
 import traceback
 import os
 from src.settings import DRIVER_DIR, LOGS_FOLDER, TIMEOUT, DEBUG
@@ -17,7 +18,7 @@ class ChromeDriver:
                 if DEBUG is False:
                     chrome_options.add_argument("--headless")
                     chrome_options.binary_location = os.getenv('GOOGLE_CHROME_SHIM')
-                    print(DRIVER_DIR)
+                    print("Runnig driver from {}".format(os.getenv('GOOGLE_CHROME_SHIM')))
                     self._driver = webdriver.Chrome(executable_path="chromedriver",
                                                     options=chrome_options)
             else:
@@ -25,7 +26,7 @@ class ChromeDriver:
                 chrome_options = Options()
                 if DEBUG is False:
                     chrome_options.add_argument("--headless")
-                    print(DRIVER_DIR)
+                    print("Runnig driver from {}".format(DRIVER_DIR))
                     self._driver = webdriver.Chrome(executable_path=DRIVER_DIR,
                                                     options=chrome_options)
         except Exception as e:
