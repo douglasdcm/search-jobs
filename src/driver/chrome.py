@@ -14,7 +14,7 @@ class ChromeDriver:
             if DEBUG is False:
                 chrome_options.add_argument("--headless")
                 print(DRIVER_DIR)
-                self._driver = webdriver.Chrome(executable_path=DRIVER_DIR, options=chrome_options)
+                self._driver = webdriver.Chrome(options=chrome_options)
         except Exception as e:
             traceback.print_tb(e.__traceback__)
             raise
