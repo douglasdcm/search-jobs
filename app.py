@@ -65,7 +65,6 @@ def _compare(content):
 def _update():
     try:
         scheduler = os.getenv('SCHEDULER')
-        print(scheduler)
         current_date_and_time = int(time())
         hours_added = 86400  # 24h in timestamp (86400)
         if scheduler is None:
@@ -86,7 +85,9 @@ def _update():
         return "FAIL: \n{}".format(str(e))
 
 
-def _run(crawlers=None):
+def _run(crawlers=None, clear=True):
+    if clear:
+        _clear()
     if crawlers is None:
         crawlers = Factory().get_crawlers()
     for crawler in crawlers:
@@ -104,6 +105,19 @@ def _run(crawlers=None):
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             print(msg)
             logging.info(msg)
+
+
+def _clear():
+    msg = "Cleaning database..."
+    print(msg)
+    logging.info(msg)
+    db = Database(connect(DATABASE))
+    db.deleta_tabela(TABELA)
+    db.cria_tabela(TABELA, CAMPOS)
+    msg = "Database created."
+    print(msg)
+    logging.info(msg)
+    db.fecha_conexao_existente()
 
 
 def _finish_driver(chrome):
