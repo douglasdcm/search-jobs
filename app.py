@@ -2,7 +2,6 @@
 import os
 import sys
 import logging
-from time import time
 
 from src.settings import ROOT_DIR, DATABASE, TABELA, CAMPOS
 
@@ -10,14 +9,12 @@ from flask import Flask, render_template, request
 from src.database.db import Database
 from sqlite3 import connect
 from src.similarity.similarity import Similarity
-from datetime import datetime, timedelta
 from src.settings import ROOT_DIR, DATABASE, TABELA, CAMPOS
 from src.driver.chrome import ChromeDriver
 from src.database.db import Database
 from src.similarity.similarity import Similarity
 from sqlite3 import connect
 from src.crawler.factory import Factory
-from src.helper.helper import create_log_file
 
 app = Flask(__name__)
 sys.path.append(ROOT_DIR)
@@ -36,9 +33,20 @@ def worker():
     return _compare(message)
 
 
-@app.route('/update', methods=['GET'])
+@app.route('/update', methods=['POST'])
 def update():
-    return _update()
+    """
+    Run the crawlers and update the database with the positons information.
+    Request example:
+        curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'localhost:5000/update'
+    """
+    data = request.json
+    if os.getenv('HASH') is None:
+        os.getenv('HASH') == "dev"
+    if data["hash"] == os.getenv('HASH'):
+        return _update()
+    else:
+        return "NO ACTION\n"
 
 
 def _compare(content):
@@ -64,23 +72,8 @@ def _compare(content):
 
 def _update():
     try:
-        scheduler = os.getenv('SCHEDULER')
-        current_date_and_time = int(time())
-        hours_added = 82800  # 23h in timestamp (82800)
-        if scheduler is None:
-            os.environ['LAST_EXECUTION'] = str(current_date_and_time)
-            os.environ['SCHEDULER'] = str(current_date_and_time + hours_added)
-            _run()
-            return "OK"
-        else:
-            last_exe = int(os.environ['LAST_EXECUTION'])
-            next = last_exe + hours_added
-            if current_date_and_time > next:
-                os.environ['LAST_EXECUTION'] = str(current_date_and_time)
-                os.environ['SCHEDULER'] = str(current_date_and_time + hours_added)
-                _run()
-                return "OK"
-            return "NO ACTION"
+        _run()
+        return "OK\n"
     except Exception as e:
         return "FAIL: \n{}".format(str(e))
 
