@@ -60,7 +60,6 @@ def _compare(content):
     result = s.return_similarity_by_cossine(cv, positions)
     table = '<table class="table table-striped" style="width:100%">'
     table += '<tr><th>% Similaridade</th><th>Link da vaga</th></tr>'
-    i = 0
     for key, values in result.items():
         table += '<tr>'
         table += f'<td style="width:20%; text-align: center";> {key} </td>'
