@@ -102,6 +102,54 @@ class Factory():
                 "url": URLS["3M"],
                 "enabled": False
             },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Aeris"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Vivo"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Cielo"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Embraer"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Totvs"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["ViaVarejo"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Gupy"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["GupyTech"],
+                "enabled": False
+            },
             # Add new crawlers bellow
         ]
         return crawlers

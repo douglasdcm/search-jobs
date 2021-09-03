@@ -35,4 +35,12 @@ URLS = {
     "SescRs": "https://www.sesc-rs.com.br/trabalheconosco/vagas/",
     "3Coracoes": "https://jobs.kenoby.com/3coracoes",
     "3M": "https://3m.recsolu.com/job_boards/1/?q=&utm_source=CSSearchWidget&startrow=1&location=%2C+us",
+    "Aeris": "https://aeris.gupy.io/",
+    "Vivo": "https://vivo.gupy.io/",
+    "Cielo": "https://cielo.gupy.io/",
+    "Embraer": "https://embraer.gupy.io/",
+    "Totvs": "https://totvs.gupy.io/",
+    "ViaVarejo": "https://viavarejo.gupy.io/",
+    "Gupy": "https://vempra.gupy.io/?utm_source=site&utm_medium=footer",
+    "GupyTech": "https://tech-career.gupy.io/?utm_source=site&utm_medium=footer",
 }
