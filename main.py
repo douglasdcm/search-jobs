@@ -1,3 +1,7 @@
+"""
+Main function to run the crawlers, compare curriculum and manage the database.
+Try: 'python main.py --help' for more information.
+"""
 import os
 import sys
 import logging
