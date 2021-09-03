@@ -150,6 +150,90 @@ class Factory():
                 "url": URLS["GupyTech"],
                 "enabled": False
             },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Ambev"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Gpa"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["PicPay"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Randon"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Dasa"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Promob"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Altamogiana"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Vereda"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["PmWeb"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Sicredi"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Cocacola"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Assai"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["PetLove"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="job-list__item"]'),
+                "url": URLS["Cotesa"],
+                "enabled": False
+            },
             # Add new crawlers bellow
         ]
         return crawlers
