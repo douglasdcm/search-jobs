@@ -14,13 +14,11 @@ from sqlite3 import connect
 from sys import argv
 from src.crawler.factory import Factory
 from src.crawler.toy import Toy
-from src.helper.helper import create_log_file
 
 os.system('export PATH="{}:$PATH"'.format(RESOURCES_DIR))
 sys.path.append(RESOURCES_DIR)
 sys.path.append(ROOT_DIR)
 
-create_log_file()
 logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
     filename=LOGS_FILE, level=logging.INFO, datefmt='%Y-%m-%d %H:%M:%S')
