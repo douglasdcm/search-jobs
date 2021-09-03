@@ -105,6 +105,13 @@ def _run(crawlers=None, clear=True):
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             print(msg)
             logging.info(msg)
+    db = Database(connect(DATABASE))
+    positions = len(db.pega_todos_registros(TABELA, CAMPOS, distinct=True))
+    db.fecha_conexao_existente()
+    msg = "Existem {} vagas cadastradas.".format(positions)
+    print(msg)
+    logging.info(msg)
+
 
 
 def _clear():

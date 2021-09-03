@@ -15,7 +15,14 @@ URLS = {
     "Dqrtech": "https://www.dqrtech.com.br/vagas/",
     "Mms": "https://www.modularmining.com/pt-br/trabalhe-conosco/aberturas-de-emprego-atuais/",
     "Ciandt": "https://ciandt.com/us/en-us/careers/open-positions",
-    "Cesar": "https://vagas.cesar.org.br/"
+    "Cesar": "https://vagas.cesar.org.br/",
+    "LeroyMerlin": "https://jobs.kenoby.com/leroymerlin",
+    "Dell": "https://carreiras.dell.com/search-jobs",  # TODO Not used. Add specific crawler to it.
+    "Sap": "https://jobs.sap.com/search/?q=&locationsearch=&locale=en_US",
+    "Mars": "https://jobs.mars.com/search/?createNewAlert=false&q=&locationsearch=",
+    "Sabin": "https://jobs.kenoby.com/sabin-site",
+    "Accor": "https://careers.accor.com/global/en/opportunity",  # TODO Not used. Add specific crawler to it.
+    "Novarts": "https://www.novartis.com.br/carreiras/buscar-vagas#country=BR"
 }
 
 LOGS_FILE = "crawler.log"

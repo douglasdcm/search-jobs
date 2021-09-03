@@ -3,7 +3,8 @@ from src.crawler import (
     dqrtech,
     mms,
     ciandt,
-    cesar
+    cesar,
+    generic
 )
 from src.settings import URLS
 
@@ -23,26 +24,58 @@ class Factory():
             {
                 "company": daitan.Daitan(),
                 "url": URLS["Daitan"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": mms.Mms(),
                 "url": URLS["Mms"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": dqrtech.Dqrtech(),
                 "url": URLS["Dqrtech"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": ciandt.Ciandt(),
                 "url": URLS["Ciandt"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": cesar.Cesar(),
                 "url": URLS["Cesar"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//div[@class="positions"]//div[@class="container"]//a'),
+                "url": URLS["LeroyMerlin"],
+                "enabled": False
+            },
+            {
+                # TODO add a specific crawler to consider the pagination of the web page
+                "company": generic.Generic(
+                    '//span[contains(@class,"hidden-phone")]/a[@class="jobTitle-link"]'),
+                "url": URLS["Sap"],
+                "enabled": False
+            },
+            {
+                # TODO add a specific crawler to consider the pagination of the web page
+                "company": generic.Generic(
+                    '//span[contains(@class,"hidden-phone")]/a[@class="jobTitle-link"]'),
+                "url": URLS["Mars"],
+                "enabled": False
+            },
+            {  # TODO make crawler get just the job description
+                "company": generic.Generic(
+                    '//div[@class="positions"]//div[@class="container"]//a'),
+                "url": URLS["Sabin"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="link"]'),
+                "url": URLS["Novarts"],
                 "enabled": True
             },
             # Add new crawlers bellow
