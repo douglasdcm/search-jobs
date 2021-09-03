@@ -34,4 +34,5 @@ URLS = {
     # TODO Not used. Has a lot of positions, but requires a login
     "SescRs": "https://www.sesc-rs.com.br/trabalheconosco/vagas/",
     "3Coracoes": "https://jobs.kenoby.com/3coracoes",
+    "3M": "https://3m.recsolu.com/job_boards/1/?q=&utm_source=CSSearchWidget&startrow=1&location=%2C+us",
 }

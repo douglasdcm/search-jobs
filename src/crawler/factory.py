@@ -24,77 +24,83 @@ class Factory():
             {
                 "company": daitan.Daitan(),
                 "url": URLS["Daitan"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": mms.Mms(),
                 "url": URLS["Mms"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": dqrtech.Dqrtech(),
                 "url": URLS["Dqrtech"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": ciandt.Ciandt(),
                 "url": URLS["Ciandt"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": cesar.Cesar(),
                 "url": URLS["Cesar"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": generic.Generic(
                     '//div[@class="positions"]//div[@class="container"]//a'),
                 "url": URLS["LeroyMerlin"],
-                "enabled": True
+                "enabled": False
             },
             {
                 # TODO add a specific crawler to consider the pagination of the web page
                 "company": generic.Generic(
                     '//span[contains(@class,"hidden-phone")]/a[@class="jobTitle-link"]'),
                 "url": URLS["Sap"],
-                "enabled": True
+                "enabled": False
             },
             {
                 # TODO add a specific crawler to consider the pagination of the web page
                 "company": generic.Generic(
                     '//span[contains(@class,"hidden-phone")]/a[@class="jobTitle-link"]'),
                 "url": URLS["Mars"],
-                "enabled": True
+                "enabled": False
             },
             {  # TODO make crawler get just the job description
                 "company": generic.Generic(
                     '//div[@class="positions"]//div[@class="container"]//a'),
                 "url": URLS["Sabin"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": generic.Generic(
                     '//a[@class="link"]'),
                 "url": URLS["Novarts"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": generic.Generic(
                     '//a[@class="job-list__item"]'),
                 "url": URLS["Viacredi"],
-                "enabled": True
+                "enabled": False
             },
             {
                 "company": generic.Generic(
                     '//td[@data-title="Jobdescription"]/a'),
                 "url": URLS["Roche"],
-                "enabled": True
+                "enabled": False
             },
             {  # TODO make crawler get just the job description
                 "company": generic.Generic(
                     '//div[@class="positions"]//div[@class="container"]//a'),
                 "url": URLS["3Coracoes"],
-                "enabled": True
+                "enabled": False
+            },
+            {  # TODO make crawler get the next pages
+                "company": generic.Generic(
+                    '//div[contains(@class,"search-results__jobinfo")]/a'),
+                "url": URLS["3M"],
+                "enabled": False
             },
             # Add new crawlers bellow
         ]
