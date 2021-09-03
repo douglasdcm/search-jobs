@@ -30,4 +30,5 @@ URLS = {
     # TODO Not used. Needs to click on 'Veja nossas vagas'
     "MercadoLivre": "https://mercadolivre.randstad.com.br/LP_MercadoLivre_V2/",
     "Viacredi": "https://viacredi.gupy.io/",
+    "Roche": "https://www.roche.com/careers/jobs/jobsearch.htm?countryCodes=BR",
 }

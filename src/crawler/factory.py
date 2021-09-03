@@ -82,6 +82,12 @@ class Factory():
                 "company": generic.Generic(
                     '//a[@class="job-list__item"]'),
                 "url": URLS["Viacredi"],
+                "enabled": False
+            },
+            {
+                "company": generic.Generic(
+                    '//td[@data-title="Jobdescription"]/a'),
+                "url": URLS["Roche"],
                 "enabled": True
             },
             # Add new crawlers bellow
