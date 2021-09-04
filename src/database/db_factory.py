@@ -1,5 +1,6 @@
+import os
 from src.database import db, db_postgres
-from psycopg2 import connect as postegres_conn
+from psycopg2 import connect as postgres_conn
 from sqlite3 import connect as sqlite_conn
 from src.exceptions.exceptions import ErroBancoDados
 
@@ -15,16 +16,18 @@ class DbFactory:
                            host="127.0.0.1",
                            port="5432"):
 
-        if self.db_type == "postgres":
-            return postegres_conn(database=database,
-                                  user=user,
-                                  password=password,
-                                  host=host,
-                                  port=port)
+        if os.environ.get("DATABASE_URL") is not None:  # for Heroku only
+            return postgres_conn(os.environ.get("DATABASE_URL"))
+        elif self.db_type == "postgres":
+            return postgres_conn(database=database,
+                                 user=user,
+                                 password=password,
+                                 host=host,
+                                 port=port)
         elif self.db_type == "sqlite":
             return sqlite_conn(database)
         else:
-            return False
+            raise ErroBancoDados("It was not possibe to stablish the connection to database.")
 
 
     def make_db(self, conn):
@@ -33,4 +36,4 @@ class DbFactory:
         if self.db_type == "postgres":
             return db_postgres.Database(conn)
         else:
-            raise ErroBancoDados()
+            raise ErroBancoDados("It was not possible to create the database object.")
