@@ -1,4 +1,5 @@
 import os
+import psycopg2
 
 ROOT_DIR = os.getcwd() + "/src/"
 RESOURCES_DIR = ROOT_DIR + "resources/"
@@ -7,9 +8,11 @@ LOGS_FOLDER = "logs/"
 
 DEBUG = False
 TIMEOUT = 30
-DATABASE = RESOURCES_DIR + "crawler.db"
+DATABASE = RESOURCES_DIR + "crawler.db"  # for sqlite
+DB_NAME = "crawlers"
 TABELA = "positions"
 CAMPOS = "url, description"
+CAMPOS_DIFINICAO = """url VARCHAR(255) NOT NULL, description VARCHAR(50000)"""
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
 
 URLS = {

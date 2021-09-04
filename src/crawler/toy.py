@@ -19,7 +19,7 @@ class Toy(ICrawler):
         links = self._get_link_by_browser()
         descriptions = self._get_info_from_links(links)
         for i in range(len(links)):
-            msg = f"Saving {i} from {len(links)}..."
+            msg = f"Saving {i+1} from {len(links)}..."
             print(msg)
             logging.info(msg)
             self._save(links[i], descriptions[i])

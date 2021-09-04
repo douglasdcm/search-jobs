@@ -24,6 +24,26 @@ class Database:
         except Exception:
             raise ErroBancoDados("Não foi possível ligar o foreing_key_support.")
 
+    def cria_banco(self, banco):
+        try:
+            cmd = f"create database {banco}"
+            items = self._cria_conexao()
+            cur = items[1]
+            logging.info(cmd)
+            cur.execute(cmd)
+        except Exception:
+            raise ErroBancoDados("Não foi possível criar o banco.")
+
+    def deleta_banco(self, banco):
+        try:
+            cmd = f"drop database {banco}"
+            items = self._cria_conexao()
+            cur = items[1]
+            logging.info(cmd)
+            cur.execute(cmd)
+        except Exception:
+            raise ErroBancoDados("Não foi possível deletar o banco.")
+
     def deleta_tabela(self, tabela):
         try:
             cmd = f"drop table if exists {tabela}"
@@ -46,22 +66,18 @@ class Database:
     def _cria_conexao(self):
         try:
             con = type(self)._conexao
+            con.autocommit = True
             cur = con.cursor()
             return [con, cur]
         except Exception:
             raise ErroBancoDados("Não foi possível criar a conexão de banco.")
 
-    def cria_tabela(self, tabela, campos, complemento="", db="sqlite"):
-        if db == "sqlite":
-            if complemento:
-                complemento = "," + complemento
-            query = f"create table if not exists {tabela} (id INTEGER NOT NULL PRIMARY KEY, {campos} {complemento})"
-        if db == "postgres":
-            if complemento:
-                complemento = "," + complemento
-            query = f"create table {tabela} (id SERIAL PRIMARY KEY, {campos} {complemento})"
+    def cria_tabela(self, tabela, campos, complemento=""):
+        if complemento:
+            complemento = "," + complemento
+        query = f"create table {tabela} (id SERIAL PRIMARY KEY, {campos} {complemento})"
         mensagem_erro = "Não foi possível criar a tabela."
-        self._run(query, mensagem_erro)
+        self._run(query, mensagem_erro, fetch=False)
 
 
     def atualiza_registro(self, tabela, sets, id_):
@@ -75,7 +91,7 @@ class Database:
         """Retorna a tupla com o maior id da tabela"""
         query = f"insert into {tabela} ({campos}) values ({valores})"
         mensagem_erro = "Não foi possiível salvar o registro."
-        self._run(query, mensagem_erro)
+        self._run(query, mensagem_erro, fetch=False)
         return self.pega_maior_id(tabela)
 
     def pega_maior_id(self, tabela):
@@ -86,7 +102,7 @@ class Database:
     def deleta_registro(self, tabela, id_):
         query = f"delete from {tabela} where id = {id_}"
         mensagem_erro = "Não foi possível excluir o registro especificado."
-        self._run(query, mensagem_erro)
+        self._run(query, mensagem_erro, fetch=False)
 
     def pega_todos_registros(self, tabela, campos="*", distinct=False):
         query = "select"
@@ -102,7 +118,8 @@ class Database:
         mensagem_erro = "Não foi possível pegar o registro especificado."
         result = self._run(query, mensagem_erro)
         if result == []:
-            raise ErroBancoDados(f"Registro especificado de identificador {id_} não foi encontrado.")
+            raise ErroBancoDados(
+                f"Registro especificado de identificador {id_} não foi encontrado.")
         else:
             return result
 
@@ -119,7 +136,7 @@ class Database:
         mensagem_erro = "Não foi possível executar a query especificada."
         return self._run(query, mensagem_erro)
 
-    def _run(self, query, mensagem_erro):
+    def _run(self, query, mensagem_erro, fetch=True):
         """
         Args:
             query (str): consulta sql a ser executada
@@ -136,7 +153,10 @@ class Database:
             cur = items[1]
             cur.execute(query)
             con.commit()
-            return cur.fetchall()
+            if fetch:
+                return cur.fetchall()
+            else:
+                return True
         except Exception as e:
             print(str(e))
             logging.info(str(e))

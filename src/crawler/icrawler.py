@@ -1,9 +1,7 @@
 import logging
 from src.helper.helper import remove_special_characters
-from src.settings import DATABASE
-from src.settings import DATABASE, TABELA, CAMPOS
-from src.database.db import Database
-from sqlite3 import connect
+from src.settings import DB_NAME, TABELA, CAMPOS
+from src.database.db_factory import DbFactory
 
 
 class ICrawler:
@@ -30,7 +28,9 @@ class ICrawler:
         logging.info(msg)
         description = remove_special_characters(description)
         valores = (f"'{url}', '{description}'")
-        db = Database(connect(DATABASE))
+        dbf = DbFactory()
+        conn = dbf.create_connnection(database=DB_NAME)
+        db = dbf.make_db(conn)
         db.salva_registro(TABELA, CAMPOS, valores)
         db.fecha_conexao_existente()
 
