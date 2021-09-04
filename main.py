@@ -5,15 +5,16 @@ Try: 'python main.py --help' for more information.
 import os
 import sys
 import logging
-from src.settings import ROOT_DIR, LOGS_FILE, DATABASE, TABELA, CAMPOS, RESOURCES_DIR
+from src.settings import (CAMPOS_DIFINICAO, ROOT_DIR, LOGS_FILE, TABELA, CAMPOS,
+                          RESOURCES_DIR, DB_NAME)
 from src.driver.chrome import ChromeDriver
 from src.exceptions.exceptions import ComandoInvalido
-from src.database.db import Database
 from src.similarity.similarity import Similarity
-from sqlite3 import connect
 from sys import argv
 from src.crawler.factory import Factory
 from src.crawler.toy import Toy
+from src.database.db_factory import DbFactory
+
 
 os.system('export PATH="{}:$PATH"'.format(RESOURCES_DIR))
 sys.path.append(RESOURCES_DIR)
@@ -52,12 +53,26 @@ Commands:
 
 
 def install():
+    msg = "Deleting database..."
+    print(msg)
+    logging.info(msg)
+    dbf = DbFactory()
+    conn = dbf.create_connnection()
+    db = dbf.make_db(conn)
+    try:
+        db.deleta_banco(DB_NAME)
+    except Exception:
+        pass
     msg = "Creating database..."
     print(msg)
     logging.info(msg)
-    db = Database(connect(DATABASE))
-    db.deleta_tabela(TABELA)
-    db.cria_tabela(TABELA, CAMPOS)
+    db.cria_banco(DB_NAME)
+    db.fecha_conexao_existente()
+
+    # Connect to DB_NAME databse
+    conn = dbf.create_connnection(database=DB_NAME)
+    db = dbf.make_db(conn)
+    db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
     msg = "Database created."
     print(msg)
     logging.info(msg)
@@ -69,7 +84,9 @@ def compare(path_to_file):
     cv = f.read()
     f.close()
 
-    db = Database(connect(DATABASE))
+    dbf = DbFactory()
+    conn = dbf.create_connnection(database=DB_NAME)
+    db = dbf.make_db(conn)
     positions = db.pega_todos_registros(TABELA, CAMPOS, distinct=True)
     db.fecha_conexao_existente()
     s = Similarity()
@@ -85,6 +102,7 @@ def sanity_check():
                 "enabled": True
                 }]
     run(crawlers)
+
     msg = "Removendo registros do sanity check."
     logging.info(msg)
     print(msg)
@@ -93,7 +111,9 @@ def sanity_check():
         "http://toy.com/position_2",
         "http://toy.com/position_3"
     ]
-    db = Database(connect(DATABASE))
+    dbf = DbFactory()
+    conn = dbf.create_connnection(database=DB_NAME)
+    db = dbf.make_db(conn)
     for url in urls:
         registros = db.pega_registro_por_condicao(TABELA, "url = '{}'".format(url))
         for registro in registros:
@@ -125,7 +145,9 @@ def run(crawlers=None):
             print(msg)
             logging.info(msg)
     _finish_driver(chrome)
-    db = Database(connect(DATABASE))
+    dbf = DbFactory()
+    conn = dbf.create_connnection(database=DB_NAME)
+    db = dbf.make_db(conn)
     positions = len(db.pega_todos_registros(TABELA, CAMPOS, distinct=True))
     db.fecha_conexao_existente()
     msg = "Existem {} vagas cadastradas.".format(positions)

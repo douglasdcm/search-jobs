@@ -2,18 +2,13 @@
 import os
 import sys
 import logging
-
-from src.settings import ROOT_DIR, DATABASE, TABELA, CAMPOS
-
+from src.database.db_factory import DbFactory
+from src.settings import CAMPOS_DIFINICAO, DB_NAME, ROOT_DIR, TABELA, CAMPOS
 from flask import Flask, render_template, request
-from src.database.db import Database
-from sqlite3 import connect
 from src.similarity.similarity import Similarity
-from src.settings import ROOT_DIR, DATABASE, TABELA, CAMPOS
+from src.settings import ROOT_DIR, TABELA, CAMPOS
 from src.driver.chrome import ChromeDriver
-from src.database.db import Database
 from src.similarity.similarity import Similarity
-from sqlite3 import connect
 from src.crawler.factory import Factory
 
 app = Flask(__name__)
@@ -41,8 +36,8 @@ def update():
         curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'localhost:5000/update'
     """
     data = request.json
-    if os.getenv('HASH') is None:
-        os.getenv('HASH') == "dev"
+    if os.getenv('HASH') == "":
+        os.environ['HASH'] = "dev"
     if data["hash"] == os.getenv('HASH'):
         return _update()
     else:
@@ -53,7 +48,9 @@ def _compare(content):
 
     cv = content
 
-    db = Database(connect(DATABASE))
+    dbf = DbFactory()
+    conn = dbf.create_connnection(database=DB_NAME)
+    db = dbf.make_db(conn)
     positions = db.pega_todos_registros(TABELA, CAMPOS)
     db.fecha_conexao_existente()
     s = Similarity()
@@ -97,7 +94,9 @@ def _run(crawlers=None, clear=True):
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             print(msg)
             logging.info(msg)
-    db = Database(connect(DATABASE))
+    dbf = DbFactory()
+    conn = dbf.create_connnection(database=DB_NAME)
+    db = dbf.make_db(conn)
     positions = len(db.pega_todos_registros(TABELA, CAMPOS, distinct=True))
     db.fecha_conexao_existente()
     msg = "Existem {} vagas cadastradas.".format(positions)
@@ -110,9 +109,14 @@ def _clear():
     msg = "Cleaning database..."
     print(msg)
     logging.info(msg)
-    db = Database(connect(DATABASE))
-    db.deleta_tabela(TABELA)
-    db.cria_tabela(TABELA, CAMPOS)
+    dbf = DbFactory()
+    conn = dbf.create_connnection(database=DB_NAME)
+    db = dbf.make_db(conn)
+    try:
+        db.deleta_tabela(TABELA)
+    except Exception:
+        pass
+    db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
     msg = "Database created."
     print(msg)
     logging.info(msg)

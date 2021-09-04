@@ -1,4 +1,5 @@
 import os
+import psycopg2
 
 ROOT_DIR = os.getcwd() + "/src/"
 RESOURCES_DIR = ROOT_DIR + "resources/"
@@ -7,9 +8,11 @@ LOGS_FOLDER = "logs/"
 
 DEBUG = False
 TIMEOUT = 30
-DATABASE = RESOURCES_DIR + "crawler.db"
+DATABASE = RESOURCES_DIR + "crawler.db"  # for sqlite
+DB_NAME = "crawlers"
 TABELA = "positions"
 CAMPOS = "url, description"
+CAMPOS_DIFINICAO = """url VARCHAR(255) NOT NULL, description VARCHAR(50000)"""
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
 
 URLS = {
@@ -35,4 +38,27 @@ URLS = {
     "SescRs": "https://www.sesc-rs.com.br/trabalheconosco/vagas/",
     "3Coracoes": "https://jobs.kenoby.com/3coracoes",
     "3M": "https://3m.recsolu.com/job_boards/1/?q=&utm_source=CSSearchWidget&startrow=1&location=%2C+us",
+    "Aeris": "https://aeris.gupy.io/",
+    "Vivo": "https://vivo.gupy.io/",
+    "Cielo": "https://cielo.gupy.io/",
+    "Embraer": "https://embraer.gupy.io/",
+    "Totvs": "https://totvs.gupy.io/",
+    "ViaVarejo": "https://viavarejo.gupy.io/",
+    "Gupy": "https://vempra.gupy.io/?utm_source=site&utm_medium=footer",
+    "GupyTech": "https://tech-career.gupy.io/?utm_source=site&utm_medium=footer",
+    "Ambev": "https://ambev.gupy.io/",
+    "Gpa": "https://gpa.gupy.io/",
+    "PicPay": "https://picpay.gupy.io/",
+    "Randon": "https://randon.gupy.io/",
+    "Dasa": "https://dasa.gupy.io/",
+    "Promob": "https://promob.gupy.io/",
+    "Altamogiana": "https://altamogiana.gupy.io/",
+    "Vereda": "https://vereda.gupy.io/",
+    "PmWeb": "https://pmweb.gupy.io/",
+    "Sicredi": "https://sicredi.gupy.io/",
+    "Cocacola": "https://cocacola.gupy.io/",
+    "Assai": "https://assai.gupy.io/",
+    "PetLove": "https://petlove.gupy.io/",
+    "Cotesa": "https://cotesa.gupy.io/",
+
 }
