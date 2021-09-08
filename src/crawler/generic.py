@@ -50,8 +50,7 @@ class Generic(ICrawler):
 
     def _get_info_from_links(self, links):
         for link in links:
-            print("===========================")
-            print(link)
+            print("Collecting data from {}".format(link))
             logging.info(link)
             self._vagas.go_to_page(link)
             descriptions = self._vagas.get_description()

@@ -157,11 +157,9 @@ def run(crawlers=None):
 
 def _finish_driver(chrome):
     chrome.quit()
-    print("===========================")
     msg = "Crawler finished."
     print(msg)
     logging.info(msg)
-    print("===========================")
 
 
 def _get_value(argumentos, parametro, incremento=1):

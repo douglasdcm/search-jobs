@@ -84,6 +84,9 @@ def _run(crawlers=None, clear=True):
             chrome = ChromeDriver()
             if crawler["enabled"]:
                 url = crawler["url"]
+                msg = "Starting crawler for '{}'...".format(url)
+                print(msg)
+                logging.info(msg)
                 driver = chrome.start(url)
                 company = crawler["company"]
                 company.set_driver(driver)
@@ -125,11 +128,9 @@ def _clear():
 
 def _finish_driver(chrome):
     chrome.quit()
-    print("===========================")
     msg = "Crawler finished."
     print(msg)
     logging.info(msg)
-    print("===========================")
 
 
 if __name__ == '__main__':

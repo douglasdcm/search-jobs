@@ -20,7 +20,7 @@ URLS = {
     "Dqrtech": "https://www.dqrtech.com.br/vagas/",
     "Mms": "https://www.modularmining.com/pt-br/trabalhe-conosco/aberturas-de-emprego-atuais/",
     "Ciandt": "https://ciandt.com/us/en-us/careers/open-positions",
-    "Cesar": "https://vagas.cesar.org.br/",
+    "Cesar": "https://vagascesar.gupy.io",
     "LeroyMerlin": "https://jobs.kenoby.com/leroymerlin",
     # TODO Not used. Add specific crawler to it.
     "Dell": "https://carreiras.dell.com/search-jobs",
@@ -60,5 +60,22 @@ URLS = {
     "Assai": "https://assai.gupy.io/",
     "PetLove": "https://petlove.gupy.io/",
     "Cotesa": "https://cotesa.gupy.io/",
-
+    "TakeBlip": "https://takeblip.gupy.io/",
+    "Oi": "https://oi.gupy.io/",
+    "Marisa": "https://marisa.gupy.io/",
+    "Atento": "https://atento.gupy.io/",
+    "Duratex": "https://duratex.gupy.io/",
+    "ShibataSupermercados": "https://shibatasupermercados.gupy.io/",
+    "AguasAzuis": "https://aguasazuis.gupy.io/",
+    "RedeBrasil": "https://redebrasil.gupy.io/",
+    # TODO Not used. There are many positions, but need to click the link
+    "Algar": "https://www.portalsinergyrh.com.br/Portal/MeuPortal/MeuPortal?empresa=1490&master=1",
+    "AstraZeneca": "https://careers.astrazeneca.com/location/brazil-country-jobs/7684/3469034/2",
+    "BancoBV": "https://jobs.kenoby.com/bancobv",
+    "CeA": "https://jobs.kenoby.com/cea",
+    "Danone": "https://jobs.kenoby.com/danone",
+    "Alelo": "https://jobs.kenoby.com/alelo",
+    "CVC": "https://jobs.kenoby.com/cvc",
+    "PagueMenos": "https://jobs.kenoby.com/paguemenos",
+    "Kenoby": "https://jobs.kenoby.com/kenoby",
 }
