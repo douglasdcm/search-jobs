@@ -68,15 +68,14 @@ def _compare(content):
 
 def _update():
     try:
+        _clear()
         _run()
         return "OK\n"
     except Exception as e:
         return "FAIL: \n{}".format(str(e))
 
 
-def _run(crawlers=None, clear=True):
-    if clear:
-        _clear()
+def _run(crawlers=None):
     if crawlers is None:
         crawlers = Factory().get_crawlers()
     for crawler in crawlers:
@@ -97,15 +96,6 @@ def _run(crawlers=None, clear=True):
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             print(msg)
             logging.info(msg)
-    dbf = DbFactory()
-    conn = dbf.create_connnection(database=DB_NAME)
-    db = dbf.make_db(conn)
-    positions = len(db.pega_todos_registros(TABELA, CAMPOS, distinct=True))
-    db.fecha_conexao_existente()
-    msg = "Existem {} vagas cadastradas.".format(positions)
-    print(msg)
-    logging.info(msg)
-
 
 
 def _clear():
