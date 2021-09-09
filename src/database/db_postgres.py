@@ -36,7 +36,7 @@ class Database:
 
     def deleta_banco(self, banco):
         try:
-            cmd = f"drop database {banco}"
+            cmd = f"drop database {banco} WITH (FORCE)"
             items = self._cria_conexao()
             cur = items[1]
             logging.info(cmd)

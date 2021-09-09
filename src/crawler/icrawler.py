@@ -1,5 +1,5 @@
 import logging
-from src.helper.helper import remove_special_characters
+from src.helper.helper import data_pre_processing
 from src.settings import DB_NAME, TABELA, CAMPOS
 from src.database.db_factory import DbFactory
 
@@ -26,7 +26,7 @@ class ICrawler:
         msg = f"Saving '{url}'..."
         print(msg)
         logging.info(msg)
-        description = remove_special_characters(description)
+        description = data_pre_processing(description)
         valores = (f"'{url}', '{description}'")
         dbf = DbFactory()
         conn = dbf.create_connnection(database=DB_NAME)
