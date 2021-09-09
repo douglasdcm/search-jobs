@@ -9,6 +9,8 @@
 		};
 	}
 	function doWork() {
+		document.getElementById('send_message').value
+                = 'Pesquisando...';
 		var message_field = document.getElementById('message_field').value;
 		
 		if (message_field === "") {
@@ -31,6 +33,8 @@
 		// ajax the JSON to the server
 		$.ajax(settings).done(function (response) {
 			document.getElementById("response").innerHTML = response
+			document.getElementById('send_message').value
+                = 'Pesquisar';
 		});
 		// stop link reloading the page
 	 event.preventDefault();

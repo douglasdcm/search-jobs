@@ -45,9 +45,7 @@ def update():
 
 
 def _compare(content):
-
     cv = content
-
     dbf = DbFactory()
     conn = dbf.create_connnection(database=DB_NAME)
     db = dbf.make_db(conn)
