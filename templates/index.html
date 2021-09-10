@@ -1,184 +1,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-<script type="text/javascript">
-	// setup some JSON to use
-	window.onload = function() {
-		// setup the button click
-		document.getElementById("send_message").onclick = function() {
-			doWork()
-		};
-	}
-	function doWork() {
-		document.getElementById('send_message').value
-                = 'Pesquisando...';
-		var message_field = document.getElementById('message_field').value;
-		
-		if (message_field === "") {
-			alert("Preencha o campo, por favor!");
-			return
-		} //else {
-		// 	document.getElementById("message").innerHTML = 'You: ' + message_field;
-		// }	
-
-		var settings = {
-		  "url": "https://vagaspramim.herokuapp.com/receiver",
-		  "method": "POST",
-		  "timeout": 0,
-		  "headers": {
-			"Content-Type": "application/json"
-		  },
-		  "data": JSON.stringify({"message": message_field }),
-		};
-
-		// ajax the JSON to the server
-		$.ajax(settings).done(function (response) {
-			document.getElementById("response").innerHTML = response
-			document.getElementById('send_message').value
-                = 'Pesquisar';
-		});
-		// stop link reloading the page
-	 event.preventDefault();
-	}
-</script>
-
+<script type=text/javascript src="{{ url_for('static', filename='main.js') }}"></script>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	  <!-- Required meta tags -->
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  
+	  <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 	
-	<style>
-	* {
-	  box-sizing: border-box;
-	}
-
-	body {
-	  font-family: Arial, Helvetica, sans-serif;
-	  background-color: rgb(0, 0, 0);
-	}
-
-	/* Style the header */
-	header {
-	  background-color: rgb(8, 19, 82);
-	  padding: 5px;
-	  text-align: center;
-	  font-size: 25px;
-	  color: white;
-	}
-
-	/* Create two columns/boxes that floats next to each other */
-	nav {
-	  float: left;
-	  width: 30%;
-	  height: 75%; /* only for demonstration, should be removed */
-	  background: rgb(12, 16, 235);
-	}
-
-	/* Style the list inside the menu */
-	nav ul {
-	  list-style-type: none;
-	  padding: 0;
-	}
-
-	article {
-	  float: left;
-	  padding: 20px;
-	  width: 70%;
-	  background-color: #d5dfdf;
-	  height: 75%; /* only for demonstration, should be removed */
-	}
-
-	/* Clear floats after the columns */
-	section:after {
-	  content: "";
-	  display: table;
-	  clear: both;
-	}	
-	
-	#message_field {
-	  width: 80%;
-	}
-
-	table {
-	  font-family: arial, sans-serif;
-	  border-collapse: collapse;
-	  width: 100%;
-	}
-
-	td, th {	  
-	  text-align: left;
-	  padding: 6px;
-	}
-
-	tr:nth-child(even) {
-	  background-color: #d5dfdf;
-	}
-
-	/* Style the footer */
-	footer {
-	  background-color: rgb(8, 19, 82);
-	  padding: 10px;
-	  text-align: center;
-	  color: white;
-	}
-
-	/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-	@media (max-width: 600px) {
-	  nav, article {
-		width: 100%;
-		height: auto;
-	  }
-	}
-
-	textarea {
-		width: 100%;
-  		height: 30%;
-		outline: 0 none;
-		padding: 5px;
-		margin-right: 0px;
-	}
-
-	.float-container {
-		padding: 5px;
-	}
-
-	.float-child-left {
-		width: 100%;
-		float: left;
-		border: 2px solid red;
-	}
-
-	.float-child-right {
-		width: 20%;
-		float: right;
-		padding-left: 10px;
-	} 
-
-	.container{
-		padding: 10px;
-		border: 1px solid silver
-	}
-
-	.container .text{
-		resize: none;
-		outline: none;
-		width: 70%;
-		padding: 10px;
-		border: none;
-		height: 30%;
-		margin: -10px;
-	}
-
-	</style>	
-	
-	
-    <title>Vagas pra mim</title>
+      <title>Vagas pra mim</title>
 	
   </head>
   <body>
@@ -189,10 +23,8 @@
 		<h6><a href="https://github.com/douglasdcm/crawler_of_positions">Git Hub repository</a></h6>
 		</header>		
 		  <nav>
-			<!--img src="andrew-neel-cckf4TsHAuw-unsplash.jpg" alt="Find Jobs" style="width:100%;height:50%;"-->
-			<img src="/static/andrew-neel-ute2XAFQU2I-unsplash.jpg" alt="source: https://unsplash.com/photos/ute2XAFQU2I" style="width:100%;height:100%;">
+			  <img src="/static/andrew-neel-ute2XAFQU2I-unsplash.jpg" alt="source: https://unsplash.com/photos/ute2XAFQU2I" style="width:100%;height:100%;">
 		</nav>
-
 		<section>
 			<article>
 			<div>
@@ -204,7 +36,6 @@
 						</div>
 					</div>
 				</form>
-				<!--h6 id="message">Procurando vagas similares ao currículo...</h6-->
 				<div id="table-wrapper">
 					<div id="table-scroll" style="overflow: scroll; height: 65%;">
 						<h4 id="response"></h4>
@@ -214,12 +45,9 @@
 			</div>
 			</article>
 		</section>
-		
 		<footer>
 		  <p>Copyright © 2021 | <a href="https://www.linkedin.com/in/douglas-cardosom/">LinkedIn</a></p>
 		</footer>
 	</div>
-	
-
   </body>
 </html>
