@@ -44,6 +44,22 @@ def update():
         return "NO ACTION\n"
 
 
+@app.route('/info', methods=['POST'])
+def info():
+    """
+    Get information of the database, for example, number of rows.
+    Request example:
+        curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'localhost:5000/info'
+    """
+    data = request.json
+    if os.getenv('HASH') == "":
+        os.environ['HASH'] = "dev"
+    if data["hash"] == os.getenv('HASH'):
+        return _info()
+    else:
+        return "NO ACTION\n"
+
+
 def _compare(content):
     cv = content
     dbf = DbFactory()
@@ -119,6 +135,15 @@ def _finish_driver(chrome):
     msg = "Crawler finished."
     print(msg)
     logging.info(msg)
+
+
+def _info():
+    dbf = DbFactory()
+    conn = dbf.create_connnection(database=DB_NAME)
+    db = dbf.make_db(conn)
+    max_id = db.pega_maior_id(TABELA)[0][0]
+    db.fecha_conexao_existente()
+    return "Number of records in database is {}\n".format(str(max_id))
 
 
 if __name__ == '__main__':
