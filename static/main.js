@@ -12,6 +12,7 @@ function doWork() {
         alert("Preencha o campo, por favor!");
         return
     }
+    document.getElementById("send_message").disabled = true;
     document.getElementById('send_message').value
             = 'Pesquisando...';	
 
@@ -30,6 +31,7 @@ function doWork() {
         document.getElementById("response").innerHTML = response
         document.getElementById('send_message').value
             = 'Pesquisar';
+        document.getElementById("send_message").disabled = false;
     });
     // stop link reloading the page
     event.preventDefault();
