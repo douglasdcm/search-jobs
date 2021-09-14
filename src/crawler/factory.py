@@ -330,6 +330,36 @@ class Factory():
                 "url": URLS["Kenoby"],
                 "enabled": True
             },
+            {
+                "company": generic.Generic(
+                    '//a[@class="text-dark"]'),
+                "url": URLS["AmplificaDigital"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    '//a[@class="text-dark"]'),
+                "url": URLS["ExpertiseGp"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    kenoby_locator),
+                "url": URLS["ClearSale"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    '//h3[@class="listSingleColumnItemTitle"]/a'),
+                "url": URLS["Coats"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    '//a[contains(@class,"job-box")]'),
+                "url": URLS["CopaEnergia"],
+                "enabled": True
+            },
             # Add new crawlers bellow
         ]
         return crawlers

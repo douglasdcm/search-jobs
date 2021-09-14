@@ -78,4 +78,9 @@ URLS = {
     "CVC": "https://jobs.kenoby.com/cvc",
     "PagueMenos": "https://jobs.kenoby.com/paguemenos",
     "Kenoby": "https://jobs.kenoby.com/kenoby",
+    "AmplificaDigital": "https://jobs.quickin.io/amplificadigital/jobs",
+    "ExpertiseGp": "https://jobs.quickin.io/expertisegp/jobs",
+    "ClearSale": "https://jobs.kenoby.com/clearsale/",
+    "Coats": "https://rbcoats.avature.net/careers/SearchJobs/?3_47_3=898",
+    "CopaEnergia": "https://trabalheconosco.vagas.com.br/copa-energia/oportunidades",
 }
