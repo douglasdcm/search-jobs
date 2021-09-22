@@ -12,8 +12,8 @@ class DbFactory:
     def create_connnection(self,
                            database="postgres",
                            user="postgres",
-                           password="postgres",
-                           host="127.0.0.1",
+                           password="postgresql",
+                           host="172.17.0.2",
                            port="5432"):
 
         if os.environ.get("DATABASE_URL") is not None:  # for Heroku only
