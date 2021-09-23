@@ -1,3 +1,6 @@
+add docker-compose
+persist postgres
+
 sudo docker run -dp 5000:5000 --name vagas-pra-mim vagas-pra-mim
 sudo docker run --name vagas-pra-mim -e POSTGRES_PASSWORD=mysecretpassword -d postgres --network vagas-pra-mim -v vagas-pra-mim:/var/lib/pgsql
 sudo docker build -t vagas-pra-mim .
