@@ -13,7 +13,7 @@ class DbFactory:
                            database="postgres",
                            user="postgres",
                            password="postgresql",
-                           host="172.17.0.2",
+                           host="postgres",
                            port="5432"):
 
         if os.environ.get("DATABASE_URL") is not None:  # for Heroku only
