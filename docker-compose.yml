@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  vpm:
+    image: vagas-pra-mim
+    container_name: vpm
+    volumes:
+      - ./:/vpm
+      - /dev/shm:/dev/shm
+    ports:
+      - 5000:5000
+    working_dir: /
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    volumes:
+      - vpm-data:/var/lib/pgsql
+    environment:
+      POSTGRES_PASSWORD: postgresql
+
+volumes:
+  vpm-data:
