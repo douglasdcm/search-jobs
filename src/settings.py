@@ -1,5 +1,4 @@
 import os
-import psycopg2
 
 ROOT_DIR = os.getcwd() + "/src/"
 RESOURCES_DIR = ROOT_DIR + "resources/"

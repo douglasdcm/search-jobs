@@ -1,3 +1,4 @@
+echo "" > ./logs/crawler.log
 apt-get update
 apt-get install -y libnss3-tools
 apt update
