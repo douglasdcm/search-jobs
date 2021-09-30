@@ -23,8 +23,9 @@ def output():
 
 @app.route('/receiver', methods=['POST'])
 def worker():
-
+    limit = 5000
     message = request.json['message']
+    message = (message[:limit]) if len(message) > limit else message
     return _compare(message)
 
 
