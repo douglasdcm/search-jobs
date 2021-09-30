@@ -44,9 +44,10 @@ class ChromeDriver:
 
     def quit(self):
         try:
-            logging.info("Finishing driver and taking screeshot.")
-            file = "screenshot_" + time.strftime("%d-%m-%H-%M-%S") + ".png"
-            self._driver.save_screenshot(LOGS_FOLDER + file)
+            if DEBUG:
+                logging.info("Finishing driver and taking screeshot.")
+                file = "screenshot_" + time.strftime("%d-%m-%H-%M-%S") + ".png"
+                self._driver.save_screenshot(LOGS_FOLDER + file)
             if DEBUG is False:
                 self._driver.quit()
         except Exception as e:
