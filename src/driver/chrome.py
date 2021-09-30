@@ -47,8 +47,8 @@ class ChromeDriver:
             if DEBUG:
                 logging.info("Finishing driver and taking screeshot.")
                 file = "screenshot_" + time.strftime("%d-%m-%H-%M-%S") + ".png"
-            if DEBUG is False:
                 self._driver.save_screenshot(LOGS_FOLDER + file)
+            if DEBUG is False:
                 self._driver.quit()
         except Exception as e:
             traceback.print_tb(e.__traceback__)
