@@ -1,7 +1,7 @@
 import math
 from scipy.spatial import distance
 from sklearn.feature_extraction.text import CountVectorizer
-from src.helper.helper import data_pre_processing
+from src.helper.helper import data_pre_processing_portuguese
 
 
 class Similarity:
@@ -18,7 +18,7 @@ class Similarity:
 
         for m in positions:
             m = str(m)
-            new_msg_list = [data_pre_processing(cv), m]
+            new_msg_list = [data_pre_processing_portuguese(cv), m]
             vector_bow = self.bow.fit_transform(new_msg_list)
             msg_bow = vector_bow.todense()[0]
             m_bow = vector_bow.todense()[1]
