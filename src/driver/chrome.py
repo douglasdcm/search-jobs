@@ -26,6 +26,7 @@ class ChromeDriver:
                 chrome_options = Options()
                 if DEBUG is False:
                     chrome_options.add_argument("--headless")
+                    chrome_options.add_argument('--no-sandbox')
                 # print("Runnig driver from {}".format(DRIVER_DIR))
                 self._driver = webdriver.Chrome(executable_path=DRIVER_DIR,
                                                 options=chrome_options)
@@ -44,11 +45,11 @@ class ChromeDriver:
 
     def quit(self):
         try:
-            if DEBUG:
-                logging.info("Finishing driver and taking screeshot.")
+            if DEBUG is False:
+                logging.info("Taking screeshot.")
                 file = "screenshot_" + time.strftime("%d-%m-%H-%M-%S") + ".png"
                 self._driver.save_screenshot(LOGS_FOLDER + file)
-            if DEBUG is False:
+                logging.info("Finishing driver.")
                 self._driver.quit()
         except Exception as e:
             traceback.print_tb(e.__traceback__)
