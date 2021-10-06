@@ -56,8 +56,8 @@ def data_pre_processing_portuguese(corpus):
     corpus = re.sub(r'[^a-z A-Z 0-9 \s]', '', str(corpus))
     # remove duplicated spaces
     corpus = re.sub(r' +', ' ', str(corpus))
-    # # remove numbers
-    # corpus = re.sub("\d+", "", corpus)
+    # remove numbers
+    corpus = re.sub("\d+", "", corpus)
     # capitalization
     corpus = corpus.lower()
     # tokenization
