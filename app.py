@@ -10,6 +10,7 @@ from src.settings import ROOT_DIR, TABELA, CAMPOS
 from src.driver.chrome import ChromeDriver
 from src.similarity.similarity import Similarity
 from src.crawler.factory import Factory
+from src.helper.helper import data_pre_processing_portuguese
 
 app = Flask(__name__)
 sys.path.append(ROOT_DIR)
@@ -63,6 +64,9 @@ def info():
 
 def _compare(content):
     cv = content
+    cv = data_pre_processing_portuguese(cv)
+    if len(cv) == 0:
+        return "Nenhum resultado encontrado."
     dbf = DbFactory()
     conn = dbf.create_connnection(database=DB_NAME)
     db = dbf.make_db(conn)
