@@ -1,12 +1,12 @@
 import math
 from scipy.spatial import distance
-from sklearn.feature_extraction.text import HashingVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 class Similarity:
 
     def __init__(self):
-        self.bow = HashingVectorizer()
+        self.bow = CountVectorizer()
 
     def return_similarity_by_cossine(self, cv, positions):
         """
@@ -18,7 +18,7 @@ class Similarity:
         for m in positions:
             m = str(m)
             new_msg_list = [cv, m]
-            vector_bow = self.bow.transform(new_msg_list)
+            vector_bow = self.bow.fit_transform(new_msg_list)
             msg_bow = vector_bow.todense()[0]
             m_bow = vector_bow.todense()[1]
 
