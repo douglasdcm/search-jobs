@@ -112,7 +112,6 @@ def _run(crawlers=None):
                 company.run()
             _finish_driver(chrome)
         except Exception as e:
-            _finish_driver(chrome)
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             print(msg)
             logging.info(msg)
