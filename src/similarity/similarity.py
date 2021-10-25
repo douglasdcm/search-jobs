@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 class Similarity:
 
     def __init__(self):
-        self.bow = CountVectorizer(binary=True, ngram_range=(1, 2))
+        self.bow = CountVectorizer(binary=True)
 
     def return_similarity_by_cossine(self, cv, positions):
         """
