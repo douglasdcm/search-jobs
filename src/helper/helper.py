@@ -7,12 +7,10 @@ from src.settings import LOGS_FILE
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
-from nltk.stem import RSLPStemmer
 
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
-nltk.download('rslp')
 
 
 def cleanhtml(raw_html):
@@ -64,15 +62,9 @@ def data_pre_processing_portuguese(corpus):
     corpus = corpus.lower()
     # tokenization
     corpus = re.findall(r"\w+(?:'\w+)?|[^\w\s]", corpus)
-    # lemmatization
-    # lemmatizer = WordNetLemmatizer()
-    # corpus = [lemmatizer.lemmatize(c, get_wordnet_pos(c)) for c in corpus]
-    # remove punctuation
-    # corpus = [t for t in corpus if t not in string.punctuation]
-    # remove stopwords
+    # remove punctuation and remove stopwords
     stopwords_ = stopwords.words("portuguese")
-    st = RSLPStemmer()
-    corpus = [st.stem(t) for t in corpus if t not in stopwords_ and t not in string.punctuation]
+    corpus = [t for t in corpus if t not in stopwords_ and t not in string.punctuation]
     corpus = ' '.join(corpus)
     return corpus
 
