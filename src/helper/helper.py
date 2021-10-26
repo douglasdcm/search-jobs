@@ -62,14 +62,9 @@ def data_pre_processing_portuguese(corpus):
     corpus = corpus.lower()
     # tokenization
     corpus = re.findall(r"\w+(?:'\w+)?|[^\w\s]", corpus)
-    # lemmatization
-    # lemmatizer = WordNetLemmatizer()
-    # corpus = [lemmatizer.lemmatize(c, get_wordnet_pos(c)) for c in corpus]
-    # remove punctuation
-    corpus = [t for t in corpus if t not in string.punctuation]
-    # remove stopwords
+    # remove punctuation and remove stopwords
     stopwords_ = stopwords.words("portuguese")
-    corpus = [t for t in corpus if t not in stopwords_]
+    corpus = [t for t in corpus if t not in stopwords_ and t not in string.punctuation]
     corpus = ' '.join(corpus)
     return corpus
 
