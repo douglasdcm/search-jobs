@@ -3,7 +3,7 @@ import os
 ROOT_DIR = os.getcwd() + "/src/"
 RESOURCES_DIR = ROOT_DIR + "resources/"
 DRIVER_DIR = RESOURCES_DIR + "chromedriver"
-LOGS_FOLDER = "/app/logs/"
+LOGS_FOLDER = "/logs/"
 
 DEBUG = False
 TIMEOUT = 30
