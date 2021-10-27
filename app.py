@@ -13,7 +13,7 @@ from src.crawler.factory import Factory
 from src.helper.helper import data_pre_processing_portuguese
 logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
-    filename=LOGS_FILE, level=logging.ERROR, datefmt='%Y-%m-%d %H:%M:%S')
+    filename=LOGS_FILE, level=logging.INFO, datefmt='%Y-%m-%d %H:%M:%S')
 
 app = Flask(__name__)
 sys.path.append(ROOT_DIR)
