@@ -12,7 +12,7 @@ from src.similarity.similarity import Similarity
 from src.crawler.factory import Factory
 from src.helper.helper import data_pre_processing_portuguese
 
-logging.FileHandler(filename=LOGS_FILE, mode='a', encoding=None, delay=False)
+logging.FileHandler(filename=LOGS_FILE, mode='w', encoding=None, delay=False)
 logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
     filename=LOGS_FILE, level=logging.ERROR, datefmt='%Y-%m-%d %H:%M:%S')
