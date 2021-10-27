@@ -22,7 +22,7 @@ Para contribuir com o projeto, ative seu ambiente virtual e instale as dependên
 <br><code>$sh make_dev.sh</code><br>
 Agora você pode mudar a o código e para testar, basta fazer a build da imagem e subir o container novamente.
 
-# Fazendo seu própiro crawler
+# Fazendo seu próprio crawler
 Se você quiser adicionar mais crawlers ao projeto é bem simples. Em poucos minutos você consegue adicionar um novo crawler. Você precisa seguir o protocolo da classe "src/crawler/ICrawler.py::ICrawler" para que os campos certos sejam salvos no banco de dados. Faça isso:
 - Adicione o crawler na pasta "src/crawler"
 - Adicone os Page Objects para o crawler na pasta "src/pages". Por exemplo, "scr/pages/my_crawler/vagas.py"
