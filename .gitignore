@@ -2,7 +2,7 @@ env_crawler
 venv
 htmlcov
 logs
-*.logs
+*.log
 *.pyc
 .coverage
 dist
