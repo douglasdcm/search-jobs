@@ -3,7 +3,7 @@ import os
 import sys
 import logging
 from src.database.db_factory import DbFactory
-from src.settings import CAMPOS_DIFINICAO, DB_NAME, ROOT_DIR, TABELA, CAMPOS, LOGS_FILE
+from src.settings import CAMPOS_DIFINICAO, DB_NAME, ROOT_DIR, TABELA, CAMPOS
 from flask import Flask, render_template, request
 from src.similarity.similarity import Similarity
 from src.settings import ROOT_DIR, TABELA, CAMPOS
@@ -11,11 +11,6 @@ from src.driver.chrome import ChromeDriver
 from src.similarity.similarity import Similarity
 from src.crawler.factory import Factory
 from src.helper.helper import data_pre_processing_portuguese
-
-logging.FileHandler(filename=LOGS_FILE, mode='w', encoding=None, delay=False)
-logging.basicConfig(
-    format='%(asctime)s %(levelname)-8s %(message)s',
-    filename=LOGS_FILE, level=logging.ERROR, datefmt='%Y-%m-%d %H:%M:%S')
 
 app = Flask(__name__)
 sys.path.append(ROOT_DIR)
