@@ -65,8 +65,7 @@ def data_pre_processing_portuguese(corpus):
     # remove punctuation and remove stopwords
     stopwords_ = stopwords.words("portuguese")
     corpus = [t for t in corpus if t not in stopwords_ and t not in string.punctuation]
-    corpus = ' '.join(corpus)
-    return corpus
+    return ' '.join(list(set(corpus)))
 
 
 def data_pre_processing_naive(txt):
