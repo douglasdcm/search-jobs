@@ -25,6 +25,7 @@ class Database:
             raise ErroBancoDados("Não foi possível ligar o foreing_key_support.")
 
     def cria_banco(self, banco):
+        """Create the database named 'banco'"""
         try:
             cmd = f"create database {banco}"
             items = self._cria_conexao()

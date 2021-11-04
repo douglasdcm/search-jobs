@@ -122,17 +122,21 @@ def _clear():
     print(msg)
     logging.info(msg)
     dbf = DbFactory()
-    conn = dbf.create_connnection(database=DB_NAME)
-    db = dbf.make_db(conn)
     try:
-        db.deleta_tabela(TABELA)
-    except Exception:
-        pass
-    db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
-    msg = "Database created."
-    print(msg)
-    logging.info(msg)
-    db.fecha_conexao_existente()
+        conn = dbf.create_connnection()
+        db = dbf.make_db(conn)
+        db.deleta_banco(DB_NAME)
+        db.cria_banco(DB_NAME)
+        conn = dbf.create_connnection(database=DB_NAME)
+        db = dbf.make_db(conn)
+        db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
+        msg = "Database created."
+        print(msg)
+        logging.info(msg)
+    except Exception as e:
+        return "FAIL: \n{}".format(str(e))
+    finally:
+        db.fecha_conexao_existente()
 
 
 def _finish_driver(chrome):

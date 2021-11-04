@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   vpm:
-    image: vagas-pra-mim
+    build: .
     container_name: vpm
     volumes:
       - ./:/vpm
@@ -18,6 +18,12 @@ services:
       - vpm-data:/var/lib/pgsql
     environment:
       POSTGRES_PASSWORD: postgresql
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 80:80
 
 volumes:
   vpm-data:

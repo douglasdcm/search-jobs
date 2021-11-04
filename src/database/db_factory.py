@@ -15,7 +15,7 @@ class DbFactory:
                            password="postgresql",
                            host="postgres",
                            port="5432"):
-
+        """Create a initial connection to a default database"""
         if os.environ.get("DATABASE_URL") is not None:  # for Heroku only
             return postgres_conn(os.environ.get("DATABASE_URL"))
         elif self.db_type == "postgres":
