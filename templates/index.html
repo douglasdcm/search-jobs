@@ -1,52 +1,73 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type=text/javascript src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-	  
-	  <!-- Required meta tags -->
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	  
-	  <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-	  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-	
-      <title>Vagas pra mim</title>
+		
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		
+		<!---->
+
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+		<style>
+			table {
+				font-family: arial, sans-serif;
+				border-collapse: collapse;
+				width: 100%;
+			}
+
+			td, th {	  
+				text-align: left;
+				padding: 6px;
+			}
+
+			tr:nth-child(even) {
+				background-color: #d5dfdf;
+			}
+
+			.jumbotron {
+				background-color: #0c3974;
+				color: #fff;
+				padding: 25px 25px;
+				font-family: Montserrat, sans-serif;
+			}
+		</style>
+
+    	<title>Vagas pra mim</title>
 	
   </head>
   <body>
-	<br>
 	<div>
-		<header>
-			Pesquise as vagas que mais combinam com o seu currículo<br />			
-		<h6><a href="https://github.com/douglasdcm/crawler_of_positions">Git Hub repository</a></h6>
-		</header>		
-		  <nav>
-			  <img src="/static/image/andrew-neel-ute2XAFQU2I-unsplash.jpg" alt="source: https://unsplash.com/photos/ute2XAFQU2I" style="width:100%;height:100%;">
-		</nav>
-		<section>
-			<article>
-			<div>
-				<form>
-					<div class="float-container">
-						<textarea id="message_field" placeholder="Cole o conteúdo do seu currículo aqui..."></textarea>
-						<div class="float-child-right">
-							<input id="send_message" type="submit" value="Pesquisar">
-						</div>
+		<div class="jumbotron text-center">
+			<h1>Vagas pra mim</h1> 
+			<p>Pesquise as vagas que mais combinam com o seu currículo</p> 
+			<form>
+			  <div class="form-group row">
+				  <div class="col-md-offset-2 col-md-7">
+						<textarea id="message_field" class="form-control" rows="5" id="comment" placeholder="Cole o conteúdo do seu currículo aqui..."></textarea>
 					</div>
-				</form>
-				<div id="table-wrapper">
-					<div id="table-scroll" style="overflow: scroll; height: 65%;">
-						<h4 id="response"></h4>
-						<!--table here-->
+					<div class="col-md-1">
+					<div class="input-group-btn">
+					  <input class="btn btn-danger" id="send_message" type="submit" value="Pesquisar">
 					</div>
+				  </div>
+			  </div>
+			</form>
+			<div id="table-wrapper">
+				<div id="table-scroll" style="overflow: scroll; height: 65%;">
+					<h4 id="response">Nenhuma vaga exibida</h4>
+					<!--table here-->
 				</div>
-			</div>
-			</article>
-		</section>
+			  </div>
+		  </div>
+		  
 		<footer>
 		  <p>Copyright © 2021 | <a href="https://www.linkedin.com/company/vagaspramim/">LinkedIn</a></p>
 		</footer>

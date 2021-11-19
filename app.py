@@ -87,6 +87,7 @@ def _compare(content):
 
 def _update():
     try:
+        _install()
         _clear()
         _run()
         return "OK\n"
@@ -128,6 +129,32 @@ def _clear():
         db.deleta_tabela(TABELA)
     except Exception:
         pass
+    db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
+    msg = "Database created."
+    print(msg)
+    logging.info(msg)
+    db.fecha_conexao_existente()
+
+def _install():
+    msg = "Deleting database..."
+    print(msg)
+    logging.info(msg)
+    dbf = DbFactory()
+    conn = dbf.create_connnection()
+    db = dbf.make_db(conn)
+    try:
+        db.deleta_banco(DB_NAME)
+    except Exception:
+        pass
+    msg = "Creating database..."
+    print(msg)
+    logging.info(msg)
+    db.cria_banco(DB_NAME)
+    db.fecha_conexao_existente()
+
+    # Connect to DB_NAME databse
+    conn = dbf.create_connnection(database=DB_NAME)
+    db = dbf.make_db(conn)
     db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
     msg = "Database created."
     print(msg)
