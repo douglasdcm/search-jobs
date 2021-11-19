@@ -1,54 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(0, 0, 0);
-}
-
-/* Style the header */
-header {
-    background-color: rgb(8, 19, 82);
-    padding: 5px;
-    text-align: center;
-    font-size: 25px;
-    color: white;
-}
-
-/* Create two columns/boxes that floats next to each other */
-nav {
-    float: left;
-    width: 30%;
-    height: 75%; /* only for demonstration, should be removed */
-    background: rgb(12, 16, 235);
-}
-
-/* Style the list inside the menu */
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-article {
-    float: left;
-    padding: 20px;
-    width: 70%;
-    background-color: #d5dfdf;
-    height: 75%; /* only for demonstration, should be removed */
-}
-
-/* Clear floats after the columns */
-section:after {
-    content: "";
-    display: table;
-    clear: both;
-}	
-
-#message_field {
-    width: 80%;
-}
-
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -64,57 +13,9 @@ tr:nth-child(even) {
     background-color: #d5dfdf;
 }
 
-/* Style the footer */
-footer {
-    background-color: rgb(8, 19, 82);
-    padding: 10px;
-    text-align: center;
-    color: white;
-}
-
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-    nav, article {
-    width: 100%;
-    height: auto;
-    }
-}
-
-textarea {
-    width: 100%;
-    height: 30%;
-    outline: 0 none;
-    padding: 5px;
-    margin-right: 0px;
-}
-
-.float-container {
-    padding: 5px;
-}
-
-.float-child-left {
-    width: 100%;
-    float: left;
-    border: 2px solid red;
-}
-
-.float-child-right {
-    width: 20%;
-    float: right;
-    padding-left: 10px;
-} 
-
-.container{
-    padding: 10px;
-    border: 1px solid silver
-}
-
-.container .text{
-    resize: none;
-    outline: none;
-    width: 70%;
-    padding: 10px;
-    border: none;
-    height: 30%;
-    margin: -10px;
+.jumbotron {
+    background-color: #f4511e;
+    color: #fff;
+    padding: 25px 25px;
+    font-family: Montserrat, sans-serif;
 }
