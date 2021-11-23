@@ -1,5 +1,5 @@
 env_crawler
-venv
+venv*
 htmlcov
 *.pyc
 .coverage

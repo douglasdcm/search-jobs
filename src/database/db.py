@@ -24,6 +24,9 @@ class Database:
         except Exception:
             raise ErroBancoDados("Não foi possível ligar o foreing_key_support.")
 
+    def cria_banco(self, banco):
+        pass
+
     def deleta_tabela(self, tabela):
         try:
             cmd = f"drop table if exists {tabela}"
