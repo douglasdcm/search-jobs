@@ -5,6 +5,7 @@
     "python.linting.pylintEnabled": false,
     "files.watcherExclude": {
         "**/env_crawler/**": true,
+        "**/venv_vpm/**": true,
         "**/logs/**": true,
         "**/dist/**": true,
         "**/.pytest_cache/**": true,

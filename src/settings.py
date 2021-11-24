@@ -1,18 +1,19 @@
 import os
 
-ROOT_DIR = os.getcwd() + "/src/"
+BASE_DIR = os.getcwd()
+ROOT_DIR = BASE_DIR + "/src/"
 RESOURCES_DIR = ROOT_DIR + "resources/"
 DRIVER_DIR = RESOURCES_DIR + "chromedriver"
-LOGS_FOLDER = "/logs/"
+LOGS_FOLDER = BASE_DIR + "/logs/"
 
 DEBUG = False
 TIMEOUT = 30
-DATABASE = RESOURCES_DIR + "crawler.db"  # for sqlite
 DB_NAME = "crawlers"
 TABELA = "positions"
 CAMPOS = "url, description"
 CAMPOS_DIFINICAO = """url VARCHAR(255) NOT NULL, description VARCHAR(50000)"""
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
+DB_TYPE = {"postgres": "postgres", "sqlite": "sqlite"}
 
 URLS = {
     "Daitan": "https://careers-br.daitan.com/pt/vagas/",

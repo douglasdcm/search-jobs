@@ -1,4 +1,6 @@
+mkdir ./logs
 echo "" > ./logs/crawler.log
+rm -rf venv*
 apt-get update
 apt-get install -y libnss3-tools
 apt update

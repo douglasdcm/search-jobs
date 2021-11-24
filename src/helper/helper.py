@@ -5,7 +5,6 @@ import string
 
 from src.settings import LOGS_FILE
 from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 
 nltk.download('stopwords')
