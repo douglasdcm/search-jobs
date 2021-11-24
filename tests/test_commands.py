@@ -1,12 +1,20 @@
 from src.helper.commands import help_, install, sanity_check
 from tests.settings import DATABASE, DB_TYPE
-from pytest import mark
+from pytest import mark, fixture
+from src.database.db_factory import DbFactory
+from tests.resources.fake_driver import FakeDriver
 
 class TestCommands:
 
-    @mark.skip(reason="Need Chromer installed with version 94")
-    def test_sanity_check_works(self):
-        actual = sanity_check(DATABASE, DB_TYPE)
+    @fixture
+    def setup_db(self):
+        df = DbFactory("sqlite")
+        db = df.get_db()
+        db.cria_tabela("positions", "url, description")
+        return db
+
+    def test_sanity_check_works(self, setup_db):
+        actual = sanity_check(setup_db, FakeDriver())
         expected = "Sanity check finished"
         assert actual == expected
 

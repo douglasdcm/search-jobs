@@ -1,7 +1,7 @@
 import logging
 import nltk
 
-from src.settings import (CAMPOS_DIFINICAO, TABELA, DB_NAME, CAMPOS)
+from src.settings import (CAMPOS_DIFINICAO, DB_TYPE, TABELA, DB_NAME, CAMPOS)
 from src.database.db_factory import DbFactory
 from src.crawler.toy import Toy
 from src.driver.chrome import ChromeDriver
@@ -14,26 +14,22 @@ nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
 
 
-def install(db_name, database):
-    msg = "Deleting database..."
+def install(db_name, db_type):
+    msg = "Deleting database {}...".format(db_name)
     print(msg)
     logging.info(msg)
-    dbf = DbFactory(database)
-    conn = dbf.create_connnection()
-    db = dbf.make_db(conn)
+    dbf = DbFactory(db_type)
+    db = dbf.get_db()
     try:
         db.deleta_banco(db_name)
     except Exception:
         pass
-    msg = "Creating database..."
+    msg = "Creating database {}...".format(db_name)
     print(msg)
     logging.info(msg)
     db.cria_banco(db_name)
-    db.fecha_conexao_existente()
 
     # Connect to db_name databse
-    conn = dbf.create_connnection(database=db_name)
-    db = dbf.make_db(conn)
     db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
     msg = "Database created."
     print(msg)
@@ -49,10 +45,10 @@ def _finish_driver(chrome):
     logging.info(msg)
 
 
-def _run(crawlers=None):
+def _run(database, driver, crawlers=None):
     if crawlers is None:
         crawlers = Factory().get_crawlers()
-    chrome = ChromeDriver()
+    chrome = driver
     for crawler in crawlers:
         try:
             if crawler["enabled"]:
@@ -64,29 +60,26 @@ def _run(crawlers=None):
                 company = crawler["company"]
                 company.set_driver(driver)
                 company.set_url(url)
-                company.run()
+                company.run(database)
         except Exception as e:
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             print(msg)
             logging.info(msg)
     _finish_driver(chrome)
-    dbf = DbFactory()
-    conn = dbf.create_connnection(database=DB_NAME)
-    db = dbf.make_db(conn)
+    db = database
     positions = len(db.pega_todos_registros(TABELA, CAMPOS, distinct=True))
-    db.fecha_conexao_existente()
     msg = "Existem {} vagas cadastradas.".format(positions)
     print(msg)
     logging.info(msg)
 
 
-def sanity_check(db_name, database):
+def sanity_check(database, driver):
     crawlers = [{
                 "company": Toy(),
                 "url": "http://www.staggeringbeauty.com/",
                 "enabled": True
                 }]
-    _run(crawlers)
+    _run(database, driver, crawlers)
 
     msg = "Removendo registros do sanity check."
     logging.info(msg)
@@ -96,9 +89,7 @@ def sanity_check(db_name, database):
         "http://toy.com/position_2",
         "http://toy.com/position_3"
     ]
-    dbf = DbFactory(database)
-    conn = dbf.create_connnection(database=db_name)
-    db = dbf.make_db(conn)
+    db = database
     for url in urls:
         registros = db.pega_registro_por_condicao(TABELA, "url = '{}'".format(url))
         for registro in registros:

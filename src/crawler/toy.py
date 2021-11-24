@@ -15,17 +15,17 @@ class Toy(ICrawler):
     def set_url(self, url):
         return super().set_url(url)
 
-    def run(self):
+    def run(self, database):
         links = self._get_link_by_browser()
         descriptions = self._get_info_from_links(links)
         for i in range(len(links)):
             msg = f"Saving {i+1} from {len(links)}..."
             print(msg)
             logging.info(msg)
-            self._save(links[i], descriptions[i])
+            self._save(database, links[i], descriptions[i])
 
-    def _save(self, url, description):
-        return super()._save(url, description)
+    def _save(self, database,  url, description):
+        return super()._save(database, url, description)
 
     def get_url(self):
         return super().get_url()

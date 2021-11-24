@@ -5,6 +5,8 @@ Try: 'python main.py --help' for more information.
 import os
 import sys
 import logging
+from src.database.db_factory import DbFactory
+from src.driver.chrome import ChromeDriver
 from src.settings import (ROOT_DIR, LOGS_FILE, RESOURCES_DIR, DB_NAME, DB_TYPE)
 from src.exceptions.exceptions import ComandoInvalido
 from sys import argv
@@ -26,9 +28,11 @@ def main(*args):
             print(help_())
             return
         if "--initdb" in argumentos:
-            install(DB_NAME, DB_TYPE["postgres"])
+            install(DB_NAME, DB_TYPE["p"])
         elif "--sanity-check" in argumentos:
-            sanity_check()
+            df = DbFactory(DB_TYPE["p"])
+            db = df.get_db()
+            sanity_check(db, ChromeDriver())
         else:
             raise ComandoInvalido("Invalid command.\nTry main.py --help ")
 

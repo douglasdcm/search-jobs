@@ -35,12 +35,12 @@ class Generic(ICrawler):
     def set_url(self, url):
         return super().set_url(url)
 
-    def run(self):
+    def run(self, database):
         links = self._get_link_by_browser()
-        self._get_info_from_links(links)
+        self._get_info_from_links(database, links)
 
-    def _save(self, url, description):
-        return super()._save(url, description)
+    def _save(self, database, url, description):
+        return super()._save(database, url, description)
 
     def get_url(self):
         return super().get_url()
@@ -48,10 +48,10 @@ class Generic(ICrawler):
     def _get_link_by_browser(self):
         return self._vagas.get_link_of_all_positons(self.locator)
 
-    def _get_info_from_links(self, links):
+    def _get_info_from_links(self, database, links):
         for link in links:
             print("Collecting data from {}".format(link))
             logging.info(link)
             self._vagas.go_to_page(link)
             descriptions = self._vagas.get_description()
-            self._save(link, descriptions)
+            self._save(database, link, descriptions)
