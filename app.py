@@ -87,7 +87,6 @@ def _compare(content):
 
 def _update():
     try:
-        _install()
         _clear()
         _run()
         return "OK\n"
