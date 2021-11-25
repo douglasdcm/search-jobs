@@ -3,18 +3,14 @@ import os
 import sys
 import logging
 from src.database.db_factory import DbFactory
-from src.settings import CAMPOS_DIFINICAO, DB_NAME, ROOT_DIR, TABELA, CAMPOS
+from src.settings import CAMPOS_DIFINICAO, DB_NAME, DB_TYPE, ROOT_DIR, TABELA
 from flask import Flask, render_template, request
-from src.similarity.similarity import Similarity
-from src.settings import ROOT_DIR, TABELA, CAMPOS
 from src.driver.chrome import ChromeDriver
-from src.similarity.similarity import Similarity
 from src.crawler.factory import Factory
-from src.helper.helper import data_pre_processing_portuguese
+from src.helper.commands import compare
 
 app = Flask(__name__)
 sys.path.append(ROOT_DIR)
-
 
 @app.route('/')
 def output():
@@ -27,7 +23,7 @@ def worker():
     limit = 5000
     message = request.json['message']
     message = (message[:limit]) if len(message) > limit else message
-    return _compare(message)
+    return compare(message, DB_NAME, DB_TYPE['p'])
 
 
 @app.route('/update', methods=['POST'])
@@ -60,29 +56,6 @@ def info():
         return _info()
     else:
         return "NO ACTION\n"
-
-
-def _compare(content):
-    cv = content
-    cv = data_pre_processing_portuguese(cv)
-    if len(cv) == 0:
-        return "Nenhum resultado encontrado."
-    dbf = DbFactory()
-    conn = dbf.create_connnection(database=DB_NAME)
-    db = dbf.make_db(conn)
-    positions = db.pega_todos_registros(TABELA, CAMPOS)
-    db.fecha_conexao_existente()
-    s = Similarity()
-    result = s.return_similarity_by_cossine(cv, positions)
-    table = '<table class="table table-striped" style="width:100%">'
-    table += '<tr><th>% Similaridade</th><th>Link da vaga</th></tr>'
-    for key, values in result.items():
-        table += '<tr>'
-        table += f'<td style="width:20%; text-align: center";> {key} </td>'
-        table += f'<td style="width:80%"><a href={values[0]}> {values[0]} </a></td>'
-        table += '</tr>'
-    table += '</table>'
-    return table
 
 
 def _update():

@@ -1,13 +1,15 @@
 import logging
 import nltk
 
-from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS)
+from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS, DB_TYPE)
 from src.database.db_factory import DbFactory
 from src.crawler.toy import Toy
-from src.driver.chrome import ChromeDriver
 from src.crawler.factory import Factory
 from src.crawler.toy import Toy
 from src.database.db_factory import DbFactory
+from src.helper.helper import data_pre_processing_portuguese
+from src.similarity.similarity import Similarity
+
 
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
@@ -118,3 +120,23 @@ Commands:
   --help            open the help documentation
                     """)
 
+def compare(content, db_name, db_type):
+    cv = content
+    cv = data_pre_processing_portuguese(cv)
+    if len(cv) == 0:
+        return "Nenhum resultado encontrado."
+    dbf = DbFactory(db_type)
+    db = dbf.get_db(db_name)
+    positions = db.pega_todos_registros(TABELA, CAMPOS)
+    db.fecha_conexao_existente()
+    s = Similarity()
+    result = s.return_similarity_by_cossine(cv, positions)
+    table = '<table class="table table-striped" style="width:100%">'
+    table += '<tr><th>% Similaridade</th><th>Link da vaga</th></tr>'
+    for key, values in result.items():
+        table += '<tr>'
+        table += f'<td style="width:20%; text-align: center";> {key} </td>'
+        table += f'<td style="width:80%"><a href={values[0]}> {values[0]} </a></td>'
+        table += '</tr>'
+    table += '</table>'
+    return table
