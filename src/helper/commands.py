@@ -1,7 +1,7 @@
 import logging
 import nltk
 
-from src.settings import (CAMPOS_DIFINICAO, DB_TYPE, TABELA, DB_NAME, CAMPOS)
+from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS)
 from src.database.db_factory import DbFactory
 from src.crawler.toy import Toy
 from src.driver.chrome import ChromeDriver
@@ -28,14 +28,18 @@ def install(db_name, db_type):
     print(msg)
     logging.info(msg)
     db.cria_banco(db_name)
+    db.fecha_conexao_existente()
 
     # Connect to db_name databse
+    dbf = DbFactory(db_type)
+    db = dbf.get_db(db_name)
     db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
     msg = "Database created."
     print(msg)
     logging.info(msg)
     db.fecha_conexao_existente()
-    return "Installation finished"
+    print("Installation finished")
+    return True
 
 
 def _finish_driver(chrome):
@@ -74,6 +78,11 @@ def _run(database, driver, crawlers=None):
 
 
 def sanity_check(database, driver):
+    """Verify the driver is connecting to web sites and if the content of the page is saved in the database
+        Args:
+            database: a connection object to a real database
+            driver: the web driver, like ChromerDriver
+    """
     crawlers = [{
                 "company": Toy(),
                 "url": "http://www.staggeringbeauty.com/",
@@ -98,7 +107,8 @@ def sanity_check(database, driver):
     logging.info(msg)
     print(msg)
     db.fecha_conexao_existente()
-    return "Sanity check finished"
+    print("Sanity check finished")
+    return True
 
 def help_():
     return("""

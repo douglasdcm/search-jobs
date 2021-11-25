@@ -25,14 +25,15 @@ logging.basicConfig(
 def main(*args):
     for argumentos in args:
         if "-h" in argumentos or "--help" in argumentos:
-            print(help_())
-            return
+            output = help_()
+            print(output)
+            return output
         if "--initdb" in argumentos:
-            install(DB_NAME, DB_TYPE["p"])
+            return install(DB_NAME, DB_TYPE["p"])
         elif "--sanity-check" in argumentos:
             df = DbFactory(DB_TYPE["p"])
-            db = df.get_db()
-            sanity_check(db, ChromeDriver())
+            db = df.get_db(DB_NAME)
+            return sanity_check(db, ChromeDriver())
         else:
             raise ComandoInvalido("Invalid command.\nTry main.py --help ")
 

@@ -9,8 +9,13 @@ class DbFactory:
     def __init__(self, db_type="postgres"):
         self.db_type = db_type
 
-    def get_db(self):
-        conn = self.create_connnection()
+    def get_db(self, database="postgres", user="postgres",
+               password="postgresql", host="postgres", port="5432"):
+        conn = self.create_connnection(database=database,
+                                       user=user,
+                                       password=password,
+                                       host=host,
+                                       port=port)
         return self.make_db(conn)
 
 

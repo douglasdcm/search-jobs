@@ -14,14 +14,10 @@ class TestCommands:
         return db
 
     def test_sanity_check_works(self, setup_db):
-        actual = sanity_check(setup_db, FakeDriver())
-        expected = "Sanity check finished"
-        assert actual == expected
+        assert sanity_check(setup_db, FakeDriver())
 
     def test_install_creates_database(self):
-        actual = install(DATABASE, DB_TYPE)
-        expected = "Installation finished"
-        assert actual == expected
+        assert install(DATABASE, DB_TYPE)
 
     def test_help_is_opened(self):
         actual = help_()
