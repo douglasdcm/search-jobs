@@ -1,7 +1,7 @@
 import logging
 import nltk
 
-from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS, DB_TYPE)
+from src.settings import (CAMPOS_DIFINICAO, DB_TYPE, TABELA, CAMPOS, DB_NAME)
 from src.database.db_factory import DbFactory
 from src.crawler.toy import Toy
 from src.crawler.factory import Factory
@@ -51,7 +51,7 @@ def _finish_driver(chrome):
     logging.info(msg)
 
 
-def _run(database, driver, crawlers=None):
+def run(database, driver, crawlers=None):
     if crawlers is None:
         crawlers = Factory().get_crawlers()
     chrome = driver
@@ -90,7 +90,7 @@ def sanity_check(database, driver):
                 "url": "http://www.staggeringbeauty.com/",
                 "enabled": True
                 }]
-    _run(database, driver, crawlers)
+    run(database, driver, crawlers)
 
     msg = "Removendo registros do sanity check."
     logging.info(msg)
@@ -140,3 +140,20 @@ def compare(content, db_name, db_type):
         table += '</tr>'
     table += '</table>'
     return table
+
+
+def clear(db_name, db_type):
+    msg = "Cleaning database..."
+    print(msg)
+    logging.info(msg)
+    dbf = DbFactory(db_type)
+    db = dbf.get_db(db_name)
+    try:
+        db.deleta_tabela(TABELA)
+    except Exception:
+        pass
+    db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
+    msg = "Database created."
+    print(msg)
+    logging.info(msg)
+

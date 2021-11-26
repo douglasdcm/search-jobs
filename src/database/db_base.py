@@ -41,8 +41,8 @@ class Database:
             cur = items[1]
             logging.info(cmd)
             cur.execute(cmd)
-        except Exception:
-            raise ErroBancoDados("Não foi possível deletar o banco.")
+        except Exception as e:
+            raise ErroBancoDados(f"Não foi possível deletar o banco.\n{str(e)}")
 
     def deleta_tabela(self, tabela):
         try:
@@ -51,8 +51,8 @@ class Database:
             cur = items[1]
             logging.info(cmd)
             cur.execute(cmd)
-        except Exception:
-            raise ErroBancoDados("Não foi possível deletar a tabela.")
+        except Exception as e:
+            raise ErroBancoDados(f"Não foi possível deletar a tabela.\n{str(e)}")
 
     def fecha_conexao_existente(self):
         try:

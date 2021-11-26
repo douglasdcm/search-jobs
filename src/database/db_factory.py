@@ -11,6 +11,10 @@ class DbFactory:
 
     def get_db(self, database="postgres", user="postgres",
                password="postgresql", host="postgres", port="5432"):
+        """Get the database
+        Args:
+            database (str): name of the database
+        """
         conn = self.create_connnection(database=database,
                                        user=user,
                                        password=password,

@@ -12,8 +12,6 @@ class TestCompare:
         df = DbFactory(db_type)
         db = df.get_db(db_name)
         db.salva_registro("positions", "url, description", "'https://test_message.com', 'test_message'")
-        db.salva_registro("positions", "url, description", "'https://noise1.com', 'noise1'")
-        db.salva_registro("positions", "url, description", "'https://noise2.com', 'noise2'")
 
     def test_compare_empty_curriculum_returns_nothing(self):
 

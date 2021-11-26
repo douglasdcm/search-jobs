@@ -3,11 +3,11 @@ import os
 import sys
 import logging
 from src.database.db_factory import DbFactory
-from src.settings import CAMPOS_DIFINICAO, DB_NAME, DB_TYPE, ROOT_DIR, TABELA
+from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA
 from flask import Flask, render_template, request
 from src.driver.chrome import ChromeDriver
 from src.crawler.factory import Factory
-from src.helper.commands import compare
+from src.helper.commands import compare, clear, run
 
 app = Flask(__name__)
 sys.path.append(ROOT_DIR)
@@ -60,14 +60,16 @@ def info():
 
 def _update():
     try:
-        _clear()
-        _run()
+        clear(DB_NAME, DB_TYPE["p"])
+        df = DbFactory(DB_TYPE["p"])
+        db = df.get_db(DB_NAME)
+        run(db, ChromeDriver())
         return "OK\n"
     except Exception as e:
         return "FAIL: \n{}".format(str(e))
 
 
-def _run(crawlers=None):
+def _run__(crawlers=None):
     if crawlers is None:
         crawlers = Factory().get_crawlers()
     for crawler in crawlers:
@@ -88,50 +90,6 @@ def _run(crawlers=None):
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             print(msg)
             logging.info(msg)
-
-
-def _clear():
-    msg = "Cleaning database..."
-    print(msg)
-    logging.info(msg)
-    dbf = DbFactory()
-    conn = dbf.create_connnection(database=DB_NAME)
-    db = dbf.make_db(conn)
-    try:
-        db.deleta_tabela(TABELA)
-    except Exception:
-        pass
-    db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
-    msg = "Database created."
-    print(msg)
-    logging.info(msg)
-    db.fecha_conexao_existente()
-
-def _install():
-    msg = "Deleting database..."
-    print(msg)
-    logging.info(msg)
-    dbf = DbFactory()
-    conn = dbf.create_connnection()
-    db = dbf.make_db(conn)
-    try:
-        db.deleta_banco(DB_NAME)
-    except Exception:
-        pass
-    msg = "Creating database..."
-    print(msg)
-    logging.info(msg)
-    db.cria_banco(DB_NAME)
-    db.fecha_conexao_existente()
-
-    # Connect to DB_NAME databse
-    conn = dbf.create_connnection(database=DB_NAME)
-    db = dbf.make_db(conn)
-    db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
-    msg = "Database created."
-    print(msg)
-    logging.info(msg)
-    db.fecha_conexao_existente()
 
 
 def _finish_driver(chrome):
