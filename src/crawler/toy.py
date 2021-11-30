@@ -23,6 +23,7 @@ class Toy(ICrawler):
             print(msg)
             logging.info(msg)
             self._save(database, links[i], descriptions[i])
+        return True
 
     def _save(self, database,  url, description):
         return super()._save(database, url, description)

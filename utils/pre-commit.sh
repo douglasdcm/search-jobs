@@ -5,4 +5,7 @@ sed -i 's/\"enabled\": False/\"enabled\": True/' src/crawler/factory.py
 sed -i 's/DEBUG \= True/DEBUG \= False/' src/settings.py
 pip freeze > requirements.txt
 git status
+coverage run --omit="*/test*" --source='.' -m pytest
+coverage report
+coverage html
 

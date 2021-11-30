@@ -38,6 +38,7 @@ class Generic(ICrawler):
     def run(self, database):
         links = self._get_link_by_browser()
         self._get_info_from_links(database, links)
+        return True
 
     def _save(self, database, url, description):
         return super()._save(database, url, description)

@@ -1,12 +1,10 @@
 #!flask/bin/python
 import os
 import sys
-import logging
 from src.database.db_factory import DbFactory
 from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA
 from flask import Flask, render_template, request
 from src.driver.chrome import ChromeDriver
-from src.crawler.factory import Factory
 from src.helper.commands import compare, clear, run
 
 app = Flask(__name__)
@@ -34,6 +32,7 @@ def update():
         curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'localhost:5000/update'
     """
     data = request.json
+    return _update()
     if os.getenv('HASH') == "":
         os.environ['HASH'] = "dev"
     if data["hash"] == os.getenv('HASH'):
@@ -67,36 +66,6 @@ def _update():
         return "OK\n"
     except Exception as e:
         return "FAIL: \n{}".format(str(e))
-
-
-def _run__(crawlers=None):
-    if crawlers is None:
-        crawlers = Factory().get_crawlers()
-    for crawler in crawlers:
-        try:
-            chrome = ChromeDriver()
-            if crawler["enabled"]:
-                url = crawler["url"]
-                msg = "Starting crawler for '{}'...".format(url)
-                print(msg)
-                logging.info(msg)
-                driver = chrome.start(url)
-                company = crawler["company"]
-                company.set_driver(driver)
-                company.set_url(url)
-                company.run()
-            _finish_driver(chrome)
-        except Exception as e:
-            msg = "An error occurred during the execution:\n   {}".format(str(e))
-            print(msg)
-            logging.info(msg)
-
-
-def _finish_driver(chrome):
-    chrome.quit()
-    msg = "Crawler finished."
-    print(msg)
-    logging.info(msg)
 
 
 def _info():

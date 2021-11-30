@@ -4,9 +4,9 @@ from src.database.db_factory import DbFactory
 from src.settings import DB_NAME, DB_TYPE
 
 
-def exec_command(params, entry_point):
+def exec_command(params, entry_point, domain="python"):
     try:
-        cmd = ["python", entry_point]
+        cmd = [domain, entry_point]
         cmd.extend(params)
         return run(cmd,
                    stdout=PIPE,

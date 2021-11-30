@@ -22,7 +22,12 @@ class ICrawler:
         pass
 
     def _save(self, database, url, description):
-        """This method need to be inherited by subclasses"""
+        """This method need to be inherited by subclasses
+        Args:
+            database: the database connection
+            url (str): URL of the positon
+            description (str): description of the position
+        """
         msg = f"Saving '{url}'..."
         print(msg)
         logging.info(msg)

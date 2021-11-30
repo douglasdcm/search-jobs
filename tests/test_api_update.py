@@ -10,12 +10,7 @@ class Testupdate:
     hash = "dev"
     db_type = "sqlite"
 
-    @fixture
-    def setup(self):
-        populate_database()
-        environ["HASH"] = str(self.hash)
-
-    def test_update_clear_database(self, setup, monkeypatch):
+    def test_update_clear_database(self, monkeypatch):
         monkeypatch.setitem(app.DB_TYPE, "p", self.db_type)  # changing th database to sqlite
         monkeypatch.setattr(app, "ChromeDriver", FakeDriver)
         payload = dumps({"hash": self.hash})
