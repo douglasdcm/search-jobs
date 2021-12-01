@@ -6,7 +6,6 @@ from src.crawler import (
 from src.settings import URLS
 
 
-
 class Factory():
 
 
@@ -33,7 +32,7 @@ class Factory():
             {
                 "company": generic.Generic('//a[contains(@class,"fade-square")]'),
                 "url": URLS["Dqrtech"],
-                "enabled": False
+                "enabled": 1==1  # hack to return always true for test purposes
             },
             {
                 "company": generic.Generic(

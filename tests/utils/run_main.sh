@@ -1,0 +1,1 @@
+docker exec -it vpm python main.py $1

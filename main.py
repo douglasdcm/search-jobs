@@ -10,7 +10,7 @@ from src.driver.chrome import ChromeDriver
 from src.settings import (ROOT_DIR, LOGS_FILE, RESOURCES_DIR, DB_NAME, DB_TYPE)
 from src.exceptions.exceptions import ComandoInvalido
 from sys import argv
-from src.helper.commands import install, sanity_check, help_
+from src.helper.commands import install, sanity_check, help_, update
 
 
 os.system('export PATH="{}:$PATH"'.format(RESOURCES_DIR))
@@ -30,6 +30,8 @@ def main(*args):
             return output
         if "--initdb" in argumentos:
             return install(DB_NAME, DB_TYPE["p"])
+        if "--update" in argumentos:
+            return update(DB_NAME, DB_TYPE["p"], ChromeDriver())
         elif "--sanity-check" in argumentos:
             df = DbFactory(DB_TYPE["p"])
             db = df.get_db(DB_NAME)

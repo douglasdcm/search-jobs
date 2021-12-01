@@ -1,7 +1,7 @@
 import logging
 import nltk
 
-from src.settings import (CAMPOS_DIFINICAO, DB_TYPE, TABELA, CAMPOS, DB_NAME)
+from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS)
 from src.database.db_factory import DbFactory
 from src.crawler.toy import Toy
 from src.crawler.factory import Factory
@@ -157,3 +157,13 @@ def clear(db_name, db_type):
     print(msg)
     logging.info(msg)
 
+
+def update(db_name, db_type, driver):
+    try:
+        clear(db_name, db_type)
+        df = DbFactory(db_type)
+        db = df.get_db(db_name)
+        run(db, driver)
+        return True
+    except Exception:
+        raise

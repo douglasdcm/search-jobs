@@ -1,6 +1,9 @@
-from tests.settings import DB_NAME
+
+from tests.settings import DB_NAME, BASE_URL
 from pytest import fixture
 from src.database.db_factory import DbFactory
+from tests.helper import exec_command
+from time import sleep
 
 @fixture
 def setup_db():
@@ -11,3 +14,9 @@ def setup_db():
     df = DbFactory("sqlite")
     db = df.get_db()
     db.deleta_tabela("positions")
+
+@fixture(scope="session")
+def setup_containers():
+    exec_command("", "./tests/utils/start_containers.sh", "sh", sudo=True)
+    yield
+    exec_command("", "./tests/utils/stop_containers.sh", "sh", sudo=True)

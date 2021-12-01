@@ -4,7 +4,6 @@ import sys
 from src.database.db_factory import DbFactory
 from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA
 from flask import Flask, render_template, request
-from src.driver.chrome import ChromeDriver
 from src.helper.commands import compare, clear, run
 
 app = Flask(__name__)
@@ -24,23 +23,6 @@ def worker():
     return compare(message, DB_NAME, DB_TYPE['p'])
 
 
-@app.route('/update', methods=['POST'])
-def update():
-    """
-    Run the crawlers and update the database with the positons information.
-    Request example:
-        curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'localhost:5000/update'
-    """
-    data = request.json
-    return _update()
-    if os.getenv('HASH') == "":
-        os.environ['HASH'] = "dev"
-    if data["hash"] == os.getenv('HASH'):
-        return _update()
-    else:
-        return "NO ACTION\n"
-
-
 @app.route('/info', methods=['POST'])
 def info():
     """
@@ -48,24 +30,7 @@ def info():
     Request example:
         curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'localhost:5000/info'
     """
-    data = request.json
-    if os.getenv('HASH') == "":
-        os.environ['HASH'] = "dev"
-    if data["hash"] == os.getenv('HASH'):
-        return _info()
-    else:
-        return "NO ACTION\n"
-
-
-def _update():
-    try:
-        clear(DB_NAME, DB_TYPE["p"])
-        df = DbFactory(DB_TYPE["p"])
-        db = df.get_db(DB_NAME)
-        run(db, ChromeDriver())
-        return "OK\n"
-    except Exception as e:
-        return "FAIL: \n{}".format(str(e))
+    return _info()
 
 
 def _info():

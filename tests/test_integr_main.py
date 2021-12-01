@@ -6,18 +6,6 @@ class TestMain:
 
     entry_point = "main.py"
 
-    def test_invalid_command_raises_error(self):
-        params = ["--invalid"]
-        expected = "Invalid command"
-        actual = exec_command(params, self.entry_point)
-        assert expected in actual
-
-    def test_initdb_raises_erro(self):
-        params = ["--initdb"]
-        expected = "could not translate host name \"postgres\" to address"
-        actual = exec_command(params, self.entry_point)
-        assert expected in actual
-
     def test_install_creates_database(self, monkeypatch):
         monkeypatch.setitem(main.DB_TYPE, "p", "sqlite")  # changing th database to sqlite  
         assert main.install(main.DB_NAME, "sqlite") is True
