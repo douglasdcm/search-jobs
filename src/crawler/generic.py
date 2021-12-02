@@ -8,8 +8,7 @@ class Generic(ICrawler):
     def __init__(self, locator):
         """
         This is what the name says: a generic crawler. It is intended to be used if the company's
-            page has all the links of positions available in a single page without pagination,
-            for example.
+            page that has all the links of positions available in a single page without pagination.
             Take the page bellow:
             (...)
                 <div class="menu-container">

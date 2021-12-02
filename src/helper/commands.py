@@ -3,12 +3,10 @@ import nltk
 
 from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS)
 from src.database.db_factory import DbFactory
-from src.crawler.toy import Toy
-from src.crawler.factory import Factory
-from src.crawler.toy import Toy
-from src.database.db_factory import DbFactory
 from src.helper.helper import data_pre_processing_portuguese
 from src.similarity.similarity import Similarity
+from src.crawler.generic import Generic
+from os import getcwd
 
 
 nltk.download('stopwords')
@@ -52,8 +50,6 @@ def _finish_driver(chrome):
 
 
 def run(database, driver, crawlers=None):
-    if crawlers is None:
-        crawlers = Factory().get_crawlers()
     chrome = driver
     for crawler in crawlers:
         try:
@@ -77,6 +73,7 @@ def run(database, driver, crawlers=None):
     msg = "Existem {} vagas cadastradas.".format(positions)
     print(msg)
     logging.info(msg)
+    return True
 
 
 def sanity_check(database, driver):
@@ -86,31 +83,25 @@ def sanity_check(database, driver):
             driver: the web driver, like ChromerDriver
     """
     crawlers = [{
-                "company": Toy(),
-                "url": "http://www.staggeringbeauty.com/",
-                "enabled": True
+                    "company": Generic("//a"),
+                    "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+                    "enabled": True
                 }]
-    run(database, driver, crawlers)
 
-    msg = "Removendo registros do sanity check."
-    logging.info(msg)
-    print(msg)
-    urls = [
-        "http://toy.com/position_1",
-        "http://toy.com/position_2",
-        "http://toy.com/position_3"
-    ]
+    run(database, driver, crawlers)
     db = database
-    for url in urls:
-        registros = db.pega_registro_por_condicao(TABELA, "url = '{}'".format(url))
-        for registro in registros:
-            db.deleta_registro(TABELA, registro[0])
+    registros = db.pega_registro_por_condicao(TABELA, "url = '{}'".format(
+        crawlers[0]["file:///not_found.html"]))
+    for registro in registros:
+        db.deleta_registro(TABELA, registro[0])
     msg = "Registros removidos."
     logging.info(msg)
     print(msg)
-    db.fecha_conexao_existente()
+    database.fecha_conexao_existente()
     print("Sanity check finished")
     return True
+
+
 
 def help_():
     return("""
@@ -118,6 +109,7 @@ Commands:
   --initdb          delete the existing database, if any, and install it again
   --sanity-check    check the installtion and clean the database
   --help            open the help documentation
+  --update          get the new positions from companies
                     """)
 
 def compare(content, db_name, db_type):
@@ -158,12 +150,12 @@ def clear(db_name, db_type):
     logging.info(msg)
 
 
-def update(db_name, db_type, driver):
+def update(db_name, db_type, driver, crawlers=None):
     try:
         clear(db_name, db_type)
         df = DbFactory(db_type)
         db = df.get_db(db_name)
-        run(db, driver)
+        run(db, driver, crawlers)
         return True
     except Exception:
         raise

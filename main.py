@@ -11,6 +11,7 @@ from src.settings import (ROOT_DIR, LOGS_FILE, RESOURCES_DIR, DB_NAME, DB_TYPE)
 from src.exceptions.exceptions import ComandoInvalido
 from sys import argv
 from src.helper.commands import install, sanity_check, help_, update
+from src.crawler.factory import Factory
 
 
 os.system('export PATH="{}:$PATH"'.format(RESOURCES_DIR))
@@ -31,7 +32,7 @@ def main(*args):
         if "--initdb" in argumentos:
             return install(DB_NAME, DB_TYPE["p"])
         if "--update" in argumentos:
-            return update(DB_NAME, DB_TYPE["p"], ChromeDriver())
+            return update(DB_NAME, DB_TYPE["p"], ChromeDriver(), Factory().get_crawlers())
         elif "--sanity-check" in argumentos:
             df = DbFactory(DB_TYPE["p"])
             db = df.get_db(DB_NAME)

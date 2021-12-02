@@ -32,7 +32,7 @@ class Factory():
             {
                 "company": generic.Generic('//a[contains(@class,"fade-square")]'),
                 "url": URLS["Dqrtech"],
-                "enabled": 1==1  # hack to return always true for test purposes
+                "enabled": False
             },
             {
                 "company": generic.Generic(
