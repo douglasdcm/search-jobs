@@ -1,0 +1,1 @@
+# Install, sanityze, compare curriculum 

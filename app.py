@@ -4,7 +4,9 @@ import sys
 from src.database.db_factory import DbFactory
 from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA
 from flask import Flask, render_template, request
-from src.helper.commands import compare, clear, run
+from src.helper.commands import compare, update
+from src.driver.chrome import ChromeDriver
+from src.crawler.factory import Factory
 
 app = Flask(__name__)
 sys.path.append(ROOT_DIR)
@@ -32,6 +34,24 @@ def info():
     """
     return _info()
 
+#### TODO to be removed ####
+@app.route('/update', methods=['POST'])
+def update_():
+    """
+    Run the crawlers and update the database with the positons information.
+    Request example:
+        curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'localhost:5000/update'
+    """
+    data = request.json
+    if os.getenv('HASH') == "":
+        os.environ['HASH'] = "dev"
+    if data["hash"] == os.getenv('HASH'):
+        update(DB_NAME, DB_TYPE["p"], ChromeDriver(), Factory().get_crawlers())
+        return "OK\n"
+    else:
+        return "NO ACTION\n"
+
+#### ####
 
 def _info():
     dbf = DbFactory()
