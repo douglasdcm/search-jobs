@@ -1,4 +1,3 @@
-from crawler import generic
 from src.crawler import generic, daitan, mms
 from tests.resources.fake_driver import FakeDriver, Fake_WebDriverWait
 import src.automation.automation as auto

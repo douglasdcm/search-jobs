@@ -3,7 +3,7 @@ from json import dumps
 from tests.settings import BASE_URL
 
 
-class TestFeature:
+class TestFeatureApp:
 
     def test_app_compare_curriculum_works(self, setup_containers):
         payload = dumps({

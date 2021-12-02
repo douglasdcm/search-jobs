@@ -1,12 +1,12 @@
 from tests.helper import exec_command
 
 
-class TestEndToEnd:
+class TestFeatureMain:
 
     entry_point = "./tests/utils/run_main.sh"
 
     def test_sanity_check_works(self, setup_containers):
-        expected = "Sanity check finished"
+        expected = "vagas cadastradas"
         params = ["--sanity-check"]
         actual = exec_command(params, self.entry_point, "sh")
         assert expected in actual

@@ -1,7 +1,7 @@
 import os
 
 BASE_DIR = os.getcwd()
-ROOT_DIR = BASE_DIR + "src/"
+ROOT_DIR = BASE_DIR + "/src/"
 RESOURCES_DIR = ROOT_DIR + "resources/"
 DRIVER_DIR = RESOURCES_DIR + "chromedriver"
 LOGS_FOLDER = BASE_DIR + "/logs/"

@@ -88,19 +88,7 @@ def sanity_check(database, driver):
                     "enabled": True
                 }]
 
-    run(database, driver, crawlers)
-    db = database
-    registros = db.pega_registro_por_condicao(TABELA, "url = '{}'".format(
-        crawlers[0]["file:///not_found.html"]))
-    for registro in registros:
-        db.deleta_registro(TABELA, registro[0])
-    msg = "Registros removidos."
-    logging.info(msg)
-    print(msg)
-    database.fecha_conexao_existente()
-    print("Sanity check finished")
-    return True
-
+    return run(database, driver, crawlers)
 
 
 def help_():
