@@ -1,0 +1,1 @@
+0 4 * * * cd /; /usr/local/bin/python main.py --update >> /var/log/cron.log 2>&1

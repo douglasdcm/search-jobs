@@ -6,3 +6,7 @@ htmlcov
 dist
 pkg_compare_cv.egg-info
 *.db
+logs
+*logs*
+.coverage
+htmlcov

@@ -6,12 +6,11 @@ from src.crawler import (
 from src.settings import URLS
 
 
-
 class Factory():
 
 
     def get_crawlers(self):
-        """Retunr the list of enabled crawlers
+        """Return the list of enabled crawlers
         Returns:
             (list): list of tuples where the 1st item is the object of the crawler and se 2nd
                 informs if it is enable (True). If enabled, the crawler will be executed by the

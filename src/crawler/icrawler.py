@@ -17,22 +17,24 @@ class ICrawler:
         """This method need to be inherited by subclasses"""
         self.url = url
 
-    def run(self, company=None):
+    def run(self, database, company=None):
         """This method need to be implemented by subclasses"""
         pass
 
-    def _save(self, url, description):
-        """This method need to be inherited by subclasses"""
+    def _save(self, database, url, description):
+        """This method need to be inherited by subclasses
+        Args:
+            database: the database connection
+            url (str): URL of the positon
+            description (str): description of the position
+        """
         msg = f"Saving '{url}'..."
         print(msg)
         logging.info(msg)
         description = data_pre_processing_portuguese(description)
         valores = (f"'{url}', '{description}'")
-        dbf = DbFactory()
-        conn = dbf.create_connnection(database=DB_NAME)
-        db = dbf.make_db(conn)
+        db = database
         db.salva_registro(TABELA, CAMPOS, valores)
-        db.fecha_conexao_existente()
 
     def get_url(self):
         """This method need to be inherited by subclasses"""
