@@ -55,6 +55,7 @@ class Database:
             raise ErroBancoDados(f"Não foi possível deletar a tabela.\n{str(e)}")
 
     def fecha_conexao_existente(self):
+        return True  # TODO remove references
         try:
             con = type(self)._conexao
             con.close()
