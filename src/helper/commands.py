@@ -5,8 +5,6 @@ from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS)
 from src.database.db_factory import DbFactory
 from src.helper.helper import data_pre_processing_portuguese
 from src.similarity.similarity import Similarity
-from src.crawler.generic import Generic
-from os import getcwd
 import traceback
 
 
@@ -80,18 +78,12 @@ def run(database, driver, crawlers=None):
     return True
 
 
-def sanity_check(database, driver):
+def sanity_check(database, driver, crawlers):
     """Verify the driver is connecting to web sites and if the content of the page is saved in the database
         Args:
             database: a connection object to a real database
             driver: the web driver, like ChromerDriver
     """
-    crawlers = [{
-                    "company": Generic("//a"),
-                    "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
-                    "enabled": True
-                }]
-
     return run(database, driver, crawlers)
 
 
