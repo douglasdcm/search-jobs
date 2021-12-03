@@ -62,12 +62,12 @@ def run(database, driver, crawlers=None):
                 company.set_driver(driver_)
                 company.set_url(url)
                 company.run(database)
-                _finish_driver(chrome)
+                # _finish_driver(chrome)
         except Exception as e:
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             traceback.print_tb(e.__traceback__)
             logging.info(msg)
-            _finish_driver(chrome)
+            # _finish_driver(chrome)
             raise
             
     db = database
