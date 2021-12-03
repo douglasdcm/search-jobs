@@ -22,12 +22,12 @@ class Factory():
             {
                 "company": daitan.Daitan(),
                 "url": URLS["Daitan"],
-                "enabled": True
+                "enabled": 1 == 0
             },
             {
                 "company": mms.Mms(),
                 "url": URLS["Mms"],
-                "enabled": True
+                "enabled": 1 == 0
             },
             {
                 "company": generic.Generic('//a[contains(@class,"fade-square")]'),
