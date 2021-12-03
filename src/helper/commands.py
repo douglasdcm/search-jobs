@@ -52,7 +52,7 @@ def run(database, driver, crawlers=None):
     chrome = driver
     for crawler in crawlers:
         try:
-            if crawler["enabled"]:
+            if crawler["enabled"] is True:
                 url = crawler["url"]
                 msg = "Starting crawler for '{}'...".format(url)
                 print(msg)
