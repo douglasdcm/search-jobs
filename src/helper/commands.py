@@ -7,6 +7,7 @@ from src.helper.helper import data_pre_processing_portuguese
 from src.similarity.similarity import Similarity
 from src.crawler.generic import Generic
 from os import getcwd
+import traceback
 
 
 nltk.download('stopwords')
@@ -145,5 +146,6 @@ def update(db_name, db_type, driver, crawlers=None):
         db = df.get_db(db_name)
         run(db, driver, crawlers)
         return True
-    except Exception:
+    except Exception as e:
+        traceback.print_tb(e.__traceback__)
         raise
