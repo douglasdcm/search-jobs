@@ -1,17 +1,17 @@
 # prepare the container and install the dependencies
+BASE_DIR="/"
 # install the dependencies
 apt-get update
 apt-get -y install libnss3-tools
 apt-get -y install cron
 apt update
-apt install -y ./src/resources/google-chrome-stable_current_amd64.deb
-pip install -r requirements.txt
+apt install -y ${BASE_DIR}/src/resources/google-chrome-stable_current_amd64.deb
+pip install -r ${BASE_DIR}/requirements.txt
 # modify files
-mkdir ./logs
-echo "" > ./logs/crawler.log
-rm -rf venv*
+mkdir ${BASE_DIR}/logs
+echo "" > ${BASE_DIR}/logs/crawler.log
 # Configure crontab
-CRON_FILE="./utils/update-cron"
+CRON_FILE="${BASE_DIR}/utils/update-cron"
 # Give execution rights on the cron job
 chmod 0644 ${CRON_FILE}
 # Apply cron job

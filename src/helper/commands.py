@@ -5,8 +5,6 @@ from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS)
 from src.database.db_factory import DbFactory
 from src.helper.helper import data_pre_processing_portuguese
 from src.similarity.similarity import Similarity
-from src.crawler.generic import Generic
-from os import getcwd
 import traceback
 
 
@@ -59,16 +57,19 @@ def run(database, driver, crawlers=None):
                 msg = "Starting crawler for '{}'...".format(url)
                 print(msg)
                 logging.info(msg)
-                driver = chrome.start(url)
+                driver_ = chrome.start(url)
                 company = crawler["company"]
-                company.set_driver(driver)
+                company.set_driver(driver_)
                 company.set_url(url)
                 company.run(database)
+                _finish_driver(chrome)
         except Exception as e:
             msg = "An error occurred during the execution:\n   {}".format(str(e))
-            print(msg)
+            traceback.print_tb(e.__traceback__)
             logging.info(msg)
-    _finish_driver(chrome)
+            _finish_driver(chrome)
+            raise
+            
     db = database
     positions = len(db.pega_todos_registros(TABELA, CAMPOS, distinct=True))
     msg = "Existem {} vagas cadastradas.".format(positions)
@@ -77,18 +78,12 @@ def run(database, driver, crawlers=None):
     return True
 
 
-def sanity_check(database, driver):
+def sanity_check(database, driver, crawlers):
     """Verify the driver is connecting to web sites and if the content of the page is saved in the database
         Args:
             database: a connection object to a real database
             driver: the web driver, like ChromerDriver
     """
-    crawlers = [{
-                    "company": Generic("//a"),
-                    "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
-                    "enabled": True
-                }]
-
     return run(database, driver, crawlers)
 
 

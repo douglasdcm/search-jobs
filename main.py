@@ -12,6 +12,8 @@ from src.exceptions.exceptions import ComandoInvalido
 from sys import argv
 from src.helper.commands import install, sanity_check, help_, update
 from src.crawler.factory import Factory
+from src.crawler.generic import Generic
+from os import getcwd
 
 
 os.system('export PATH="{}:$PATH"'.format(RESOURCES_DIR))
@@ -36,7 +38,12 @@ def main(*args):
         elif "--sanity-check" in argumentos:
             df = DbFactory(DB_TYPE["p"])
             db = df.get_db(DB_NAME)
-            return sanity_check(db, ChromeDriver())
+            crawlers = [{
+                "company": Generic("//a"),
+                "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+                "enabled": True
+            }]
+            return sanity_check(db, ChromeDriver(), crawlers)
         else:
             raise ComandoInvalido("Invalid command.\nTry main.py --help ")
 

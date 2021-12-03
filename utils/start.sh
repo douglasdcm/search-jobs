@@ -1,5 +1,6 @@
+BASE_DIR="/"
 # start cron
 cron
 # start the server
-python main.py --initdb
-python ./app.py
+python ${BASE_DIR}/main.py --initdb
+python ${BASE_DIR}/app.py
