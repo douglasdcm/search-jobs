@@ -55,8 +55,7 @@ def update_():
 
 def _info():
     dbf = DbFactory()
-    conn = dbf.create_connnection(database=DB_NAME)
-    db = dbf.make_db(conn)
+    db = dbf.get_db(DB_NAME)
     max_id = db.pega_maior_id(TABELA)[0][0]
     db.fecha_conexao_existente()
     return "Number of records in database is {}\n".format(str(max_id))

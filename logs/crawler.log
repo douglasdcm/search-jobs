@@ -1,1 +1,29 @@
 
+2021-12-03 18:58:33 INFO     Deleting database crawlers...
+2021-12-03 18:58:33 INFO     drop database crawlers WITH (FORCE)
+2021-12-03 18:58:33 INFO     Creating database crawlers...
+2021-12-03 18:58:33 INFO     Database created.
+2021-12-03 16:11:27 INFO     Starting driver.
+2021-12-03 16:11:28 INFO     Starting crawler for 'file:////home/dmorais/repo/training/crawler_of_positions/src/resources/sanity_check.html#'...
+2021-12-03 16:11:28 INFO     Getting all elements 'xpath://a'
+2021-12-03 16:11:28 INFO     Found 3 elements.
+2021-12-03 16:11:28 INFO     Getting attribute href from element <selenium.webdriver.remote.webelement.WebElement (session="3af66e69e4501b750499370dff50d8c8", element="8fc15d64-d385-40a6-b178-f2b394903699")>
+2021-12-03 16:11:28 INFO     Getting attribute href from element <selenium.webdriver.remote.webelement.WebElement (session="3af66e69e4501b750499370dff50d8c8", element="638c4d88-6128-40b9-af3b-53119d6dba0d")>
+2021-12-03 16:11:28 INFO     Getting attribute href from element <selenium.webdriver.remote.webelement.WebElement (session="3af66e69e4501b750499370dff50d8c8", element="94fc9c4a-913c-4805-b3f1-d20b99429189")>
+2021-12-03 16:11:28 INFO     file:///not_found.html
+2021-12-03 16:11:28 INFO     Navigate to 'file:///not_found.html'
+2021-12-03 16:11:28 INFO     Getting element 'css selector:body'
+2021-12-03 16:11:28 INFO     Saving 'file:///not_found.html'...
+2021-12-03 16:11:28 INFO     file:///not_found.html
+2021-12-03 16:11:28 INFO     Navigate to 'file:///not_found.html'
+2021-12-03 16:11:28 INFO     Getting element 'css selector:body'
+2021-12-03 16:11:28 INFO     Saving 'file:///not_found.html'...
+2021-12-03 16:11:28 INFO     file:///not_found.html
+2021-12-03 16:11:28 INFO     Navigate to 'file:///not_found.html'
+2021-12-03 16:11:28 INFO     Getting element 'css selector:body'
+2021-12-03 16:11:28 INFO     Saving 'file:///not_found.html'...
+2021-12-03 16:11:28 INFO     Taking screeshot.
+2021-12-03 16:11:28 INFO     Finishing driver.
+2021-12-03 16:11:28 INFO     Crawler finished.
+2021-12-03 16:11:28 INFO     Existem 2 vagas cadastradas.
+2021-12-03 16:12:04 INFO     Starting driver.

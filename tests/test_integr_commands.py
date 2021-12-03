@@ -1,8 +1,9 @@
 from src.helper.commands import help_, install, sanity_check, clear, update
 from tests.settings import DB_NAME, DB_TYPE
-from tests.resources.fake_driver import FakeDriver
+from src.driver.chrome import ChromeDriver
 from pytest import fixture
-from src.crawler.factory import Factory
+from src.crawler.generic import Generic
+from os import getcwd
 
 class TestCommands:
 
@@ -14,15 +15,23 @@ class TestCommands:
         db.salva_registro("positions", "url, description", "'https://test_message_3.com', 'test_message_3'")
         return db
 
-    def test_update_database_clear_database(self, populate_db):
+    @fixture
+    def get_crawlers(self):
+        return [{
+                "company": Generic("//a"),
+                "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+                "enabled": True
+            }]
+
+    def test_update_database_clear_database(self, populate_db, get_crawlers):
         expected = []
         db = populate_db
-        update(DB_NAME, DB_TYPE["s"], FakeDriver(), Factory().get_crawlers())
+        update(DB_NAME, DB_TYPE["s"], ChromeDriver(), get_crawlers())
         actual = db.pega_maior_id("positions")
         assert actual == expected
 
-    def test_update_database_returns_true(self):
-        assert update(DB_NAME, DB_TYPE["s"], FakeDriver(), Factory().get_crawlers()) is True
+    def test_update_database_returns_true(self, get_crawlers):
+        assert update(DB_NAME, DB_TYPE["s"], ChromeDriver(), get_crawlers) is True
 
     def test_clear_remove_data_from_database(self, populate_db):
         expected = []
@@ -32,7 +41,7 @@ class TestCommands:
         assert actual == expected
 
     def test_sanity_check_works(self, setup_db):
-        assert sanity_check(setup_db, FakeDriver()) is True
+        assert sanity_check(setup_db, ChromeDriver()) is True
 
     def test_install_creates_database(self):
         assert install(DB_NAME, DB_TYPE["s"])
