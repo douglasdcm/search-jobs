@@ -62,14 +62,11 @@ def run(database, driver, crawlers=None):
                 company.set_driver(driver_)
                 company.set_url(url)
                 company.run(database)
-                # _finish_driver(chrome)
         except Exception as e:
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             traceback.print_tb(e.__traceback__)
             logging.info(msg)
-            # _finish_driver(chrome)
-            raise
-            
+    _finish_driver(chrome)
     db = database
     positions = len(db.pega_todos_registros(TABELA, CAMPOS, distinct=True))
     msg = "Existem {} vagas cadastradas.".format(positions)

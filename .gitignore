@@ -1,12 +1,12 @@
 env_crawler
 venv*
 htmlcov
+logs
+*.log
 *.pyc
 .coverage
 dist
 pkg_compare_cv.egg-info
 *.db
-logs
-*logs*
 .coverage
 htmlcov
