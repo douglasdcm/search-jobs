@@ -23,13 +23,13 @@ URLS = {
     "Ciandt": "https://ciandt.com/us/en-us/careers/open-positions",
     "Cesar": "https://vagascesar.gupy.io",
     "LeroyMerlin": "https://jobs.kenoby.com/leroymerlin",
-    # TODO Not used. Add specific crawler to it.
     "Dell": "https://carreiras.dell.com/search-jobs",
     "Sap": "https://jobs.sap.com/search/?q=&locationsearch=&locale=en_US",
     "Mars": "https://jobs.mars.com/search/?createNewAlert=false&q=&locationsearch=",
     "Sabin": "https://jobs.kenoby.com/sabin-site",
     # TODO Not used. Add specific crawler to it.
     "Accor": "https://careers.accor.com/global/en/opportunity",
+    "ArcorAdm": "https://careers.accor.com/global/en/c/administration-support-jobs",
     "Novarts": "https://www.novartis.com.br/carreiras/buscar-vagas#country=BR",
     # TODO Not used. Needs to click on 'Veja nossas vagas'
     "MercadoLivre": "https://mercadolivre.randstad.com.br/LP_MercadoLivre_V2/",
@@ -84,4 +84,5 @@ URLS = {
     "ClearSale": "https://jobs.kenoby.com/clearsale/",
     "Coats": "https://rbcoats.avature.net/careers/SearchJobs/?3_47_3=898",
     "CopaEnergia": "https://trabalheconosco.vagas.com.br/copa-energia/oportunidades",
+    "GrupoTrigo": "https://grupotrigo.gupy.io/",
 }

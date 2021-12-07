@@ -1,3 +1,4 @@
+from re import T
 from src.crawler import (
     daitan,
     mms,
@@ -20,9 +21,9 @@ class Factory():
         kenoby_locator = '//div[@class="positions"]//div[@class="container"]//a'
         crawlers = [
             {
-                "company": daitan.Daitan(),
+                "company": generic.Generic('//a[@class="header"]'),
                 "url": URLS["Daitan"],
-                "enabled": 1 == 0
+                "enabled": True
             },
             {
                 "company": mms.Mms(),
@@ -357,6 +358,23 @@ class Factory():
                 "company": generic.Generic(
                     '//a[contains(@class,"job-box")]'),
                 "url": URLS["CopaEnergia"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(gupy_locator),
+                "url": URLS["GrupoTrigo"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    '//section[@id="search-results-list"]//a'),
+                "url": URLS["Dell"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    '//div[@class="content-block"]//a[@class="au-target"]'),
+                "url": URLS["ArcorAdm"],
                 "enabled": True
             },
             # Add new crawlers bellow

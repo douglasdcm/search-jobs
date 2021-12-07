@@ -51,9 +51,9 @@ def _finish_driver(chrome):
 
 def run(database, driver, crawlers=None):
     for crawler in crawlers:
-        chrome = DriverFactory().get_driver(driver_type=driver)
-        try:
-            if crawler["enabled"]:
+        if crawler["enabled"]:
+            chrome = DriverFactory().get_driver(driver_type=driver)
+            try:
                 url = crawler["url"]
                 msg = "Starting crawler for '{}'...".format(url)
                 print(msg)
@@ -63,12 +63,12 @@ def run(database, driver, crawlers=None):
                 company.set_driver(driver_)
                 company.set_url(url)
                 company.run(database)
-        except Exception as e:
-            msg = "An error occurred during the execution:\n   {}".format(str(e))
-            traceback.print_tb(e.__traceback__)
-            logging.info(msg)
-        finally:
-            _finish_driver(chrome)
+            except Exception as e:
+                msg = "An error occurred during the execution:\n   {}".format(str(e))
+                traceback.print_tb(e.__traceback__)
+                logging.info(msg)
+            finally:
+                _finish_driver(chrome)
     db = database
     positions = len(db.pega_todos_registros(TABELA, CAMPOS, distinct=True))
     msg = "Existem {} vagas cadastradas.".format(positions)
