@@ -1,6 +1,8 @@
 from src.database.db_factory import DbFactory
-import pytest
+from pytest import mark, raises
 
+
+@mark.integration
 class TestDbFactory:
 
     def test_dbfactory_for_sqlite_connects(self):
@@ -10,5 +12,5 @@ class TestDbFactory:
 
     def test_dbfactory_for_postgres_raises_exception(self):
         dbf = DbFactory("postgres")
-        with pytest.raises(Exception):
+        with raises(Exception):
             dbf.get_db()

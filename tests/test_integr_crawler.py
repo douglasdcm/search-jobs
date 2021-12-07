@@ -3,6 +3,8 @@ from tests.resources.fake_driver import FakeDriver, Fake_WebDriverWait
 import src.automation.automation as auto
 from pytest import mark
 
+
+@mark.integration
 class TestCrawler:
 
     testdata = [

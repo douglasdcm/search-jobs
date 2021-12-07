@@ -2,10 +2,12 @@ from src.helper.commands import help_, install, sanity_check, clear, update
 from tests.settings import DB_NAME, DB_TYPE
 from src.driver.chrome import ChromeDriver
 from tests.resources.fake_driver import FakeDriver
-from pytest import fixture
+from pytest import fixture, mark
 from src.crawler.generic import Generic
 from os import getcwd
 
+
+@mark.performance
 class TestPerformanceCommands:
 
     @fixture

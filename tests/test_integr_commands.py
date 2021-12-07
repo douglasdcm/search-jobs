@@ -5,7 +5,10 @@ from tests.resources.fake_driver import FakeDriver
 from pytest import fixture
 from src.crawler.generic import Generic
 from os import getcwd
+from pytest import mark
 
+
+@mark.integration
 class TestCommands:
 
     @fixture

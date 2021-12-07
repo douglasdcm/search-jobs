@@ -2,8 +2,9 @@ import app
 from json import dumps
 from src.database.db_factory import DbFactory
 from src.helper.commands import clear, install
-from pytest import fixture
+from pytest import fixture, mark
 
+@mark.api
 class TestCompare:
 
     @fixture
