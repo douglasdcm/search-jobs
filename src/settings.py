@@ -102,4 +102,13 @@ URLS = {
     "Coats": "https://rbcoats.avature.net/careers/SearchJobs/?3_47_3=898",
     "CopaEnergia": "https://trabalheconosco.vagas.com.br/copa-energia/oportunidades",
     "GrupoTrigo": "https://grupotrigo.gupy.io/",
+    "AllTests": "http://4alltests.com.br/vagas",
+    "Eurofarma": "https://eurofarma.gupy.io/",
+    "GrupoSaga": "https://jobs.solides.com/gruposaga#",
+    "HospitalEdmVasc": "https://bradesco.csod.com/ux/ats/careersite/1/home?c=bradesco",
+    "Hyundai": "https://trabalheconosco.vagas.com.br/hyundai/oportunidades",
+    "IBM": "https://www.ibm.com/br-pt/employment/",
+    "IcatuSeguros": "https://trabalheconosco.vagas.com.br/icatuseguros",
+    "LibertySeguros": "https://trabalheconosco.vagas.com.br/libertyseguros/oportunidades",
+    "Logicalis": "https://talentconnection-jobs.sabacloud.com/Saba/Web_spf/NA1PRD0099/jobs-jobs/career/searchresult/",
 }

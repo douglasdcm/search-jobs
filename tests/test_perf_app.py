@@ -5,7 +5,7 @@ from pytest import mark
 
 
 @mark.performance
-class TestFeatureApp:
+class TestPerformceApp:
 
     def test_app_compare_curriculum_works_1000_times(self, setup_containers):
 
