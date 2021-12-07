@@ -34,7 +34,9 @@ def main(*args):
         if "--initdb" in argumentos:
             return install(DB_NAME, DB_TYPE["p"])
         if "--update" in argumentos:
-            return update(DB_NAME, DB_TYPE["p"], ChromeDriver(), Factory().get_crawlers())
+            df = DbFactory(DB_TYPE["p"])
+            db = df.get_db(DB_NAME)
+            return update(db, ChromeDriver(), Factory().get_crawlers())
         elif "--sanity-check" in argumentos:
             df = DbFactory(DB_TYPE["p"])
             db = df.get_db(DB_NAME)

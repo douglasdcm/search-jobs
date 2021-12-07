@@ -11,14 +11,14 @@ class TestCompare:
     def setup(self):
         db_name = app.DB_NAME
         db_type = "sqlite"
-        clear(db_name, db_type)
-        install(db_name, db_type)
         df = DbFactory(db_type)
         db = df.get_db(db_name)
+        clear(db)
+        install(db_name, db_type)
         db.salva_registro("positions", "url, description", "'https://test_message.com', 'test_message'")
 
-    def test_compare_empty_curriculum_returns_nothing(self, setup):
-
+    def test_compare_empty_curriculum_returns_nothing(self, setup, monkeypatch):
+        monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")
         payload = dumps({
             "message": ""
         })

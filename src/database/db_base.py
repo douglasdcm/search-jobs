@@ -21,7 +21,7 @@ class Database:
             cur = items[1]
             logging.info(cmd)
             cur.execute(cmd)
-        except Exception:
+        except Exception as e:
             raise ErroBancoDados("Não foi possível ligar o foreing_key_support.")
 
     def cria_banco(self, banco):
@@ -55,7 +55,6 @@ class Database:
             raise ErroBancoDados(f"Não foi possível deletar a tabela.\n{str(e)}")
 
     def fecha_conexao_existente(self):
-        return True  # TODO remove references
         try:
             con = type(self)._conexao
             con.close()
