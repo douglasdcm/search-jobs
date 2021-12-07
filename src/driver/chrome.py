@@ -31,7 +31,6 @@ class ChromeDriver:
                                                 options=chrome_options)
         except Exception as e:
             traceback.print_tb(e.__traceback__)
-            raise
 
     def start(self, url):
         try:
@@ -40,7 +39,6 @@ class ChromeDriver:
             return self._driver
         except Exception as e:
             traceback.print_tb(e.__traceback__)
-            raise
 
     def quit(self):
         try:
@@ -52,7 +50,6 @@ class ChromeDriver:
                 self._driver.quit()
         except Exception as e:
             traceback.print_tb(e.__traceback__)
-            raise
 
     def close(self):
         try:
@@ -64,7 +61,6 @@ class ChromeDriver:
                 self._driver.close()
         except Exception as e:
             traceback.print_tb(e.__traceback__)
-            raise
 
     def start_session(self):
         capabilities = {
