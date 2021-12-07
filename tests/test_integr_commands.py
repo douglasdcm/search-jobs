@@ -1,7 +1,8 @@
+from database import db_factory
 from src.helper.commands import help_, install, sanity_check, clear, update
 from tests.settings import DB_NAME, DB_TYPE
 from src.driver.chrome import ChromeDriver
-from tests.resources.fake_driver import FakeDriver
+from src.database.db_factory import DbFactory
 from pytest import fixture
 from src.crawler.generic import Generic
 from os import getcwd
@@ -28,12 +29,16 @@ class TestCommands:
             }]
 
     def test_update_database_returns_true(self, get_crawlers):
-        assert update(DB_NAME, DB_TYPE["s"], ChromeDriver(), get_crawlers) is True
+        dbf = DbFactory(DB_TYPE["s"])
+        db = dbf.get_db(DB_NAME)
+        assert update(db, ChromeDriver(), get_crawlers) is True
 
     def test_clear_remove_data_from_database(self, populate_db):
         expected = []
         db = populate_db
-        clear(DB_NAME, DB_TYPE["s"])
+        dbf = DbFactory(DB_TYPE["s"])
+        db = dbf.get_db(DB_NAME)
+        clear(db)
         actual = db.pega_maior_id("positions")
         assert actual == expected
 

@@ -1,7 +1,7 @@
 from src.helper.commands import help_, install, sanity_check, clear, update
 from tests.settings import DB_NAME, DB_TYPE
 from src.driver.chrome import ChromeDriver
-from tests.resources.fake_driver import FakeDriver
+from src.database.db_factory import DbFactory
 from pytest import fixture, mark
 from src.crawler.generic import Generic
 from os import getcwd
@@ -19,5 +19,7 @@ class TestPerformanceCommands:
             }]
 
     def test_update_get_data_from_1500_links(self, get_crawlers):
-        assert update(DB_NAME, DB_TYPE["s"], ChromeDriver(), get_crawlers) is True
+        dbf = DbFactory(DB_TYPE["s"])
+        db = dbf.get_db(DB_NAME)
+        assert update(db, ChromeDriver(), get_crawlers) is True
 

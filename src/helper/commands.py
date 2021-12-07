@@ -29,7 +29,7 @@ def install(db_name, db_type):
     db.cria_banco(db_name)
     db.fecha_conexao_existente()
 
-    # Connect to db_name databse
+    # Connect to db_name database
     dbf = DbFactory(db_type)
     db = dbf.get_db(db_name)
     db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
@@ -93,15 +93,12 @@ Commands:
   --update          get the new positions from companies
                     """)
 
-def compare(content, db_name, db_type):
+def compare(content, db):
     cv = content
     cv = data_pre_processing_portuguese(cv)
     if len(cv) == 0:
         return "Nenhum resultado encontrado."
-    dbf = DbFactory(db_type)
-    db = dbf.get_db(db_name)
     positions = db.pega_todos_registros(TABELA, CAMPOS)
-    db.fecha_conexao_existente()
     s = Similarity()
     result = s.return_similarity_by_cossine(cv, positions)
     table = '<table class="table table-striped" style="width:100%">'
@@ -115,12 +112,10 @@ def compare(content, db_name, db_type):
     return table
 
 
-def clear(db_name, db_type):
+def clear(db):
     msg = "Cleaning database..."
     print(msg)
     logging.info(msg)
-    dbf = DbFactory(db_type)
-    db = dbf.get_db(db_name)
     try:
         db.deleta_tabela(TABELA)
     except Exception:
@@ -131,11 +126,9 @@ def clear(db_name, db_type):
     logging.info(msg)
 
 
-def update(db_name, db_type, driver, crawlers=None):
+def update(db, driver, crawlers=None):
     try:
-        clear(db_name, db_type)
-        df = DbFactory(db_type)
-        db = df.get_db(db_name)
+        clear(db)
         run(db, driver, crawlers)
         return True
     except Exception as e:

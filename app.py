@@ -11,6 +11,11 @@ from src.crawler.factory import Factory
 app = Flask(__name__)
 sys.path.append(ROOT_DIR)
 
+
+def service_db():
+    dbf = DbFactory(DB_TYPE["p"])
+    return dbf.get_db(DB_NAME)
+
 @app.route('/')
 def output():
     # serve index template
@@ -22,7 +27,7 @@ def worker():
     limit = 5000
     message = request.json['message']
     message = (message[:limit]) if len(message) > limit else message
-    return compare(message, DB_NAME, DB_TYPE['p'])
+    return compare(message, service_db())
 
 
 @app.route('/info', methods=['POST'])
@@ -46,7 +51,7 @@ def update_():
     if os.getenv('HASH') == "":
         os.environ['HASH'] = "dev"
     if data["hash"] == os.getenv('HASH'):
-        update(DB_NAME, DB_TYPE["p"], ChromeDriver(), Factory().get_crawlers())
+        update(service_db(), ChromeDriver(), Factory().get_crawlers())
         return "OK\n"
     else:
         return "NO ACTION\n"
@@ -54,10 +59,7 @@ def update_():
 #### ####
 
 def _info():
-    dbf = DbFactory()
-    db = dbf.get_db(DB_NAME)
-    max_id = db.pega_maior_id(TABELA)[0][0]
-    db.fecha_conexao_existente()
+    max_id = service_db().pega_maior_id(TABELA)[0][0]
     return "Number of records in database is {}\n".format(str(max_id))
 
 
