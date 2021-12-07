@@ -9,7 +9,7 @@ sed -i 's/\"enabled\": True/\"enabled\": False/' src/crawler/factory.py
 sed -i 's/DB_TYPE = {\"p\": \"sqlite\"/DB_TYPE = {\"p\": \"postgres\"/' src/settings.py
 #python -m pytest -vvv -s
 # execute the validatation
-coverage run --include='app.py' --include='main.py' --source='src' -m pytest -vvv -s
+coverage run --include='app.py' --include='main.py' --source='src' -m pytest -vvv -s -m "not performance"
 coverage report
 coverage html
 # clean the logs
