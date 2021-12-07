@@ -19,6 +19,7 @@ class Factory():
         """
         gupy_locator = '//a[@class="job-list__item"]'
         kenoby_locator = '//div[@class="positions"]//div[@class="container"]//a'
+        arcor_locator = '//div[@class="content-block"]//a[@class="au-target"]'
         crawlers = [
             {
                 "company": generic.Generic('//a[@class="header"]'),
@@ -372,9 +373,98 @@ class Factory():
                 "enabled": True
             },
             {
-                "company": generic.Generic(
-                    '//div[@class="content-block"]//a[@class="au-target"]'),
-                "url": URLS["ArcorAdm"],
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorAdm"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorBus"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorCor"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorCul"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorDes"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorDig"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorEng"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorExe"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorFin"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorFoo"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorLeg"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorOth"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorPro"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorRes"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorRoo"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorSal"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorSec"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorTal"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(arcor_locator),
+                "url": URLS["AccorWel"],
                 "enabled": True
             },
             # Add new crawlers bellow

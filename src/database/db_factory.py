@@ -15,15 +15,15 @@ class DbFactory:
         Args:
             database (str): name of the database
         """
-        conn = self.create_connnection(database=database,
+        conn = self._create_connnection(database=database,
                                        user=user,
                                        password=password,
                                        host=host,
                                        port=port)
-        return self.make_db(conn)
+        return self._make_db(conn)
 
 
-    def create_connnection(self,
+    def _create_connnection(self,
                            database="postgres",
                            user="postgres",
                            password="postgresql",
@@ -38,14 +38,13 @@ class DbFactory:
                                  password=password,
                                  host=host,
                                  port=port)
-            # TODO add the make_db here
         elif self.db_type == "sqlite":
             return sqlite_conn(database)
         else:
             raise ErroBancoDados("It was not possibe to stablish the connection to database.")
 
 
-    def make_db(self, conn):
+    def _make_db(self, conn):
         if self.db_type == "sqlite":
             return db.Database(conn)
         if self.db_type == "postgres":

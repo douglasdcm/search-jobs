@@ -1,11 +1,17 @@
 import app
 from json import dumps
 from src.database.db_factory import DbFactory
-from src.helper.commands import clear, install
+from src.helper.commands import install
 from pytest import fixture, mark
 
 @mark.api
 class TestCompare:
+
+    testdata = [
+        ("test message", "test_message"),
+        ("", "Nenhum resultado encontrado."),
+        ("special char ãâçáä here", "special_char")
+    ]
 
     @fixture
     def setup(self):
@@ -14,7 +20,8 @@ class TestCompare:
         install(db_name, db_type)
         df = DbFactory(db_type)
         db = df.get_db(db_name)
-        db.salva_registro("positions", "url, description", "'https://test_message.com', 'test_message'")
+        db.salva_registro("positions", "url, description", "'https://test_message.com', 'test message'")
+        db.salva_registro("positions", "url, description", "'https://special_char.com', 'special char ãâçáä here'")
 
     def test_compare_empty_curriculum_returns_nothing(self, setup, monkeypatch):
         monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")
@@ -25,11 +32,12 @@ class TestCompare:
         response = app.app.test_client().post("/receiver", content_type="application/json", data=payload)
         assert expected in response.data
 
-    def test_compare_curriculum_returns_ranking(self, monkeypatch, setup):
+    @mark.parametrize("message, response", testdata)
+    def test_compare_curriculum_returns_ranking(self, monkeypatch, setup, message, response):
         monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")  # changing th database to sqlite
         payload = dumps({
-            "message": "test_message"
+            "message": message
         })
-        expected = b"test_message"
+        expected = response.encode()
         response = app.app.test_client().post("/receiver", content_type="application/json", data=payload)
         assert expected in response.data
