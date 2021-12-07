@@ -13,12 +13,10 @@ class ChromeDriver:
         try:
             chrome_options = Options()
             if os.getenv('GOOGLE_CHROME_SHIM') is not None:  # used by Heroku only
-                # GOOGLE_CHROME_SHIM = "/app/.apt/usr/bin/google-chrome-stable"
                 logging.info("Starting driver.")
                 if DEBUG is False:
                     chrome_options.add_argument("--headless")
                 chrome_options.binary_location = os.getenv('GOOGLE_CHROME_SHIM')
-                # print("Runnig driver from {}".format(os.getenv('GOOGLE_CHROME_SHIM')))
                 self._driver = webdriver.Chrome(executable_path="chromedriver",
                                                 options=chrome_options)
             else:
