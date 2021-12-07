@@ -6,6 +6,7 @@ from src.database.db_factory import DbFactory
 from src.helper.helper import data_pre_processing_portuguese
 from src.similarity.similarity import Similarity
 import traceback
+from src.driver.driver_factory import DriverFactory
 
 
 nltk.download('stopwords')
@@ -49,8 +50,8 @@ def _finish_driver(chrome):
 
 
 def run(database, driver, crawlers=None):
-    chrome = driver
     for crawler in crawlers:
+        chrome = DriverFactory().get_driver(driver_type=driver)
         try:
             if crawler["enabled"]:
                 url = crawler["url"]
@@ -66,7 +67,8 @@ def run(database, driver, crawlers=None):
             msg = "An error occurred during the execution:\n   {}".format(str(e))
             traceback.print_tb(e.__traceback__)
             logging.info(msg)
-    _finish_driver(chrome)
+        finally:
+            _finish_driver(chrome)
     db = database
     positions = len(db.pega_todos_registros(TABELA, CAMPOS, distinct=True))
     msg = "Existem {} vagas cadastradas.".format(positions)

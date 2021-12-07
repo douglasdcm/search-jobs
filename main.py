@@ -6,8 +6,7 @@ import os
 import sys
 import logging
 from src.database.db_factory import DbFactory
-from src.driver.chrome import ChromeDriver
-from src.settings import (ROOT_DIR, LOGS_FILE, RESOURCES_DIR, DB_NAME, DB_TYPE)
+from src.settings import (ROOT_DIR, LOGS_FILE, RESOURCES_DIR, DB_NAME, DB_TYPE, DRIVER_TYPE)
 from src.exceptions.exceptions import ComandoInvalido
 from sys import argv
 from src.helper.commands import install, sanity_check, help_, update
@@ -36,7 +35,7 @@ def main(*args):
         if "--update" in argumentos:
             df = DbFactory(DB_TYPE["p"])
             db = df.get_db(DB_NAME)
-            return update(db, ChromeDriver(), Factory().get_crawlers())
+            return update(db, DRIVER_TYPE, Factory().get_crawlers())
         elif "--sanity-check" in argumentos:
             df = DbFactory(DB_TYPE["p"])
             db = df.get_db(DB_NAME)
@@ -45,7 +44,7 @@ def main(*args):
                 "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
                 "enabled": True
             }]
-            return sanity_check(db, ChromeDriver(), crawlers)
+            return sanity_check(db, DRIVER_TYPE, crawlers)
         else:
             raise ComandoInvalido("Invalid command.\nTry main.py --help ")
 

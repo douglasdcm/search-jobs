@@ -15,8 +15,8 @@ class Database(DbBase):
             con = type(self)._conexao
             cur = con.cursor()
             return [con, cur]
-        except Exception:
-            raise ErroBancoDados("Não foi possível criar a conexão de banco.")
+        except Exception as e:
+            raise ErroBancoDados(f"Não foi possível criar a conexão de banco.\n{str(e)}")
 
     def cria_tabela(self, tabela, campos, complemento=""):
         if complemento:
