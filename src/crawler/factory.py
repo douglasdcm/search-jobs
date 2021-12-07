@@ -1,6 +1,5 @@
 from re import T
 from src.crawler import (
-    daitan,
     mms,
     generic
 )
@@ -20,6 +19,7 @@ class Factory():
         gupy_locator = '//a[@class="job-list__item"]'
         kenoby_locator = '//div[@class="positions"]//div[@class="container"]//a'
         arcor_locator = '//div[@class="content-block"]//a[@class="au-target"]'
+        trab_conosco_locator = '//a[contains(@class,"job-box")]'
         crawlers = [
             {
                 "company": generic.Generic('//a[@class="header"]'),
@@ -29,7 +29,7 @@ class Factory():
             {
                 "company": mms.Mms(),
                 "url": URLS["Mms"],
-                "enabled": 1 == 0
+                "enabled": True
             },
             {
                 "company": generic.Generic('//a[contains(@class,"fade-square")]'),
@@ -54,20 +54,18 @@ class Factory():
                 "enabled": True
             },
             {
-                # TODO add a specific crawler to consider the pagination of the web page
                 "company": generic.Generic(
                     '//span[contains(@class,"hidden-phone")]/a[@class="jobTitle-link"]'),
                 "url": URLS["Sap"],
                 "enabled": True
             },
             {
-                # TODO add a specific crawler to consider the pagination of the web page
                 "company": generic.Generic(
                     '//span[contains(@class,"hidden-phone")]/a[@class="jobTitle-link"]'),
                 "url": URLS["Mars"],
                 "enabled": True
             },
-            {  # TODO make crawler get just the job description
+            {
                 "company": generic.Generic(
                     kenoby_locator),
                 "url": URLS["Sabin"],
@@ -91,13 +89,13 @@ class Factory():
                 "url": URLS["Roche"],
                 "enabled": True
             },
-            {  # TODO make crawler get just the job description
+            {
                 "company": generic.Generic(
                     kenoby_locator),
                 "url": URLS["3Coracoes"],
                 "enabled": True
             },
-            {  # TODO make crawler get the next pages
+            {
                 "company": generic.Generic(
                     '//div[contains(@class,"search-results__jobinfo")]/a'),
                 "url": URLS["3M"],
@@ -356,8 +354,7 @@ class Factory():
                 "enabled": True
             },
             {
-                "company": generic.Generic(
-                    '//a[contains(@class,"job-box")]'),
+                "company": generic.Generic(trab_conosco_locator),
                 "url": URLS["CopaEnergia"],
                 "enabled": True
             },
@@ -465,6 +462,55 @@ class Factory():
             {
                 "company": generic.Generic(arcor_locator),
                 "url": URLS["AccorWel"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//section[@class="box"]//h3//a'),
+                "url": URLS["AllTests"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(gupy_locator),
+                "url": URLS["Eurofarma"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    '//div[@class="job-list paragrafo-ideal"]//div[@class="job-list-content"]//h4//a'),
+                "url": URLS["GrupoSaga"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    '//div[contains(@class,"p-panel")]//a[@data-tag="displayJobTitle"]'),
+                "url": URLS["HospitalEdmVasc"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(trab_conosco_locator),
+                "url": URLS["Hyundai"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    '//div[contains(@id,"jobs-cards-wrapper")]//a'),
+                "url": URLS["IBM"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(trab_conosco_locator),
+                "url": URLS["IcatuSeguros"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(trab_conosco_locator),
+                "url": URLS["LibertySeguros"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(
+                    '//div[contains(@class,"spf-common-search-item-header")]//a'),
+                "url": URLS["Logicalis"],
                 "enabled": True
             },
             # Add new crawlers bellow

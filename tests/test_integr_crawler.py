@@ -1,4 +1,4 @@
-from src.crawler import generic, daitan, mms
+from src.crawler import generic, mms
 from tests.resources.fake_driver import FakeDriver, Fake_WebDriverWait
 import src.automation.automation as auto
 from pytest import mark
@@ -9,7 +9,6 @@ class TestCrawler:
 
     testdata = [
         generic.Generic("any_locator"),
-        daitan.Daitan(),
         mms.Mms()
         ]
 
