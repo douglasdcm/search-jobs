@@ -5,7 +5,10 @@ from tests.resources.fake_driver import FakeDriver
 from pytest import fixture
 from src.crawler.generic import Generic
 from os import getcwd
+from pytest import mark
 
+
+@mark.integration
 class TestCommands:
 
     @fixture
@@ -24,15 +27,8 @@ class TestCommands:
                 "enabled": True
             }]
 
-    def test_update_database_clear_database(self, populate_db, get_crawlers):
-        expected = []
-        db = populate_db
-        update(DB_NAME, DB_TYPE["s"], FakeDriver(), get_crawlers())
-        actual = db.pega_maior_id("positions")
-        assert actual == expected
-
     def test_update_database_returns_true(self, get_crawlers):
-        assert update(DB_NAME, DB_TYPE["s"], FakeDriver(), get_crawlers) is True
+        assert update(DB_NAME, DB_TYPE["s"], ChromeDriver(), get_crawlers) is True
 
     def test_clear_remove_data_from_database(self, populate_db):
         expected = []
@@ -42,7 +38,7 @@ class TestCommands:
         assert actual == expected
 
     def test_sanity_check_works(self, setup_db, get_crawlers):
-        assert sanity_check(setup_db, FakeDriver(), get_crawlers) is True
+        assert sanity_check(setup_db, ChromeDriver(), get_crawlers) is True
 
     def test_install_creates_database(self):
         assert install(DB_NAME, DB_TYPE["s"])
