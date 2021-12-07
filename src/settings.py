@@ -9,6 +9,7 @@ LOGS_FOLDER = BASE_DIR + "/logs/"
 DEBUG = False
 TIMEOUT = 30
 DB_NAME = "crawlers"
+DRIVER_TYPE = "chrome"
 TABELA = "positions"
 CAMPOS = "url, description"
 CAMPOS_DIFINICAO = """url VARCHAR(255) NOT NULL, description VARCHAR(50000)"""

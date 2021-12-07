@@ -5,3 +5,7 @@ class ErroBancoDados(Exception):
 class ComandoInvalido(Exception):
     def __init__(self, menssagem="O comando não foi reconehecido como um comando válido."):
         super().__init__(menssagem)
+
+class InvalidDriverType(Exception):
+    def __init__(self, menssagem="The specified driver type does not exist."):
+        super().__init__(menssagem)

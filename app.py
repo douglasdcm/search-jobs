@@ -2,7 +2,7 @@
 import os
 import sys
 from src.database.db_factory import DbFactory
-from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA
+from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA, DRIVER_TYPE
 from flask import Flask, render_template, request
 from src.helper.commands import compare, update
 from src.driver.chrome import ChromeDriver
@@ -15,9 +15,6 @@ sys.path.append(ROOT_DIR)
 def service_db():
     dbf = DbFactory(DB_TYPE["p"])
     return dbf.get_db(DB_NAME)
-
-def service_driver():
-    return ChromeDriver()
 
 @app.route('/')
 def output():
@@ -54,7 +51,7 @@ def update_():
     if os.getenv('HASH') == "":
         os.environ['HASH'] = "dev"
     if data["hash"] == os.getenv('HASH'):
-        update(service_db(), service_driver(), Factory().get_crawlers())
+        update(service_db(), DRIVER_TYPE, Factory().get_crawlers())
         return "OK\n"
     else:
         return "NO ACTION\n"

@@ -1,6 +1,6 @@
 from database import db_factory
 from src.helper.commands import help_, install, sanity_check, clear, update
-from tests.settings import DB_NAME, DB_TYPE
+from tests.settings import DB_NAME, DB_TYPE, DRIVER_TYPE
 from src.driver.chrome import ChromeDriver
 from src.database.db_factory import DbFactory
 from pytest import fixture
@@ -31,7 +31,7 @@ class TestCommands:
     def test_update_database_returns_true(self, get_crawlers):
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
-        assert update(db, ChromeDriver(), get_crawlers) is True
+        assert update(db, DRIVER_TYPE, get_crawlers) is True
 
     def test_clear_remove_data_from_database(self, populate_db):
         expected = []
@@ -43,7 +43,7 @@ class TestCommands:
         assert actual == expected
 
     def test_sanity_check_works(self, setup_db, get_crawlers):
-        assert sanity_check(setup_db, ChromeDriver(), get_crawlers) is True
+        assert sanity_check(setup_db, DRIVER_TYPE, get_crawlers) is True
 
     def test_install_creates_database(self):
         assert install(DB_NAME, DB_TYPE["s"])
