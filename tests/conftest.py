@@ -19,4 +19,4 @@ def setup_db():
 def setup_containers():
     exec_command("", "./tests/utils/start_containers.sh", "sh", sudo=False)
     yield
-    # exec_command("", "./tests/utils/stop_containers.sh", "sh", sudo=False)
+    exec_command("", "./tests/utils/stop_containers.sh", "sh", sudo=False)
