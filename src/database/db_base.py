@@ -14,16 +14,6 @@ class Database:
             else:
                 raise ErroBancoDados("Uma conexão precisa ser informada.")
 
-    def _liga_foreing_key_support(self):
-        try:
-            cmd = "PRAGMA foreign_keys = OFF"
-            items = self._cria_conexao()
-            cur = items[1]
-            logging.info(cmd)
-            cur.execute(cmd)
-        except Exception as e:
-            raise ErroBancoDados("Não foi possível ligar o foreing_key_support.")
-
     def cria_banco(self, banco):
         try:
             cmd = f"create database {banco}"
@@ -99,41 +89,12 @@ class Database:
         mensagem_erro = "Não foi possível pegar o ID máximo."
         return self._run(query, mensagem_erro)
 
-    def deleta_registro(self, tabela, id_):
-        query = f"delete from {tabela} where id = {id_}"
-        mensagem_erro = "Não foi possível excluir o registro especificado."
-        self._run(query, mensagem_erro, fetch=False)
-
     def pega_todos_registros(self, tabela, campos="*", distinct=False):
         query = "select"
         if distinct:
             query += " DISTINCT"
         query += f" {campos} from {tabela}"
         mensagem_erro = "Não foi possível pegar os registros."
-        return self._run(query, mensagem_erro)
-
-    def pega_registro_por_id(self, tabela, id_):
-        """Retorna a tupla da tabela identificada pelo id"""
-        query = f"select * from {tabela} where id = {id_}"
-        mensagem_erro = "Não foi possível pegar o registro especificado."
-        result = self._run(query, mensagem_erro)
-        if result == []:
-            raise ErroBancoDados(
-                f"Registro especificado de identificador {id_} não foi encontrado.")
-        else:
-            return result
-
-    def pega_registro_por_condicao(self, tabela, condicao):
-        query = f"select * from {tabela} where {condicao}"
-        mensagem_erro = "Não foi possível pegar o registro especificado."
-        result = self._run(query, mensagem_erro)
-        if result == []:
-            raise ErroBancoDados(f"Registro especificado '{condicao}' não foi encontrado.")
-        else:
-            return result
-
-    def pega_por_query(self, query):
-        mensagem_erro = "Não foi possível executar a query especificada."
         return self._run(query, mensagem_erro)
 
     def _run(self, query, mensagem_erro, fetch=True):

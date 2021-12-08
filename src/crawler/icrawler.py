@@ -36,6 +36,3 @@ class ICrawler:
         db = database
         db.salva_registro(TABELA, CAMPOS, valores)
 
-    def get_url(self):
-        """This method need to be inherited by subclasses"""
-        return self.url

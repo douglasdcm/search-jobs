@@ -1,5 +1,3 @@
-import logging
-from src.helper.helper import cleanhtml
 from src.automation.automation import BaseObjects
 from selenium.webdriver.common.by import By
 
@@ -24,11 +22,6 @@ class Vagas:
 
     def go_to_page(self, url):
         self._base_objects.navigate_to(url)        
-
-    def get_text_of_body(self):
-        by_type = By.CSS_SELECTOR
-        locator = "body"
-        return self._base_objects.get_text(by_type, locator)
 
     def get_description(self):
         self._base_objects.swith_to_frame(by_type=By.CSS_SELECTOR, locator='iframe#gnewtonIframe')

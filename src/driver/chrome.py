@@ -48,22 +48,3 @@ class ChromeDriver:
                 self._driver.quit()
         except Exception as e:
             traceback.print_tb(e.__traceback__)
-
-    def close(self):
-        try:
-            if DEBUG is False:
-                logging.info("Taking screeshot.")
-                file = "screenshot_" + time.strftime("%d-%m-%H-%M-%S") + ".png"
-                self._driver.save_screenshot(LOGS_FOLDER + file)
-                logging.info("Finishing driver.")
-                self._driver.close()
-        except Exception as e:
-            traceback.print_tb(e.__traceback__)
-
-    def start_session(self):
-        capabilities = {
-            "browserName": "chrome",
-            "browserVersion": "96.0.4664.45"
-        }
-        self._driver.start_session(capabilities)
-
