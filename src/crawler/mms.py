@@ -1,4 +1,4 @@
-import logging
+from logging import info
 from src.crawler.icrawler import ICrawler
 from src.pages.mms.vagas import Vagas
 
@@ -30,7 +30,7 @@ class Mms(ICrawler):
         for link in links:
             print("===========================")
             print(link)
-            logging.info(link)
+            info(link)
             self._vagas.go_to_page(link)
             descriptions = self._vagas.get_description()
             self._save(database, link, descriptions)

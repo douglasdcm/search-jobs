@@ -1,4 +1,4 @@
-import os
+from os import environ
 from src.database import db, db_postgres
 from psycopg2 import connect as postgres_conn
 from sqlite3 import connect as sqlite_conn
@@ -30,8 +30,8 @@ class DbFactory:
                            host="postgres",
                            port="5432"):
 
-        if os.environ.get("DATABASE_URL") is not None:  # for Heroku only
-            return postgres_conn(os.environ.get("DATABASE_URL"))
+        if environ.get("DATABASE_URL") is not None:  # for Heroku only
+            return postgres_conn(environ.get("DATABASE_URL"))
         elif self.db_type == "postgres":
             return postgres_conn(database=database,
                                  user=user,

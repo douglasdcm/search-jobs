@@ -1,4 +1,4 @@
-import logging
+from logging import info
 from src.exceptions.exceptions import ErroBancoDados
 from src.settings import DEBUG
 
@@ -19,7 +19,7 @@ class Database:
             cmd = f"create database {banco}"
             items = self._cria_conexao()
             cur = items[1]
-            logging.info(cmd)
+            info(cmd)
             cur.execute(cmd)
         except Exception:
             raise ErroBancoDados("Não foi possível criar o banco.")
@@ -29,7 +29,7 @@ class Database:
             cmd = f"drop database {banco} WITH (FORCE)"
             items = self._cria_conexao()
             cur = items[1]
-            logging.info(cmd)
+            info(cmd)
             cur.execute(cmd)
         except Exception as e:
             raise ErroBancoDados(f"Não foi possível deletar o banco.\n{str(e)}")
@@ -39,7 +39,7 @@ class Database:
             cmd = f"drop table if exists {tabela}"
             items = self._cria_conexao()
             cur = items[1]
-            logging.info(cmd)
+            info(cmd)
             cur.execute(cmd)
         except Exception as e:
             raise ErroBancoDados(f"Não foi possível deletar a tabela.\n{str(e)}")
@@ -108,7 +108,7 @@ class Database:
         """
         try:
             if DEBUG:
-                logging.info("QUERY: {}".format(query))
+                info("QUERY: {}".format(query))
             items = self._cria_conexao()
             con = items[0]
             cur = items[1]
@@ -120,5 +120,5 @@ class Database:
                 return True
         except Exception as e:
             print(str(e))
-            logging.info(str(e))
+            info(str(e))
             raise ErroBancoDados(f"{mensagem_erro}\nquery: {query}\n{str(e)}")

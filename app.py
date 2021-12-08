@@ -1,6 +1,6 @@
 #!flask/bin/python
-import os
-import sys
+from os import environ, getenv
+from sys import path
 from src.database.db_factory import DbFactory
 from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA, DRIVER_TYPE
 from flask import Flask, render_template, request
@@ -9,7 +9,7 @@ from src.driver.chrome import ChromeDriver
 from src.crawler.factory import Factory
 
 app = Flask(__name__)
-sys.path.append(ROOT_DIR)
+path.append(ROOT_DIR)
 
 
 def service_db():
@@ -48,9 +48,9 @@ def update_():
         curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'localhost:5000/update'
     """
     data = request.json
-    if os.getenv('HASH') == "":
-        os.environ['HASH'] = "dev"
-    if data["hash"] == os.getenv('HASH'):
+    if getenv('HASH') == "":
+        environ['HASH'] = "dev"
+    if data["hash"] == getenv('HASH'):
         update(service_db(), DRIVER_TYPE, Factory().get_crawlers())
         return "OK\n"
     else:
@@ -66,6 +66,6 @@ def _info():
 if __name__ == '__main__':
     # run!
     from waitress import serve
-    port = int(os.environ.get('PORT', 5001))
+    port = int(environ.get('PORT', 5001))
     serve(app, host="0.0.0.0", port=port)
 
