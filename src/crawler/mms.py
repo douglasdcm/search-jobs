@@ -23,9 +23,6 @@ class Mms(ICrawler):
     def _save(self, database, url, description):
         return super()._save(database, url, description)
 
-    def get_url(self):
-        return super().get_url()
-
     def _get_link_by_browser(self):
         return self._vagas.get_link_of_all_positons()
 

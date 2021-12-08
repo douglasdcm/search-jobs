@@ -1,11 +1,11 @@
-import logging
 import nltk
+from logging import info
 
 from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS)
 from src.database.db_factory import DbFactory
 from src.helper.helper import data_pre_processing_portuguese
 from src.similarity.similarity import Similarity
-import traceback
+from traceback import print_tb
 from src.driver.driver_factory import DriverFactory
 
 
@@ -17,7 +17,7 @@ nltk.download('wordnet')
 def install(db_name, db_type):
     msg = "Deleting database {}...".format(db_name)
     print(msg)
-    logging.info(msg)
+    info(msg)
     dbf = DbFactory(db_type)
     db = dbf.get_db()
     try:
@@ -26,7 +26,7 @@ def install(db_name, db_type):
         pass
     msg = "Creating database {}...".format(db_name)
     print(msg)
-    logging.info(msg)
+    info(msg)
     db.cria_banco(db_name)
     db.fecha_conexao_existente()
 
@@ -36,7 +36,7 @@ def install(db_name, db_type):
     db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
     msg = "Database created."
     print(msg)
-    logging.info(msg)
+    info(msg)
     db.fecha_conexao_existente()
     print("Installation finished")
     return True
@@ -46,7 +46,7 @@ def _finish_driver(chrome):
     chrome.quit()
     msg = "Crawler finished."
     print(msg)
-    logging.info(msg)
+    info(msg)
 
 
 def run(database, driver, crawlers=None):
@@ -57,7 +57,7 @@ def run(database, driver, crawlers=None):
                 url = crawler["url"]
                 msg = "Starting crawler for '{}'...".format(url)
                 print(msg)
-                logging.info(msg)
+                info(msg)
                 driver_ = chrome.start(url)
                 company = crawler["company"]
                 company.set_driver(driver_)
@@ -65,15 +65,15 @@ def run(database, driver, crawlers=None):
                 company.run(database)
             except Exception as e:
                 msg = "An error occurred during the execution:\n   {}".format(str(e))
-                traceback.print_tb(e.__traceback__)
-                logging.info(msg)
+                print_tb(e.__traceback__)
+                info(msg)
             finally:
                 _finish_driver(chrome)
     db = database
     positions = len(db.pega_todos_registros(TABELA, CAMPOS, distinct=True))
     msg = "Existem {} vagas cadastradas.".format(positions)
     print(msg)
-    logging.info(msg)
+    info(msg)
     return True
 
 
@@ -117,7 +117,7 @@ def compare(content, db):
 def clear(db):
     msg = "Cleaning database..."
     print(msg)
-    logging.info(msg)
+    info(msg)
     try:
         db.deleta_tabela(TABELA)
     except Exception:
@@ -125,7 +125,7 @@ def clear(db):
     db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
     msg = "Database created."
     print(msg)
-    logging.info(msg)
+    info(msg)
 
 
 def update(db, driver, crawlers=None):
@@ -134,5 +134,5 @@ def update(db, driver, crawlers=None):
         run(db, driver, crawlers)
         return True
     except Exception as e:
-        traceback.print_tb(e.__traceback__)
+        print_tb(e.__traceback__)
         raise

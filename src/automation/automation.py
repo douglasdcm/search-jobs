@@ -25,24 +25,6 @@ class BaseObjects:
         logging.info("Getting attribute {} from element {}".format(attribute, element))
         return element.get_attribute(attribute)
 
-    def click(self, by_type, locator):
-        logging.info("Cliking on element {}:{}".format(by_type, locator))
-        self._get_element(by_type, locator).click()
-
-    def is_element_visible(self, by_type, locator):
-        logging.info("Checking if element {}:{} is visible".format(by_type, locator))
-        """Returns (bool)"""
-        return EC.visibility_of_element_located((by_type, locator))(self._driver) is not False
-
-    def is_element_present(self, by_type, locator):
-        logging.info("Checking if element {}:{} is present".format(by_type, locator))
-        """Returns (bool)"""
-        return len(self.get_all_elements(by_type, locator)) > 0
-
-    def wait_element_is_visible(self, by_type, locator):
-        logging.info("Waiting element {}:{} be visible".format(by_type, locator))
-        WebDriverWait(self._driver, timeout=3).until(EC.visibility_of_element_located((by_type, locator))(self._driver))
-
     def wait_until_page_is_loaded(self, timeout=TIMEOUT):
         return self.wait_until(
             lambda _: self._driver.execute_script('return document.readyState') == 'complete',
@@ -50,9 +32,6 @@ class BaseObjects:
 
     def wait_until(self, predicate, timeout=TIMEOUT, poll_frequency=0.001):
         return wait.WebDriverWait(self._driver, timeout, poll_frequency).until(predicate)
-
-    def wait_element_appears(self, by_type, locator):
-        return self._wait.until(EC.visibility_of_element_located((by_type, locator))) is not False
 
     def scroll_to_element(self, by_type=None, locator=None, element=None):
         if element is None:
