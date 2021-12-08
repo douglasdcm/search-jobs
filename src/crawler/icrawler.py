@@ -1,4 +1,4 @@
-import logging
+from logging import info
 from src.helper.helper import data_pre_processing_portuguese
 from src.settings import DB_NAME, TABELA, CAMPOS
 from src.database.db_factory import DbFactory
@@ -30,7 +30,7 @@ class ICrawler:
         """
         msg = f"Saving '{url}'..."
         print(msg)
-        logging.info(msg)
+        info(msg)
         description = data_pre_processing_portuguese(description)
         valores = (f"'{url}', '{description}'")
         db = database

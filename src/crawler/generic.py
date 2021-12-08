@@ -1,4 +1,4 @@
-import logging
+from logging import info
 from src.crawler.icrawler import ICrawler
 from src.pages.generic.vagas import Vagas
 
@@ -48,7 +48,7 @@ class Generic(ICrawler):
     def _get_info_from_links(self, database, links):
         for link in links:
             print("Collecting data from {}".format(link))
-            logging.info(link)
+            info(link)
             self._vagas.go_to_page(link)
             descriptions = self._vagas.get_description()
             self._save(database, link, descriptions)

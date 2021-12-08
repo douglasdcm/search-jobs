@@ -1,6 +1,6 @@
-import os
+from os import getcwd
 
-BASE_DIR = os.getcwd()
+BASE_DIR = getcwd()
 ROOT_DIR = BASE_DIR + "/src/"
 RESOURCES_DIR = ROOT_DIR + "resources/"
 DRIVER_DIR = RESOURCES_DIR + "chromedriver"

@@ -1,4 +1,4 @@
-import math
+from math import isnan
 from scipy.spatial import distance
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -29,7 +29,7 @@ class Similarity:
             else:
                 d = 1 - distance.cosine(msg_bow, m_bow)
 
-            if math.isnan(float(d)):
+            if isnan(float(d)):
                 similarity.append(0.0)
             else:
                 similarity.append(d)

@@ -1,4 +1,4 @@
-import logging
+from logging import info
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support import wait
@@ -12,17 +12,17 @@ class BaseObjects:
         self._wait = wait.WebDriverWait(driver, TIMEOUT)
 
     def _get_element(self, by_type, locator):
-        logging.info("Getting element '{}:{}'".format(by_type, locator))
+        info("Getting element '{}:{}'".format(by_type, locator))
         return self._driver.find_element(by_type, locator)
 
     def get_all_elements(self, by_type, locator):
-        logging.info("Getting all elements '{}:{}'".format(by_type, locator))
+        info("Getting all elements '{}:{}'".format(by_type, locator))
         elements = self._driver.find_elements(by_type, locator)
-        logging.info("Found {} elements.".format(str(len(elements))))
+        info("Found {} elements.".format(str(len(elements))))
         return elements
 
     def get_attribute_from_element(self, element, attribute):
-        logging.info("Getting attribute {} from element {}".format(attribute, element))
+        info("Getting attribute {} from element {}".format(attribute, element))
         return element.get_attribute(attribute)
 
     def wait_until_page_is_loaded(self, timeout=TIMEOUT):
@@ -39,7 +39,7 @@ class BaseObjects:
         self._driver.execute_script("arguments[0].scrollIntoView();", element)
 
     def navigate_to(self, url, timeout=TIMEOUT):
-        logging.info("Navigate to '{}'".format(url))
+        info("Navigate to '{}'".format(url))
         self._driver.get(url)
         self.wait_until_page_is_loaded(timeout=timeout)
 
@@ -49,7 +49,7 @@ class BaseObjects:
         else:
             result = element.text
         if DEBUG:
-            logging.info("Get text '{}' of element".format(result))
+            info("Get text '{}' of element".format(result))
         return result
 
     def swith_to_frame(self, index=None, by_type=None, locator=None):
