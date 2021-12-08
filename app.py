@@ -8,7 +8,7 @@ from src.helper.commands import compare, update
 from src.driver.chrome import ChromeDriver
 from src.crawler.factory import Factory
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='')
 path.append(ROOT_DIR)
 
 
@@ -20,7 +20,6 @@ def service_db():
 def output():
     # serve index template
     return render_template('index.html')
-
 
 @app.route('/receiver', methods=['POST'])
 def worker():
