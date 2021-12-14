@@ -15,6 +15,11 @@
 		
 		<!---->
 
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
@@ -29,7 +34,7 @@
 	<div>
 		<div class="jumbotron text-center">
 			<h1>Vagas pra mim</h1> 
-			<p>Pesquise as vagas que mais combinam com o seu currículo</p> 
+			<p>Pesquise as vagas que mais combinam com o seu currículo</p>
 			<form>
 			  <div class="form-group row">
 				  <div class="col-md-offset-2 col-md-7">
@@ -48,11 +53,59 @@
 					<!--table here-->
 				</div>
 			  </div>
-		  </div>
+		</div>
+		<div>
+			<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+			<div class="w3-main" style="margin-left:250px; text-align: justify; text-justify: inter-word;" >
+				<h1 class="w3-text-teal"><strong>Leituras</strong></h1>
+				<div class="w3-row w3-padding-64">
+					<div class="w3-twothird w3-container">
+					<h1 class="w3-text-teal">Como foi palestrar no TDC</h1>
+					<p>
+						Em 2019, quando ainda podíamos participar de eventos presenciais sem nos preocupar com aglomerações, fui convidado para palestrar na maior conferência de desenvolvedores da América Latina: The Developer’s Conference (TDC).
+						A trilha foi a de Testes e o tema foi “Interpretação de resultados de teste de performance”, área a qual gosto muito e sou especialista.
+						O evento ocorreu nos dias 13, 14 e 15 de julho em Belo Horizonte/MG na UniBh — Campus Buritis.
+						Foi minha primeira vez palestrando num evento tão grande. Antes eu havia apenas palestrado em Meet-ups pequenas como o “Café, testes e pão de queijo” e em treinamentos corporativos de 20 a 30 pessoas. Também dei aulas de matemática por uns 6 meses para adolescentes em turmas de até 50 alunos.
+						Mas palestrar num evento tão grande foi um experência bem diferente. A começar pela escolha do tema. Eu sabia que muitas pessoas da platéia eram da área de T.I. em geral e de testes de software, então falar besteira iria pegar mal. Daí, eu revisitei alguns materiais que eu tinha, me atualizei com outros que eu não conhecia e montei a minha proposta.
+						Proposta aceita, era hora de montar a apresentação. Fiz em português pois o evento é nacional e tentei deixar o mais enxuto possível, pois eu tinha só 25 minutos pra falar tudo o que eu queria.
+						Palestra finalizada, foi então esperar o dia e a hora da apresentação, eu ganhei ingressos de cortesia por ser palestrante, então já estava lá no local desde cedo assistindo a outras palestras. Chegada a minha hora, peguei meu computador, rezei pra não dar nenhum problema na hora de fazer a projeção dos slides e comecei a falar…
+						Comecei bem devagar, apresentando o tema e vendo o a resposta da platéia. Pareceia que ia tudo bem. Quando estou terminando os primeiros slides vejo uma placa subindo ao fundo: 10 minutos!
+						Dái, percebi que já tinham se passado 15 minutos e eu ainda estava no início da apresentação.
+						Calculei mentalmente quanto tempo tinha pros slides seguintes e continuei. Mais uns slides à frente e vejo a placa: 5 minutos!
+						Nossa, só faltam 5 minutos — pensei — e ainda tem a seção de perguntas!
+						Continuei e felizmente consegui passar por todo o conteúdo, sem correr e ainda deixei um espaço para algumas perguntas.
+						Todos aplaudiram e depois algumas pessoas vieram me parabenizar.
+						Fiquei bem feliz com esse dia. Foi bom pra crescer a rede de contatos do LinkedIn e conhecer pessoas e empresas novas.
+						Recomendo a todos que estejam pensando em palestrar em algum evento que o faça. Primeiro porque se aprende muito tendo que estudar para ensinar. Segundo, porque querendo ou não, as pessoas passam a te conhecer e a seguir o que você faz. Isso abre várias oportunidade profissionais legais. E por último, a satisfação é muito boa tanto em palestrar quanto em compartilhar o conhecimento. Há alguns anos li um artigo muito interessante que falava sobre as origens do Open Source (pena eu não ter achado a fonte pra colocar aqui), mas basicamente a ideia de código aberto e livre veio da prática que era comum no campo da matemática onde um matemático, quando resolvia algum problema ou demonstrava algo novo, logo compartihava com a comunidade para que essa solução fosse uma possível parte de futuras resoluções ou demonstrações. Dessa forma a matemática cresceu e continua crescendo. Pensando nessa prática, realmente não faz sentido reter informação e conhecimento. Contribuir com os outros faz a nossa área crescer e florescer.					
+						</p>
+						<p>Texto: Douglas Cardoso</p>
+					</div>
+				</div>
+
+				<div class="w3-row">
+					<div class="w3-twothird w3-container">
+					<h1 class="w3-text-teal">QA e Dev parem de brigar</h1>
+					<p>
+						É comum ver nas redes sociais grupos da área de TI implicando uns com os outros: Apple vs Android, infra vs programadores, Unix vs Windows. Queremos pertencer e sermos aceitos em uma unidade social. Porém, parece que essas discussões estão sempre considerando um mundo maniqueísta e dizer que um é absolutamente melhor que o outro é adotar a teoria do terceiro excluído. Acabamos nos esquecendo de que a sociedade é a unidade maior que engloba todos os grupos sociais, logo estamos todos no mesmo balaio.
+						Considerar esta dicotomia abre espaço para discussões pouco relevantes onde o que vale não é a busca pela melhoria das condições de todos, mas a satisfação de convencimento do outro. Assim, ora não nos vemos como um time maior que tem o mesmo interesse coletivo que é a evolução social. Pegando este gancho e aplicando o mesmo aos grupos de profissionais de qualidade de software e desenvolvedores, vemos que existe uma rixa entre os dois que num contexto racional nem deveria ser tão enfatizada. QAs e Devs esquecem que numa instituição ou projeto têm o mesmo interesse em comum: entregar um produto dentro dos critérios de qualidade do cliente, do custo e do prazo. Então, se estamos no mesmo barco e querendo chegar ao mesmo destino, por que remamos em sentidos opostos? A responsabilidade por um produto dentro dos critérios do cliente é tanto do QA quanto do Dev e dos demais envolvidos na construção deste produto. Num momento em que se fala tanto sobre processos ágeis, que são mais dependentes do conjunto e menos de capacidades técnicas individuais, ainda vemos bairrismo no grupo X ou Y como sociedades fechadas, que não toleram pensamentos diferentes e membros de outras comunidades. Uma pena, porque adicionar é sempre melhor do que subtrair quando se quer chegar ao infinito (positivo :).
+					</p>
+					<p>Texto: Douglas Cardoso</p>
+					</div>
+				</div>
+				  <!-- Pagination -->
+					<div class="w3-center w3-padding-32">
+						<div class="w3-bar">
+						<a class="w3-button w3-black" href="#">1</a>
+						</div>
+					</div>
+			</div>
 		  
+		</div>	
+	</div>
+	<div class="w3-main" style="margin-left:50px">
 		<footer>
-		  <p>Copyright © 2021 | <a href="https://www.linkedin.com/company/vagaspramim/">LinkedIn</a></p>
-		</footer>
+			<p>Copyright © 2021 | <a href="https://www.linkedin.com/company/vagaspramim/">LinkedIn</a></p>
+	  </footer>
 	</div>
   </body>
 </html>
