@@ -5,7 +5,6 @@ from src.database.db_factory import DbFactory
 from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA, DRIVER_TYPE
 from flask import Flask, render_template, request
 from src.helper.commands import compare, update
-from src.driver.chrome import ChromeDriver
 from src.crawler.factory import Factory
 
 app = Flask(__name__, static_folder='static', static_url_path='')
