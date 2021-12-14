@@ -103,8 +103,8 @@ def compare(content, db):
     positions = db.pega_todos_registros(TABELA, CAMPOS)
     s = Similarity()
     result = s.return_similarity_by_cossine(cv, positions)
-    table = '<div id="table-wrapper">'
-    table += '<div id="table-scroll" style="overflow: scroll;">'
+    table = ""
+    table += '<div id="table-scroll" style="overflow: scroll; height: 65%;">'
     table += '<table class="table table-striped" style="width:100%">'
     table += '<tr><th>% Similaridade</th><th>Link da vaga</th></tr>'
     for key, values in result.items():
@@ -113,7 +113,6 @@ def compare(content, db):
         table += f'<td style="width:80%"><a href={values[0]}> {values[0]} </a></td>'
         table += '</tr>'
     table += '</table>'
-    table += '</div>'
     table += '</div>'
     return table
 
