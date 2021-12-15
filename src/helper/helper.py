@@ -2,6 +2,7 @@ from re import sub, findall
 import nltk
 from string import punctuation
 from nltk.corpus import stopwords
+from unidecode import unidecode
 
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
@@ -11,6 +12,8 @@ nltk.download('wordnet')
 def data_pre_processing_portuguese(corpus):
     # remove html tags
     corpus = sub(r'<.*?>', '', str(corpus))
+    # replace non-ascii characters
+    corpus = unidecode(corpus)
     # remove non-alphanumeric characters
     corpus = sub(r'[^a-z A-Z 0-9 \s]', '', str(corpus))
     # remove duplicated spaces

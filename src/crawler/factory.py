@@ -513,6 +513,31 @@ class Factory():
                 "url": URLS["Logicalis"],
                 "enabled": True
             },
+            {
+                "company": generic.Generic(kenoby_locator),
+                "url": URLS["Jumpadtail"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//a[contains(@class, "ui-tabs-anchor")]'),
+                "url": URLS["FeComercioDf"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//a[contains(@class,"navbar-brand")]'),
+                "url": URLS["Agiel"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//a[contains(@class,"navbar-brand")]'),
+                "url": URLS["EmployerEstagios"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//div[@class="informacoes-header"]//a'),
+                "url": URLS["StagEstagios"],
+                "enabled": True
+            },
             # Add new crawlers bellow
         ]
         return crawlers
