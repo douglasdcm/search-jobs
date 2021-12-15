@@ -111,4 +111,9 @@ URLS = {
     "IcatuSeguros": "https://trabalheconosco.vagas.com.br/icatuseguros",
     "LibertySeguros": "https://trabalheconosco.vagas.com.br/libertyseguros/oportunidades",
     "Logicalis": "https://talentconnection-jobs.sabacloud.com/Saba/Web_spf/NA1PRD0099/jobs-jobs/career/searchresult/",
+    "Jumpadtail": "https://jobs.kenoby.com/jumpadtail",
+    "FeComercioDf": "https://www.institutofecomerciodf.com.br/vagas/",
+    "Agiel": "https://www.agiel.com.br/site/vagas/",
+    "EmployerEstagios": "http://employerestagios.com.br/",
+    "StagEstagios": "https://www.vagas.com.br/vagas-de-stag-estagios?",
 }

@@ -1,13 +1,14 @@
 from src.helper.helper import data_pre_processing_portuguese
 from pytest import mark
 
+@mark.unit
 class TestUnitHelper:
 
     testdata = [
-        ("mecânico", "mecnico"),
+        ("mecânico", "mecanico"),
         ("123", ""),
         ("@#$%", ""),
-        ("ãáçä", ""),
+        ("ãáçä", "aaca"),
         ("", "")
     ]
 
