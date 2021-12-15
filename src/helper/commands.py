@@ -104,7 +104,7 @@ def compare(content, db):
     s = Similarity()
     result = s.return_similarity_by_cossine(cv, positions)
     table = ""
-    table += '<div id="table-scroll" style="overflow: scroll; height: 65%;">'
+    table += '<div id="table-scroll" style="overflow: scroll; height: 45%;">'
     table += '<table class="table table-striped" style="width:100%">'
     table += '<tr><th>% Similaridade</th><th>Link da vaga</th></tr>'
     for key, values in result.items():
