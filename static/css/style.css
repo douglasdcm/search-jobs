@@ -1,16 +1,22 @@
 body {
     background-color: #0c3974;
     position: relative;
+    text-align: center;
+    overflow-x:hidden;
 }
 
 body::after {
    content: '';
    display: block;
-   height: 20px; /* Set same as footer's height */
+   height: 30px; /* Set same as footer's height */
 }
 
 p {
     color: white;
+}
+
+a {
+    color:blue
 }
 
 h3 {
@@ -24,7 +30,7 @@ h3 {
     width: 100%;
     text-align: center;
     color: white;
-    height: 20px;
+    height: 30px;  /* Set same as body's height */
  }
 
 table {
@@ -53,10 +59,15 @@ tr:nth-child(even) {
     align-items: center;
 }
 
+.carousel-control {
+    height: 50px;
+}
+
 .custom-img {
     width: 100%;
     height: 100px;
     margin-top: 10px;
+    text-align: center;
 }
 
 .custom-col {
@@ -65,13 +76,17 @@ tr:nth-child(even) {
 }
 
 .custom-col-logo {
-    text-align: right;
+    text-align: left;
+    width: 30%;
 }
 
 .custom-col-logo-txt {
+    display: table-cell;
     text-align: left;
     color: white;
-    vertical-align: top;
+    vertical-align: middle;
+    padding: 5px;
+    width: 70%;
 }
 
 .custom-logo {
