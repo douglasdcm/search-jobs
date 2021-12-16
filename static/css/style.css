@@ -1,3 +1,32 @@
+body {
+    background-color: #0c3974;
+    position: relative;
+}
+
+body::after {
+   content: '';
+   display: block;
+   height: 20px; /* Set same as footer's height */
+}
+
+p {
+    color: white;
+}
+
+h3 {
+    columns: white;
+}
+
+.footer {
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    height: 20px;
+ }
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -6,7 +35,6 @@ table {
 
 td, th {	  
     text-align: left;
-    padding: 6px;
 }
 
 tr:nth-child(even) {
@@ -20,20 +48,33 @@ tr:nth-child(even) {
     font-family: Montserrat, sans-serif;
 }
 
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+.custom-content {
+    background-color: blanchedalmond;
+    align-items: center;
+}
+
+.custom-img {
     width: 100%;
+    height: 100px;
+    margin-top: 10px;
+}
+
+.custom-col {
     text-align: center;
+    height: 150px;
+}
+
+.custom-col-logo {
+    text-align: right;
+}
+
+.custom-col-logo-txt {
+    text-align: left;
     color: white;
- }
+    vertical-align: top;
+}
 
- body {
-    background-color: #0c3974;
- }
-
- .card {
-     color: white;
-     height: 100px;
- }
+.custom-logo {
+    width: 50px;
+    height: 50px;
+}
