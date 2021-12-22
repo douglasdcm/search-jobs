@@ -3,7 +3,7 @@ from logging import info
 
 from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS)
 from src.database.db_factory import DbFactory
-from src.helper.helper import data_pre_processing_portuguese
+from src.helper.helper import data_pre_processing_portuguese, select_with_like
 from src.similarity.similarity import Similarity
 from traceback import print_tb
 from src.driver.driver_factory import DriverFactory
@@ -95,12 +95,13 @@ Commands:
   --update          get the new positions from companies
                     """)
 
-def compare(content, db):
-    cv = content
+def compare(cv, db):
     cv = data_pre_processing_portuguese(cv)
+    cv_ = cv.split()
     if len(cv) == 0:
         return "Nenhum resultado encontrado."
-    positions = db.pega_todos_registros(TABELA, CAMPOS)
+    query = select_with_like(cv_, TABELA, "description")
+    positions = db.pega_por_query(query)
     s = Similarity()
     result = s.return_similarity_by_cossine(cv, positions)
     table = ""
