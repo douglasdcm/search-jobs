@@ -97,6 +97,10 @@ class Database:
         mensagem_erro = "Não foi possível pegar os registros."
         return self._run(query, mensagem_erro)
 
+    def pega_por_query(self, query):
+        mensagem_erro = "Não foi possível executar a query especificada."
+        return self._run(query, mensagem_erro)
+
     def _run(self, query, mensagem_erro, fetch=True):
         """
         Args:
