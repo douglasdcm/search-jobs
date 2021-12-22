@@ -95,12 +95,12 @@ Commands:
   --update          get the new positions from companies
                     """)
 
-def compare(content, db):
-    cv = content
+def compare(cv, db):
     cv = data_pre_processing_portuguese(cv)
+    cv_ = cv.split()
     if len(cv) == 0:
         return "Nenhum resultado encontrado."
-    query = select_with_like(cv, TABELA, "description")
+    query = select_with_like(cv_, TABELA, "description")
     positions = db.pega_por_query(query)
     s = Similarity()
     result = s.return_similarity_by_cossine(cv, positions)
