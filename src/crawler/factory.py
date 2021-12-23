@@ -1,4 +1,3 @@
-from re import T
 from src.crawler import (
     mms,
     generic
@@ -20,6 +19,8 @@ class Factory():
         kenoby_locator = '//div[@class="positions"]//div[@class="container"]//a'
         arcor_locator = '//div[@class="content-block"]//a[@class="au-target"]'
         trab_conosco_locator = '//a[contains(@class,"job-box")]'
+        hotel_hilton_locator = '//span[@role="heading"]//a[contains(@class,"au-target")]'
+        green_house_locator = '//div[contains(@class,"opening")]//a'
         crawlers = [
             {
                 "company": generic.Generic('//a[@class="header"]'),
@@ -538,6 +539,191 @@ class Factory():
                 "url": URLS["StagEstagios"],
                 "enabled": True
             },
-            # Add new crawlers bellow
+            {
+                "company": generic.Generic(gupy_locator),
+                "url": URLS["MercSaoluiz"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//div[contains(@class,"multiline-data-container")]//span//a'),
+                "url": URLS["Oracle"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(gupy_locator),
+                "url": URLS["Riachuelo"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(gupy_locator),
+                "url": URLS["Santander"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//nav[contains(@class,"menu-footer")]//a[text()="Trabalhe Conosco"]'),
+                "url": URLS["Senac"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(gupy_locator),
+                "url": URLS["SlcAgricola"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(kenoby_locator),
+                "url": URLS["Suzano"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(gupy_locator),
+                "url": URLS["UberlandiaRefrescos"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(gupy_locator),
+                "url": URLS["Unidas"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(gupy_locator),
+                "url": URLS["UnimedFortaleza"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(trab_conosco_locator),
+                "url": URLS["UnimedRio"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//td//a[contains(@class,"joblist__link job__position")]'),
+                "url": URLS["Volvo"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(kenoby_locator),
+                "url": URLS["Wiz"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//h2//a[contains(@class,"au-target")]'),
+                "url": URLS["Microsoft"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(hotel_hilton_locator),
+                "url": URLS["HiltonHotel"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(trab_conosco_locator),
+                "url": URLS["Schmersal"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//div[contains(@class,"apply-button-container")]//a'),
+                "url": URLS["Bistrol"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(kenoby_locator),
+                "url": URLS["ICherry"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(kenoby_locator),
+                "url": URLS["Mirum"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic('//ol[contains(@class,"m-layout")]//a'),
+                "url": URLS["Dll"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["Ebanx"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["Invision"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["Harrys"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["DonorSchoose"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["Lift"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["TripAdvisor"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["WillowTree"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["Datto"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["Thumbtack"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["VaynerMedia"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["KeepTruckin"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["Checkr"],
+                "enabled": True
+            },
+            {
+                "company": generic.Generic(green_house_locator),
+                "url": URLS["Nutrabolt"],
+                "enabled": True
+            },
+            # {
+            #     "company": generic.Generic(green_house_locator),
+            #     "url": URLS["xxxx"],
+            #     "enabled": True
+            # },
+            # {
+            #     "company": generic.Generic(green_house_locator),
+            #     "url": URLS["xxxx"],
+            #     "enabled": True
+            # },
+            # {
+            #     "company": generic.Generic(green_house_locator),
+            #     "url": URLS["xxxx"],
+            #     "enabled": True
+            # },
+            # {
+            #     "company": generic.Generic(green_house_locator),
+            #     "url": URLS["xxxx"],
+            #     "enabled": True
+            # },
+            # Add new crawlers above
         ]
         return crawlers
