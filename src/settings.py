@@ -116,4 +116,101 @@ URLS = {
     "Agiel": "https://www.agiel.com.br/site/vagas/",
     "EmployerEstagios": "http://employerestagios.com.br/",
     "StagEstagios": "https://www.vagas.com.br/vagas-de-stag-estagios?",
+    "MercSaoluiz": "https://vemprosmercadinhossaoluiz.gupy.io/",
+    "Oracle": "https://oracle.taleo.net/careersection/2/jobsearch.ftl?f=LOCATION(362940031553)",
+    "Riachuelo": "https://carreiras.riachuelo.com.br/",
+    "Santander": "https://santander.wd3.myworkdayjobs.com/SantanderCareers/0/refreshFacet/318c8bb6f553100021d223d9780d30be",
+    "Senac": "https://www.dn.senac.br/",
+    "SlcAgricola": "https://slcagricola.gupy.io/",
+    "Suzano": "https://jobs.kenoby.com/Suzano",
+    "UberlandiaRefrescos": "https://uberlandiarefrescos.gupy.io/",
+    "Unidas": "https://unidas.gupy.io/",
+    "UnimedFortaleza": "https://unimedfortaleza.gupy.io/",
+    "UnimedRio": "https://trabalheconosco.vagas.com.br/unimedrio/oportunidades?box_link=&division_id=50787&division_name=",
+    "Volvo": "https://www.volvogroup.com/br/careers/job-openings.html#page=1&countries=Brazil",
+    "Wiz": "https://jobs.kenoby.com/wiz",
+    "Microsoft": "https://careers.microsoft.com/us/en/search-results?keywords=brazil&_ga=2.18086970.243575399.1540493310-1941477767.1529592176&rt=professional",
+    "HiltonHotel": "https://jobs.hilton.com/us/ptbr/search-results?keywords=brazil",
+    "Schmersal": "https://trabalheconosco.vagas.com.br/schmersalbrasil",
+    "Bistrol": "https://careers.bms.com/jobs?location=Brazil&woe=12&stretchUnit=MILES&stretch=0&sortBy=distance_from&page=1",
+    "ICherry": "https://jobs.kenoby.com/i-cherry",
+    "Mirum": "https://jobs.kenoby.com/mirum",
+    "Dll": "https://www.workingatdllgroup.com/en/Vacancies?el=&co=Brazil&wf=",
+    "Ebanx": "https://boards.greenhouse.io/ebanx",
+    "Invision": "https://boards.greenhouse.io/invision",
+    "Harrys": "https://boards.greenhouse.io/harrys",
+    "DonorSchoose": "https://boards.greenhouse.io/donorschoose",
+    "Lift": "https://boards.greenhouse.io/lift",
+    "TripAdvisor": "https://boards.greenhouse.io/tripadvisor",
+    "WillowTree": "https://boards.greenhouse.io/willowtree",
+    "Datto": "https://boards.greenhouse.io/Datto",
+    "Thumbtack": "https://boards.greenhouse.io/Thumbtack",
+    "VaynerMedia": "https://boards.greenhouse.io/VaynerMedia",
+    "KeepTruckin": "https://boards.greenhouse.io/KeepTruckin",
+    "Checkr": "https://boards.greenhouse.io/Checkr",
+    "Nutrabolt": "https://boards.greenhouse.io/Nutrabolt",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
+    # "xxxx": "xxxx",
 }
+
+
+
+# https://www.squarespace.com/about/careers
+# https://www.jdpower.com/business/careers/jobs
+# https://www.wayfair.com/careers/jobs
+
+# https://www.messagebird.com/en/careers/
+# https://careers.toasttab.com/
+# https://www.verifone.com/en/careers
+# https://www.nerdwallet.com/careers
+# https://www.wise.jobs/
+
+
+# https://careers.doordash.com/#open-positions
+# https://www.lyft.com/careers
+
+# https://www.apixio.com/join-apixio/
+# https://seatgeek.com/jobs
+
+# https://www.savatree.com/careers/
+# https://www.stitchfix.com/careers/jobs
+# https://www.pinterestcareers.com/job-search-results/
+# https://www.mobilityware.com/all-jobs
+# https://www.jwplayer.com/careers/job-openings
+# https://careers.hellofresh.com/global/en
+# https://evernote.com/careers/
+# https://www.elixirr.com/careers/
+
+# https://buzzfeed.com.br/about/jobs
+# https://www.braze.com/company/careers
+# https://www.appneta.com/about/careers/positions/
+
+# https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/jobs?q=Frameio-All1
+# https://www.talkdesk.com/careers/td?program=td&office=undefined&department=undefined&permalink=undefined
+
+
+
+
+# https://www.ideo.com/jobs
+
+
+
+
+
+
+
