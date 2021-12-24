@@ -13,8 +13,13 @@ DRIVER_TYPE = "chrome"
 TABELA = "positions"
 CAMPOS = "url, description"
 CAMPOS_DIFINICAO = """url VARCHAR(255) NOT NULL, description VARCHAR(50000)"""
+NOTIF_TABLE = "notification"
+NOTIF_CAMPOS = "email, filter, schedule, active"
+NOTIF_CAMPOS_DEF = """email VARCHAR(50) NOT NULL, filter VARCHAR(5000), schedule VARCHAR(15), active INT DEFAULT 1"""
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
 DB_TYPE = {"p": "postgres", "s": "sqlite"}
+LIMITE = 5000
+
 
 URLS = {
     "Daitan": "https://careers-br.daitan.com/pt/vagas/",

@@ -3,6 +3,10 @@ import nltk
 from string import punctuation
 from nltk.corpus import stopwords
 from unidecode import unidecode
+from notifiers import notify
+from os import getenv
+from re import compile, fullmatch
+from src.settings import LIMITE
 
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
@@ -35,3 +39,23 @@ def select_with_like(terms, table, column):
     for term in terms:
         query += " or description like '%{}%'".format(term)
     return query
+
+
+def notify_by_email(to, message):
+    notify( 'gmail', to=to,
+        from_="vagaspramim.notifier@gmail.com",
+        message=message,
+        username="vagaspramim.notifier",
+        password=getenv("APP_PASSWORD")
+    )
+    return True
+
+
+def validate_email(email):
+    regex = compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+    return fullmatch(regex, email) is not None
+
+
+def truncate_message(message):
+    message = (message[:LIMITE]) if len(message) > LIMITE else message
+    return message

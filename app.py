@@ -6,6 +6,7 @@ from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA, DRIVER_TYPE
 from flask import Flask, render_template, request
 from src.helper.commands import compare, update
 from src.crawler.factory import Factory
+from src.helper.helper import truncate_message
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 path.append(ROOT_DIR)
@@ -22,9 +23,8 @@ def output():
 
 @app.route('/receiver', methods=['POST'])
 def worker():
-    limit = 5000
     message = request.json['message']
-    message = (message[:limit]) if len(message) > limit else message
+    message = truncate_message(message)
     return compare(message, service_db())
 
 

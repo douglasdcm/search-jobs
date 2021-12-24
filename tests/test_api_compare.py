@@ -10,7 +10,8 @@ class TestCompare:
     testdata = [
         ("test message", "test_message"),
         ("", "Nenhum resultado encontrado."),
-        ("special char ãâçáä here", "special_char")
+        ("special char ãâçáä here", "special_char"),
+        ("123", "Nenhum resultado encontrado."),
     ]
 
     @fixture

@@ -1,11 +1,12 @@
+
 import nltk
 from logging import info
-
-from src.settings import (CAMPOS_DIFINICAO, TABELA, CAMPOS)
+from src.settings import (LIMITE, CAMPOS_DIFINICAO, NOTIF_CAMPOS, TABELA, CAMPOS, NOTIF_TABLE, NOTIF_CAMPOS_DEF)
 from src.database.db_factory import DbFactory
-from src.helper.helper import data_pre_processing_portuguese, select_with_like
+from src.helper.helper import data_pre_processing_portuguese, select_with_like, truncate_message, validate_email
 from src.similarity.similarity import Similarity
 from traceback import print_tb
+from src.exceptions.exceptions import NotificationException
 from src.driver.driver_factory import DriverFactory
 
 
@@ -30,15 +31,51 @@ def install(db_name, db_type):
     db.cria_banco(db_name)
     db.fecha_conexao_existente()
 
+    install_tables(db_name, db_type)
+    print("Installation finished")
+    return True
+
+
+def subscribe(db, email, filter_, schedule):
+    if len(filter_) > LIMITE:
+        filter_ = truncate_message(filter_)
+    if validate_email(email) is False:
+        raise NotificationException()
+    if len(email.strip()) == 0:
+        raise NotificationException()
+    if len(filter_.strip()) == 0:
+        raise NotificationException()
+    if len(data_pre_processing_portuguese(filter_)) == 0:
+        raise NotificationException()
+    try:
+        id_ = db.pega_por_query(f"select id from {NOTIF_TABLE} where email = '{email}'")[0][0]
+        db.atualiza_registro(NOTIF_TABLE, f"active = 1", id_)
+    except Exception:
+        db.salva_registro(NOTIF_TABLE, NOTIF_CAMPOS, f"'{email}', '{filter_}', '{schedule}', 1")
+    return True
+
+
+def unsubscribe(db, email):
+    try:
+        id_ = db.pega_por_query(f"select id from {NOTIF_TABLE} where email = '{email}'")[0][0]
+        db.atualiza_registro(NOTIF_TABLE, f"active = 0", id_)
+        return True
+    except Exception as e:
+        msg = "An error occurred during the execution:\n   {}".format(str(e))
+        print_tb(e.__traceback__)
+        info(msg)
+        raise NotificationException(msg)
+
+def install_tables(db_name, db_type):
     # Connect to db_name database
     dbf = DbFactory(db_type)
     db = dbf.get_db(db_name)
     db.cria_tabela(TABELA, CAMPOS_DIFINICAO)
+    db.cria_tabela(NOTIF_TABLE, NOTIF_CAMPOS_DEF)
     msg = "Database created."
     print(msg)
     info(msg)
     db.fecha_conexao_existente()
-    print("Installation finished")
     return True
 
 

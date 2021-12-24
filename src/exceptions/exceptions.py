@@ -9,3 +9,7 @@ class ComandoInvalido(Exception):
 class InvalidDriverType(Exception):
     def __init__(self, menssagem="The specified driver type does not exist."):
         super().__init__(menssagem)
+
+class NotificationException(Exception):
+    def __init__(self, menssagem="Error in the notification process."):
+        super().__init__(menssagem)
