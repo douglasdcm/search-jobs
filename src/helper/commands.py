@@ -1,9 +1,10 @@
 
+from _pytest.python_api import raises
 import nltk
 from logging import info
 from src.settings import (LIMITE, CAMPOS_DIFINICAO, NOTIF_CAMPOS, TABELA, CAMPOS, NOTIF_TABLE, NOTIF_CAMPOS_DEF)
 from src.database.db_factory import DbFactory
-from src.helper.helper import data_pre_processing_portuguese, select_with_like, truncate_message, validate_email
+from src.helper.helper import data_pre_processing_portuguese, select_with_like, validate_email
 from src.similarity.similarity import Similarity
 from traceback import print_tb
 from src.exceptions.exceptions import NotificationException
@@ -36,20 +37,22 @@ def install(db_name, db_type):
     return True
 
 
-def subscribe(db, email, filter_, schedule):
-    if len(filter_) > LIMITE:
-        filter_ = truncate_message(filter_)
+def subscribe(db, email, filter_, schedule="semana"):
+    if schedule not in ["semana", "dia"]:
+        raise NotificationException("Agendamento inválido.")
     if validate_email(email) is False:
-        raise NotificationException()
+        raise NotificationException(f"E-mail inválido.")
     if len(email.strip()) == 0:
-        raise NotificationException()
+        raise NotificationException("E-mail inválido.")
     if len(filter_.strip()) == 0:
-        raise NotificationException()
-    if len(data_pre_processing_portuguese(filter_)) == 0:
-        raise NotificationException()
+        raise NotificationException("Filtro inválido.")
+
+    filter_ = data_pre_processing_portuguese(filter_)
+    if len(filter_) == 0:
+        raise NotificationException("Filtro inválido.")
     try:
         id_ = db.pega_por_query(f"select id from {NOTIF_TABLE} where email = '{email}'")[0][0]
-        db.atualiza_registro(NOTIF_TABLE, f"active = 1", id_)
+        db.atualiza_registro(NOTIF_TABLE, f"filter = '{filter_}', schedule = '{schedule}', active = 1", id_)
     except Exception:
         db.salva_registro(NOTIF_TABLE, NOTIF_CAMPOS, f"'{email}', '{filter_}', '{schedule}', 1")
     return True

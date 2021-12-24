@@ -14,6 +14,8 @@ nltk.download('wordnet')
 
 
 def data_pre_processing_portuguese(corpus):
+    # truncate big texts
+    corpus = truncate_message(corpus)
     # remove html tags
     corpus = sub(r'<.*?>', ' ', str(corpus))
     # replace non-ascii characters

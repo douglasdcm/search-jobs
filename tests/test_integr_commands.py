@@ -1,6 +1,6 @@
 from src.helper.commands import (help_, install, sanity_check, clear, update, install_tables, subscribe, unsubscribe)
 from tests.settings import DB_NAME, DB_TYPE, DRIVER_TYPE
-from src.settings import NOTIF_CAMPOS, NOTIF_TABLE
+from src.settings import LIMITE, NOTIF_CAMPOS, NOTIF_TABLE
 from src.database.db_factory import DbFactory
 from pytest import fixture
 from src.crawler.generic import Generic
@@ -11,6 +11,11 @@ from src.exceptions.exceptions import NotificationException
 
 @mark.integration
 class TestCommands:
+
+    testdata = [
+        ("semana", "semana"),
+        ("dia", "dia"),
+    ]
 
     @fixture
     def populate_db(self, setup_db):
@@ -32,14 +37,14 @@ class TestCommands:
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
         with raises(NotificationException):
-            unsubscribe(db, "email1")
+            unsubscribe(db, "email_1")
 
-    def test_unsubscribe_removes_many_data(self, setup_db):
+    def test_unsubscribe_removes_single_data(self, setup_db):
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
-        expected = [(1, "email@email.com", "filter", "schedule", 0)]
-        subscribe(db, "email@email.com", "filter", "schedule")
-        actual = unsubscribe(db, "email@email.com")
+        expected = [(1, "email_1@email.com", "filter", "semana", 0)]
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        actual = unsubscribe(db, "email_1@email.com")
         actual_table = db.pega_todos_registros(NOTIF_TABLE)
         assert actual is True
         assert actual_table == expected
@@ -48,15 +53,15 @@ class TestCommands:
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
         expected = [
-            (1, "email1@email.com", "filter", "schedule", 0),
-            (2, "email2@email.com", "filter", "schedule", 1),
-            (3, "email3@email.com", "filter", "schedule", 0)
+            (1, "email_1@email.com", "filter", "semana", 0),
+            (2, "email_2@email.com", "filter", "semana", 1),
+            (3, "email_3@email.com", "filter", "semana", 0)
         ]
-        subscribe(db, "email1@email.com", "filter", "schedule")
-        subscribe(db, "email2@email.com", "filter", "schedule")
-        subscribe(db, "email3@email.com", "filter", "schedule")
-        unsubscribe(db, "email1@email.com")
-        unsubscribe(db, "email3@email.com")
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        subscribe(db, "email_2@email.com", "filter", "semana")
+        subscribe(db, "email_3@email.com", "filter", "semana")
+        unsubscribe(db, "email_1@email.com")
+        unsubscribe(db, "email_3@email.com")
         actual_table = db.pega_todos_registros(NOTIF_TABLE)
         assert actual_table == expected
 
@@ -64,16 +69,16 @@ class TestCommands:
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
         expected = [
-            (1, "email1@email.com", "filter", "schedule", 0),
-            (2, "email2@email.com", "filter", "schedule", 0),
-            (3, "email3@email.com", "filter", "schedule", 0)
+            (1, "email_1@email.com", "filter", "semana", 0),
+            (2, "email_2@email.com", "filter", "semana", 0),
+            (3, "email_3@email.com", "filter", "semana", 0)
         ]
-        subscribe(db, "email1@email.com", "filter", "schedule")
-        subscribe(db, "email2@email.com", "filter", "schedule")
-        subscribe(db, "email3@email.com", "filter", "schedule")
-        unsubscribe(db, "email1@email.com")
-        unsubscribe(db, "email2@email.com")
-        unsubscribe(db, "email3@email.com")
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        subscribe(db, "email_2@email.com", "filter", "semana")
+        subscribe(db, "email_3@email.com", "filter", "semana")
+        unsubscribe(db, "email_1@email.com")
+        unsubscribe(db, "email_2@email.com")
+        unsubscribe(db, "email_3@email.com")
         actual_table = db.pega_todos_registros(NOTIF_TABLE)
         assert actual_table == expected
 
@@ -81,7 +86,7 @@ class TestCommands:
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
         subscribe(
-            db, "email@email.com",
+            db, "email_1@email.com",
             """
             aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa 
             aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa 
@@ -90,53 +95,115 @@ class TestCommands:
             aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaa 
             bbbbbbbbbb
             """,
-            "schedule")
+            "semana")
         actual_table = len(db.pega_todos_registros(NOTIF_TABLE, "filter")[0][0])
-        assert actual_table == 5000
+        assert actual_table < LIMITE
 
     def test_subscribe_raise_exception_if_invalid_filter(self, setup_db):
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
         with raises(NotificationException):
-            subscribe(db, "email@email.com", "123", "schedule")
+            subscribe(db, "email_1@email.com", "123", "semana")
 
     def test_subscribe_raise_exception_if_email_not_patterned(self, setup_db):
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
         with raises(NotificationException):
-            subscribe(db, "email.email.com", "filter", "schedule")
+            subscribe(db, "email_.email.com", "filter", "semana")
 
     def test_subscribe_raise_exception_if_empty_filter(self, setup_db):
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
         with raises(NotificationException):
-            subscribe(db, "email@email.com", "", "schedule")
+            subscribe(db, "email_1@email.com", "", "semana")
 
     def test_subscribe_raise_exception_if_empty_email(self, setup_db):
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
         with raises(NotificationException):
-            subscribe(db, "", "filter", "schedule")
+            subscribe(db, "", "filter", "semana")
+
+    def test_subscribe_raise_exception_if_invalid_schedule(self, setup_db):
+        dbf = DbFactory(DB_TYPE["s"])
+        db = dbf.get_db(DB_NAME)
+        with raises(NotificationException):
+            subscribe(db, "", "filter", "other")
+
+    @mark.parametrize("schedule, expected", testdata)
+    def test_subscribe_accepts_only_valid_schedule(self, setup_db, schedule, expected):
+        dbf = DbFactory(DB_TYPE["s"])
+        db = dbf.get_db(DB_NAME)
+        subscribe(db, "email_1@email.com", "filter", schedule)
+        actual_table = db.pega_todos_registros(NOTIF_TABLE, "schedule")[0][0]
+        assert actual_table == expected
+
+    def test_subscribe_update_schedule(self, setup_db):
+        dbf = DbFactory(DB_TYPE["s"])
+        db = dbf.get_db(DB_NAME)
+        expected = [
+            (1, "email_1@email.com", "filter", "dia", 1),
+        ]
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        unsubscribe(db, "email_1@email.com")
+        subscribe(db, "email_1@email.com", "filter", "dia")
+        actual_table = db.pega_todos_registros(NOTIF_TABLE)
+        assert actual_table == expected
+
+    def test_subscribe_update_filters(self, setup_db):
+        dbf = DbFactory(DB_TYPE["s"])
+        db = dbf.get_db(DB_NAME)
+        expected = [
+            (1, "email_1@email.com", "test", "semana", 1),
+        ]
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        unsubscribe(db, "email_1@email.com")
+        subscribe(db, "email_1@email.com", "test", "semana")
+        actual_table = db.pega_todos_registros(NOTIF_TABLE)
+        assert actual_table == expected
+
+    def test_subscribe_reactivate_all_filters_of_email(self, setup_db):
+        dbf = DbFactory(DB_TYPE["s"])
+        db = dbf.get_db(DB_NAME)
+        expected = [
+            (1, "email_1@email.com", "filter", "semana", 1),
+        ]
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        unsubscribe(db, "email_1@email.com")
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        actual_table = db.pega_todos_registros(NOTIF_TABLE)
+        assert actual_table == expected 
 
     def test_subscribe_saves_many_data(self, setup_db):
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
         expected = [
-            (1, "email1@email.com", "filter", "schedule", 1),
-            (2, "email2@email.com", "filter", "schedule", 1),
-            (3, "email3@email.com", "filter", "schedule", 1)
+            (1, "email_1@email.com", "filter", "semana", 1),
+            (2, "email_2@email.com", "filter", "semana", 1),
+            (3, "email_3@email.com", "filter", "semana", 1)
         ]
-        subscribe(db, "email1@email.com", "filter", "schedule")
-        subscribe(db, "email2@email.com", "filter", "schedule")
-        subscribe(db, "email3@email.com", "filter", "schedule")
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        subscribe(db, "email_2@email.com", "filter", "semana")
+        subscribe(db, "email_3@email.com", "filter", "semana")
+        actual_table = db.pega_todos_registros(NOTIF_TABLE)
+        assert actual_table == expected
+
+    def test_subscrive_saves_just_one_filter_per_email(self, setup_db):
+        dbf = DbFactory(DB_TYPE["s"])
+        db = dbf.get_db(DB_NAME)
+        expected = [
+            (1, "email_1@email.com", "filter", "semana", 1),
+        ]
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        subscribe(db, "email_1@email.com", "filter", "semana")
         actual_table = db.pega_todos_registros(NOTIF_TABLE)
         assert actual_table == expected
 
     def test_subscribe_saves_data(self, setup_db):
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
-        expected = [(1, "email@email.com", "filter", "schedule", 1)]
-        actual = subscribe(db, "email@email.com", "filter", "schedule")
+        expected = [(1, "email_1@email.com", "filter", "semana", 1)]
+        actual = subscribe(db, "email_1@email.com", "filter", "semana")
         actual_table = db.pega_todos_registros(NOTIF_TABLE)
         assert actual is True
         assert actual_table == expected
@@ -144,10 +211,10 @@ class TestCommands:
     def test_subscribe_reactivate_existing_data(self, setup_db):
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
-        expected = [(1, "email@email.com", "filter", "schedule", 1)]
-        subscribe(db, "email@email.com", "filter", "schedule")
-        unsubscribe(db, "email@email.com")
-        subscribe(db, "email@email.com", "filter", "schedule")
+        expected = [(1, "email_1@email.com", "filter", "semana", 1)]
+        subscribe(db, "email_1@email.com", "filter", "semana")
+        unsubscribe(db, "email_1@email.com")
+        subscribe(db, "email_1@email.com", "filter", "semana")
         actual_table = db.pega_todos_registros(NOTIF_TABLE)
         assert actual_table == expected
 

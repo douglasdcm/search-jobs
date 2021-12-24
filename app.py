@@ -4,9 +4,8 @@ from sys import path
 from src.database.db_factory import DbFactory
 from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA, DRIVER_TYPE
 from flask import Flask, render_template, request
-from src.helper.commands import compare, update
+from src.helper.commands import compare, update, subscribe
 from src.crawler.factory import Factory
-from src.helper.helper import truncate_message
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 path.append(ROOT_DIR)
@@ -21,10 +20,14 @@ def output():
     # serve index template
     return render_template('index.html')
 
+@app.route('/notify', methods=['POST'])
+def notify():
+    message = request.json['message']
+    return subscribe(service_db(), "email_1@email.com", message, "semana")
+
 @app.route('/receiver', methods=['POST'])
 def worker():
     message = request.json['message']
-    message = truncate_message(message)
     return compare(message, service_db())
 
 
