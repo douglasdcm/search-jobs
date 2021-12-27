@@ -20,6 +20,8 @@ class Vagas:
         self._base_objects.navigate_to(url)
 
     def get_description(self):
-        by_type = By.CSS_SELECTOR
-        locator = "body"
-        return self._base_objects.get_text(by_type, locator)
+        by_type = By.TAG_NAME
+        text = ""
+        text += " " + self._base_objects.get_text(by_type, "body")
+        text += " " + self._base_objects.get_text(by_type, "head")
+        return text
