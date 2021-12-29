@@ -8,9 +8,9 @@ from pytest import fixture, mark
 class TestCompare:
 
     testdata = [
-        ("test message", "test_message"),
+        ("rabbit ãáà", "rabbit"),
+        ("test", "test"),
         ("", "Nenhum resultado encontrado."),
-        ("special char ãâçáä here", "special_char"),
         ("cats", "cat")
     ]
 
@@ -21,8 +21,8 @@ class TestCompare:
         install(db_name, db_type)
         df = DbFactory(db_type)
         db = df.get_db(db_name)
-        db.salva_registro("positions", "url, description", "'https://test_message.com', 'test message'")
-        db.salva_registro("positions", "url, description", "'https://special_char.com', 'special char ãâçáä here'")
+        db.salva_registro("positions", "url, description", "'https://test.com', 'test'")
+        db.salva_registro("positions", "url, description", "'https://rabbit.com', 'rabbit'")
         db.salva_registro("positions", "url, description", "'https://cat.com', 'cats dogs cows'")
 
     def test_compare_empty_curriculum_returns_nothing(self, setup, monkeypatch):

@@ -35,4 +35,4 @@ class Similarity:
                 similarity.append(d)
         result = dict(zip(positions, similarity))
 
-        return {str(round(v * 100, 2)): k for k, v in sorted(result.items(), key=lambda item: item[1], reverse=True)}
+        return {str(round(v * 100, 2)): k for k, v in sorted(result.items(), key=lambda item: item[1], reverse=True) if v > 0}
