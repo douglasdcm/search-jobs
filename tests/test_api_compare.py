@@ -10,7 +10,8 @@ class TestCompare:
     testdata = [
         ("test message", "test_message"),
         ("", "Nenhum resultado encontrado."),
-        ("special char ãâçáä here", "special_char")
+        ("special char ãâçáä here", "special_char"),
+        ("cats", "cat")
     ]
 
     @fixture
@@ -22,6 +23,7 @@ class TestCompare:
         db = df.get_db(db_name)
         db.salva_registro("positions", "url, description", "'https://test_message.com', 'test message'")
         db.salva_registro("positions", "url, description", "'https://special_char.com', 'special char ãâçáä here'")
+        db.salva_registro("positions", "url, description", "'https://cat.com', 'cats dogs cows'")
 
     def test_compare_empty_curriculum_returns_nothing(self, setup, monkeypatch):
         monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")
