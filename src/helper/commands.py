@@ -12,7 +12,6 @@ from src.driver.driver_factory import DriverFactory
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
-nltk.download('rslp')
 
 
 def install(db_name, db_type):

@@ -8,6 +8,7 @@ from nltk.stem import RSLPStemmer
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
+nltk.download('rslp')
 
 
 def data_pre_processing_portuguese(corpus):
