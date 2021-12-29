@@ -15,5 +15,5 @@ class TestEndToEnd:
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
         update(db, DRIVER_TYPE, Factory().get_crawlers())
-        expected = "Similaridade"
+        expected = "Nenhum resultado encontrado."
         assert expected in compare("test", db)

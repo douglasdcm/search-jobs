@@ -35,7 +35,7 @@ def data_pre_processing_portuguese(corpus):
 
 
 def select_with_like(terms, table, column):
-    query = "select DISTINCT url from {} where {} like ''".format(table, column)
+    query = "select DISTINCT * from {} where {} like ''".format(table, column)
     for term in terms:
         query += " or description like '%{}%'".format(term)
     return query

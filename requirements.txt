@@ -10,6 +10,9 @@ cssselect==1.1.0
 dataclasses==0.6
 fake-useragent==0.1.11
 Flask==2.0.2
+Flask-SeaSurf==0.3.1
+flask-talisman==0.8.1
+gunicorn==20.1.0
 idna==3.3
 importlib-metadata==4.8.2
 iniconfig==1.1.1
