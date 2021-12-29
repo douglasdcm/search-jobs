@@ -28,11 +28,13 @@ class TestCompare:
         db.salva_registro("positions", fields, "'https://rabbit.com', 'rabbit'")
         db.salva_registro("positions", fields, "'https://cat.com', 'cats dogs cows'")
         db.salva_registro("positions", fields, "'https://administrar.com', 'administraca'")
+        db.salva_registro("positions", fields, "'https://andcondition.com', 'cat dog rabbit cow cucumber'")
 
     def test_compare_empty_curriculum_returns_nothing(self, setup, monkeypatch):
         monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")
         payload = dumps({
-            "message": ""
+            "message": "",
+            "condition": "or"
         })
         expected = b"Nenhum resultado encontrado."
         response = app.app.test_client().post("/receiver", content_type="application/json", data=payload)
@@ -42,9 +44,31 @@ class TestCompare:
     def test_compare_curriculum_returns_ranking(self, monkeypatch, setup, message, response):
         monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")  # changing th database to sqlite
         payload = dumps({
-            "message": message
+            "message": message,
+            "condition": "or"
         })
         expected = response.encode()
         response = app.app.test_client().post("/receiver", content_type="application/json", data=payload)
         assert expected in response.data
 
+    def test_compare_curriculum_returns_ranking(self, monkeypatch, setup):
+        message = "dog cow"
+        monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")  # changing th database to sqlite
+        payload = dumps({
+            "message": message,
+            "condition": "and"
+        })
+        expected = "andcondition".encode()
+        response = app.app.test_client().post("/receiver", content_type="application/json", data=payload)
+        assert expected in response.data
+
+    def test_compare_curriculum_invalid_condition(self, monkeypatch, setup):
+        message = "dog cow"
+        monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")  # changing th database to sqlite
+        payload = dumps({
+            "message": message,
+            "condition": "xor"
+        })
+        expected = "Nenhum resultado encontrado.".encode()
+        response = app.app.test_client().post("/receiver", content_type="application/json", data=payload)
+        assert expected in response.data

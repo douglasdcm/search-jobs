@@ -7,6 +7,7 @@ from src.helper.helper import data_pre_processing_portuguese, select_with_like
 from src.similarity.similarity import Similarity
 from traceback import print_tb
 from src.driver.driver_factory import DriverFactory
+from src.exceptions.exceptions import ErroBancoDados
 
 
 nltk.download('stopwords')
@@ -95,14 +96,17 @@ Commands:
   --update          get the new positions from companies
                     """)
 
-def compare(cv, db):
+def compare(cv, db, condition):
     cv = data_pre_processing_portuguese(cv)
     cv_ = cv.split(sep=" ")
     NO_RESULT = "<p>Nenhum resultado encontrado.</p>"
     if len(cv) == 0:
         return NO_RESULT
-    query = select_with_like(cv_, TABELA, "description")
-    positions = db.pega_por_query(query)
+    query = select_with_like(cv_, TABELA, "description", condition)
+    try:
+        positions = db.pega_por_query(query)
+    except Exception:
+        return NO_RESULT
     s = Similarity()
     result = s.return_similarity_by_cossine(cv, positions)
     if not result:
@@ -112,7 +116,6 @@ def compare(cv, db):
     table += '<table class="table table-striped table-condensed">'
     table += '<tr><th>% Similaridade</th><th>Link da vaga</th></tr>'
     for key, value in result.items():
-        print(key)
         table += '<tr>'
         table += f'<td style="width:20%; text-align: center;"> {value} </td>'
         table += f'<td style="width:80%"><a href={key} target="_blank" rel="noopener noreferrer"> {key} </a></td>'

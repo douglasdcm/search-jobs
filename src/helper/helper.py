@@ -34,10 +34,18 @@ def data_pre_processing_portuguese(corpus):
     return ' '.join(list(set(corpus)))
 
 
-def select_with_like(terms, table, column):
-    query = "select DISTINCT * from {} where {} like ''".format(table, column)
+def select_with_like(terms, table, column, condition="OR"):
+    condition = condition.upper()
+    query = "SELECT DISTINCT * FROM {} WHERE {} LIKE ".format(table, column)
+    if condition == "OR":
+        query += "''"
+    elif condition == "AND":
+        query += "'%%'"
+    else:
+        return "Invalid condition."
+
     for term in terms:
-        query += " or description like '%{}%'".format(term)
+        query += " {} {} LIKE '%{}%'".format(condition, column, term)
     return query
 
 def steam_data(text):

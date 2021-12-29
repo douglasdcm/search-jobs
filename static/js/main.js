@@ -5,9 +5,11 @@ window.onload = function() {
         doWork()
     };
 }
+
 function doWork() {
     var message_field = document.getElementById('message_field').value;
-    
+    var condition = document.querySelector('input[name="condition"]:checked').value;
+
     if (message_field === "") {
         alert("Preencha o campo, por favor!");
         return
@@ -23,7 +25,7 @@ function doWork() {
         "headers": {
         "Content-Type": "application/json"
         },
-        "data": JSON.stringify({"message": message_field }),
+        "data": JSON.stringify({"message": message_field, "condition": condition }),
     };
 
     // ajax the JSON to the server
