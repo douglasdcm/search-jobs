@@ -51,7 +51,7 @@ class TestCompare:
         response = app.app.test_client().post("/receiver", content_type="application/json", data=payload)
         assert expected in response.data
 
-    def test_compare_curriculum_returns_ranking(self, monkeypatch, setup):
+    def test_compare_curriculum_returns_ranking_condition_and(self, monkeypatch, setup):
         message = "dog cow"
         monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")  # changing th database to sqlite
         payload = dumps({
