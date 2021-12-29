@@ -1,6 +1,5 @@
 from src.helper.helper import data_pre_processing_portuguese, steam_data
 from pytest import mark
-from re import findall
 
 @mark.unit
 class TestUnitHelper:
