@@ -6,10 +6,8 @@ from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA, DRIVER_TYPE
 from flask import Flask, render_template, request
 from src.helper.commands import compare, update
 from src.crawler.factory import Factory
-from flask_talisman import Talisman
 
 app = Flask(__name__, static_folder='static', static_url_path='')
-Talisman(app)
 
 path.append(ROOT_DIR)
 
