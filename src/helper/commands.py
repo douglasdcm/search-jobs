@@ -111,7 +111,7 @@ def compare(cv, db):
     for key, values in result.items():
         table += '<tr>'
         table += f'<td style="width:20%; text-align: center;"> {key} </td>'
-        table += f'<td style="width:80%"><a href={values[0]}> {values[0]} </a></td>'
+        table += f'<td style="width:80%"><a href={values[0]} target="_blank" rel="noopener noreferrer"> {values[0]} </a></td>'
         table += '</tr>'
     table += '</table>'
     table += '</div>'
