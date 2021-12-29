@@ -15,4 +15,4 @@ class TestEndToEnd:
         db = dbf.get_db(DB_NAME)
         update(db, DRIVER_TYPE, Factory().get_crawlers())
         expected = "Nenhum resultado encontrado."
-        assert expected in compare("blablabla", db)
+        assert expected in compare("blablabla", db, "or")

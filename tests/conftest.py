@@ -17,7 +17,7 @@ def setup_db():
 
 @fixture(scope="session")
 def setup_containers():
-    exec_command("", "./utils/make_dev.sh", "sh", sudo=False)
+    exec_command("", "./test/utils/make_test.sh", "sh", sudo=False)
     exec_command("", "./tests/utils/start_containers.sh", "sh", sudo=False)
     yield
     exec_command("", "./tests/utils/stop_containers.sh", "sh", sudo=False)

@@ -30,3 +30,25 @@ class TestCompareCvDb:
         query = select_with_like(cv, "positions", "description")
         actual = db.pega_por_query(query)
         assert len(actual) == expected
+
+    def test_select_with_like_using_and_condition(self, setup_db):
+        install(DB_NAME, DB_TYPE["s"])
+        p1 = "dog"
+        p2 = "cat"
+        p3 = "dog cat rabbit cow"
+        cv = "dog cow"
+        cv = cv.split()
+        expected = 1
+        dbf = DbFactory(DB_TYPE["s"])
+        db = dbf.get_db(DB_NAME)
+        db.salva_registro("positions", "url, description", "'URL1', '{}'".format(p1))
+        db.salva_registro("positions", "url, description", "'URL2', '{}'".format(p2))
+        db.salva_registro("positions", "url, description", "'URL3', '{}'".format(p3))
+        query = select_with_like(cv, "positions", "description", condition="AND")
+        actual = db.pega_por_query(query)
+        assert len(actual) == expected
+
+    def test_select_with_like_invalid_condition(self):
+        expected = "Invalid condition."
+        actual = select_with_like("test", "positions", "description", "XOR")
+        assert actual == expected

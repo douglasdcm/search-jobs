@@ -25,8 +25,9 @@ def output():
 def worker():
     limit = 5000
     message = request.json['message']
+    condition = request.json['condition']
     message = (message[:limit]) if len(message) > limit else message
-    return compare(message, service_db())
+    return compare(message, service_db(), condition)
 
 
 @app.route('/info', methods=['POST'])
@@ -60,7 +61,6 @@ def update_():
 def _info():
     max_id = service_db().pega_maior_id(TABELA)[0][0]
     return "Number of records in database is {}\n".format(str(max_id))
-
 
 if __name__ == '__main__':
     # run!

@@ -39,7 +39,7 @@ class DbFactory:
                                  host=host,
                                  port=port)
         elif self.db_type == "sqlite":
-            return sqlite_conn(database)
+            return sqlite_conn(database, check_same_thread=False)
         else:
             raise ErroBancoDados("It was not possibe to stablish the connection to database.")
 
