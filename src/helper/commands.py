@@ -97,21 +97,25 @@ Commands:
 
 def compare(cv, db):
     cv = data_pre_processing_portuguese(cv)
-    cv_ = cv.split()
+    cv_ = cv.split(sep=" ")
+    NO_RESULT = "<p>Nenhum resultado encontrado.</p>"
     if len(cv) == 0:
-        return "Nenhum resultado encontrado."
+        return NO_RESULT
     query = select_with_like(cv_, TABELA, "description")
     positions = db.pega_por_query(query)
     s = Similarity()
     result = s.return_similarity_by_cossine(cv, positions)
+    if not result:
+        return NO_RESULT
     table = ""
     table += '<div id="table-scroll" class="table-responsive" style="overflow: scroll; height: 50%;">'
     table += '<table class="table table-striped table-condensed">'
     table += '<tr><th>% Similaridade</th><th>Link da vaga</th></tr>'
-    for key, values in result.items():
+    for key, value in result.items():
+        print(key)
         table += '<tr>'
-        table += f'<td style="width:20%; text-align: center;"> {key} </td>'
-        table += f'<td style="width:80%"><a href={values[0]} target="_blank" rel="noopener noreferrer"> {values[0]} </a></td>'
+        table += f'<td style="width:20%; text-align: center;"> {value} </td>'
+        table += f'<td style="width:80%"><a href={key} target="_blank" rel="noopener noreferrer"> {key} </a></td>'
         table += '</tr>'
     table += '</table>'
     table += '</div>'

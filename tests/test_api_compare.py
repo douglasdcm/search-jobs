@@ -1,7 +1,7 @@
 import app
 from json import dumps
 from src.database.db_factory import DbFactory
-from src.helper.commands import install
+from src.helper.commands import install, clear
 from pytest import fixture, mark
 
 @mark.api
@@ -11,7 +11,8 @@ class TestCompare:
         ("rabbit ãáà", "rabbit"),
         ("test", "test"),
         ("", "Nenhum resultado encontrado."),
-        ("cats", "cat")
+        ("cats", "cat"),
+        ("administração", "administrar"),
     ]
 
     @fixture
@@ -21,9 +22,12 @@ class TestCompare:
         install(db_name, db_type)
         df = DbFactory(db_type)
         db = df.get_db(db_name)
-        db.salva_registro("positions", "url, description", "'https://test.com', 'test'")
-        db.salva_registro("positions", "url, description", "'https://rabbit.com', 'rabbit'")
-        db.salva_registro("positions", "url, description", "'https://cat.com', 'cats dogs cows'")
+        clear(db)
+        fields = "url, description"
+        db.salva_registro("positions", fields, "'https://test.com', 'test'")
+        db.salva_registro("positions", fields, "'https://rabbit.com', 'rabbit'")
+        db.salva_registro("positions", fields, "'https://cat.com', 'cats dogs cows'")
+        db.salva_registro("positions", fields, "'https://administrar.com', 'administraca'")
 
     def test_compare_empty_curriculum_returns_nothing(self, setup, monkeypatch):
         monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")
@@ -43,3 +47,4 @@ class TestCompare:
         expected = response.encode()
         response = app.app.test_client().post("/receiver", content_type="application/json", data=payload)
         assert expected in response.data
+
