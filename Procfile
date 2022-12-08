@@ -1,1 +1,1 @@
-web: docker-compose up -d
+web: python app.py
