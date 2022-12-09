@@ -1,8 +1,11 @@
-FROM python:3.9.7-bullseye
+FROM python:3.6
 
-WORKDIR .
-COPY . .
-RUN chmod -R 777 /utils
-RUN ./utils/remove_files.sh
-RUN ./utils/setup.sh
-CMD ./utils/start.sh
+ADD . /opt/webapp/
+WORKDIR /opt/webapp
+
+# WORKDIR .
+# COPY . .
+RUN chmod -R 777 /opt/webapp/utils
+RUN /opt/webapp/utils/remove_files.sh
+RUN /opt/webapp/utils/setup.sh
+CMD /opt/webapp/utils/start.sh
