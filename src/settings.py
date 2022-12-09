@@ -14,7 +14,7 @@ TABELA = "positions"
 CAMPOS = "url, description"
 CAMPOS_DIFINICAO = """url VARCHAR(255) NOT NULL, description VARCHAR(50000)"""
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
-DB_TYPE = {"p": "sqlite", "s": "sqlite"}
+DB_TYPE = {"p": "postgres", "s": "sqlite"}
 
 URLS = {
     "Daitan": "https://careers-br.daitan.com/pt/vagas/",

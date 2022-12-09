@@ -1,17 +1,17 @@
-version: "3.8"
+version: "3.6"
 
 services:
   vpm:
-    image: vagas-pra-mim
-    container_name: vpm
+    image: douglasdcm/vagas-pra-mim
+    container_name: vagas-pra-mim
     volumes:
-      - ./:/vpm
       - /dev/shm:/dev/shm
+      - .:/opt/webapp
     ports:
       - 5000:5001
     working_dir: /
     environment:
-       HASH: dev
+      HASH: dev
 
   postgres:
     image: postgres
