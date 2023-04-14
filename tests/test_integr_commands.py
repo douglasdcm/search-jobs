@@ -1,4 +1,4 @@
-from database import db_factory
+from src.database import db_factory
 from src.helper.commands import help_, install, sanity_check, clear, update
 from tests.settings import DB_NAME, DB_TYPE, DRIVER_TYPE
 from src.driver.chrome import ChromeDriver
