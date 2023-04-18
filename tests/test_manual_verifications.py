@@ -18,7 +18,7 @@ class TestManaulVerification:
         terms = {
             "all": data_pre_processing_portuguese(
                 "all cat dog cow rabbit carrot cucumber babana car block doll videogame fiat ford asia gurgel pedro heliodora camila marcos douglas"
-                ),
+            ),
             "animals": data_pre_processing_portuguese("cat dog cow rabbit"),
             "vegetables": data_pre_processing_portuguese("carrot cucumber babana"),
             "toys": data_pre_processing_portuguese("car block doll videogame"),
@@ -31,7 +31,7 @@ class TestManaulVerification:
         db.salva_registro("positions", fields, "'https://toys.com', '{}'".format(terms["toys"]))
         db.salva_registro("positions", fields, "'https://cars.com', '{}'".format(terms["cars"]))
         db.salva_registro("positions", fields, "'https://names.com', '{}'".format(terms["names"]))
-        print(db.pega_todos_registros("positions"))
+        print("Maual test: ", db.pega_todos_registros("positions"))
 
     def test_clear_database(self):
         install(DB_NAME, DB_TYPE["s"])

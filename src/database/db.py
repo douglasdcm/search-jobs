@@ -1,4 +1,4 @@
-from src.exceptions.exceptions import ErroBancoDados
+from src.exceptions.exceptions import DatabaseError
 from src.settings import DEBUG
 from src.database.db_postgres import Database as DbBase
 
@@ -16,7 +16,7 @@ class Database(DbBase):
             cur = con.cursor()
             return [con, cur]
         except Exception as e:
-            raise ErroBancoDados(f"Não foi possível criar a conexão de banco.\n{str(e)}")
+            raise DatabaseError(f"Não foi possível criar a conexão de banco.\n{str(e)}")
 
     def cria_tabela(self, tabela, campos, complemento=""):
         if complemento:

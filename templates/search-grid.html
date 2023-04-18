@@ -1,0 +1,18 @@
+<!doctype html>
+<div class="add-blanks">
+    {% if comparison.status == "failed" %}
+        <h4 style="text-align: left;">{{ comparison.message }}</h4>
+    {% else %}
+        {% for key, value in comparison.message.items() %}
+            <div class="row" style="text-align: left;">
+                <div class="col-md-2">
+                    <p>Similaridade {{ value }}</p>
+                </div>
+                <div class="col-md-10">
+                    <a href="{{ key }}" target="_blank" rel="noopener noreferrer"> {{ key }} </a>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    {% endif %}
+</div>

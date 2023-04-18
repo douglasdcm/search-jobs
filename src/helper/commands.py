@@ -7,7 +7,7 @@ from src.helper.helper import data_pre_processing_portuguese, select_with_like
 from src.similarity.similarity import Similarity
 from traceback import print_tb
 from src.driver.driver_factory import DriverFactory
-from src.exceptions.exceptions import ErroBancoDados
+from src.exceptions.exceptions import DatabaseError, CommandError
 
 
 nltk.download('stopwords')
@@ -96,33 +96,24 @@ Commands:
   --update          get the new positions from companies
                     """)
 
+
 def compare(cv, db, condition):
     cv = data_pre_processing_portuguese(cv)
     cv_ = cv.split(sep=" ")
-    NO_RESULT = "<p>Nenhum resultado encontrado.</p>"
     if len(cv) == 0:
-        return NO_RESULT
+        return None
     query = select_with_like(cv_, TABELA, "description", condition)
     try:
         positions = db.pega_por_query(query)
+    except DatabaseError as error:
+        return None
     except Exception:
-        return NO_RESULT
+        return CommandError(f"Unexpected error while getting data from databas. {str(error)}")
     s = Similarity()
     result = s.return_similarity_by_cossine(cv, positions)
     if not result:
-        return NO_RESULT
-    table = ""
-    table += '<div id="table-scroll" class="table-responsive" style="overflow: scroll; height: 50%;">'
-    table += '<table class="table table-striped table-condensed">'
-    table += '<tr><th>% Similaridade</th><th>Link da vaga</th></tr>'
-    for key, value in result.items():
-        table += '<tr>'
-        table += f'<td style="width:20%; text-align: center;"> {value} </td>'
-        table += f'<td style="width:80%"><a href={key} target="_blank" rel="noopener noreferrer"> {key} </a></td>'
-        table += '</tr>'
-    table += '</table>'
-    table += '</div>'
-    return table
+        return None
+    return result
 
 
 def clear(db):

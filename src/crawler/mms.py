@@ -1,6 +1,6 @@
 from logging import info
 from src.crawler.icrawler import ICrawler
-from src.pages.mms.vagas import Vagas
+from src.pages.mms.positions import Positions
 
 
 class Mms(ICrawler):
@@ -10,7 +10,7 @@ class Mms(ICrawler):
         self._vagas = None
 
     def set_driver(self, driver):
-        self._vagas = Vagas(driver)
+        self._vagas = Positions(driver)
 
     def set_url(self, url):
         return super().set_url(url)

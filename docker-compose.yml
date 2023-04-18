@@ -2,11 +2,11 @@ version: "3.9.16"
 
 services:
   vpm:
-    image: douglasdcm/vagas-pra-mim
+    image: vagas-pra-mim
     container_name: vagas-pra-mim
     volumes:
       - /dev/shm:/dev/shm
-      - .:/opt/webapp
+      - .:/webapp
     ports:
       - 5000:5001
     working_dir: /

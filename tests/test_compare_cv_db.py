@@ -6,7 +6,7 @@ from src.helper.commands import install
 
 
 @mark.integration
-class TestCompareCvDb:
+class TestCompareUsingDatabaseFunctions:
 
     def test_select_with_like(self, setup_db):
         install(DB_NAME, DB_TYPE["s"])
@@ -49,6 +49,6 @@ class TestCompareCvDb:
         assert len(actual) == expected
 
     def test_select_with_like_invalid_condition(self):
-        expected = "Invalid condition."
+        expected = "Condição inválida."
         actual = select_with_like("test", "positions", "description", "XOR")
         assert actual == expected

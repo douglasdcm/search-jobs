@@ -6,7 +6,7 @@ Mas antes, vá ao arquivo ./src/crawler/factory.py e mude a tag "enabled" de qua
 Faça o build da imagem. Você pode usar o utilitário na pasta ./utils
 <br><code>$./utils/build_image.sh</code><br>
 Após finalizar o build, suba o container:
-<br><code>$sudo docker-compose up -d</code><br>
+<br><code>$sudo docker compose up -d</code><br>
 Depois, rode a request abaixo para polular o seu banco de dados:
 <br><code>$curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'https://localhost:5000/update'</code><br>
 As vagas da empresa são baixadas para o seu banco de dados.
@@ -19,8 +19,17 @@ Para contribuir com o projeto, ative seu ambiente virtual e instale as dependên
 <br><code>$python3 -m venv env</code>
 <br><code>$source env/bin/activate</code>
 <br><code>$pip install -r requirements.txt</code>
-<br><code>$sh make_dev.sh</code><br>
+<br><code>sudo mkdir -p /webapp/logs</code>
+<br><code>chmod -R 777 /webapp/logs/</code>
+<br><code>$sh ./utils/make_dev.sh</code><br>
+<br><code>$sh ./tests/utils/start_containers.sh</code><br>
 Agora você pode mudar a o código e para testar, basta fazer a build da imagem e subir o container novamente.
+
+# Rodando os testes
+- instale a versão correta do Chrome
+<br><code>sudo apt-get install ./src/resources/google-chrome-stable_current_amd64.deb</code>
+- ou subistiua o arquivo em ./src/resources/chrome para a mesma versão do Chrome instalado em sua máquina. Será preciso verificar a sua versão e baixar o driver correto https://chromedriver.chromium.org/downloads 
+
 
 # Fazendo seu próprio crawler
 Se você quiser adicionar mais crawlers ao projeto é bem simples. Em poucos minutos você consegue adicionar um novo crawler. Você precisa seguir o protocolo da classe "src/crawler/ICrawler.py::ICrawler" para que os campos certos sejam salvos no banco de dados. Faça isso:

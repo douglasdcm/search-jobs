@@ -1,6 +1,7 @@
 from src.driver.chrome import ChromeDriver
 from src.exceptions.exceptions import InvalidDriverType
 
+
 class DriverFactory:
 
     def get_driver(self, driver_type="chrome"):

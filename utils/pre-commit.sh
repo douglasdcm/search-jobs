@@ -8,7 +8,7 @@ sed -i 's/\"enabled\": True/\"enabled\": False/' src/crawler/factory.py
 # ensure the database is postgres
 # sed -i 's/DB_TYPE = {\"p\": \"sqlite\"/DB_TYPE = {\"p\": \"postgres\"/' src/settings.py
 # execute the validatation
-coverage run --include='app.py' --include='main.py' --source='src' -m pytest -vvv -s -m "not performance"
+coverage run --include='app.py' --include='cli.py' --source='src' -m pytest -vvv -s -m "not performance"
 coverage report
 coverage html
 # clean the logs

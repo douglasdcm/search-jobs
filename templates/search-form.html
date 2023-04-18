@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<div class="add-blanks">
+    <form action="/receiver" method="post">
+        <div class="form-group row">
+            <div class="col-md-10">
+                <textarea name="message" id="message_field" class="form-control" rows="5" id="comment" placeholder="Cole o conteúdo do seu currículo aqui e pesquise as vagas que mais combinam com você."></textarea>
+            </div>
+            <br>
+            <div class="col-md-1">
+                <div class="input-group-btn">
+                    <input class="btn btn-primary" id="send_message" type="submit" value="Pesquisar">
+                </div>
+                <div class="radio col-md-1 text-left">
+                    <input type="radio" id="cond_or" name="condition" value="OR" checked="checked" />
+                    <label for="cond_or">extensa</label>
+                    <br>
+                    <input type="radio" id="cond_and" name="condition" value="AND">
+                    <label for="cond_and">restrita</label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

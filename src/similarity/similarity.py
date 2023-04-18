@@ -39,4 +39,3 @@ class Similarity:
         result = dict(zip(urls, similarity))
 
         return {k: str(round(v * 100, 2)) for k, v in sorted(result.items(), key=lambda item: item[1], reverse=True) if v > 0}
-        

@@ -1,13 +1,13 @@
 """
-Main function to run the crawlers, compare curriculum and manage the database.
-Try: 'python main.py --help' for more information.
+CLI function to run the crawlers, compare curriculum and manage the database.
+Try: 'python cli.py --help' for more information.
 """
 
 
 from logging import basicConfig, INFO
 from src.database.db_factory import DbFactory
 from src.settings import (ROOT_DIR, LOGS_FILE, RESOURCES_DIR, DB_NAME, DB_TYPE, DRIVER_TYPE)
-from src.exceptions.exceptions import ComandoInvalido
+from src.exceptions.exceptions import InvalidCommandError
 from sys import argv, path
 from src.helper.commands import install, sanity_check, help_, update
 from src.crawler.factory import Factory
@@ -46,7 +46,7 @@ def main(*args):
             }]
             return sanity_check(db, DRIVER_TYPE, crawlers)
         else:
-            raise ComandoInvalido("Invalid command.\nTry main.py --help ")
+            raise InvalidCommandError("Invalid command.\nTry cli.py --help ")
 
 
 if __name__ == '__main__':

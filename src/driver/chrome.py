@@ -29,6 +29,7 @@ class ChromeDriver:
                                                 options=chrome_options)
         except Exception as e:
             print_tb(e.__traceback__)
+            raise
 
     def start(self, url):
         try:

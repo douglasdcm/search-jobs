@@ -3,8 +3,8 @@ from os import getcwd
 BASE_DIR = getcwd()
 ROOT_DIR = BASE_DIR + "/src/"
 RESOURCES_DIR = ROOT_DIR + "resources/"
-DRIVER_DIR = RESOURCES_DIR + "chromedriver"
-LOGS_FOLDER = BASE_DIR + "/logs/"
+DRIVER_DIR = RESOURCES_DIR + "chromedriver94"
+LOGS_FOLDER = "/webapp/logs/"
 
 DEBUG = False
 TIMEOUT = 30

@@ -4,7 +4,6 @@ from pytest import fixture
 from src.database.db_factory import DbFactory
 from tests.helper import exec_command
 
-
 @fixture
 def setup_db():
     df = DbFactory("sqlite")
@@ -15,9 +14,13 @@ def setup_db():
     db = df.get_db()
     db.deleta_tabela("positions")
 
+
 @fixture(scope="session")
 def setup_containers():
-    exec_command("", "./test/utils/make_test.sh", "sh", sudo=False)
+    pass
+    print("\nprepare for test")
+    exec_command("", "./tests/utils/make_test.sh", "sh", sudo=False)
+    print("\nstart container")
     exec_command("", "./tests/utils/start_containers.sh", "sh", sudo=False)
     yield
     exec_command("", "./tests/utils/stop_containers.sh", "sh", sudo=False)

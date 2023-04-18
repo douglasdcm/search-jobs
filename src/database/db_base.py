@@ -1,5 +1,5 @@
 from logging import info
-from src.exceptions.exceptions import ErroBancoDados
+from src.exceptions.exceptions import DatabaseError
 from src.settings import DEBUG
 
 
@@ -12,7 +12,7 @@ class Database:
             if conexao is not None:
                 type(self)._conexao = conexao
             else:
-                raise ErroBancoDados("Uma conexão precisa ser informada.")
+                raise DatabaseError("Uma conexão precisa ser informada.")
 
     def cria_banco(self, banco):
         try:
@@ -22,7 +22,7 @@ class Database:
             info(cmd)
             cur.execute(cmd)
         except Exception:
-            raise ErroBancoDados("Não foi possível criar o banco.")
+            raise DatabaseError("Não foi possível criar o banco.")
 
     def deleta_banco(self, banco):
         try:
@@ -32,7 +32,7 @@ class Database:
             info(cmd)
             cur.execute(cmd)
         except Exception as e:
-            raise ErroBancoDados(f"Não foi possível deletar o banco.\n{str(e)}")
+            raise DatabaseError(f"Não foi possível deletar o banco.\n{str(e)}")
 
     def deleta_tabela(self, tabela):
         try:
@@ -42,7 +42,7 @@ class Database:
             info(cmd)
             cur.execute(cmd)
         except Exception as e:
-            raise ErroBancoDados(f"Não foi possível deletar a tabela.\n{str(e)}")
+            raise DatabaseError(f"Não foi possível deletar a tabela.\n{str(e)}")
 
     def fecha_conexao_existente(self):
         try:
@@ -60,7 +60,7 @@ class Database:
             cur = con.cursor()
             return [con, cur]
         except Exception:
-            raise ErroBancoDados("Não foi possível criar a conexão de banco.")
+            raise DatabaseError("Não foi possível criar a conexão de banco.")
 
     def cria_tabela(self, tabela, campos, complemento=""):
         if complemento:
@@ -125,4 +125,4 @@ class Database:
         except Exception as e:
             print(str(e))
             info(str(e))
-            raise ErroBancoDados(f"{mensagem_erro}\nquery: {query}\n{str(e)}")
+            raise DatabaseError(f"{mensagem_erro}\nquery: {query}\n{str(e)}")

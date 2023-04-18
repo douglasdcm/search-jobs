@@ -1,1 +1,3 @@
-docker-compose down
+#!/bin/bash
+set -e
+docker compose down

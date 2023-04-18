@@ -1,10 +1,10 @@
 // setup some JSON to use
-window.onload = function() {
-    // setup the button click
-    document.getElementById("send_message").onclick = function() {
-        doWork()
-    };
-}
+// window.onload = function() {
+//     // setup the button click
+//     document.getElementById("send_message").onclick = function() {
+//         doWork()
+//     };
+// }
 
 function doWork() {
     var message_field = document.getElementById('message_field').value;
@@ -30,9 +30,8 @@ function doWork() {
 
     // ajax the JSON to the server
     $.ajax(settings).done(function (response) {
-        document.getElementById("response").innerHTML = response
-        document.getElementById('send_message').value
-            = 'Pesquisar';
+        // document.getElementById("response").innerHTML = response
+        document.getElementById('send_message').value = 'Pesquisar';
         document.getElementById("send_message").disabled = false;
     });
     // stop link reloading the page

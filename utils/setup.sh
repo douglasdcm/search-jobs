@@ -1,5 +1,5 @@
 # prepare the container and install the dependencies
-BASE_DIR="/opt/webapp"
+BASE_DIR="/webapp"
 # install the dependencies
 apt-get update
 apt-get -y install libnss3-tools

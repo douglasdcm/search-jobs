@@ -2,7 +2,7 @@ from os import environ
 from src.database import db, db_postgres
 from psycopg2 import connect as postgres_conn
 from sqlite3 import connect as sqlite_conn
-from src.exceptions.exceptions import ErroBancoDados
+from src.exceptions.exceptions import DatabaseError
 
 
 class DbFactory:
@@ -15,20 +15,22 @@ class DbFactory:
         Args:
             database (str): name of the database
         """
-        conn = self._create_connnection(database=database,
-                                       user=user,
-                                       password=password,
-                                       host=host,
-                                       port=port)
+        conn = self._create_connnection(
+            database=database,
+            user=user,
+            password=password,
+            host=host,
+            port=port)
         return self._make_db(conn)
 
 
-    def _create_connnection(self,
-                           database="postgres",
-                           user="postgres",
-                           password="postgresql",
-                           host="postgres",
-                           port="5432"):
+    def _create_connnection(
+            self,
+            database="postgres",
+            user="postgres",
+            password="postgresql",
+            host="postgres",
+            port="5432"):
 
         if environ.get("DATABASE_URL") is not None:  # for Heroku only
             return postgres_conn(environ.get("DATABASE_URL"))
@@ -41,7 +43,7 @@ class DbFactory:
         elif self.db_type == "sqlite":
             return sqlite_conn(database, check_same_thread=False)
         else:
-            raise ErroBancoDados("It was not possibe to stablish the connection to database.")
+            raise DatabaseError("It was not possibe to stablish the connection to database.")
 
 
     def _make_db(self, conn):
@@ -50,4 +52,4 @@ class DbFactory:
         if self.db_type == "postgres":
             return db_postgres.Database(conn)
         else:
-            raise ErroBancoDados("It was not possible to create the database object.")
+            raise DatabaseError("It was not possible to create the database object.")
