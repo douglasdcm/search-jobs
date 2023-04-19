@@ -78,9 +78,9 @@ class TestApiCompare:
             "message": resume,
             "condition": "or"
         })
-        expected_1 = "manag"
-        expected_2 = "python"
-        expected_3 = "postman"
+        expected_1 = "position1"
+        expected_2 = "position2"
+        expected_3 = "position3"
 
         response = app.app.test_client().post(
             "/api/receiver", content_type="application/json", data=payload)
@@ -95,9 +95,11 @@ class TestApiCompare:
             "message": message,
             "condition": "and"
         })
-        expected_1 = "manag"
-        expected_2 = "python"
+        expected_1 = "position1"
+        expected_2 = "position2"
+        expected_3 = "position3"
         response = app.app.test_client().post(
             "/api/receiver", content_type="application/json", data=payload)
         assert expected_1 in str(self.decode_reponse_in_dict(response))
         assert expected_2 not in str(self.decode_reponse_in_dict(response))
+        assert expected_3 not in str(self.decode_reponse_in_dict(response))

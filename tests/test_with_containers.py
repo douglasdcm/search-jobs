@@ -1,7 +1,6 @@
 import app
-from src.settings import DB_TYPE, DRIVER_TYPE
+from src.settings import DRIVER_TYPE
 from src.helper.commands import install, update, compare, clear
-from tests.settings import DB_NAME, DB_TYPE
 from pytest import mark, fixture
 from src.crawler.company import Company
 

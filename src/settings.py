@@ -14,7 +14,6 @@ TABLE_NAME = "positions"
 CAMPOS = "url, description"
 CAMPOS_DIFINICAO = """url VARCHAR(255) NOT NULL, description VARCHAR(50000)"""
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
-DB_TYPE = {"p": "sqlite", "s": "sqlite"}
 
 URLS = {
     "Ciandt": "https://ciandt.com/us/en-us/careers/open-positions",

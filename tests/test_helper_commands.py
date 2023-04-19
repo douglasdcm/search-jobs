@@ -57,7 +57,7 @@ class TestHelperCommands:
             }
         ]
         resume = "senior python pytest"
-        expected = "pytest"
+        expected = "basic_page"
         overwrite_by_db_string(DATABASE_STRING, companies)
         assert expected in str(compare_by_db_string(DATABASE_STRING, resume, condition="OR"))
 
