@@ -10,7 +10,7 @@ from os import getcwd
 class TestPerformanceCommands:
 
     @fixture
-    def get_crawlers(self):
+    def get_companies(self):
         return [
             {
                 "company": Generic("//a"),
@@ -19,11 +19,11 @@ class TestPerformanceCommands:
             }
         ]
 
-    def test_update_get_data_from_1500_links(self, get_crawlers):
+    def test_update_get_data_from_1500_links(self, get_companies):
         # TODO generate the htlm iteractively
         dbf = DbFactory(DB_TYPE["s"])
         db = dbf.get_db(DB_NAME)
-        assert update(db, DRIVER_TYPE, get_crawlers) is True
+        assert update(db, DRIVER_TYPE, get_companies) is True
 
 
     def test_compare_runs_1000_times(self):

@@ -8,3 +8,4 @@ DRIVER_TYPE = "chrome"
 DB_TYPE = {"s": "sqlite"}
 BASE_URL = "http://localhost:5000/"
 TIMEOUT = 10
+DATABASE_STRING = "postgresql://postgres:postgresql@localhost/postgres"

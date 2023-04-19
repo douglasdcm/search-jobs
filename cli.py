@@ -2,17 +2,22 @@
 CLI function to run the crawlers, compare curriculum and manage the database.
 Try: 'python cli.py --help' for more information.
 """
-
-
 from logging import basicConfig, INFO
-from src.database.db_factory import DbFactory
-from src.settings import (ROOT_DIR, LOGS_FILE, RESOURCES_DIR, DB_NAME, DB_TYPE, DRIVER_TYPE)
-from src.exceptions.exceptions import InvalidCommandError
+from src.settings import (ROOT_DIR, LOGS_FILE, RESOURCES_DIR)
 from sys import argv, path
-from src.helper.commands import install, sanity_check, help_, update
-from src.crawler.factory import Factory
+from src.helper.commands import (
+    sanity_check_by_db_string,
+    help_,
+    overwrite_by_db_string
+)
+from src.crawler.company import Company
 from src.crawler.generic import Generic
 from os import getcwd, system
+from dotenv import load_dotenv
+from os import environ
+
+
+load_dotenv()  # take environment variables from .env.
 
 
 system('export PATH="{}:$PATH"'.format(RESOURCES_DIR))
@@ -25,28 +30,27 @@ basicConfig(
 
 
 def main(*args):
-    for argumentos in args:
-        if "-h" in argumentos or "--help" in argumentos:
-            output = help_()
-            print(output)
-            return output
-        if "--initdb" in argumentos:
-            return install(DB_NAME, DB_TYPE["p"])
-        if "--update" in argumentos:
-            df = DbFactory(DB_TYPE["p"])
-            db = df.get_db(DB_NAME)
-            return update(db, DRIVER_TYPE, Factory().get_crawlers())
-        elif "--sanity-check" in argumentos:
-            df = DbFactory(DB_TYPE["p"])
-            db = df.get_db(DB_NAME)
-            crawlers = [{
-                "company": Generic("//a"),
-                "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
-                "enabled": True
-            }]
-            return sanity_check(db, DRIVER_TYPE, crawlers)
-        else:
-            raise InvalidCommandError("Invalid command.\nTry cli.py --help ")
+    try:
+        for argumentos in args:
+            if "-h" in argumentos or "--help" in argumentos:
+                output = help_()
+                print(output)
+                return output
+            if "--overwrite" in argumentos:
+                # Get data from real companies. Not covered by automated testes
+                # to avoid overload the real sites
+                return overwrite_by_db_string(
+                    environ.get("DATABASE_STRING"), Company().get_all())
+            elif "--sanity-check" in argumentos:
+                companies_fake = [{
+                    "locator": Generic("//a"),
+                    "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+                }]
+                return sanity_check_by_db_string(environ.get("DATABASE_STRING"), companies_fake)
+            else:
+                print("Invalid command. Try cli.py --help ")
+    except Exception as error:
+        print(f"Unexpected error. {str(error)}")
 
 
 if __name__ == '__main__':

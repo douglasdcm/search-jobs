@@ -2,12 +2,17 @@
 from os import environ, getenv
 from sys import path
 from src.database.db_factory import DbFactory
-from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABELA, DRIVER_TYPE
-from flask import Flask, render_template, request, jsonify, url_for
-from src.helper.commands import compare, update
-from src.crawler.factory import Factory
+from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABLE_NAME, DRIVER_TYPE
+from flask import Flask, render_template, request, jsonify
+from src.helper.commands import update, compare_by_db_string
+from src.crawler.company import Company
 from src.helper.helper import load_web_content
 from ast import literal_eval
+from dotenv import load_dotenv
+
+
+load_dotenv()  # take environment variables from .env.
+
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
@@ -31,28 +36,29 @@ def get_images():
     return jsonify(load_web_content())
 
 
-def __receiver(message, condition):
+def __receiver(resume, condition):
     limit = 5000
     result = {}
 
-    if not message:
-        result = {"status": "failed", "message": "Conteúdo não informado"}
+    if not resume:
+        result = {"status": "failed", "message": "Currículo não informado"}
         return jsonify(result), 500
 
     if not condition:
         result = {"status": "failed", "message": "Condição não informada"}
         return jsonify(result), 500
 
-    if len(message.strip()) == 0:
-        result = {"status": "failed", "message": "Conteúdo inválido"}
+    if len(resume.strip()) == 0:
+        result = {"status": "failed", "message": "Currículoinválido"}
         return jsonify(result), 500
 
     if condition.lower() not in ["and", "or"]:
         result = {"status": "failed", "message": "Condição inválida"}
         return jsonify(result), 500
 
-    message = (message[:limit]) if len(message) > limit else message
-    comparison = compare(message, service_db(), condition)
+    resume = (resume[:limit]) if len(resume) > limit else resume
+
+    comparison = compare_by_db_string(environ.get("DATABASE_STRING"), resume, condition)
 
     if not comparison:
         result = {"status": "failed", "message": "Nenhum resultado encontrado"}
@@ -103,7 +109,7 @@ def update_():
     if getenv('HASH') == "":
         environ['HASH'] = "dev"
     if data["hash"] == getenv('HASH'):
-        update(service_db(), DRIVER_TYPE, Factory().get_crawlers())
+        update(service_db(), DRIVER_TYPE, Company().get_all())
         return "OK\n"
     else:
         return "NO ACTION\n"
@@ -112,7 +118,7 @@ def update_():
 
 
 def _info():
-    max_id = service_db().pega_maior_id(TABELA)[0][0]
+    max_id = service_db().pega_maior_id(TABLE_NAME)[0][0]
     return "Number of records in database is {}\n".format(str(max_id))
 
 

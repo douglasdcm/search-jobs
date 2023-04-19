@@ -1,6 +1,11 @@
-from src.helper.commands import help_, install, sanity_check, clear, update
-from tests.settings import DB_NAME, DB_TYPE, DRIVER_TYPE
-from src.database.db_factory import DbFactory
+from src.helper.commands import (
+    help_,
+    overwrite_by_db_string,
+    run_by_db_string,
+    compare_by_db_string,
+    sanity_check_by_db_string
+)
+from tests.settings import DATABASE_STRING
 from pytest import fixture
 from src.crawler.generic import Generic
 from os import getcwd
@@ -8,23 +13,23 @@ from pytest import mark
 
 
 @mark.integration
-class TestCommands:
+class TestHelperCommands:
 
     @fixture
     def get_crashed_crawlers(self):
         return [
             {
-                "company": Generic("//a"),
+                "locator": Generic("//a"),
                 "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
                 "enabled": True
             },
             {
-                "company": Generic("//a"),
+                "locator": Generic("//a"),
                 "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
                 "enabled": True
             },
             {
-                "company": Generic("//a"),
+                "locator": Generic("//a"),
                 "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
                 "enabled": True
             }]
@@ -38,41 +43,36 @@ class TestCommands:
         return db
 
     @fixture
-    def get_crawlers(self):
+    def get_companies(self):
         return [{
-            "company": Generic("//a"),
+            "locator": Generic("//a"),
             "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
-            "enabled": True
         }]
 
+    def test_compare_runs_list_of_links_ranked_by_similarity_using_or_condition(self):
+        companies = [
+            {
+                "locator": Generic("//a"),
+                "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+            }
+        ]
+        resume = "senior python pytest"
+        expected = "pytest"
+        overwrite_by_db_string(DATABASE_STRING, companies)
+        assert expected in str(compare_by_db_string(DATABASE_STRING, resume, condition="OR"))
 
-    def test_update_get_data_from_crashed_links(self, get_crashed_crawlers):
-        dbf = DbFactory(DB_TYPE["s"])
-        db = dbf.get_db(DB_NAME)
-        assert update(db, DRIVER_TYPE, get_crashed_crawlers) is True
+    def test_run_by_db_string(self, get_companies):
+        assert run_by_db_string(
+            database_string=DATABASE_STRING, companies=get_companies
+        ) is True
 
-    def test_update_database_returns_true(self, get_crawlers):
-        dbf = DbFactory(DB_TYPE["s"])
-        db = dbf.get_db(DB_NAME)
-        assert update(db, DRIVER_TYPE, get_crawlers) is True
+    def test_overwrite_database_returns_true(self, get_companies):
+        assert overwrite_by_db_string(DATABASE_STRING, get_companies) is True
 
-    def test_clear_remove_data_from_database(self, populate_db):
-        expected = []
-        db = populate_db
-        dbf = DbFactory(DB_TYPE["s"])
-        db = dbf.get_db(DB_NAME)
-        clear(db)
-        actual = db.pega_maior_id("positions")
-        assert actual == expected
-
-    def test_sanity_check_works(self, setup_db, get_crawlers):
-        assert sanity_check(setup_db, DRIVER_TYPE, get_crawlers) is True
-
-    def test_install_creates_database(self):
-        assert install(DB_NAME, DB_TYPE["s"])
+    def test_sanity_check_works(self, setup_db, get_companies):
+        assert sanity_check_by_db_string(DATABASE_STRING, get_companies) is True
 
     def test_help_is_opened(self):
         actual = help_()
-        assert "--initdb" in actual
         assert "--help" in actual
         assert "--sanity-check"

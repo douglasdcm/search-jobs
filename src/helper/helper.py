@@ -5,6 +5,10 @@ from nltk.corpus import stopwords
 from unidecode import unidecode
 from nltk.stem import RSLPStemmer
 from flask import url_for
+from sqlalchemy import create_engine, text
+from src.settings import TABLE_NAME
+from src.exceptions.exceptions import DatabaseError
+
 
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
@@ -35,7 +39,16 @@ def data_pre_processing_portuguese(corpus):
     return ' '.join(list(set(corpus)))
 
 
+def get_all_positions_from_database(database_string):
+    query = f"select * from {TABLE_NAME}"
+    engine = create_engine(database_string)
+    with engine.connect() as connection:
+        positions = connection.execute(text(query)).all()
+    return positions
+
+
 def select_with_like(terms, table, column, condition="OR"):
+    terms = terms.split(sep=" ")
     condition = condition.upper()
     query = "SELECT DISTINCT * FROM {} WHERE {} LIKE ".format(table, column)
     if condition == "OR":
@@ -43,16 +56,24 @@ def select_with_like(terms, table, column, condition="OR"):
     elif condition == "AND":
         query += "'%%'"
     else:
-        return "Condição inválida."
+        raise DatabaseError(f"Invalid condition '{condition}'")
 
     for term in terms:
         query += " {} {} LIKE '%{}%'".format(condition, column, term)
     return query
 
 
+def search_positions_based_on_resume(database_string, condition, resume):
+    resume_processed = data_pre_processing_portuguese(resume)
+    query = select_with_like(resume_processed, TABLE_NAME, "description", condition)
+    engine = create_engine(database_string)
+    with engine.connect() as connection:
+        positions = connection.execute(text(query)).all()
+    return positions
+
+
 def steam_data(text):
     return RSLPStemmer().stem(text)
-
 
 
 def load_web_content():

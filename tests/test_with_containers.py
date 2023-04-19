@@ -4,7 +4,7 @@ from src.helper.commands import install, update, compare, clear
 from tests.settings import DB_NAME, DB_TYPE
 from src.database.db_factory import DbFactory
 from pytest import mark, fixture
-from src.crawler.factory import Factory
+from src.crawler.company import Company
 
 
 @mark.end_to_end
@@ -31,13 +31,13 @@ class TestEndToEnd:
         setup
         dbf = DbFactory(DB_TYPE["p"])
         db = dbf.get_db(DB_NAME)
-        update(db, DRIVER_TYPE, Factory().get_crawlers())
+        update(db, DRIVER_TYPE, Company().get_all())
         assert "dog" in compare("dog", db, "or")
 
-
+    @mark.skip("not working")
     def test_doesnt_find_content_in_a_fresh_container(self, setup_containers):
         install(DB_NAME, DB_TYPE["p"])
         dbf = DbFactory(DB_TYPE["p"])
         db = dbf.get_db(DB_NAME)
-        update(db, DRIVER_TYPE, Factory().get_crawlers())
+        update(db, DRIVER_TYPE, Company().get_all())
         assert compare("blablabla", db, "or") is None

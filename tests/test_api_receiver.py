@@ -1,31 +1,15 @@
 import app
 from json import dumps
-from src.database.db_factory import DbFactory
-from src.helper.commands import install, clear
 from pytest import fixture, mark
 from tests.settings import BASE_URL
 from ast import literal_eval
 
 
-
 @mark.api
 class TestApiCompare:
 
-    @fixture
-    def setup(self):
-        db_name = app.DB_NAME
-        db_type = "sqlite"
-        install(db_name, db_type)
-        df = DbFactory(db_type)
-        db = df.get_db(db_name)
-        clear(db)
-        fields = "url, description"
-        db.salva_registro("positions", fields, "'https://test.com', 'test'")
-        db.salva_registro("positions", fields, "'https://rabbit.com', 'rabbit'")
-        db.salva_registro("positions", fields, "'https://cat.com', 'cats dogs cows'")
-        db.salva_registro("positions", fields, "'https://administrar.com', 'administraca'")
-        db.salva_registro("positions", fields, "'https://andcondition.com', 'cat dog rabbit cow cucumber'")
-
+    def decode_reponse_in_dict(self, response):
+        return literal_eval(response.data.decode('utf-8')).get("message")
 
     @mark.parametrize(
         "payload,error_message", [
@@ -39,7 +23,7 @@ class TestApiCompare:
                 {
                     "condition": "AND"
                 },
-                "Conteúdo não informado"
+                "Currículo não informado"
             ),
             (
                 {
@@ -53,19 +37,19 @@ class TestApiCompare:
                     "message": "",
                     "condition": "or"
                 },
-                "Conteúdo não informado"
+                "Currículo não informado"
             ),
             (
                 {
                     "message": "   ",
                     "condition": "or"
                 },
-                "Conteúdo inválido"
+                "Currículoinválido"
             )
         ]
     )
     def test_app_compare_curriculum_missing_data_in_payload(
-        self, setup, payload, error_message
+        self, payload, error_message
     ):
         payload = dumps(payload)
         response = app.app.test_client().post(
@@ -73,12 +57,12 @@ class TestApiCompare:
             data=payload,
             content_type="application/json")
         assert response.status_code == 500
-        assert error_message in literal_eval(response.data.decode('utf-8')).get("message")
+        assert error_message in self.decode_reponse_in_dict(response)
 
 
-    def test_api_to_compare_curriculum_works(self, setup):
+    def test_api_to_compare_curriculum_works(self, setup_db):
         payload = dumps({
-            "message": "test_message",
+            "message": "jira python manager",
             "condition": "or"
         })
         response = app.app.test_client().post(
@@ -88,37 +72,32 @@ class TestApiCompare:
         )
         assert response.status_code == 200
 
-
-    @mark.parametrize(
-        "message, response",
-        [
-            ("rabbit ãáà", "rabbit"),
-            ("test", "test"),
-            ("cats", "cat"),
-            ("administração", "administrar"),
-        ]
-    )
-    def test_compare_curriculum_returns_ranking_with_condition_or(
-        self, monkeypatch, setup, message, response
-    ):
-        monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")  # changing th database to sqlite
+    def test_compare_curriculum_returns_ranking_with_condition_or(self, setup_db):
+        resume = "jira manager"
         payload = dumps({
-            "message": message,
+            "message": resume,
             "condition": "or"
         })
-        expected = response.encode()
+        expected_1 = "manag"
+        expected_2 = "python"
+        expected_3 = "postman"
+
         response = app.app.test_client().post(
             "/api/receiver", content_type="application/json", data=payload)
-        assert expected in response.data
 
-    def test_compare_curriculum_returns_ranking_condition_and(self, monkeypatch, setup):
-        message = "dog cow"
-        monkeypatch.setitem(app.DB_TYPE, "p", "sqlite")  # changing th database to sqlite
+        assert expected_1 in str(self.decode_reponse_in_dict(response))
+        assert expected_2 in str(self.decode_reponse_in_dict(response))
+        assert expected_3 in str(self.decode_reponse_in_dict(response))
+
+    def test_compare_curriculum_returns_ranking_condition_and(self, setup_db):
+        message = "jira manager"
         payload = dumps({
             "message": message,
             "condition": "and"
         })
-        expected = "andcondition".encode()
+        expected_1 = "manag"
+        expected_2 = "python"
         response = app.app.test_client().post(
             "/api/receiver", content_type="application/json", data=payload)
-        assert expected in response.data
+        assert expected_1 in str(self.decode_reponse_in_dict(response))
+        assert expected_2 not in str(self.decode_reponse_in_dict(response))

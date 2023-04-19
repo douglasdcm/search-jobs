@@ -20,7 +20,10 @@ class BaseObjects:
         try:
             info("Getting all elements '{}:{}'".format(by_type, locator))
             elements = self._driver.find_elements(by_type, locator)
-            info("Found {} elements.".format(str(len(elements))))
+            if not elements:
+                message = "No elements found. Skipping process"
+                print(message)
+                info(message)
             return elements
         except Exception as error:
             WebDriverError(f"Could not get elements. {str(error)}")

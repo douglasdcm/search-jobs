@@ -1,8 +1,18 @@
-#!/usr/bin/python
 from subprocess import PIPE, STDOUT, run
-from src.helper.commands import install
-from src.database.db_factory import DbFactory
-from src.settings import DB_NAME, DB_TYPE
+from src.helper.commands import initialize_table_by_db_string
+from sqlalchemy import create_engine, text
+from tests.settings import DATABASE_STRING
+from src.helper.helper import data_pre_processing_portuguese
+
+
+def populate_database_with_desired_jobs(positions):
+    initialize_table_by_db_string(DATABASE_STRING)
+    engine = create_engine(DATABASE_STRING)
+    with engine.connect() as connection:
+        for position in positions:
+            descrition_processed = data_pre_processing_portuguese(position['description'])
+            connection.execute(text(
+                f"insert into positions (url, description) values ('{position['url']}', '{descrition_processed}')"))
 
 
 def exec_command(params, command, domain="python", sudo=False):
@@ -25,10 +35,22 @@ def exec_command(params, command, domain="python", sudo=False):
         raise
 
 
-def populate_database():
-    install(DB_NAME, DB_TYPE["s"])
-    df = DbFactory(DB_TYPE["s"])
-    db = df.get_db(DB_NAME)
-    db.salva_registro("positions", "url, description", "'https://test_message_1.com', 'test_message_1'")
-    db.salva_registro("positions", "url, description", "'https://test_message_2.com', 'test_message_2'")
-    db.salva_registro("positions", "url, description", "'https://test_message_3.com', 'test_message_3'")
+def populate_database_with_thecnical_jobs():
+    description1 = "jira manager senior dashboards carrer"
+    description2 = "jira developer python java postgres sql"
+    description3 = "jira tester qa pytest postman jmeter"
+    positions = [
+        {
+            "url": "www.position1.com",
+            "description": description1
+        },
+        {
+            "url": "www.position2.com",
+            "description": description2
+        },
+        {
+            "url": "www.position3.com",
+            "description": description3
+        }
+    ]
+    populate_database_with_desired_jobs(positions)

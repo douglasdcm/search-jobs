@@ -16,13 +16,14 @@ Acesse o link http://localhost:5000 e cole o conteúdo do seu currículo. As vag
 
 # Setup
 Para contribuir com o projeto, ative seu ambiente virtual e instale as dependências:
-<br><code>$python3 -m venv env</code>
-<br><code>$source env/bin/activate</code>
-<br><code>$pip install -r requirements.txt</code>
+<br><code>python3 -m venv env</code>
+<br><code>source env/bin/activate</code>
+<br><code>pip install -r requirements.txt</code>
 <br><code>sudo mkdir -p /webapp/logs</code>
-<br><code>chmod -R 777 /webapp/logs/</code>
-<br><code>$sh ./utils/make_dev.sh</code><br>
-<br><code>$sh ./tests/utils/start_containers.sh</code><br>
+<br><code>sudo cp ./src/resources/basic_page.html /webapp</code><br>
+<br><code>chmod -R 777 /webapp</code>
+<br><code>sh ./utils/make_dev.sh</code><br>
+<br><code>sh ./tests/utils/start_containers.sh</code><br>
 Agora você pode mudar a o código e para testar, basta fazer a build da imagem e subir o container novamente.
 
 # Rodando os testes
@@ -30,18 +31,15 @@ Agora você pode mudar a o código e para testar, basta fazer a build da imagem 
 <br><code>sudo apt-get install ./src/resources/google-chrome-stable_current_amd64.deb</code>
 - ou subistiua o arquivo em ./src/resources/chrome para a mesma versão do Chrome instalado em sua máquina. Será preciso verificar a sua versão e baixar o driver correto https://chromedriver.chromium.org/downloads 
 
-
-# Fazendo seu próprio crawler
-Se você quiser adicionar mais crawlers ao projeto é bem simples. Em poucos minutos você consegue adicionar um novo crawler. Você precisa seguir o protocolo da classe "src/crawler/ICrawler.py::ICrawler" para que os campos certos sejam salvos no banco de dados. Faça isso:
-- Adicione o crawler na pasta "src/crawler"
-- Adicone os Page Objects para o crawler na pasta "src/pages". Por exemplo, "scr/pages/my_crawler/vagas.py"
-- Edite o seu crawler para utilizar o novo Page Objects
-- Adicione o dicionário do crawler no arquivo "src/crawler/factory.py" abaixo da linha comentada
-- Adicione a url de vagas da empresa em "src/settings.py::URLS"
-- Faca o build e suba o container novamente.
+# Adicionando empresas
+Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos minutos você consegue fazer isso.
+- Adicione o dicionário do empresa no arquivo "src/crawler/company.py"
+- Adicione o 'locator' do link das vagas. O Selenium usa isso para descobrir as vagas da empresa 
+- Adicione a url de vagas da empresa
+- Suba o container novamente
 - Rode o comando:
 <br><code>curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'https://localhost:5000/update'</code><br>
-Isso irá rodar os crawlers "enabled", pegar as informações de vagas das empresas e salvar no banco de dados. Depois disso você pode comparar o currículo com as novas vagas<br><br>
+Isso irá rodar o crawler que vai pegar as informações de vagas das empresas e salvar no banco de dados. Depois disso você pode comparar o currículo com as novas vagas<br><br>
 
 # Contribuindo
 Ajude este projeto a crescer adicionando novos crawlers. Que tal começar pelas empresas GPTW do Brasil de 2020? https://conteudo.gptw.com.br/150-melhores-2020.<br>

@@ -7,6 +7,7 @@ class SwitchTo:
     def frame(self, index=None):
         pass
 
+
 class FakeDriver:
 
     switch_to = SwitchTo()
@@ -30,6 +31,7 @@ class FakeDriver:
     def execute_script(self, script=None, element=None):
         return True
 
+
 class Fake_Element:
 
     text = "text_1"
@@ -39,6 +41,7 @@ class Fake_Element:
 
     def click(self):
         pass
+
 
 class Fake_WebDriverWait:
 

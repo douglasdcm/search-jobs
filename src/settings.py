@@ -8,18 +8,15 @@ LOGS_FOLDER = "/webapp/logs/"
 
 DEBUG = False
 TIMEOUT = 30
-DB_NAME = "crawlers"
+DB_NAME = "scaazduy"
 DRIVER_TYPE = "chrome"
-TABELA = "positions"
+TABLE_NAME = "positions"
 CAMPOS = "url, description"
 CAMPOS_DIFINICAO = """url VARCHAR(255) NOT NULL, description VARCHAR(50000)"""
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
 DB_TYPE = {"p": "sqlite", "s": "sqlite"}
 
 URLS = {
-    "Daitan": "https://careers-br.daitan.com/pt/vagas/",
-    "Dqrtech": "https://www.dqrtech.com.br/vagas/",
-    "Mms": "https://www.modularmining.com/pt-br/trabalhe-conosco/aberturas-de-emprego-atuais/",
     "Ciandt": "https://ciandt.com/us/en-us/careers/open-positions",
     "Cesar": "https://vagascesar.gupy.io",
     "LeroyMerlin": "https://jobs.kenoby.com/leroymerlin",

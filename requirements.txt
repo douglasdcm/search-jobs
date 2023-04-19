@@ -5,6 +5,8 @@ click==8.0.4
 coverage==6.2
 dataclasses==0.8
 Flask==2.0.3
+greenlet==2.0.2
+gunicorn==20.1.0
 idna==3.4
 importlib-metadata==4.8.3
 importlib-resources==5.4.0
@@ -22,12 +24,14 @@ py==1.11.0
 pycodestyle==2.10.0
 pyparsing==3.0.9
 pytest==7.0.1
+python-dotenv==0.20.0
 regex==2022.10.31
 requests==2.27.1
 scikit-learn==0.24.2
 scipy==1.5.4
 selenium==3.141.0
 sklearn==0.0
+SQLAlchemy==1.4.47
 threadpoolctl==3.1.0
 tomli==1.2.3
 tqdm==4.64.1
