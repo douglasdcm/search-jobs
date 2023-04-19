@@ -1,5 +1,6 @@
 from src.driver.chrome import ChromeDriver
-from src.exceptions.exceptions import InvalidDriverType
+from src.exceptions.exceptions import WebDriverError
+
 
 class DriverFactory:
 
@@ -7,4 +8,4 @@ class DriverFactory:
         if driver_type == "chrome":
             return ChromeDriver()
         else:
-            raise InvalidDriverType("The driver type {} does exist.".format(driver_type))
+            raise WebDriverError("The driver type {} does exist.".format(driver_type))

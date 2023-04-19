@@ -2,22 +2,26 @@ version: "3.9.16"
 
 services:
   vpm:
-    image: douglasdcm/vagas-pra-mim
+    image: vagas-pra-mim
     container_name: vagas-pra-mim
     volumes:
       - /dev/shm:/dev/shm
-      - .:/opt/webapp
+      - .:/webapp
     ports:
       - 5000:5001
-    working_dir: /
+    depends_on:
+      - db
+    working_dir: /webapp
     environment:
       HASH: dev
 
-  postgres:
+  db:
     image: postgres
     container_name: postgres
     volumes:
       - vpm-data:/var/lib/pgsql
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_PASSWORD: postgresql
 

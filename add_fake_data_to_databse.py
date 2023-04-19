@@ -1,0 +1,3 @@
+from tests.helper import populate_database_with_thecnical_jobs
+
+populate_database_with_thecnical_jobs()

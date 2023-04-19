@@ -3,23 +3,19 @@ from os import getcwd
 BASE_DIR = getcwd()
 ROOT_DIR = BASE_DIR + "/src/"
 RESOURCES_DIR = ROOT_DIR + "resources/"
-DRIVER_DIR = RESOURCES_DIR + "chromedriver"
-LOGS_FOLDER = BASE_DIR + "/logs/"
+DRIVER_DIR = RESOURCES_DIR + "chromedriver94"
+LOGS_FOLDER = "/webapp/logs/"
 
 DEBUG = False
 TIMEOUT = 30
-DB_NAME = "crawlers"
+DB_NAME = "scaazduy"
 DRIVER_TYPE = "chrome"
-TABELA = "positions"
+TABLE_NAME = "positions"
 CAMPOS = "url, description"
 CAMPOS_DIFINICAO = """url VARCHAR(255) NOT NULL, description VARCHAR(50000)"""
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
-DB_TYPE = {"p": "postgres", "s": "sqlite"}
 
 URLS = {
-    "Daitan": "https://careers-br.daitan.com/pt/vagas/",
-    "Dqrtech": "https://www.dqrtech.com.br/vagas/",
-    "Mms": "https://www.modularmining.com/pt-br/trabalhe-conosco/aberturas-de-emprego-atuais/",
     "Ciandt": "https://ciandt.com/us/en-us/careers/open-positions",
     "Cesar": "https://vagascesar.gupy.io",
     "LeroyMerlin": "https://jobs.kenoby.com/leroymerlin",

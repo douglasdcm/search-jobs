@@ -1,3 +1,5 @@
+.env
+sqlite
 env_crawler
 venv*
 htmlcov

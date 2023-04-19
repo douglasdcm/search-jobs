@@ -1,1 +1,1 @@
-docker exec -t vpm python main.py $1
+python cli.py $1

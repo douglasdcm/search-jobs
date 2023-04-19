@@ -1,0 +1,18 @@
+<!doctype html>
+<div class="add-blanks">
+    <h4 style="text-align: left;">Veja mais</h4>
+    {% for image in images_data %}
+        <div class="media">
+            <hr>
+            <div class="media-left">
+                <a href="{{ image.link }}">
+                    <img class="media-img media-object img-rounded" src="{{ image.image }}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="text-left media-body">{{ image.caption }}</h4>
+                <p class="text-left truncate">{{ image.description }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

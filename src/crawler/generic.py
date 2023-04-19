@@ -1,9 +1,9 @@
-from logging import info
-from src.crawler.icrawler import ICrawler
-from src.pages.generic.vagas import Vagas
+from logging import error as log_info
+from src.pages.generic.positions import Positions
+from src.exceptions.exceptions import WebDriverError, CrawlerError
 
 
-class Generic(ICrawler):
+class Generic:
 
     def __init__(self, locator):
         """
@@ -25,30 +25,31 @@ class Generic(ICrawler):
             locator (str): the locator of the links of positions, e.g. a.positions
         """
         self._url = None
-        self._vagas = None
+        self._positions = None
         self.locator = locator
 
     def set_driver(self, driver):
-        self._vagas = Vagas(driver)
+        self._positions = Positions(driver)
 
     def set_url(self, url):
-        return super().set_url(url)
+        self.url = url
 
-    def run(self, database):
+    def run(self):
         links = self._get_link_by_browser()
-        self._get_info_from_links(database, links)
-        return True
-
-    def _save(self, database, url, description):
-        return super()._save(database, url, description)
+        return self._get_info_from_links(links)
 
     def _get_link_by_browser(self):
-        return self._vagas.get_link_of_all_positons(self.locator)
+        return self._positions.get_link_of_all_positons(self.locator)
 
-    def _get_info_from_links(self, database, links):
+    def _get_info_from_links(self, links):
         for link in links:
-            print("Collecting data from {}".format(link))
-            info(link)
-            self._vagas.go_to_page(link)
-            descriptions = self._vagas.get_description()
-            self._save(database, link, descriptions)
+            try:
+                print("Collecting data from '{}'".format(link))
+                self._positions.go_to_page(link)
+                return link, self._positions.get_description()
+            except WebDriverError as error:
+                message = f"Skipping process. Failed to get data from {link}"
+                print(message)
+                log_info(message)
+            except Exception as error:
+                raise CrawlerError(str(error))
