@@ -76,10 +76,10 @@ def run_by_db_string(database_string, companies):
             company.set_url(url)
             url, description = company.run()
             _save(database_string, url, description)
+        # The execution need to continue even in case of errors
         except Exception as error:
             message = f"Unexpected error occurred while getting position data. {str(error)}"
             info(message)
-            raise CommandError(message)
         finally:
             _finish_driver(chrome)
     return True

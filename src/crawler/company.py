@@ -18,7 +18,7 @@ class Company():
         green_house_locator = '//div[contains(@class,"opening")]//a'
         companies = [
             {
-                "locator": generic.Generic('//a[contains(@class,"fade-square")]'),
+                "locator": generic.Generic('//a[contains(@title,"Veja detalhes")]'),
                 "url": "https://www.dqrtech.com.br/vagas/"
             },
             {
