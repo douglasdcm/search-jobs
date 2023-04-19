@@ -121,10 +121,9 @@ def compare_by_db_string(database_string, resume, condition):
         return None
     try:
         positions = search_positions_based_on_resume(database_string, condition, resume)
-    except DatabaseError as error:
-        return None
     except Exception as error:
-        return CommandError(f"Unexpected error while getting data from database. {str(error)}")
+        info({str(error)})
+        raise CommandError(f"Unexpected error while getting data from database. {str(error)}")
     s = Similarity()
     result = s.return_similarity_by_cossine(resume, positions)
     if not result:

@@ -1,6 +1,5 @@
 from src.helper.commands import compare, update
 from tests.settings import DB_NAME, DB_TYPE, DRIVER_TYPE
-from src.database.db_factory import DbFactory
 from pytest import fixture, mark
 from src.crawler.generic import Generic
 from os import getcwd

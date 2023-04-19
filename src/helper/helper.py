@@ -8,6 +8,7 @@ from flask import url_for
 from sqlalchemy import create_engine, text
 from src.settings import TABLE_NAME
 from src.exceptions.exceptions import DatabaseError
+from logging import info
 
 
 nltk.download('stopwords')
@@ -68,7 +69,11 @@ def search_positions_based_on_resume(database_string, condition, resume):
     query = select_with_like(resume_processed, TABLE_NAME, "description", condition)
     engine = create_engine(database_string)
     with engine.connect() as connection:
-        positions = connection.execute(text(query)).all()
+        try:
+            positions = connection.execute(text(query)).all()
+        except Exception as error:
+            info(str(error))
+            raise DatabaseError(str(error))
     return positions
 
 

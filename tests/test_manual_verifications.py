@@ -1,7 +1,4 @@
-from src.settings import DB_NAME, DB_TYPE
 from src.helper.helper import data_pre_processing_portuguese
-from src.database.db_factory import DbFactory
-from src.helper.commands import install, clear, initialize_table_by_db_string
 from pytest import mark
 from tests.helper import populate_database_with_desired_jobs
 from src.helper.helper import get_all_positions_from_database

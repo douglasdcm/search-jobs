@@ -1,15 +1,19 @@
 #!flask/bin/python
-from os import environ, getenv
+from os import environ
 from sys import path
-from src.database.db_factory import DbFactory
-from src.settings import DB_NAME, DB_TYPE, ROOT_DIR, TABLE_NAME, DRIVER_TYPE
+from src.settings import ROOT_DIR
 from flask import Flask, render_template, request, jsonify
-from src.helper.commands import update, compare_by_db_string
-from src.crawler.company import Company
+from src.helper.commands import compare_by_db_string
 from src.helper.helper import load_web_content
 from ast import literal_eval
 from dotenv import load_dotenv
+from logging import basicConfig, INFO
+from src.settings import ROOT_DIR, LOGS_FILE
 
+
+basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    filename=LOGS_FILE, level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
 
 load_dotenv()  # take environment variables from .env.
 
@@ -17,11 +21,6 @@ load_dotenv()  # take environment variables from .env.
 app = Flask(__name__, static_folder='static', static_url_path='')
 
 path.append(ROOT_DIR)
-
-
-def service_db():
-    dbf = DbFactory(DB_TYPE["p"])
-    return dbf.get_db(DB_NAME)
 
 
 @app.route('/')
@@ -58,7 +57,11 @@ def __receiver(resume, condition):
 
     resume = (resume[:limit]) if len(resume) > limit else resume
 
-    comparison = compare_by_db_string(environ.get("DATABASE_STRING"), resume, condition)
+    try:
+        comparison = compare_by_db_string(environ.get("DATABASE_STRING"), resume, condition)
+    except Exception:
+        result = {"status": "failed", "message": "Unexpected error. Try again later."}
+        return jsonify(result), 500
 
     if not comparison:
         result = {"status": "failed", "message": "Nenhum resultado encontrado"}
@@ -84,42 +87,6 @@ def worker():
         __receiver(message, condition)[0].response[0].decode('utf-8'))
 
     return render_template('search-result.html', comparison=comparison)
-
-
-
-@app.route('/info', methods=['POST'])
-def info():
-    """
-    Get information of the database, for example, number of rows.
-    Request example:
-        curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'localhost:5000/info'
-    """
-    return _info()
-
-
-#### TODO to be removed ####
-@app.route('/update', methods=['POST'])
-def update_():
-    """
-    Run the crawlers and update the database with the positons information.
-    Request example:
-        curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'localhost:5000/update'
-    """
-    data = request.json
-    if getenv('HASH') == "":
-        environ['HASH'] = "dev"
-    if data["hash"] == getenv('HASH'):
-        update(service_db(), DRIVER_TYPE, Company().get_all())
-        return "OK\n"
-    else:
-        return "NO ACTION\n"
-
-#### ####
-
-
-def _info():
-    max_id = service_db().pega_maior_id(TABLE_NAME)[0][0]
-    return "Number of records in database is {}\n".format(str(max_id))
 
 
 if __name__ == '__main__':

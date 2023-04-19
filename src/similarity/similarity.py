@@ -19,7 +19,7 @@ class Similarity:
         resume_processed = data_pre_processing_portuguese(resume)
 
         for row in positions:
-            url = row[1]
+            url = row[0]
             row = str(row)
             new_list = [resume_processed, row]
             vector_bow = self.bow.fit_transform(new_list)
@@ -40,4 +40,5 @@ class Similarity:
             urls.append(url)
         result = dict(zip(urls, similarity))
 
-        return {k: str(round(v * 100, 2)) for k, v in sorted(result.items(), key=lambda item: item[1], reverse=True) if v > 0}
+        return {k: str(round(v * 100, 2)) for k, v in sorted(
+            result.items(), key=lambda item: item[1], reverse=True) if v > 0}
