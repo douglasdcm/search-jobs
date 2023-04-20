@@ -13,9 +13,8 @@ class ChromeDriver:
         try:
             chrome_options = Options()
             info("Starting driver.")
-            if environ.get("DEBUG") != "on":
-                chrome_options.add_argument("--headless")
-                chrome_options.add_argument('--no-sandbox')
+            chrome_options.add_argument("--headless")
+            chrome_options.add_argument('--no-sandbox')
             print("Runnig driver from {}".format(DRIVER_DIR))
             self._driver = webdriver.Chrome(executable_path=DRIVER_DIR,
                                             options=chrome_options)

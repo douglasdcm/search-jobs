@@ -24,16 +24,16 @@ class Company():
             {
                 "locator": generic.Generic(
                     '//a[contains(@class,"wp-block-cit-block-ciandt-link")]'),
-                "url": URLS["Ciandt"]
+                "url": "https://ciandt.com/us/en-us/careers/open-positions"
             },
             {
                 "locator": generic.Generic(gupy_locator),
-                "url": URLS["Cesar"]
+                "url": "https://vagascesar.gupy.io"
             },
             {
                 "locator": generic.Generic(
                     kenoby_locator),
-                "url": URLS["LeroyMerlin"]
+                "url": "https://jobs.kenoby.com/leroymerlin"
             },
             {
                 "locator": generic.Generic(

@@ -28,8 +28,10 @@ def get_connection_string():
     return environ.get("DATABASE_STRING")
 
 
+engine = create_engine(get_connection_string())
+
+
 def initialize_table(database_string):
-    engine = create_engine(database_string)
     with engine.connect() as connection:
         message = "Creating table for positions"
         print(message)
@@ -67,7 +69,6 @@ def data_pre_processing_portuguese(corpus):
 
 def get_all_positions_from_database(database_string):
     query = f"select * from {TABLE_NAME}"
-    engine = create_engine(database_string)
     with engine.connect() as connection:
         positions = connection.execute(text(query)).all()
     return positions
@@ -92,7 +93,6 @@ def select_with_like(terms, table, column, condition="OR"):
 def search_positions_based_on_resume(database_string, condition, resume):
     resume_processed = data_pre_processing_portuguese(resume)
     query = select_with_like(resume_processed, TABLE_NAME, "description", condition)
-    engine = create_engine(database_string)
     with engine.connect() as connection:
         try:
             positions = connection.execute(text(query)).all()

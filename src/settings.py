@@ -13,9 +13,6 @@ LOGS_FILE = LOGS_FOLDER + "crawler.log"
 DATABASE_STRING_DEFAULT = "postgresql://postgres:postgresql@postgres/postgres"
 
 URLS = {
-    "Ciandt": "https://ciandt.com/us/en-us/careers/open-positions",
-    "Cesar": "https://vagascesar.gupy.io",
-    "LeroyMerlin": "https://jobs.kenoby.com/leroymerlin",
     "Dell": "https://carreiras.dell.com/search-jobs",
     "Sap": "https://jobs.sap.com/search/?q=&locationsearch=&locale=en_US",
     "Mars": "https://jobs.mars.com/search/?createNewAlert=false&q=&locationsearch=",
