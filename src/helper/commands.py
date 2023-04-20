@@ -10,7 +10,8 @@ from src.helper.helper import (
 from src.similarity.similarity import Similarity
 from src.driver.driver_factory import DriverFactory
 from src.exceptions.exceptions import CommandError
-from sqlalchemy import create_engine, text
+from sqlalchemy import text
+from src.helper.helper import engine
 
 
 nltk.download('stopwords')
@@ -26,7 +27,6 @@ def __finish_driver(chrome):
 
 
 def __save(database_string, url, description):
-    engine = create_engine(database_string, future=True)
     with engine.connect() as connection:
         msg = f"Saving data from '{url}'..."
         print(msg)
