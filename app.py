@@ -59,8 +59,8 @@ def __receiver(resume, condition):
 
     try:
         comparison = compare_by_db_string(environ.get("DATABASE_STRING"), resume, condition)
-    except Exception:
-        result = {"status": "failed", "message": "Unexpected error. Try again later."}
+    except Exception as error:
+        result = {"status": "failed", "message": f"Unexpected error. Try again later. {str(error)}"}
         return jsonify(result), 500
 
     if not comparison:

@@ -12,7 +12,7 @@ pip install -r ${BASE_DIR}/requirements.txt
 # change the chrome driver to version 94
 rm ${BASE_DIR}/src/resources/chromedriver
 mv ${BASE_DIR}/src/resources/chromedriver94 /src/resources/chromedriver
-mkdir ${BASE_DIR}/logs
+mkdir -p ${BASE_DIR}/logs
 echo "" > ${BASE_DIR}/logs/crawler.log
 # Configure crontab
 # CRON_FILE="${BASE_DIR}/utils/update-cron"

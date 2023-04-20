@@ -12,3 +12,4 @@ pkg_compare_cv.egg-info
 *.db
 .coverage
 htmlcov
+.tox
