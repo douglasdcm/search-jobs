@@ -28,6 +28,20 @@ def get_connection_string():
     return environ.get("DATABASE_STRING")
 
 
+def initialize_table(database_string):
+    engine = create_engine(database_string)
+    with engine.connect() as connection:
+        message = "Creating table for positions"
+        print(message)
+        info(message)
+        connection.execute(text(f"drop table if exists {TABLE_NAME}"))
+        connection.execute(text(
+            f"create table {TABLE_NAME} (url VARCHAR(255) NOT NULL, description VARCHAR(50000))"
+        ))
+        print("Initialization finished")
+        return True
+
+
 def data_pre_processing_portuguese(corpus):
     # remove html tags
     corpus = sub(r'<.*?>', ' ', str(corpus))

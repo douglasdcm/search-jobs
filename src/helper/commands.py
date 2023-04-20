@@ -4,7 +4,8 @@ from src.settings import TABLE_NAME
 from src.helper.helper import (
     data_pre_processing_portuguese,
     search_positions_based_on_resume,
-    get_connection_string
+    get_connection_string,
+    initialize_table
 )
 from src.similarity.similarity import Similarity
 from src.driver.driver_factory import DriverFactory
@@ -16,36 +17,15 @@ nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
 
-TABLE_NAME = "positions"
 
-
-# TODO move to utils
-def initialize_table_by_db_string(database_string):
-    engine = create_engine(database_string)
-    with engine.connect() as connection:
-        message = "Creating table for positions"
-        print(message)
-        info(message)
-        connection.execute(text(f"drop table if exists {TABLE_NAME}"))
-        connection.execute(text(
-            f"create table {TABLE_NAME} (url VARCHAR(255) NOT NULL, description VARCHAR(50000))"
-        ))
-        print("Initialization finished")
-        return True
-
-
-def install(db_name, db_type):
-    pass
-
-
-def _finish_driver(chrome):
+def __finish_driver(chrome):
     chrome.quit()
     msg = "Crawler finished."
     print(msg)
     info(msg)
 
 
-def _save(database_string, url, description):
+def __save(database_string, url, description):
     engine = create_engine(database_string, future=True)
     with engine.connect() as connection:
         msg = f"Saving data from '{url}'..."
@@ -58,7 +38,7 @@ def _save(database_string, url, description):
         connection.commit()
 
 
-def run_by_db_string(database_string, companies):
+def get_positions_data(database_string, companies):
     message = "Collecting data from positions"
     print(message)
     info(message)
@@ -76,26 +56,18 @@ def run_by_db_string(database_string, companies):
             company.set_driver(driver_)
             company.set_url(url)
             url, description = company.run()
-            _save(database_string, url, description)
+            __save(database_string, url, description)
         # The execution need to continue even in case of errors
         except Exception as error:
             message = f"Unexpected error occurred while getting position data. {str(error)}"
             info(message)
         finally:
-            _finish_driver(chrome)
+            __finish_driver(chrome)
     return True
 
 
-def run(database, driver, crawlers=None):
-    pass
-
-
-def sanity_check_by_db_string(database_string, companies):
-    return run_by_db_string(database_string, companies)
-
-
-def sanity_check(database, driver, crawlers):
-    pass
+def sanity_check(database_string, companies):
+    return get_positions_data(database_string, companies)
 
 
 def help_():
@@ -107,7 +79,7 @@ def help_():
     )
 
 
-def compare_by_db_string(database_string, resume, condition):
+def compare(database_string, resume, condition):
     """Returns a dictionary where the key is the positon description processes and the value is
     the similarity, like this
 
@@ -132,23 +104,11 @@ def compare_by_db_string(database_string, resume, condition):
     return result
 
 
-def compare(cv, db, condition):
-    pass
-
-
-def clear(db):
-    pass
-
-
-def overwrite_by_db_string(database_string, companies=None):
+def overwrite(database_string, companies=None):
     message = "Updating positions"
     print(message)
     info(message)
-    initialize_table_by_db_string(database_string)
-    run_by_db_string(database_string, companies)
+    initialize_table(database_string)
+    get_positions_data(database_string, companies)
     print("Update finished")
     return True
-
-
-def update(db, driver, crawlers=None):
-    pass

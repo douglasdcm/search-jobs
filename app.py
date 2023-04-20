@@ -3,12 +3,13 @@ from os import environ
 from sys import path
 from src.settings import ROOT_DIR
 from flask import Flask, render_template, request, jsonify
-from src.helper.commands import compare_by_db_string
+from src.helper.commands import compare, overwrite
 from src.helper.helper import load_web_content, get_connection_string
 from ast import literal_eval
 from dotenv import load_dotenv
 from logging import basicConfig, INFO
 from src.settings import ROOT_DIR, LOGS_FILE
+from src.crawler.company import Company
 
 
 basicConfig(
@@ -58,7 +59,7 @@ def __receiver(resume, condition):
     resume = (resume[:limit]) if len(resume) > limit else resume
 
     try:
-        comparison = compare_by_db_string(get_connection_string(), resume, condition)
+        comparison = compare(get_connection_string(), resume, condition)
     except Exception as error:
         if environ.get("DEBUG") == "on":
             result = {
@@ -74,6 +75,26 @@ def __receiver(resume, condition):
 
     result = {"status": "ok", "message": comparison}
     return jsonify(result), 200
+
+
+@app.route('/api/overwrite', methods=['POST'])
+def api_overwrite():
+    password = request.json.get('password')
+    if environ.get("PASSWORD") == password:
+        try:
+            overwrite(get_connection_string(), Company().get_all())
+            result = {"status": "ok", "message": "overwrite finished"}
+            return jsonify(result), 200
+        except Exception as error:
+            if environ.get("DEBUG") == "on":
+                result = {
+                    "status": "failed",
+                    "message": f"Unexpected error. Try again later. {str(error)}"}
+            else:
+                result = {"status": "failed", "message": f"Unexpected error. Try again later."}
+            return jsonify(result), 500
+    result = {"status": "failed", "message": "nothing to overwrite"}
+    return jsonify(result), 404
 
 
 @app.route('/api/receiver', methods=['POST'])
