@@ -15,7 +15,5 @@ coverage html
 echo "" > ./logs/crawler.log
 # enable the real crawlers
 sed -i 's/\"enabled\": False/\"enabled\": True/' src/crawler/factory.py
-# turn-off the debug mode
-sed -i 's/DEBUG \= True/DEBUG \= False/' src/settings.py
 echo "Pre-commit finished"
 

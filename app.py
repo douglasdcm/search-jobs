@@ -60,7 +60,12 @@ def __receiver(resume, condition):
     try:
         comparison = compare_by_db_string(environ.get("DATABASE_STRING"), resume, condition)
     except Exception as error:
-        result = {"status": "failed", "message": f"Unexpected error. Try again later. {str(error)}"}
+        if environ.get("DEBUG") == "on":
+            result = {
+                "status": "failed",
+                "message": f"Unexpected error. Try again later. {str(error)}"}
+        else:
+            result = {"status": "failed", "message": f"Unexpected error. Try again later."}
         return jsonify(result), 500
 
     if not comparison:
@@ -69,6 +74,9 @@ def __receiver(resume, condition):
 
     result = {"status": "ok", "message": comparison}
     return jsonify(result), 200
+
+
+@app.route
 
 
 @app.route('/api/receiver', methods=['POST'])
