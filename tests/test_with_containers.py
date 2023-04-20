@@ -1,6 +1,6 @@
 import app
 from src.settings import DRIVER_TYPE
-from src.helper.commands import install, update, compare, clear
+from src.helper.commands import compare
 from pytest import mark, fixture
 from src.crawler.company import Company
 

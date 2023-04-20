@@ -3,12 +3,12 @@ CLI function to run the crawlers, compare curriculum and manage the database.
 Try: 'python cli.py --help' for more information.
 """
 from logging import basicConfig, INFO
-from src.settings import ROOT_DIR, LOGS_FILE, RESOURCES_DIR, DATABASE_STRING_DEFAULT
+from src.settings import ROOT_DIR, LOGS_FILE, RESOURCES_DIR
 from sys import argv, path
 from src.helper.commands import (
-    sanity_check_by_db_string,
+    sanity_check,
     help_,
-    overwrite_by_db_string
+    overwrite
 )
 from src.crawler.company import Company
 from src.crawler.generic import Generic
@@ -39,14 +39,14 @@ def main(*args):
             if "--overwrite" in argumentos:
                 # Get data from real companies. Not covered by automated testes
                 # to avoid overload the real sites
-                return overwrite_by_db_string(
+                return overwrite(
                     get_connection_string(), Company().get_all())
             elif "--sanity-check" in argumentos:
                 companies_fake = [{
                     "locator": Generic("//a"),
                     "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
                 }]
-                return sanity_check_by_db_string(get_connection_string(), companies_fake)
+                return sanity_check(get_connection_string(), companies_fake)
             else:
                 print("Invalid command. Try cli.py --help ")
     except Exception as error:

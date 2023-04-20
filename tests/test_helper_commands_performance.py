@@ -1,4 +1,4 @@
-from src.helper.commands import compare, update
+from src.helper.commands import compare
 from tests.settings import DRIVER_TYPE
 from pytest import fixture, mark
 from src.crawler.generic import Generic

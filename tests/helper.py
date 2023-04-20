@@ -1,12 +1,12 @@
 from subprocess import PIPE, STDOUT, run
-from src.helper.commands import initialize_table_by_db_string
+from src.helper.commands import initialize_table
 from sqlalchemy import create_engine, text
 from tests.settings import DATABASE_STRING
 from src.helper.helper import data_pre_processing_portuguese
 
 
 def populate_database_with_desired_jobs(positions):
-    initialize_table_by_db_string(DATABASE_STRING)
+    initialize_table(DATABASE_STRING)
     engine = create_engine(DATABASE_STRING)
     with engine.connect() as connection:
         for position in positions:

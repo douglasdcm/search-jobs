@@ -1,9 +1,9 @@
 from src.helper.commands import (
     help_,
-    overwrite_by_db_string,
-    run_by_db_string,
-    compare_by_db_string,
-    sanity_check_by_db_string
+    overwrite,
+    get_positions_data,
+    compare,
+    sanity_check
 )
 from tests.settings import DATABASE_STRING
 from pytest import fixture
@@ -58,19 +58,19 @@ class TestHelperCommands:
         ]
         resume = "senior python pytest"
         expected = "basic_page"
-        overwrite_by_db_string(DATABASE_STRING, companies)
-        assert expected in str(compare_by_db_string(DATABASE_STRING, resume, condition="OR"))
+        overwrite(DATABASE_STRING, companies)
+        assert expected in str(compare(DATABASE_STRING, resume, condition="OR"))
 
     def test_run_by_db_string(self, get_companies):
-        assert run_by_db_string(
+        assert get_positions_data(
             database_string=DATABASE_STRING, companies=get_companies
         ) is True
 
     def test_overwrite_database_returns_true(self, get_companies):
-        assert overwrite_by_db_string(DATABASE_STRING, get_companies) is True
+        assert overwrite(DATABASE_STRING, get_companies) is True
 
     def test_sanity_check_works(self, setup_db, get_companies):
-        assert sanity_check_by_db_string(DATABASE_STRING, get_companies) is True
+        assert sanity_check(DATABASE_STRING, get_companies) is True
 
     def test_help_is_opened(self):
         actual = help_()
