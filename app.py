@@ -76,9 +76,6 @@ def __receiver(resume, condition):
     return jsonify(result), 200
 
 
-@app.route
-
-
 @app.route('/api/receiver', methods=['POST'])
 def api_receiver():
     message = request.json.get('message')

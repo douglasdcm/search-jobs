@@ -1,10 +1,16 @@
 .env
+cron_file
 sqlite
 env_crawler
 venv*
 htmlcov
+.tox
+.git
+__pycache__
+**/__pycache__
 *.log
 *.pyc
+.pytest_cache
 .coverage
 dist
 pkg_compare_cv.egg-info
@@ -12,6 +18,5 @@ pkg_compare_cv.egg-info
 *.db
 .coverage
 htmlcov
-.
 .vscode
-*/*/test*
+tests

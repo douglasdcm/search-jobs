@@ -1,1 +1,0 @@
-rm -fr venv* tests .vscode .github .pytest_cache htmlcov .coverage logs/*

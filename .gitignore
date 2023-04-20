@@ -13,3 +13,4 @@ pkg_compare_cv.egg-info
 .coverage
 htmlcov
 .tox
+.pytest_cache
