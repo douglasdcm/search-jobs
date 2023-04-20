@@ -6,14 +6,11 @@ RESOURCES_DIR = ROOT_DIR + "resources/"
 DRIVER_DIR = RESOURCES_DIR + "chromedriver94"
 LOGS_FOLDER = "/webapp/logs/"
 
-DEBUG = False
 TIMEOUT = 30
-DB_NAME = "scaazduy"
 DRIVER_TYPE = "chrome"
 TABLE_NAME = "positions"
-CAMPOS = "url, description"
-CAMPOS_DIFINICAO = """url VARCHAR(255) NOT NULL, description VARCHAR(50000)"""
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
+DATABASE_STRING_DEFAULT = "postgresql://postgres:postgresql@postgres/postgres"
 
 URLS = {
     "Ciandt": "https://ciandt.com/us/en-us/careers/open-positions",

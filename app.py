@@ -4,7 +4,7 @@ from sys import path
 from src.settings import ROOT_DIR
 from flask import Flask, render_template, request, jsonify
 from src.helper.commands import compare_by_db_string
-from src.helper.helper import load_web_content
+from src.helper.helper import load_web_content, get_connection_string
 from ast import literal_eval
 from dotenv import load_dotenv
 from logging import basicConfig, INFO
@@ -58,9 +58,14 @@ def __receiver(resume, condition):
     resume = (resume[:limit]) if len(resume) > limit else resume
 
     try:
-        comparison = compare_by_db_string(environ.get("DATABASE_STRING"), resume, condition)
+        comparison = compare_by_db_string(get_connection_string(), resume, condition)
     except Exception as error:
-        result = {"status": "failed", "message": f"Unexpected error. Try again later. {str(error)}"}
+        if environ.get("DEBUG") == "on":
+            result = {
+                "status": "failed",
+                "message": f"Unexpected error. Try again later. {str(error)}"}
+        else:
+            result = {"status": "failed", "message": f"Unexpected error. Try again later."}
         return jsonify(result), 500
 
     if not comparison:

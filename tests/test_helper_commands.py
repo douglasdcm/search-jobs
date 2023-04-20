@@ -12,7 +12,7 @@ from os import getcwd
 from pytest import mark
 
 
-@mark.integration
+@mark.functional
 class TestHelperCommands:
 
     @fixture

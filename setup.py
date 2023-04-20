@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 
-setup (
+setup(
     name='vagaspramim',
     version='1.0',
     description='Python Distribution Utilities',

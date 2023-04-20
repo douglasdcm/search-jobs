@@ -6,15 +6,26 @@ from unidecode import unidecode
 from nltk.stem import RSLPStemmer
 from flask import url_for
 from sqlalchemy import create_engine, text
-from src.settings import TABLE_NAME
+from src.settings import TABLE_NAME, DATABASE_STRING_DEFAULT
 from src.exceptions.exceptions import DatabaseError
 from logging import info
+from dotenv import load_dotenv
+from os import environ
 
 
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
 nltk.download('rslp')
+
+
+load_dotenv()
+
+
+def get_connection_string():
+    if not environ.get("DATABASE_STRING"):
+        return DATABASE_STRING_DEFAULT
+    return environ.get("DATABASE_STRING")
 
 
 def data_pre_processing_portuguese(corpus):

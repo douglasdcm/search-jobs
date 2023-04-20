@@ -2,7 +2,7 @@ from src.helper.helper import data_pre_processing_portuguese, steam_data
 from pytest import mark
 
 
-@mark.unit
+@mark.functional
 class TestUnitHelper:
 
     testdata = [

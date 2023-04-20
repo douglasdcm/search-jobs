@@ -5,7 +5,7 @@ from tests.settings import BASE_URL
 from ast import literal_eval
 
 
-@mark.api
+@mark.functional
 class TestApiCompare:
 
     def decode_reponse_in_dict(self, response):

@@ -4,7 +4,7 @@ from pytest import mark, raises
 from src.exceptions.exceptions import DatabaseError
 
 
-@mark.integration
+@mark.functional
 class TestSearchPostionsBasedOnResume:
 
     def test_search_positions_based_on_resume_with_large_search(self, setup_db):

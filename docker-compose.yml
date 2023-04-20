@@ -6,7 +6,7 @@ services:
     container_name: vagas-pra-mim
     volumes:
       - /dev/shm:/dev/shm
-      - .:/webapp
+      - ./vol:/webapp/vol
     ports:
       - 5000:5001
     depends_on:

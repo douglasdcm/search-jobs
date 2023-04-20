@@ -1,3 +1,2 @@
-# build the image manually and start the containers
+# build the image manually
 docker build -t vagas-pra-mim .
-# docker compose up -d

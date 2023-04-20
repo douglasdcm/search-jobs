@@ -5,7 +5,7 @@ from src.crawler.generic import Generic
 from os import getcwd
 
 
-@mark.performance
+@mark.nonfunctional
 class TestPerformanceCommands:
 
     @fixture

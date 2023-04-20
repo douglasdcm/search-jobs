@@ -1,9 +1,8 @@
 from tests.helper import exec_command
 from pytest import mark
-from pytest import raises
 
 
-@mark.feature
+@mark.functional
 class TestCliCommands:
 
     entry_point = "cli.py"

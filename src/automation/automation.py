@@ -1,9 +1,8 @@
 from logging import info
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support import wait
-from src.settings import DEBUG, TIMEOUT
+from src.settings import TIMEOUT
 from src.exceptions.exceptions import WebDriverError
+from os import environ
 
 
 class BaseObjects:
@@ -55,7 +54,7 @@ class BaseObjects:
             result = self._get_element(by_type, locator).text
         else:
             result = element.text
-        if DEBUG:
+        if environ.get("DEBUG") == "on":
             info("Get text '{}' of element".format(result))
         return result
 
