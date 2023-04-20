@@ -1,0 +1,17 @@
+.env
+sqlite
+env_crawler
+venv*
+htmlcov
+*.log
+*.pyc
+.coverage
+dist
+pkg_compare_cv.egg-info
+*.egg-info
+*.db
+.coverage
+htmlcov
+.
+.vscode
+*/*/test*

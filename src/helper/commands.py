@@ -1,14 +1,15 @@
 import nltk
 from logging import info
-
 from src.settings import TABLE_NAME
-from src.helper.helper import data_pre_processing_portuguese, search_positions_based_on_resume
+from src.helper.helper import (
+    data_pre_processing_portuguese,
+    search_positions_based_on_resume,
+    get_connection_string
+)
 from src.similarity.similarity import Similarity
 from src.driver.driver_factory import DriverFactory
-from src.exceptions.exceptions import DatabaseError, CommandError
+from src.exceptions.exceptions import CommandError
 from sqlalchemy import create_engine, text
-from os import environ
-
 
 
 nltk.download('stopwords')
@@ -61,7 +62,7 @@ def run_by_db_string(database_string, companies):
     message = "Collecting data from positions"
     print(message)
     info(message)
-    if not environ.get("DATABASE_STRING"):
+    if not get_connection_string():
         return False
     for company in companies:
         chrome = DriverFactory().get_driver()

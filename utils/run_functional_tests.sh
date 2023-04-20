@@ -1,3 +1,3 @@
-coverage run --include='app.py' --include='cli.py' --source='src' -m pytest -vvv -s -m "not performance and not robustness"
+coverage run --include='app.py' --include='cli.py' --source='src' -m pytest -vvv -s -m "functional"
 coverage report
 coverage html

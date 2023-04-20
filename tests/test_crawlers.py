@@ -4,7 +4,7 @@ import src.automation.automation as auto
 from pytest import mark
 
 
-@mark.integration
+@mark.functional
 class TestCrawler:
     def test_all_crawler_types_run_succesfully(self, setup_db, monkeypatch):
         monkeypatch.setattr(auto.wait, "WebDriverWait", Fake_WebDriverWait)

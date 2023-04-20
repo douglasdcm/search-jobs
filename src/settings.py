@@ -10,6 +10,7 @@ TIMEOUT = 30
 DRIVER_TYPE = "chrome"
 TABLE_NAME = "positions"
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
+DATABASE_STRING_DEFAULT = "postgresql://postgres:postgresql@postgres/postgres"
 
 URLS = {
     "Ciandt": "https://ciandt.com/us/en-us/careers/open-positions",

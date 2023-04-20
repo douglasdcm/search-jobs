@@ -5,7 +5,7 @@ from pytest import mark, fixture
 from src.crawler.company import Company
 
 
-@mark.end_to_end
+@mark.functional
 class TestEndToEnd:
 
     @fixture
