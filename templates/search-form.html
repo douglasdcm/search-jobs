@@ -3,7 +3,16 @@
     <form action="/receiver" method="post">
         <div class="form-group row">
             <div class="col-md-10">
-                <textarea name="message" id="message_field" class="form-control" rows="5" id="comment" placeholder="Cole o conteúdo do seu currículo aqui e pesquise as vagas que mais combinam com você."></textarea>
+                <textarea
+                    name="message"
+                    id="message_field"
+                    class="form-control"
+                    rows="5"
+                    id="comment"
+                    placeholder="Cole o conteúdo do seu currículo aqui e pesquise as vagas que mais combinam com você."
+                >
+                    {{ resume }}
+                </textarea>
             </div>
             <br>
             <div class="col-md-1">
@@ -11,7 +20,7 @@
                     <input class="btn btn-primary" id="send_message" type="submit" value="Pesquisar">
                 </div>
                 <div class="radio col-md-1 text-left">
-                    <input type="radio" id="cond_or" name="condition" value="OR" checked="checked" />
+                    <input type="radio" id="cond_or" name="condition" value="OR" checked=checked />
                     <label for="cond_or">extensa</label>
                     <br>
                     <input type="radio" id="cond_and" name="condition" value="AND">

@@ -106,13 +106,13 @@ def api_receiver():
 
 @app.route('/receiver', methods=['POST'])
 def worker():
-    message = request.form.get('message')
+    resume = request.form.get('message')
     condition = request.form.get('condition')
 
     comparison = literal_eval(
-        __receiver(message, condition)[0].response[0].decode('utf-8'))
+        __receiver(resume, condition)[0].response[0].decode('utf-8'))
 
-    return render_template('search-result.html', comparison=comparison)
+    return render_template('search-result.html', comparison=comparison, resume=resume)
 
 
 if __name__ == '__main__':
