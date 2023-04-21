@@ -30,12 +30,12 @@ def get_positions_data(database_string, companies):
     if not Connection.get_database_connection():
         return False
     for company in companies:
-        message = f"Collecting data of company '{company}'"
-        print(message)
-        info(message)
         chrome = DriverFactory().get_driver()
         try:
             url = company["url"]
+            message = f"Collecting data of company '{url}'"
+            print(message)
+            info(message)
             message = "Starting crawler for '{}'...".format(url)
             print(message)
             info(message)
