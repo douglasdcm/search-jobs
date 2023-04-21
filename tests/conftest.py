@@ -2,6 +2,8 @@
 from pytest import fixture
 from tests.helper import exec_command
 from tests.helper import populate_database_with_thecnical_jobs
+from src.helper.helper import initialize_table
+from tests.settings import DATABASE_STRING
 
 
 @fixture

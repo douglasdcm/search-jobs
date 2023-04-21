@@ -5,7 +5,7 @@ from src.helper.helper import get_all_positions_from_database
 from tests.settings import DATABASE_STRING
 
 
-@mark.manual
+@mark.nonfunctional
 class TestManualVerification:
     """Tests used for support to manual validation"""
 

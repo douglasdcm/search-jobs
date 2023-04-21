@@ -4,14 +4,14 @@ from src.settings import TABLE_NAME
 from src.helper.helper import (
     data_pre_processing_portuguese,
     search_positions_based_on_resume,
-    get_connection_string,
+    Connection,
     initialize_table
 )
 from src.similarity.similarity import Similarity
 from src.driver.driver_factory import DriverFactory
 from src.exceptions.exceptions import CommandError
 from sqlalchemy import text
-from src.helper.helper import engine
+from os import environ
 
 
 nltk.download('stopwords')
@@ -26,25 +26,13 @@ def __finish_driver(chrome):
     info(msg)
 
 
-def __save(database_string, url, description):
-    with engine.connect() as connection:
-        msg = f"Saving data from '{url}'..."
-        print(msg)
-        info(msg)
-        description = data_pre_processing_portuguese(description)
-        connection.execute(text(
-            f"insert into {TABLE_NAME} (url, description) values ('{url}', '{description}')"
-        ))
-        connection.commit()
-
-
 def get_positions_data(database_string, companies):
-    message = "Collecting data from positions"
-    print(message)
-    info(message)
-    if not get_connection_string():
+    if not Connection.get_database_connection():
         return False
     for company in companies:
+        message = f"Collecting data of company '{company}'"
+        print(message)
+        info(message)
         chrome = DriverFactory().get_driver()
         try:
             url = company["url"]
@@ -52,15 +40,16 @@ def get_positions_data(database_string, companies):
             print(message)
             info(message)
             driver_ = chrome.start(url)
-            company = company["locator"]
-            company.set_driver(driver_)
-            company.set_url(url)
-            url, description = company.run()
-            __save(database_string, url, description)
+            crawler = company["crawler"]
+            crawler.set_driver(driver_)
+            crawler.set_url(url)
+            crawler.run()
         # The execution need to continue even in case of errors
         except Exception as error:
             message = f"Unexpected error occurred while getting position data. {str(error)}"
             info(message)
+            if environ.get("DEBUG") == "on":
+                raise CommandError(str(error))
         finally:
             __finish_driver(chrome)
     return True

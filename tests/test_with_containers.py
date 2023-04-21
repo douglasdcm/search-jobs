@@ -1,6 +1,5 @@
 import app
-from src.settings import DRIVER_TYPE
-from src.helper.commands import compare
+from src.helper.commands import compare, overwrite
 from pytest import mark, fixture
 from src.crawler.company import Company
 
@@ -29,7 +28,7 @@ class TestEndToEnd:
         setup
         dbf = DbFactory(DB_TYPE["p"])
         db = dbf.get_db(DB_NAME)
-        update(db, DRIVER_TYPE, Company().get_all())
+        overwrite(db, Company().get_all())
         assert "dog" in compare("dog", db, "or")
 
     @mark.skip("not working")
@@ -37,5 +36,5 @@ class TestEndToEnd:
         install(DB_NAME, DB_TYPE["p"])
         dbf = DbFactory(DB_TYPE["p"])
         db = dbf.get_db(DB_NAME)
-        update(db, DRIVER_TYPE, Company().get_all())
+        overwrite(db, Company().get_all())
         assert compare("blablabla", db, "or") is None

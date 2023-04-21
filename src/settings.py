@@ -7,7 +7,6 @@ DRIVER_DIR = RESOURCES_DIR + "chromedriver94"
 LOGS_FOLDER = "/webapp/logs/"
 
 TIMEOUT = 30
-DRIVER_TYPE = "chrome"
 TABLE_NAME = "positions"
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
 DATABASE_STRING_DEFAULT = "postgresql://postgres:postgresql@postgres/postgres"

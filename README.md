@@ -29,7 +29,24 @@ Agora você pode mudar a o código e para testar, basta fazer a build da imagem 
 # Rodando os testes
 - instale a versão correta do Chrome
 <br><code>sudo apt-get install ./src/resources/google-chrome-stable_current_amd64.deb</code>
-- ou subistiua o arquivo em ./src/resources/chrome para a mesma versão do Chrome instalado em sua máquina. Será preciso verificar a sua versão e baixar o driver correto https://chromedriver.chromium.org/downloads 
+- ou subistiua o arquivo em ./src/resources/chrome para a mesma versão do Chrome instalado em sua máquina. Será preciso verificar a sua versão e baixar o driver correto https://chromedriver.chromium.org/downloads
+- Inicialize os containers manualmente (a isse 139 é para melhorar isso)
+<br><code>docker compose up -d</code>
+- Rode os testes.
+Atenção: os teste não funcionais demoram mais de uma hora para terminar. Melhor deixar pra rodar quando necessário
+<br><code>python -m pytest -m functional</code><br>
+ou com tox
+<br><code>tox</code><br>
+ou com os utilitários
+<br><code>./utils/run_functional.sh</code>
+
+# Debug
+- Ver núemro de conexões no banco de dados
+<br><code>select count(*) from pg_stat_activity;</code>
+- Conectar no banco de dados
+<br><code>docker exec -it postgres psql -U postgres</code>
+- Logs da aplicação
+<br><code>tail -f /webapp/logs/crawlers.log</code>
 
 # Adicionando empresas
 Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos minutos você consegue fazer isso.

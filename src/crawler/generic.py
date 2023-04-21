@@ -1,6 +1,8 @@
 from logging import error as log_info
 from src.pages.generic.positions import Positions
 from src.exceptions.exceptions import WebDriverError, CrawlerError
+from os import environ
+from src.helper.helper import save_description_to_database, Connection
 
 
 class Generic:
@@ -44,12 +46,19 @@ class Generic:
     def _get_info_from_links(self, links):
         for link in links:
             try:
-                print("Collecting data from '{}'".format(link))
+                print(f"Collecting data from postion '{link}'")
                 self._positions.go_to_page(link)
-                return link, self._positions.get_description()
+                save_description_to_database(
+                    Connection.get_connection_string(),
+                    link,
+                    self._positions.get_description()
+                )
             except WebDriverError as error:
                 message = f"Skipping process. Failed to get data from {link}"
                 print(message)
                 log_info(message)
+                if environ.get("DEBUG") == "on":
+                    raise CrawlerError(str(error))
             except Exception as error:
                 raise CrawlerError(str(error))
+        return True
