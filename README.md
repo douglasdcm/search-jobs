@@ -1,52 +1,76 @@
 # Introdução
 Este projeto utiliza crawlers para buscar por vagas em diferentes empresas e lhe permite comparar o seu currículo com essas vagas para achar as que são mais mais similares e relevantes para você.
+
 # Começando
-Para usar o projeto você vai precisar instalar o Docker e Docker Compose, fazer o build da imagem Docker e subir os containers.
-Mas antes, vá ao arquivo ./src/crawler/factory.py e mude a tag "enabled" de qualquer uma das empresas para True.<br>
-Faça o build da imagem. Você pode usar o utilitário na pasta ./utils
-<br><code>$./utils/build_image.sh</code><br>
+Para usar o projeto você vai precisar instalar o Docker e Docker Compose, fazer o build da imagem Docker e subir os containers. Você pode usar o utilitário na pasta ./utils
+```
+./utils/build_image.sh
+```
 Após finalizar o build, suba o container:
-<br><code>$sudo docker compose up -d</code><br>
-Depois, rode a request abaixo para polular o seu banco de dados:
-<br><code>$curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'https://localhost:5000/update'</code><br>
-As vagas da empresa são baixadas para o seu banco de dados.
+```
+sudo docker compose up -d
+```
+Mude o arquivo ".env_template" para ".env".
+Depois, rode o comando abaixo para polular o seu banco de dados:
+```
+python cli.py --overwrite
+
+# veja mais detalhes com "python cli.py -h"
+```
+As vagas das empresas serão baixadas para o seu banco de dados.
 Acesse o link http://localhost:5000 e cole o conteúdo do seu currículo. As vagas mais parecidas serão exibidas.
-<br><br>
-![alt text](https://i.ibb.co/HH2cJZk/web-page.png)
 
 # Setup
 Para contribuir com o projeto, ative seu ambiente virtual e instale as dependências:
-<br><code>python3 -m venv env</code>
-<br><code>source env/bin/activate</code>
-<br><code>pip install -r requirements.txt</code>
-<br><code>sudo mkdir -p /webapp/logs</code>
-<br><code>sudo cp ./src/resources/basic_page.html /webapp</code><br>
-<br><code>chmod -R 777 /webapp</code>
-<br><code>sh ./utils/make_dev.sh</code><br>
-<br><code>sh ./tests/utils/start_containers.sh</code><br>
-Agora você pode mudar a o código e para testar, basta fazer a build da imagem e subir o container novamente.
+```
+python3.6 -m venv env
+source venv/bin/activate
+pip install -r requirements.txt
+pip install -r test-requirements.txt
+sudo mkdir -p /webapp/logs
+sudo cp ./src/resources/basic_page.html /webapp
+chmod -R 777 /webapp
+docker compose up -d
+```
+Agora você pode mudar a o código à vontade.
 
 # Rodando os testes
 - instale a versão correta do Chrome
-<br><code>sudo apt-get install ./src/resources/google-chrome-stable_current_amd64.deb</code>
+```
+sudo apt-get install ./src/resources/google-chrome-stable_current_amd64.deb
+```
 - ou subistiua o arquivo em ./src/resources/chrome para a mesma versão do Chrome instalado em sua máquina. Será preciso verificar a sua versão e baixar o driver correto https://chromedriver.chromium.org/downloads
 - Inicialize os containers manualmente (a isse 139 é para melhorar isso)
-<br><code>docker compose up -d</code>
+```
+docker compose up -d
+```
 - Rode os testes.
 Atenção: os teste não funcionais demoram mais de uma hora para terminar. Melhor deixar pra rodar quando necessário
-<br><code>python -m pytest -m functional</code><br>
+```
+python -m pytest -m functional
+```
 ou com tox
-<br><code>tox</code><br>
+```
+tox
+```
 ou com os utilitários
-<br><code>./utils/run_functional.sh</code>
+```
+./utils/run_functional.sh
+```
 
 # Debug
 - Ver núemro de conexões no banco de dados
-<br><code>select count(*) from pg_stat_activity;</code>
+```
+select count(*) from pg_stat_activity;
+```
 - Conectar no banco de dados
-<br><code>docker exec -it postgres psql -U postgres</code>
+```
+docker exec -it postgres psql -U postgres
+```
 - Logs da aplicação
-<br><code>tail -f /webapp/logs/crawlers.log</code>
+```
+tail -f /webapp/logs/crawlers.log
+```
 
 # Adicionando empresas
 Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos minutos você consegue fazer isso.
@@ -55,8 +79,11 @@ Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos min
 - Adicione a url de vagas da empresa
 - Suba o container novamente
 - Rode o comando:
-<br><code>curl -XPOST -H "Content-type: application/json" -d '{"hash": "dev"}' 'https://localhost:5000/update'</code><br>
-Isso irá rodar o crawler que vai pegar as informações de vagas das empresas e salvar no banco de dados. Depois disso você pode comparar o currículo com as novas vagas<br><br>
+```
+python cli.py --ovewrite
+```
+Isso irá rodar o crawler que vai pegar as informações de vagas das empresas e salvar no banco de dados. Depois disso você pode comparar o currículo com as novas vagas
+
 
 # Contribuindo
 Ajude este projeto a crescer adicionando novos crawlers. Que tal começar pelas empresas GPTW do Brasil de 2020? https://conteudo.gptw.com.br/150-melhores-2020.<br>

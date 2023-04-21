@@ -131,6 +131,12 @@ def steam_data(text):
 def load_web_content():
     return [
         {
+            "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            "link": "https://github.com/douglasdcm/crawler_of_positions",
+            "caption": "Código fonte",
+            "description": "Ajude este projeto a crescer. Pull requests são bem-vindas. Para mudanças grandes crie uma issue para discutirmos o que está sendo modificado. Adicione os testes apropriados. Dê uma estrelinha se você gostou deste projeto :)",
+        },
+        {
             "image": "https://miro.medium.com/v2/resize:fit:640/format:webp/1*jLSxNQvNqsYr02VB_wr96A.jpeg",
             "link": "https://medium.com/@douglas.dcm/playing-with-pyscript-postgres-and-k8s-55690f0cd4da",
             "caption": "Playing with PyScript, Postgres and K8S",
