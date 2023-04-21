@@ -19,17 +19,17 @@ class TestHelperCommands:
     def get_crashed_crawlers(self):
         return [
             {
-                "locator": Generic("//a"),
+                "crawler": Generic("//a"),
                 "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
                 "enabled": True
             },
             {
-                "locator": Generic("//a"),
+                "crawler": Generic("//a"),
                 "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
                 "enabled": True
             },
             {
-                "locator": Generic("//a"),
+                "crawler": Generic("//a"),
                 "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
                 "enabled": True
             }]
@@ -45,14 +45,36 @@ class TestHelperCommands:
     @fixture
     def get_companies(self):
         return [{
-            "locator": Generic("//a"),
+            "crawler": Generic("//a"),
             "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
         }]
+
+
+    def test_update_get_data_from_many_links(self):
+        companies = [
+            {
+                "crawler": Generic("//a"),
+                "url": "file:///" + getcwd() + "/tests/resources/p_many_links.html#",
+            }
+        ]
+        assert overwrite(DATABASE_STRING, companies) is True
+
+    def test_compare_runs_many_times(self):
+        crawlers = [
+            {
+                "crawler": Generic("//a"),
+                "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+            }]
+        resume = "senior python pytest"
+        expected = "basic_page"
+        overwrite(DATABASE_STRING, crawlers)
+        for _ in range(10):
+            assert expected in str(compare(DATABASE_STRING, resume, condition="OR"))
 
     def test_compare_runs_list_of_links_ranked_by_similarity_using_or_condition(self):
         companies = [
             {
-                "locator": Generic("//a"),
+                "crawler": Generic("//a"),
                 "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
             }
         ]

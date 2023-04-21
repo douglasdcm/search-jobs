@@ -1,6 +1,6 @@
 import app
 from json import dumps
-from pytest import fixture, mark
+from pytest import mark
 from tests.settings import BASE_URL
 from ast import literal_eval
 

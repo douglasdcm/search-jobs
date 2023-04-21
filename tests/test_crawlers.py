@@ -8,7 +8,6 @@ from pytest import mark
 class TestCrawler:
     def test_all_crawler_types_run_succesfully(self, setup_db, monkeypatch):
         monkeypatch.setattr(auto.wait, "WebDriverWait", Fake_WebDriverWait)
-        expected = ('href', ' text_1 text_1')
         crawler = Generic("any_locator")
         crawler.set_driver(FakeDriver())
-        assert crawler.run() == expected
+        assert crawler.run() is True

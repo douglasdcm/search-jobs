@@ -14,7 +14,7 @@ from src.crawler.company import Company
 from src.crawler.generic import Generic
 from os import getcwd, system
 from dotenv import load_dotenv
-from src.helper.helper import get_connection_string
+from src.helper.helper import Connection
 
 
 load_dotenv()  # take environment variables from .env.
@@ -40,13 +40,13 @@ def main(*args):
                 # Get data from real companies. Not covered by automated testes
                 # to avoid overload the real sites
                 return overwrite(
-                    get_connection_string(), Company().get_all())
+                    Connection.get_connection_string(), Company().get_all())
             elif "--sanity-check" in argumentos:
                 companies_fake = [{
-                    "locator": Generic("//a"),
+                    "crawler": Generic("//a"),
                     "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
                 }]
-                return sanity_check(get_connection_string(), companies_fake)
+                return sanity_check(Connection.get_connection_string(), companies_fake)
             else:
                 print("Invalid command. Try cli.py --help ")
     except Exception as error:

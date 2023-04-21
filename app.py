@@ -4,7 +4,7 @@ from sys import path
 from src.settings import ROOT_DIR
 from flask import Flask, render_template, request, jsonify
 from src.helper.commands import compare, overwrite
-from src.helper.helper import load_web_content, get_connection_string
+from src.helper.helper import load_web_content, Connection
 from ast import literal_eval
 from dotenv import load_dotenv
 from logging import basicConfig, INFO
@@ -59,7 +59,7 @@ def __receiver(resume, condition):
     resume = (resume[:limit]) if len(resume) > limit else resume
 
     try:
-        comparison = compare(get_connection_string(), resume, condition)
+        comparison = compare(Connection.get_connection_string(), resume, condition)
     except Exception as error:
         if environ.get("DEBUG") == "on":
             result = {
@@ -82,7 +82,7 @@ def api_overwrite():
     password = request.json.get('password')
     if environ.get("PASSWORD") == password:
         try:
-            overwrite(get_connection_string(), Company().get_all())
+            overwrite(Connection.get_connection_string(), Company().get_all())
             result = {"status": "ok", "message": "overwrite finished"}
             return jsonify(result), 200
         except Exception as error:

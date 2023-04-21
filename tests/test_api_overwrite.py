@@ -21,7 +21,7 @@ class TestApiOverwrite:
         assert response.status_code == 404
 
 
-    # @mark.skip("treggering crawler against real sites. need to mock the company pages")
+    @mark.skip("treggering crawler against real sites. need to mock the company pages")
     def test_overwrite_databse_if_correct_password(self):
         password = "anypassword"
         payload = dumps({
