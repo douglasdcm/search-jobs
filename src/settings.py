@@ -6,7 +6,7 @@ RESOURCES_DIR = ROOT_DIR + "resources/"
 DRIVER_DIR = RESOURCES_DIR + "chromedriver94"
 LOGS_FOLDER = "/webapp/logs/"
 
-TIMEOUT = 30
+TIMEOUT = 120
 TABLE_NAME = "positions"
 LOGS_FILE = LOGS_FOLDER + "crawler.log"
 DATABASE_STRING_DEFAULT = "postgresql://postgres:postgresql@postgres/postgres"
@@ -16,9 +16,6 @@ URLS = {
     "Sap": "https://jobs.sap.com/search/?q=&locationsearch=&locale=en_US",
     "Mars": "https://jobs.mars.com/search/?createNewAlert=false&q=&locationsearch=",
     "Sabin": "https://jobs.kenoby.com/sabin-site",
-    "Accor": "https://careers.accor.com/global/en/opportunity",
-    "AccorAdm": "https://careers.accor.com/global/en/c/administration-support-jobs",
-    "AccorBus": "https://careers.accor.com/global/en/c/business-development-jobs",
     "AccorCor": "https://careers.accor.com/global/en/c/corporate-social-responsibility-jobs",
     "AccorCul": "https://careers.accor.com/global/en/c/culinary-jobs",
     "AccorDes": "https://careers.accor.com/global/en/c/design-technical-services-jobs",
@@ -89,13 +86,11 @@ URLS = {
     "ExpertiseGp": "https://jobs.quickin.io/expertisegp/jobs",
     "ClearSale": "https://jobs.kenoby.com/clearsale/",
     "Coats": "https://rbcoats.avature.net/careers/SearchJobs/?3_47_3=898",
-    "CopaEnergia": "https://trabalheconosco.vagas.com.br/copa-energia/oportunidades",
     "GrupoTrigo": "https://grupotrigo.gupy.io/",
     "AllTests": "http://4alltests.com.br/vagas",
     "Eurofarma": "https://eurofarma.gupy.io/",
     "GrupoSaga": "https://jobs.solides.com/gruposaga#",
     "HospitalEdmVasc": "https://bradesco.csod.com/ux/ats/careersite/1/home?c=bradesco",
-    "Hyundai": "https://trabalheconosco.vagas.com.br/hyundai/oportunidades",
     "IBM": "https://www.ibm.com/br-pt/employment/",
     "IcatuSeguros": "https://trabalheconosco.vagas.com.br/icatuseguros",
     "LibertySeguros": "https://trabalheconosco.vagas.com.br/libertyseguros/oportunidades",
@@ -119,16 +114,11 @@ URLS = {
     "Volvo": "https://www.volvogroup.com/br/careers/job-openings.html#page=1&countries=Brazil",
     "Wiz": "https://jobs.kenoby.com/wiz",
     "Microsoft": "https://careers.microsoft.com/us/en/search-results?keywords=brazil&_ga=2.18086970.243575399.1540493310-1941477767.1529592176&rt=professional",
-    "HiltonHotel": "https://jobs.hilton.com/us/ptbr/search-results?keywords=brazil",
     "Schmersal": "https://trabalheconosco.vagas.com.br/schmersalbrasil",
     "Bistrol": "https://careers.bms.com/jobs?location=Brazil&woe=12&stretchUnit=MILES&stretch=0&sortBy=distance_from&page=1",
     "ICherry": "https://jobs.kenoby.com/i-cherry",
     "Mirum": "https://jobs.kenoby.com/mirum",
     "Dll": "https://www.workingatdllgroup.com/en/Vacancies?el=&co=Brazil&wf=",
-    "Ebanx": "https://boards.greenhouse.io/ebanx",
-    "Invision": "https://boards.greenhouse.io/invision",
-    "Harrys": "https://boards.greenhouse.io/harrys",
-    "DonorSchoose": "https://boards.greenhouse.io/donorschoose",
     "Lift": "https://boards.greenhouse.io/lift",
     "TripAdvisor": "https://boards.greenhouse.io/tripadvisor",
     "WillowTree": "https://boards.greenhouse.io/willowtree",
@@ -138,23 +128,6 @@ URLS = {
     "KeepTruckin": "https://boards.greenhouse.io/KeepTruckin",
     "Checkr": "https://boards.greenhouse.io/Checkr",
     "Nutrabolt": "https://boards.greenhouse.io/Nutrabolt",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
-    # "xxxx": "xxxx",
 }
 
 

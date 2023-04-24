@@ -10,8 +10,8 @@ class Company():
                 informs if it is enable (True). If enabled, the crawler will be executed by the
                 server
         """
-        gupy_locator = '//a[@class="job-list__item"]'
-        kenoby_locator = '//div[@class="positions"]//div[@class="container"]//a'
+        gupy_locator = '//a[@data-testid="job-list__listitem-href"]'
+        kenoby_locator = '//a[contains(@class,"h-full")]'
         arcor_locator = '//div[@class="content-block"]//a[@class="au-target"]'
         trab_conosco_locator = '//a[contains(@class,"job-box")]'
         hotel_hilton_locator = '//span[@role="heading"]//a[contains(@class,"au-target")]'
@@ -287,7 +287,7 @@ class Company():
             },
             {
                 "crawler": generic.Generic(trab_conosco_locator),
-                "url": URLS["CopaEnergia"]
+                "url": "https://trabalheconosco.vagas.com.br/copa-energia/oportunidades"
             },
             {
                 "crawler": generic.Generic(gupy_locator),
@@ -300,11 +300,11 @@ class Company():
             },
             {
                 "crawler": generic.Generic(arcor_locator),
-                "url": URLS["AccorAdm"]
+                "url": "https://careers.accor.com/global/en/c/administration-support-jobs"
             },
             {
                 "crawler": generic.Generic(arcor_locator),
-                "url": URLS["AccorBus"]
+                "url": "https://careers.accor.com/global/en/c/business-development-jobs"
             },
             {
                 "crawler": generic.Generic(arcor_locator),
@@ -394,7 +394,7 @@ class Company():
             },
             {
                 "crawler": generic.Generic(trab_conosco_locator),
-                "url": URLS["Hyundai"]
+                "url": "https://trabalheconosco.vagas.com.br/hyundai/oportunidades"
             },
             {
                 "crawler": generic.Generic(
@@ -492,7 +492,7 @@ class Company():
             },
             {
                 "crawler": generic.Generic(hotel_hilton_locator),
-                "url": URLS["HiltonHotel"]
+                "url": "https://jobs.hilton.com/us/ptbr/search-results?keywords=brazil"
             },
             {
                 "crawler": generic.Generic(trab_conosco_locator),
@@ -516,19 +516,19 @@ class Company():
             },
             {
                 "crawler": generic.Generic(green_house_locator),
-                "url": URLS["Ebanx"]
+                "url": "https://boards.greenhouse.io/ebanx"
             },
             {
                 "crawler": generic.Generic(green_house_locator),
-                "url": URLS["Invision"]
+                "url": "https://boards.greenhouse.io/invision"
             },
             {
                 "crawler": generic.Generic(green_house_locator),
-                "url": URLS["Harrys"]
+                "url": "https://boards.greenhouse.io/harrys"
             },
             {
                 "crawler": generic.Generic(green_house_locator),
-                "url": URLS["DonorSchoose"]
+                "url": "https://boards.greenhouse.io/donorschoose"
             },
             {
                 "crawler": generic.Generic(green_house_locator),
