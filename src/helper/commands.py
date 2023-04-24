@@ -44,6 +44,7 @@ def get_positions_data(database_string, companies):
             crawler.set_driver(driver_)
             crawler.set_url(url)
             crawler.run()
+            __finish_driver(driver_)
         # The execution need to continue even in case of errors
         except Exception as error:
             message = f"Unexpected error occurred while getting position data. {str(error)}"
@@ -51,7 +52,10 @@ def get_positions_data(database_string, companies):
             if environ.get("DEBUG") == "on":
                 raise CommandError(str(error))
         finally:
-            __finish_driver(chrome)
+            try:
+                __finish_driver(chrome)
+            except Exception:
+                pass
     return True
 
 
