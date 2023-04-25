@@ -8,13 +8,13 @@ from src.helper.helper import load_web_content, Connection
 from ast import literal_eval
 from dotenv import load_dotenv
 from logging import basicConfig, INFO
-from src.settings import ROOT_DIR, LOGS_FILE
+from src.settings import ROOT_DIR, LOG_FILE
 from src.crawler.company import Company
 
 
 basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
-    filename=LOGS_FILE, level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
+    filename=LOG_FILE, level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
 
 load_dotenv()  # take environment variables from .env.
 
@@ -103,6 +103,27 @@ def api_receiver():
     message = request.json.get('message')
     condition = request.json.get('condition')
     return __receiver(message, condition)
+
+
+@app.route('/api/logs', methods=["POST"])
+def api_logs():
+    password = request.json.get('password')
+    if environ.get("PASSWORD") == password:
+        try:
+            with open(LOG_FILE, "r") as log:
+                result = {"status": "ok", "message": log.read()}
+                return jsonify(result), 200
+        except Exception as error:
+            if environ.get("DEBUG") == "on":
+                result = {
+                    "status": "failed",
+                    "message": f"Unexpected error. Try again later. {str(error)}"}
+            else:
+                result = {"status": "failed", "message": f"Unexpected error. Try again later."}
+            return jsonify(result), 500
+    result = {"status": "failed", "message": "nothing to log"}
+    return jsonify(result), 404
+
 
 
 @app.route('/receiver', methods=['POST'])
