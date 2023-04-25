@@ -3,7 +3,7 @@ CLI function to run the crawlers, compare curriculum and manage the database.
 Try: 'python cli.py --help' for more information.
 """
 from logging import basicConfig, INFO
-from src.settings import ROOT_DIR, LOGS_FILE, RESOURCES_DIR
+from src.settings import ROOT_DIR, LOG_FILE, RESOURCES_DIR
 from sys import argv, path
 from src.helper.commands import (
     sanity_check,
@@ -26,7 +26,7 @@ path.append(ROOT_DIR)
 
 basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
-    filename=LOGS_FILE, level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
+    filename=LOG_FILE, level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
 
 
 def main(*args):

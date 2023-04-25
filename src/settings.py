@@ -8,7 +8,7 @@ LOGS_FOLDER = "/webapp/logs/"
 
 TIMEOUT = 120
 TABLE_NAME = "positions"
-LOGS_FILE = LOGS_FOLDER + "crawler.log"
+LOG_FILE = LOGS_FOLDER + "crawler.log"
 DATABASE_STRING_DEFAULT = "postgresql://postgres:postgresql@postgres/postgres"
 
 URLS = {

@@ -10,8 +10,8 @@ apt install -y ${BASE_DIR}/src/resources/google-chrome-stable_current_amd64.deb
 pip install -r ${BASE_DIR}/requirements.txt
 # modify files
 # change the chrome driver to version 94
-rm ${BASE_DIR}/src/resources/chromedriver
-mv ${BASE_DIR}/src/resources/chromedriver /src/resources/chromedriver
+# rm ${BASE_DIR}/src/resources/chromedriver
+# cp ${BASE_DIR}/src/resources/chromedriver /src/resources/chromedriver
 mkdir -p ${BASE_DIR}/logs
 echo "" > ${BASE_DIR}/logs/crawler.log
 # Configure crontab
