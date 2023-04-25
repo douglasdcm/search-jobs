@@ -14,4 +14,4 @@ pkg_compare_cv.egg-info
 htmlcov
 .tox
 .pytest_cache
-chromedriver*
+program.prof
