@@ -58,6 +58,23 @@ ou com os utilitários
 ```
 ./utils/run_functional.sh
 ```
+Para teste
+## Testes não funcionais
+Para executar os testes de performance da API REST (demoram mais de 1h)
+```
+./utils/run_non_functional.sh
+```
+Para testes do comandos no terminal
+
+```
+./utils/cProfile/run_perfomance_test_cli.sh
+```
+Os resultados da execução serão abertos no navegador
+<br>
+References about snakeviz
+- https://jiffyclub.github.io/snakeviz/
+- https://docs.python.org/3/library/profile.html#module-cProfile
+
 
 # Debug
 - Ver número de conexões no banco de dados
