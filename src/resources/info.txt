@@ -1,2 +1,0 @@
-This is the fixed version of Chrome to be used
-https://chromedriver.storage.googleapis.com/94.0.4606.41/chromedriver_linux64.zip

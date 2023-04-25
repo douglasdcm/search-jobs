@@ -1,8 +1,5 @@
-import nltk
 from logging import info
-from src.settings import TABLE_NAME
 from src.helper.helper import (
-    data_pre_processing_portuguese,
     search_positions_based_on_resume,
     Connection,
     initialize_table
@@ -10,13 +7,7 @@ from src.helper.helper import (
 from src.similarity.similarity import Similarity
 from src.driver.driver_factory import DriverFactory
 from src.exceptions.exceptions import CommandError
-from sqlalchemy import text
 from os import environ
-
-
-nltk.download('stopwords')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('wordnet')
 
 
 def __finish_driver(chrome):

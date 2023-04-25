@@ -101,7 +101,7 @@ tr:nth-child(even) {
 }
 
 .media-img {
-    width: 200px;
+    width: 100px;
     height: 100px;
     text-align: center;
     border: 1px solid;

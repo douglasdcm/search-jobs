@@ -13,10 +13,10 @@ from dotenv import load_dotenv
 from os import environ
 
 
-nltk.download('stopwords')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('wordnet')
-nltk.download('rslp')
+nltk.download('stopwords', quiet=True)
+nltk.download('averaged_perceptron_tagger', quiet=True)
+nltk.download('wordnet', quiet=True)
+nltk.download('rslp', quiet=True)
 
 
 load_dotenv()
@@ -133,7 +133,7 @@ def load_web_content():
         {
             "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
             "link": "https://github.com/douglasdcm/crawler_of_positions",
-            "caption": "Código fonte",
+            "caption": "Contribua com o projeto",
             "description": "Ajude este projeto a crescer. Pull requests são bem-vindas. Para mudanças grandes crie uma issue para discutirmos o que está sendo modificado. Adicione os testes apropriados. Dê uma estrelinha se você gostou deste projeto :)",
         },
         {

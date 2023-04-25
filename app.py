@@ -20,6 +20,7 @@ load_dotenv()  # take environment variables from .env.
 
 
 app = Flask(__name__, static_folder='static', static_url_path='')
+app.config['JSON_SORT_KEYS'] = False
 
 path.append(ROOT_DIR)
 
