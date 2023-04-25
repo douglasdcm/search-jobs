@@ -32,14 +32,15 @@ sudo cp ./src/resources/basic_page.html /webapp
 chmod -R 777 /webapp
 docker compose up -d
 ```
-Agora você pode mudar a o código à vontade.
+Agora você pode mudar o código à vontade.
 
 # Rodando os testes
+- Baixe a versão correta do Chrome https://chromedriver.storage.googleapis.com/94.0.4606.41/chromedriver_linux64.zip
 - instale a versão correta do Chrome
 ```
 sudo apt-get install ./src/resources/google-chrome-stable_current_amd64.deb
 ```
-- ou subistiua o arquivo em ./src/resources/chrome para a mesma versão do Chrome instalado em sua máquina. Será preciso verificar a sua versão e baixar o driver correto https://chromedriver.chromium.org/downloads
+- ou substitua o arquivo em ./src/resources/chrome para a mesma versão do Chrome instalado em sua máquina. Será preciso verificar a sua versão e baixar o driver correto https://chromedriver.chromium.org/downloads
 - Inicialize os containers manualmente (a isse 139 é para melhorar isso)
 ```
 docker compose up -d
@@ -59,7 +60,7 @@ ou com os utilitários
 ```
 
 # Debug
-- Ver núemro de conexões no banco de dados
+- Ver número de conexões no banco de dados
 ```
 select count(*) from pg_stat_activity;
 ```
@@ -74,8 +75,8 @@ tail -f /webapp/logs/crawlers.log
 
 # Adicionando empresas
 Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos minutos você consegue fazer isso.
-- Adicione o dicionário do empresa no arquivo "src/crawler/company.py"
-- Adicione o 'locator' do link das vagas. O Selenium usa isso para descobrir as vagas da empresa 
+- Adicione o dicionário da empresa no arquivo "src/crawler/company.py"
+- Adicione o 'locator' do link das vagas. O Selenium usa isso para descobrir as vagas da empresa
 - Adicione a url de vagas da empresa
 - Suba o container novamente
 - Rode o comando:
@@ -83,7 +84,6 @@ Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos min
 python cli.py --ovewrite
 ```
 Isso irá rodar o crawler que vai pegar as informações de vagas das empresas e salvar no banco de dados. Depois disso você pode comparar o currículo com as novas vagas
-
 
 # Contribuindo
 Ajude este projeto a crescer adicionando novos crawlers. Que tal começar pelas empresas GPTW do Brasil de 2020? https://conteudo.gptw.com.br/150-melhores-2020.<br>
