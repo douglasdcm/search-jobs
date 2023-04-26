@@ -11,7 +11,9 @@
                 </a>
             </div>
             <div class="media-body">
-                <h4 class="text-left media-body">{{ image.caption }}</h4>
+                <a href="{{ image.link }}" target="_blank" style="color: black;">
+                    <h4 class="text-left media-body">{{ image.caption }}</h4>
+                </a>
                 <p class="text-left truncate">{{ image.description }}</p>
             </div>
         </div>
