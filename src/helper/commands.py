@@ -12,9 +12,9 @@ from os import environ
 
 def __finish_driver(chrome):
     chrome.quit()
-    msg = "Crawler finished."
-    print(msg)
-    info(msg)
+    message = "Crawler finished."
+    print(message)
+    info(message)
 
 
 def get_positions_data(database_string, companies):

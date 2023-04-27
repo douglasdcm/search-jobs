@@ -3,6 +3,7 @@ from os import environ
 from sys import path
 from src.settings import ROOT_DIR
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 from src.helper.commands import compare, overwrite
 from src.helper.helper import load_web_content, Connection
 from ast import literal_eval
@@ -21,6 +22,7 @@ load_dotenv()  # take environment variables from .env.
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 app.config['JSON_SORT_KEYS'] = False
+cors = CORS(app)
 
 path.append(ROOT_DIR)
 
@@ -33,7 +35,7 @@ def output():
 
 
 @app.route('/api/images')
-def get_images():
+def api_images():
     return jsonify(load_web_content())
 
 
@@ -135,6 +137,11 @@ def worker():
         __receiver(resume, condition)[0].response[0].decode('utf-8'))
 
     return render_template('search-result.html', comparison=comparison, resume=resume)
+
+
+@app.route('/spec')
+def spec():
+    return render_template('spec.html')
 
 
 if __name__ == '__main__':

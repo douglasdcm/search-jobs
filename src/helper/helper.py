@@ -44,9 +44,9 @@ class Connection:
 
 def save_description_to_database(database_string, url, description):
     with Connection.get_database_connection(database_string).connect() as connection:
-        msg = f"Saving data from '{url}'..."
-        print(msg)
-        info(msg)
+        message = f"Saving data from '{url}'..."
+        print(message)
+        info(message)
         description = data_pre_processing_portuguese(description)
         connection.execute(text(
             f"insert into {TABLE_NAME} (url, description) values ('{url}', '{description}')"

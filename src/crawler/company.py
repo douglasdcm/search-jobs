@@ -27,8 +27,8 @@ class Company():
                 "url": "https://ciandt.com/us/en-us/careers/open-positions"
             },
             {
-                "crawler": generic.Generic(gupy_locator),
-                "url": "https://vagascesar.gupy.io"
+                "crawler": generic.Generic("//a[contains(text(),'Candidatar'')]"),
+                "url": "https://www.cesar.org.br/vagas-em-aberto"
             },
             {
                 "crawler": generic.Generic(
