@@ -32,7 +32,14 @@ sudo cp ./src/resources/basic_page.html /webapp
 chmod -R 777 /webapp
 docker compose up -d
 ```
+Adicione dados de teste no banco de dados
+
+```
+python add_fake_data_to_databse.py
+```
+
 Agora você pode mudar o código à vontade.
+
 
 # Rodando os testes
 - Baixe a versão correta do Chrome https://chromedriver.storage.googleapis.com/94.0.4606.41/chromedriver_linux64.zip
@@ -58,7 +65,8 @@ ou com os utilitários
 ```
 ./utils/run_functional.sh
 ```
-Para teste
+
+
 ## Testes não funcionais
 Para executar os testes de performance da API REST (demoram mais de 1h)
 ```
@@ -101,6 +109,10 @@ Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos min
 python cli.py --ovewrite
 ```
 Isso irá rodar o crawler que vai pegar as informações de vagas das empresas e salvar no banco de dados. Depois disso você pode comparar o currículo com as novas vagas
+
+
+# Especificação da API REST
+O projeto possui alguns end-points cuja documentação (Swagger) pode ser acessada em `http://localhost:5000/spec` 
 
 # Contribuindo
 Ajude este projeto a crescer adicionando novos crawlers. Que tal começar pelas empresas GPTW do Brasil de 2020? https://conteudo.gptw.com.br/150-melhores-2020.<br>

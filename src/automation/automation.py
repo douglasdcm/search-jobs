@@ -12,7 +12,8 @@ class BaseObjects:
         self._wait = wait.WebDriverWait(driver, TIMEOUT)
 
     def _get_element(self, by_type, locator):
-        info("Getting element '{}:{}'".format(by_type, locator))
+        if environ.get("DEBUG") == "on":
+            info("Getting element '{}:{}'".format(by_type, locator))
         return self._driver.find_element(by_type, locator)
 
     def get_all_elements(self, by_type, locator):
@@ -28,7 +29,8 @@ class BaseObjects:
             WebDriverError(f"Could not get elements. {str(error)}")
 
     def get_attribute_from_element(self, element, attribute):
-        info("Getting attribute {} from element {}".format(attribute, element))
+        if environ.get("DEBUG") == "on":
+            info("Getting attribute {} from element {}".format(attribute, element))
         return element.get_attribute(attribute)
 
     def wait_until_page_is_loaded(self, timeout=TIMEOUT):

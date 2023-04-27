@@ -6,7 +6,11 @@ services:
     container_name: vagas-pra-mim
     volumes:
       - /dev/shm:/dev/shm
-      - ./vol:/webapp/vol
+      - ./src:/webapp/src
+      - ./static:/webapp/static
+      - ./logs:/webapp/logs
+      - ./templates:/webapp/templates
+      - ./app.py:/webapp/app.py
     ports:
       - 5000:5001
     depends_on:
