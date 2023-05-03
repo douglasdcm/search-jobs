@@ -56,50 +56,7 @@ def __check_informed_language(language):
     return language
 
 
-@app.route("/", methods=["GET", "POST"])
-def output():
-    session_data.language = request.form.get('language', DEFAULT_LANGUAGE)
-    language = __check_informed_language(session_data.language)
-    images_data = load_web_content()
-    return render_template(
-        'index.html',
-        images_data=images_data,
-        **languages[language],
-    )
-
-
-@app.route('/receiver', methods=['POST'])
-def worker():
-    language = __check_informed_language(session_data.language)
-    resume = request.form.get('message')
-    condition = request.form.get('condition')
-
-    comparison = literal_eval(
-        __receiver(
-            resume,
-            condition,
-            languages[language]
-        )[0].response[0].decode('utf-8'))
-
-    return render_template(
-        'search-result.html',
-        comparison=comparison,
-        resume=resume,
-        **languages[language],
-    )
-
-
-@app.route("/spec")
-def spec():
-    return render_template('spec.html')
-
-
-@app.route('/api/images')
-def api_images():
-    return jsonify(load_web_content())
-
-
-def __receiver(resume, condition, language):
+def __receiver(resume, condition, language={}):
     limit = 5000
     result = {}
 
@@ -144,6 +101,49 @@ def __receiver(resume, condition, language):
     return jsonify(result), 200
 
 
+@app.route("/", methods=["GET", "POST"])
+def output():
+    session_data.language = request.form.get('language', DEFAULT_LANGUAGE)
+    language = __check_informed_language(session_data.language)
+    images_data = load_web_content()
+    return render_template(
+        'index.html',
+        images_data=images_data,
+        **languages[language],
+    )
+
+
+@app.route('/receiver', methods=['POST'])
+def worker():
+    language = __check_informed_language(session_data.language)
+    resume = request.form.get('message')
+    condition = request.form.get('condition')
+
+    comparison = literal_eval(
+        __receiver(
+            resume,
+            condition,
+            languages[language]
+        )[0].response[0].decode('utf-8'))
+
+    return render_template(
+        'search-result.html',
+        comparison=comparison,
+        resume=resume,
+        **languages[language],
+    )
+
+
+@app.route("/spec")
+def spec():
+    return render_template('spec.html')
+
+
+@app.route('/api/images')
+def api_images():
+    return jsonify(load_web_content())
+
+
 @app.route('/api/overwrite', methods=['POST'])
 def api_overwrite():
     password = request.json.get('password')
@@ -162,13 +162,6 @@ def api_overwrite():
             return jsonify(result), 500
     result = {"status": "failed", "message": "nothing to overwrite"}
     return jsonify(result), 404
-
-
-@app.route('/api/receiver', methods=['POST'])
-def api_receiver():
-    message = request.json.get('message')
-    condition = request.json.get('condition')
-    return __receiver(message, condition)
 
 
 @app.route('/api/logs', methods=["POST"])
