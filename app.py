@@ -11,6 +11,9 @@ from dotenv import load_dotenv
 from logging import basicConfig, INFO
 from src.settings import ROOT_DIR, LOG_FILE
 from src.crawler.company import Company
+from waitress import serve
+import glob
+import json
 
 
 basicConfig(
@@ -27,11 +30,68 @@ cors = CORS(app)
 path.append(ROOT_DIR)
 
 
-@app.route('/')
+DEFAULT_LANGUAGE = "pt_BR"
+DEFAULT_ERROR_MESSAGE = "Unexpected error. Try again later."
+
+
+class SessionData:
+    def __init__(self):
+        self.__language = DEFAULT_LANGUAGE
+
+    @property
+    def language(self):
+        return self.__language
+
+    @language.setter
+    def language(self, value):
+        self.__language = value
+
+
+session_data = SessionData()
+
+
+def __check_informed_language(language):
+    if (language not in language_keys):
+        language = DEFAULT_LANGUAGE
+    return language
+
+
+@app.route("/", methods=["GET", "POST"])
 def output():
+    session_data.language = request.form.get('language', DEFAULT_LANGUAGE)
+    language = __check_informed_language(session_data.language)
     images_data = load_web_content()
-    # serve index template
-    return render_template('index.html', images_data=images_data)
+    return render_template(
+        'index.html',
+        images_data=images_data,
+        **languages[language],
+    )
+
+
+@app.route('/receiver', methods=['POST'])
+def worker():
+    language = __check_informed_language(session_data.language)
+    resume = request.form.get('message')
+    condition = request.form.get('condition')
+
+    comparison = literal_eval(
+        __receiver(
+            resume,
+            condition,
+            languages[language]
+        )[0].response[0].decode('utf-8'))
+
+    return render_template(
+        'search-result.html',
+        comparison=comparison,
+        resume=resume,
+        **languages[language],
+    )
+
+
+@app.route("/spec")
+def spec():
+    return render_template('spec.html')
 
 
 @app.route('/api/images')
@@ -39,24 +99,28 @@ def api_images():
     return jsonify(load_web_content())
 
 
-def __receiver(resume, condition):
+def __receiver(resume, condition, language):
     limit = 5000
     result = {}
 
     if not resume:
-        result = {"status": "failed", "message": "Currículo não informado"}
+        result = {"status": "failed", "message": language.get(
+            "api_no_curriculum", DEFAULT_ERROR_MESSAGE)}
         return jsonify(result), 500
 
     if not condition:
-        result = {"status": "failed", "message": "Condição não informada"}
+        result = {"status": "failed", "message": language.get(
+            "api_no_condition", DEFAULT_ERROR_MESSAGE)}
         return jsonify(result), 500
 
     if len(resume.strip()) == 0:
-        result = {"status": "failed", "message": "Currículoinválido"}
+        result = {"status": "failed", "message": language.get(
+            "api_invalid_curriculum", DEFAULT_ERROR_MESSAGE)}
         return jsonify(result), 500
 
     if condition.lower() not in ["and", "or"]:
-        result = {"status": "failed", "message": "Condição inválida"}
+        result = {"status": "failed", "message": language.get(
+            "api_invalid_condition", DEFAULT_ERROR_MESSAGE)}
         return jsonify(result), 500
 
     resume = (resume[:limit]) if len(resume) > limit else resume
@@ -69,7 +133,7 @@ def __receiver(resume, condition):
                 "status": "failed",
                 "message": f"Unexpected error. Try again later. {str(error)}"}
         else:
-            result = {"status": "failed", "message": f"Unexpected error. Try again later."}
+            result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
         return jsonify(result), 500
 
     if not comparison:
@@ -94,7 +158,7 @@ def api_overwrite():
                     "status": "failed",
                     "message": f"Unexpected error. Try again later. {str(error)}"}
             else:
-                result = {"status": "failed", "message": f"Unexpected error. Try again later."}
+                result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
             return jsonify(result), 500
     result = {"status": "failed", "message": "nothing to overwrite"}
     return jsonify(result), 404
@@ -121,31 +185,27 @@ def api_logs():
                     "status": "failed",
                     "message": f"Unexpected error. Try again later. {str(error)}"}
             else:
-                result = {"status": "failed", "message": f"Unexpected error. Try again later."}
+                result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
             return jsonify(result), 500
     result = {"status": "failed", "message": "nothing to log"}
     return jsonify(result), 404
 
 
-
-@app.route('/receiver', methods=['POST'])
-def worker():
-    resume = request.form.get('message')
-    condition = request.form.get('condition')
-
-    comparison = literal_eval(
-        __receiver(resume, condition)[0].response[0].decode('utf-8'))
-
-    return render_template('search-result.html', comparison=comparison, resume=resume)
-
-
-@app.route('/spec')
-def spec():
-    return render_template('spec.html')
-
-
 if __name__ == '__main__':
     # run!
-    from waitress import serve
     port = int(environ.get('PORT', 5001))
+    languages = {}
+    language_paths = glob.glob("language/*.json")
+    language_keys = [
+        language.replace("language/", "").replace(".json", "")
+        for language in language_paths
+    ]
+
+    for language in language_paths:
+        filename = language.split("/")
+        lang_code = filename[1].split(".")[0]
+        with open(language, "r", encoding="utf8") as file:
+            languages[lang_code] = json.loads(file.read())
+
+    print("Server running")
     serve(app, host="0.0.0.0", port=port)

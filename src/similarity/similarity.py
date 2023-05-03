@@ -36,7 +36,7 @@ class Similarity:
             if isnan(float(d)):
                 similarity.append(0.0)
             else:
-                similarity.append(round(d * 100, 2))
+                similarity.append(round(d * 100, 1))
             urls.append(url)
         result = dict(zip(urls, similarity))
 
