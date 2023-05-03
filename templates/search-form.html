@@ -3,7 +3,7 @@
     <form action="/receiver" method="post">
         <div class="form-group row">
             <div class="col-md-10">
-                <p style="text-align: left;"><label for="message_field">Conteúdo do currículo</label></p>
+                <p style="text-align: left;"><label for="message_field">{{ resume_field_label }}</label></p>
                 <textarea
                     name="message"
                     id="message_field"
@@ -11,19 +11,19 @@
                     rows="5"
                     id="comment"
                     maxlength="5000"
-                    placeholder="Cole o currículo aqui e ache as vagas que mais combinam com você.">{{ resume }}</textarea>
+                    placeholder="{{ resume_field_placeholder }}">{{ resume }}</textarea>
             </div>
             <br>
             <div class="col-md-1">
                 <div class="input-group-btn">
-                    <input class="btn btn-primary" id="send_message" type="submit" value="Pesquisar">
+                    <input class="btn btn-primary" id="send_message" type="submit" value="{{ button_send_message_label }}">
                 </div>
                 <div class="radio col-md-1 text-left">
                     <input type="radio" id="cond_or" name="condition" value="OR" checked=checked />
-                    <label for="cond_or">extensa</label>
+                    <label for="cond_or">{{ condition_or_label }}</label>
                     <br>
                     <input type="radio" id="cond_and" name="condition" value="AND">
-                    <label for="cond_and">restrita</label>
+                    <label for="cond_and">{{ condition_and_label }}</label>
                 </div>
             </div>
         </div>

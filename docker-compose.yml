@@ -8,9 +8,12 @@ services:
       - /dev/shm:/dev/shm
       - ./src:/webapp/src
       - ./static:/webapp/static
+      - ./language:/webapp/language
       - ./logs:/webapp/logs
       - ./templates:/webapp/templates
-      - ./app.py:/webapp/app.py
+      - type: bind
+        source: ./app.py
+        target: /webapp/app.py
     ports:
       - 5000:5001
     depends_on:

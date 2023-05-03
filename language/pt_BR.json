@@ -1,0 +1,13 @@
+{
+    "resume_field_label": "Conteúdo do currículo",
+    "resume_field_placeholder": "Cole o currículo aqui e ache as vagas que mais combinam com você.",
+    "search_grid_label": "Similaridade",
+    "media_list_title": "Veja mais",
+    "button_send_message_label": "Pesquisar",
+    "condition_or_label": "extensa",
+    "condition_and_label": "restrita",
+    "api_no_curriculum": "Currículo não informado",
+    "api_no_condition": "Condição não informada",
+    "api_invalid_curriculum": "Currículo inválido",
+    "api_invalid_condition": "Condição inválida"
+}

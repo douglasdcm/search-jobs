@@ -1,0 +1,13 @@
+{
+    "resume_field_label": "Content of résumé",
+    "resume_field_placeholder": "Paste your résumé here and find the jobs that best suit you.",
+    "search_grid_label": "Similarity",
+    "media_list_title": "More for you",
+    "button_send_message_label": "Search",
+    "condition_or_label": "wide",
+    "condition_and_label": "narrow",
+    "api_no_curriculum": "Résumé not informed",
+    "api_no_condition": "Condition not informed",
+    "api_invalid_curriculum": "Invalid résumé",
+    "api_invalid_condition": "Invalid condition"
+}

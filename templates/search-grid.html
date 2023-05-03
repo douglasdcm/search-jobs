@@ -6,7 +6,7 @@
         {% for key, value in comparison.message.items() %}
             <div class="row" style="text-align: left;">
                 <div class="col-md-2">
-                    <p>Similaridade {{ value }}</p>
+                    <p>{{ search_grid_label }} {{ value }}%</p>
                 </div>
                 <div class="col-md-10">
                     <a href="{{ key }}" target="_blank" rel="noopener noreferrer"> {{ key }} </a>

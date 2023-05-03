@@ -11,7 +11,7 @@ const spec = {
 	"paths": {
 		"/api/receiver": {
 			"post": {
-				"description": "Search for job positons that match the resumé",
+				"description": "Search for job positons that match the résumé",
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -24,7 +24,7 @@ const spec = {
 									},
 									"message": {
 										"type": "string",
-										"description": "resumé content"
+										"description": "résumé content"
 									}
 								}
 							},
@@ -39,7 +39,7 @@ const spec = {
 				},
 				"responses": {
 					"200": {
-						"description": "Resumé is similar to some job positions",
+						"description": "Résumé is similar to some job positions",
 						"content": {
 							"application/json": {
 								"schema": {

@@ -133,7 +133,7 @@ def load_web_content():
         {
             "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
             "link": "https://github.com/douglasdcm/crawler_of_positions",
-            "caption": "Contribua com o projeto",
+            "caption": "Contribute to the project",
             "description": "Ajude este projeto a crescer. Pull requests são bem-vindas. Para mudanças grandes crie uma issue para discutirmos o que está sendo modificado. Adicione os testes apropriados. Dê uma estrelinha se você gostou deste projeto :)",
         },
         {
