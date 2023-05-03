@@ -2,6 +2,7 @@
 Este projeto utiliza crawlers para buscar por vagas em diferentes empresas e lhe permite comparar o seu currículo com essas vagas para achar as que são mais mais similares e relevantes para você.
 
 # Começando
+Antes de começar, veja o [Código de Conduta](https://github.com/douglasdcm/crawler_of_positions/blob/master/CODE_OF_CONDUCT.md) deste repositório.<br>
 Para usar o projeto você vai precisar instalar o Docker e Docker Compose, fazer o build da imagem Docker e subir os containers. Você pode usar o utilitário na pasta ./utils
 ```
 ./utils/build_image.sh
@@ -48,7 +49,7 @@ Agora você pode mudar o código à vontade.
 sudo apt-get install ./src/resources/google-chrome-stable_current_amd64.deb
 ```
 - ou substitua o arquivo em ./src/resources/chrome para a mesma versão do Chrome instalado em sua máquina. Será preciso verificar a sua versão e baixar o driver correto https://chromedriver.chromium.org/downloads
-- Inicialize os containers manualmente (a isse 139 é para melhorar isso)
+- Inicialize os containers manualmente (a issue #139 é para melhorar isso)
 ```
 docker compose up -d
 ```
