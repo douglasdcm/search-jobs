@@ -1,4 +1,6 @@
 #!flask/bin/python
+import glob
+import json
 from os import environ
 from sys import path
 from src.settings import ROOT_DIR
@@ -12,8 +14,7 @@ from logging import basicConfig, INFO
 from src.settings import ROOT_DIR, LOG_FILE
 from src.crawler.company import Company
 from waitress import serve
-import glob
-import json
+from logging import exception
 
 
 basicConfig(
@@ -85,53 +86,63 @@ def __receiver(resume, condition, language={}):
     try:
         comparison = compare(Connection.get_connection_string(), resume, condition)
     except Exception as error:
-        if environ.get("DEBUG") == "on":
-            result = {
-                "status": "failed",
-                "message": f"Unexpected error. Try again later. {str(error)}"}
-        else:
-            result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
+        exception(str(error))
+        result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
         return jsonify(result), 500
 
     if not comparison:
-        result = {"status": "failed", "message": "Nenhum resultado encontrado"}
+        result = {"status": "failed", "message": language.get(
+            "api_no_result", DEFAULT_ERROR_MESSAGE)}
         return jsonify(result), 404
 
     result = {"status": "ok", "message": comparison}
     return jsonify(result), 200
 
 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html")
+
+
 @app.route("/", methods=["GET", "POST"])
 def output():
-    session_data.language = request.form.get('language', DEFAULT_LANGUAGE)
-    language = __check_informed_language(session_data.language)
-    images_data = load_web_content()
-    return render_template(
-        'index.html',
-        images_data=images_data,
-        **languages[language],
-    )
+    try:
+        session_data.language = request.form.get('language', DEFAULT_LANGUAGE)
+        language = __check_informed_language(session_data.language)
+        images_data = load_web_content()
+        return render_template(
+            'index.html',
+            images_data=images_data,
+            **languages[language],
+        )
+    except Exception as error:
+        exception(error)
+        return render_template("error.html")
 
 
 @app.route('/receiver', methods=['POST'])
 def worker():
-    language = __check_informed_language(session_data.language)
-    resume = request.form.get('message')
-    condition = request.form.get('condition')
+    try:
+        language = __check_informed_language(session_data.language)
+        resume = request.form.get('message')
+        condition = request.form.get('condition')
 
-    comparison = literal_eval(
-        __receiver(
-            resume,
-            condition,
-            languages[language]
-        )[0].response[0].decode('utf-8'))
+        comparison = literal_eval(
+            __receiver(
+                resume,
+                condition,
+                languages[language]
+            )[0].response[0].decode('utf-8'))
 
-    return render_template(
-        'search-result.html',
-        comparison=comparison,
-        resume=resume,
-        **languages[language],
-    )
+        return render_template(
+            'search-result.html',
+            comparison=comparison,
+            resume=resume,
+            **languages[language],
+        )
+    except Exception as error:
+        exception(error)
+        return render_template("error.html")
 
 
 @app.route("/spec")
@@ -153,12 +164,8 @@ def api_overwrite():
             result = {"status": "ok", "message": "overwrite finished"}
             return jsonify(result), 200
         except Exception as error:
-            if environ.get("DEBUG") == "on":
-                result = {
-                    "status": "failed",
-                    "message": f"Unexpected error. Try again later. {str(error)}"}
-            else:
-                result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
+            exception(error)
+            result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
             return jsonify(result), 500
     result = {"status": "failed", "message": "nothing to overwrite"}
     return jsonify(result), 404
@@ -173,12 +180,8 @@ def api_logs():
                 result = {"status": "ok", "message": log.read()}
                 return jsonify(result), 200
         except Exception as error:
-            if environ.get("DEBUG") == "on":
-                result = {
-                    "status": "failed",
-                    "message": f"Unexpected error. Try again later. {str(error)}"}
-            else:
-                result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
+            exception(error)
+            result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
             return jsonify(result), 500
     result = {"status": "failed", "message": "nothing to log"}
     return jsonify(result), 404

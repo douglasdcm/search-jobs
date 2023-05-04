@@ -9,5 +9,6 @@
     "api_no_curriculum": "Currículo não informado",
     "api_no_condition": "Condição não informada",
     "api_invalid_curriculum": "Currículo inválido",
-    "api_invalid_condition": "Condição inválida"
+    "api_invalid_condition": "Condição inválida",
+    "api_no_result": "Nenhum resultado encontrado"
 }
