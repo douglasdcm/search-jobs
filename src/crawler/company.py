@@ -10,7 +10,6 @@ class Company():
                 informs if it is enable (True). If enabled, the crawler will be executed by the
                 server
         """
-        gupy_locator = '//a[@data-testid="job-list__listitem-href"]'
         kenoby_locator = '//a[contains(@class,"h-full")]'
         arcor_locator = '//div[@class="content-block"]//a[@class="au-target"]'
         trab_conosco_locator = '//a[contains(@class,"job-box")]'
@@ -57,11 +56,6 @@ class Company():
             },
             {
                 "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Viacredi"]
-            },
-            {
-                "crawler": generic.Generic(
                     '//td[@data-title="Jobdescription"]/a'),
                 "url": URLS["Roche"]
             },
@@ -74,156 +68,6 @@ class Company():
                 "crawler": generic.Generic(
                     '//div[contains(@class,"search-results__jobinfo")]/a'),
                 "url": URLS["3M"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Aeris"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Vivo"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Cielo"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Embraer"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Totvs"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["ViaVarejo"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Gupy"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["GupyTech"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Ambev"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Gpa"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["PicPay"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Randon"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Dasa"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Promob"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Altamogiana"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Vereda"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["PmWeb"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Sicredi"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Cocacola"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Assai"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["PetLove"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Cotesa"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["TakeBlip"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Oi"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Marisa"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Atento"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["Duratex"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["ShibataSupermercados"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["AguasAzuis"]
-            },
-            {
-                "crawler": generic.Generic(
-                    gupy_locator),
-                "url": URLS["RedeBrasil"]
             },
             {
                 "crawler": generic.Generic(
@@ -288,10 +132,6 @@ class Company():
             {
                 "crawler": generic.Generic(trab_conosco_locator),
                 "url": "https://trabalheconosco.vagas.com.br/copa-energia/oportunidades"
-            },
-            {
-                "crawler": generic.Generic(gupy_locator),
-                "url": URLS["GrupoTrigo"]
             },
             {
                 "crawler": generic.Generic(
@@ -379,10 +219,6 @@ class Company():
                 "url": URLS["AllTests"]
             },
             {
-                "crawler": generic.Generic(gupy_locator),
-                "url": URLS["Eurofarma"]
-            },
-            {
                 "crawler": generic.Generic(
                     '//div[@class="job-list paragrafo-ideal"]//div[@class="job-list-content"]//h4//a'),
                 "url": URLS["GrupoSaga"]
@@ -435,44 +271,16 @@ class Company():
                 "url": URLS["StagEstagios"]
             },
             {
-                "crawler": generic.Generic(gupy_locator),
-                "url": URLS["MercSaoluiz"]
-            },
-            {
                 "crawler": generic.Generic('//div[contains(@class,"multiline-data-container")]//span//a'),
                 "url": URLS["Oracle"]
-            },
-            {
-                "crawler": generic.Generic(gupy_locator),
-                "url": URLS["Riachuelo"]
-            },
-            {
-                "crawler": generic.Generic(gupy_locator),
-                "url": URLS["Santander"]
             },
             {
                 "crawler": generic.Generic('//nav[contains(@class,"menu-footer")]//a[text()="Trabalhe Conosco"]'),
                 "url": URLS["Senac"]
             },
             {
-                "crawler": generic.Generic(gupy_locator),
-                "url": URLS["SlcAgricola"]
-            },
-            {
                 "crawler": generic.Generic(kenoby_locator),
                 "url": URLS["Suzano"]
-            },
-            {
-                "crawler": generic.Generic(gupy_locator),
-                "url": URLS["UberlandiaRefrescos"]
-            },
-            {
-                "crawler": generic.Generic(gupy_locator),
-                "url": URLS["Unidas"]
-            },
-            {
-                "crawler": generic.Generic(gupy_locator),
-                "url": URLS["UnimedFortaleza"]
             },
             {
                 "crawler": generic.Generic(trab_conosco_locator),
