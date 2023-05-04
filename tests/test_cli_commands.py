@@ -19,9 +19,3 @@ class TestCliCommands:
         expected = "Invalid command"
         actual = exec_command(params, self.entry_point, self.domain)
         assert expected in actual
-
-    # def test_update_database_works(self):
-    #     expected = "Update finished"
-    #     params = ["--overwrite"]
-    #     actual = exec_command(params, self.entry_point, self.domain)
-    #     assert expected in actual

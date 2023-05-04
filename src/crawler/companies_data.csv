@@ -1,0 +1,163 @@
+//a[contains(@title,"Veja detalhes")];https://www.dqrtech.com.br/vagas/;Y
+//a[contains(@class,"wp-block-cit-block-ciandt-link")];https://ciandt.com/us/en-us/careers/open-positions;Y
+//a[contains(text(),'Candidatar')];https://www.cesar.org.br/vagas-em-aberto;Y
+//span[contains(@class,"hidden-phone")]/a[@class="jobTitle-link"];https://jobs.sap.com/search/?q=&locationsearch=&locale=en_US;Y
+//td[contains(@class,"views-field")]//a;https://www.novartis.com/careers/career-search?search_api_fulltext=&country%5B%5D=LOC_BR&early_talent=All;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/dados-an%C3%A1lises-e-insights-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/estudantes-e-graduados-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/supply-chain-e-engenharia-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/compras-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/finan%C3%A7as-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/marketing-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/outros-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/rd-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/rh-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/vendas-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/sales-jobs;Y
+//a[contains(@class,"au-target") and contains(@ph-tevent,"job_click")];https://careers.mars.com/br/pt/c/it-digital-jobs;Y
+//td[@data-title="Jobdescription"]/a';https://www.roche.com/careers/jobs/jobsearch.htm?countryCodes=BR;Y
+//div[contains(@class,"search-results__jobinfo")]/a;https://3m.recsolu.com/job_boards/1/?q=&utm_source=CSSearchWidget&startrow=1&location=%2C+us;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/leroymerlin;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/sabin-site;Y
+//a[@data-testid="job-list__listitem-href"];https://viacredi.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/3coracoes;Y
+//a[@data-testid="job-list__listitem-href"];https://aeris.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://vivo.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://cielo.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://embraer.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://totvs.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://eurofarma.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://viavarejo.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://vempra.gupy.io/?utm_source=site&utm_medium=footer;Y
+//a[@data-testid="job-list__listitem-href"];https://tech-career.gupy.io/?utm_source=site&utm_medium=footer;Y
+//a[@data-testid="job-list__listitem-href"];https://ambev.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://gpa.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://picpay.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://randon.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://dasa.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://promob.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://altamogiana.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://vereda.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://pmweb.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://sicredi.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://cocacola.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://assai.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://petlove.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://cotesa.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://takeblip.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://oi.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://marisa.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://grupotrigo.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://duratex.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://vemprosmercadinhossaoluiz.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://atento.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://shibatasupermercados.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://aguasazuis.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://redebrasil.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://slcagricola.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://unidas.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://uberlandiarefrescos.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://unimedfortaleza.gupy.io/;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/bancobv;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/cea;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/danone;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/alelo;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/cvc;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/paguemenos;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/kenoby;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/clearsale/;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/jumpadtail;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/Suzano;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/wiz;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/i-cherry;Y
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/mirum;Y
+//a[@data-testid="job-list__listitem-href"];https://carreiras.riachuelo.com.br/;Y
+//a[@class="left-link"];https://careers.astrazeneca.com/location/brazil-country-jobs/7684/3469034/2;Y
+//a[@class="text-dark"];https://jobs.quickin.io/amplificadigital/jobs;Y
+//a[@class="text-dark"];https://jobs.quickin.io/expertisegp/jobs;Y
+//h3[@class="listSingleColumnItemTitle"]/a;https://rbcoats.avature.net/careers/SearchJobs/?3_47_3=898;Y
+//a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/copa-energia/oportunidades;Y
+//a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/hyundai/oportunidades;Y
+//a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/icatuseguros;Y
+//a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/libertyseguros/oportunidades;Y
+//a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/unimedrio/oportunidades?box_link=&division_id=50787&division_name=;Y
+//a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/schmersalbrasil;Y
+//section[@id="search-results-list"]//a;https://carreiras.dell.com/search-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/corporate-social-responsibility-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/culinary-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/design-technical-services-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/digital-products-information-technology-data-analytics-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/engineering-maintenance-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/executive-hotel-management-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/finance-controlling-audit-accounting-business-analysis-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/food-beverage-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/legal-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/other-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/procurement-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/retail-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/rooms-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/sales-marketing-customer-loyalty-communication-revenue-management-pricing-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/security-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/talent-culture-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/wellness-recreation-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/administration-support-jobs;Y
+//div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/business-development-jobs;Y
+font-size-mobile;https://mercadolivre.randstad.com.br/LP_MercadoLivre_V2/;Y
+//div[contains(@class,"vaga-wrapper")]//a;https://www.sesc-rs.com.br/trabalheconosco/vagas/;Y
+//div[contains(@id,"detalheVagaDescricao")]//a;https://www.portalsinergyrh.com.br/Portal/MeuPortal/MeuPortal?empresa=1490&master=1;Y
+//section[@class="box"]//h3//a;http://4alltests.com.br/vagas;Y
+//div[@class="job-list paragrafo-ideal"]//div[@class="job-list-content"]//h4//a;https://jobs.solides.com/gruposaga#;Y
+//div[contains(@class,"p-panel")]//a[@data-tag="displayJobTitle"];https://bradesco.csod.com/ux/ats/careersite/1/home?c=bradesco;Y
+//div[contains(@id,"jobs-cards-wrapper")]//a;https://www.ibm.com/br-pt/employment/;Y
+//div[contains(@class,"spf-common-search-item-header")]//a;https://talentconnection-jobs.sabacloud.com/Saba/Web_spf/NA1PRD0099/jobs-jobs/career/searchresult/;Y
+//a[contains(@class, "ui-tabs-anchor")];https://www.institutofecomerciodf.com.br/vagas/;Y
+//a[contains(@class,"navbar-brand")];https://www.agiel.com.br/site/vagas/;Y
+//a[contains(@class,"navbar-brand")];http://employerestagios.com.br/;Y
+//div[@class="informacoes-header"]//a;https://www.vagas.com.br/vagas-de-stag-estagios?;Y
+//div[contains(@class,"multiline-data-container")]//span//a;https://oracle.taleo.net/careersection/2/jobsearch.ftl?f=LOCATION(362940031553);Y
+//nav[contains(@class,"menu-footer")]//a[text()="Trabalhe Conosco"];https://www.dn.senac.br/;Y
+//td//a[contains(@class,"joblist__link job__position")];https://www.volvogroup.com/br/careers/job-openings.html#page=1&countries=Brazil;Y
+//h2//a[contains(@class,"au-target")];https://careers.microsoft.com/us/en/search-results?keywords=brazil&_ga=2.18086970.243575399.1540493310-1941477767.1529592176&rt=professional;Y
+//span[@role="heading"]//a[contains(@class,"au-target")];https://jobs.hilton.com/us/ptbr/search-results?keywords=brazil;Y
+//div[contains(@class,"apply-button-container")]//a;https://careers.bms.com/jobs?location=Brazil&woe=12&stretchUnit=MILES&stretch=0&sortBy=distance_from&page=1;Y
+//ol[contains(@class,"m-layout")]//a;https://www.workingatdllgroup.com/en/Vacancies?el=&co=Brazil&wf=;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/lift;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/tripadvisor;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/willowtree;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/Datto;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/Thumbtack;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/VaynerMedia;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/KeepTruckin;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/Checkr;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/Nutrabolt;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/ebanx;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/invision;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/harrys;Y
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/donorschoose;Y
+none;https://santander.wd3.myworkdayjobs.com/SantanderCareers/0/refreshFacet/318c8bb6f553100021d223d9780d30be;No_links
+TBD;https://www.squarespace.com/about/careers;NONE
+TBD;https://www.jdpower.com/business/careers/jobs;NONE
+TBD;https://www.wayfair.com/careers/jobs;NONE
+TBD;https://www.messagebird.com/en/careers/;NONE
+TBD;https://careers.toasttab.com/;NONE
+TBD;https://www.verifone.com/en/careers;NONE
+TBD;https://www.nerdwallet.com/careers;NONE
+TBD;https://www.wise.jobs/;NONE
+TBD;https://careers.doordash.com/#open-positions;NONE
+TBD;https://www.lyft.com/careers;NONE
+TBD;https://www.apixio.com/join-apixio/;NONE
+TBD;https://seatgeek.com/jobs;NONE
+TBD;https://www.savatree.com/careers/;NONE
+TBD;https://www.stitchfix.com/careers/jobs;NONE
+TBD;https://www.pinterestcareers.com/job-search-results/;NONE
+TBD;https://www.mobilityware.com/all-jobs;NONE
+TBD;https://www.jwplayer.com/careers/job-openings;NONE
+TBD;https://careers.hellofresh.com/global/en;NONE
+TBD;https://evernote.com/careers/;NONE
+TBD;https://www.elixirr.com/careers/;NONE
+TBD;https://buzzfeed.com.br/about/jobs;NONE
+TBD;https://www.braze.com/company/careers;NONE
+TBD;https://www.appneta.com/about/careers/positions/;NONE
+TBD;https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/jobs?q=Frameio-All1;NONE
+TBD;https://www.talkdesk.com/careers/td?program=td&office=undefined&department=undefined&permalink=undefined;NONE
+TBD;https://www.ideo.com/jobs;NONE

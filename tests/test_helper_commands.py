@@ -19,33 +19,37 @@ class TestHelperCommands:
     def get_crashed_crawlers(self):
         return [
             {
-                "crawler": Generic("//a"),
+                "locator": "//a",
                 "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
-                "enabled": True
+                "active": "Y"
             },
             {
-                "crawler": Generic("//a"),
+                "locator": "//a",
                 "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
-                "enabled": True
+                "active": "Y"
             },
             {
-                "crawler": Generic("//a"),
+                "locator": "//a",
                 "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
-                "enabled": True
+                "active": "Y"
             }]
 
     @fixture
     def populate_db(self, setup_db):
         db = setup_db
-        db.salva_registro("positions", "url, description", "'https://test_message_1.com', 'test_message_1'")
-        db.salva_registro("positions", "url, description", "'https://test_message_2.com', 'test_message_2'")
-        db.salva_registro("positions", "url, description", "'https://test_message_3.com', 'test_message_3'")
+        db.salva_registro(
+            "positions", "url, description", "'https://test_message_1.com', 'test_message_1'")
+        db.salva_registro(
+            "positions", "url, description", "'https://test_message_2.com', 'test_message_2'")
+        db.salva_registro(
+            "positions", "url, description", "'https://test_message_3.com', 'test_message_3'")
         return db
 
     @fixture
     def get_companies(self):
         return [{
-            "crawler": Generic("//a"),
+            "active": "Y",
+            "locator": "//a",
             "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
         }]
 
@@ -53,7 +57,8 @@ class TestHelperCommands:
     def test_update_get_data_from_many_links(self):
         companies = [
             {
-                "crawler": Generic("//a"),
+                "active": "Y",
+                "locator": "//a",
                 "url": "file:///" + getcwd() + "/tests/resources/p_many_links.html#",
             }
         ]
@@ -62,7 +67,8 @@ class TestHelperCommands:
     def test_compare_runs_many_times(self):
         crawlers = [
             {
-                "crawler": Generic("//a"),
+                "active": "Y",
+                "locator": "//a",
                 "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
             }]
         resume = "senior python pytest"
@@ -74,7 +80,8 @@ class TestHelperCommands:
     def test_compare_runs_list_of_links_ranked_by_similarity_using_or_condition(self):
         companies = [
             {
-                "crawler": Generic("//a"),
+                "active": "Y",
+                "locator": "//a",
                 "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
             }
         ]

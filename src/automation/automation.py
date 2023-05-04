@@ -51,14 +51,11 @@ class BaseObjects:
         self._driver.get(url)
         self.wait_until_page_is_loaded(timeout=timeout)
 
-    def get_text(self, by_type=None, locator=None, element=None):
-        if element is None:
-            result = self._get_element(by_type, locator).text
-        else:
-            result = element.text
-        if environ.get("DEBUG") == "on":
-            info("Get text '{}' of element".format(result))
-        return result
+    def get_text(self, by_type=None, locator=None):
+        try:
+            return self._get_element(by_type, locator).text
+        except Exception as error:
+            raise WebDriverError(str(error)) from error
 
     def swith_to_frame(self, index=None, by_type=None, locator=None):
         """

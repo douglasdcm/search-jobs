@@ -37,12 +37,12 @@ class ChromeDriver:
 
     def quit(self):
         try:
-            if environ.get("DEBUG") != "on":
+            if environ.get("DEBUG") == "on":
                 info("Taking screeshot.")
                 file = "screenshot_" + strftime("%d-%m-%H-%M-%S") + ".png"
                 self._driver.save_screenshot(LOGS_FOLDER + file)
-                info("Finishing driver.")
-                self._driver.quit()
+            info("Finishing driver.")
+            self._driver.quit()
         except Exception as error:
             info(str(error))
             raise WebDriverError(
