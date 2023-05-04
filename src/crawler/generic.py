@@ -58,7 +58,7 @@ class Generic:
                 print(message)
                 log_info(message)
                 if environ.get("DEBUG") == "on":
-                    raise CrawlerError(str(error))
+                    raise CrawlerError(str(error)) from error
             except Exception as error:
                 raise CrawlerError(str(error))
         return True

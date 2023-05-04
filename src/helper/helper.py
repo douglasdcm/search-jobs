@@ -128,6 +128,11 @@ def steam_data(text):
     return RSLPStemmer().stem(text)
 
 
+def read_file(file):
+    with open(file, "r") as f:
+        return f.readlines()
+
+
 def load_web_content():
     return [
         {

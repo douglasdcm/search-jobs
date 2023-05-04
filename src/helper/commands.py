@@ -8,6 +8,7 @@ from src.similarity.similarity import Similarity
 from src.driver.driver_factory import DriverFactory
 from src.exceptions.exceptions import CommandError
 from os import environ
+from src.crawler import generic
 
 
 def __finish_driver(chrome):
@@ -21,6 +22,8 @@ def get_positions_data(database_string, companies):
     if not Connection.get_database_connection():
         return False
     for company in companies:
+        if company["active"].upper() != "Y":
+            continue
         chrome = DriverFactory().get_driver()
         try:
             url = company["url"]
@@ -31,7 +34,7 @@ def get_positions_data(database_string, companies):
             print(message)
             info(message)
             driver_ = chrome.start(url)
-            crawler = company["crawler"]
+            crawler = generic.Generic(company["locator"])
             crawler.set_driver(driver_)
             crawler.set_url(url)
             crawler.run()

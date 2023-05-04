@@ -11,7 +11,6 @@ from src.helper.commands import (
     overwrite
 )
 from src.crawler.company import Company
-from src.crawler.generic import Generic
 from os import getcwd, system
 from dotenv import load_dotenv
 from src.helper.helper import Connection
@@ -43,8 +42,9 @@ def main(*args):
                     Connection.get_connection_string(), Company().get_all())
             elif "--sanity-check" in argumentos:
                 companies_fake = [{
-                    "crawler": Generic("//a"),
+                    "locator": "//a",
                     "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+                    "active": "Y"
                 }]
                 return sanity_check(Connection.get_connection_string(), companies_fake)
             else:
