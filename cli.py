@@ -1,5 +1,5 @@
 """
-CLI function to run the crawlers, compare résumés and manage the database.
+CLI function to run the crawlers, compare curriculuns and manage the database.
 Try: 'python cli.py --help' for more information.
 """
 from logging import basicConfig, INFO
