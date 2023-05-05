@@ -6,10 +6,9 @@
         {% for key, value in comparison.message.items() %}
             <div class="row" style="text-align: left;">
                 <div class="col-md-2">
-                    <p style="width: 250; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
-                    >{{ search_grid_label }} {{ value }}%</p>
+                    <p>{{ search_grid_label }} {{ value }}%</p>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8 truncate-url">
                     <a href="{{ key }}" target="_blank" rel="noopener noreferrer"> {{ key }} </a>
                 </div>
             </div>
