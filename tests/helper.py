@@ -38,6 +38,7 @@ def populate_database_with_thecnical_jobs():
     description1 = "jira manager senior dashboards carrer"
     description2 = "jira developer python java postgres sql"
     description3 = "jira tester qa pytest postman jmeter"
+    description4 = "ux figma design xd"
     positions = [
         {
             "url": "www.position1.com",
@@ -50,6 +51,10 @@ def populate_database_with_thecnical_jobs():
         {
             "url": "www.position3.com",
             "description": description3
+        },
+        {
+            "url": "www.very_looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong_url.com",
+            "description": description4
         }
     ]
     populate_database_with_desired_jobs(positions)

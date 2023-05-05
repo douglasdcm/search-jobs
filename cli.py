@@ -30,17 +30,23 @@ basicConfig(
 
 def main(*args):
     try:
-        for argumentos in args:
-            if "-h" in argumentos or "--help" in argumentos:
+        for arguments in args:
+            if "-h" in arguments or "--help" in arguments:
                 output = help_()
                 print(output)
                 return output
-            if "--overwrite" in argumentos:
+            if "--overwrite" in arguments:
                 # Get data from real companies. Not covered by automated testes
                 # to avoid overload the real sites
+                clean_database = False
+                if "--clean-db" in arguments:
+                    clean_database = True
                 return overwrite(
-                    Connection.get_connection_string(), Company().get_all())
-            elif "--sanity-check" in argumentos:
+                    Connection.get_connection_string(),
+                    Company().get_all(),
+                    clean_database
+                )
+            elif "--sanity-check" in arguments:
                 companies_fake = [{
                     "locator": "//a",
                     "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
