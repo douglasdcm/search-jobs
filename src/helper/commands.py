@@ -62,7 +62,8 @@ def help_():
         "Commands:\n"
         "--sanity-check    check the installtion and clean the database\n"
         "--help            open the help documentation\n"
-        "--overwrite       get the new positions from companies"
+        "--overwrite       get the new positions from companies\n"
+        "    --clean-db    clean up the database"
     )
 
 
@@ -91,11 +92,12 @@ def compare(database_string, resume, condition):
     return result
 
 
-def overwrite(database_string, companies=None):
+def overwrite(database_string, companies=None, clean_database=False):
     message = "Updating positions"
     print(message)
     info(message)
-    initialize_table(database_string)
+    if clean_database:
+        initialize_table(database_string)
     get_positions_data(database_string, companies)
     print("Update finished")
     return True
