@@ -7,7 +7,8 @@ from src.settings import ROOT_DIR
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from src.helper.commands import compare, overwrite
-from src.helper.helper import load_web_content, Connection
+from src.helper.helper import Connection
+from src.media_content import load_web_content
 from ast import literal_eval
 from dotenv import load_dotenv
 from logging import basicConfig, INFO
