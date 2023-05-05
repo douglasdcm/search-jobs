@@ -20,8 +20,10 @@ class Similarity:
 
         for row in positions:
             url = row[0]
-            row = str(row)
-            new_list = [resume_processed, row]
+            description = row[1]
+            if not description:
+                continue
+            new_list = [resume_processed, description]
             vector_bow = self.bow.fit_transform(new_list)
             cv_bow = vector_bow.todense()[0]
             postion_bow = vector_bow.todense()[1]
