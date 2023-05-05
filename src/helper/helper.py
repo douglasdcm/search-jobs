@@ -10,7 +10,6 @@ from src.exceptions.exceptions import DatabaseError
 from logging import info
 from dotenv import load_dotenv
 from os import environ
-from media_content import MEDIA_CONTENT
 
 
 nltk.download('stopwords', quiet=True)
@@ -131,7 +130,3 @@ def steam_data(text):
 def read_file(file):
     with open(file, "r") as f:
         return f.readlines()
-
-
-def load_web_content():
-    return MEDIA_CONTENT

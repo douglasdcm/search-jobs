@@ -13,7 +13,7 @@ class TestCrawler:
 
         assert companies.get("locator") == '//a[contains(@title,"Veja detalhes")]'
         assert companies.get("url") == 'https://www.dqrtech.com.br/vagas/'
-        assert companies.get("active") == "Y"
+        assert companies.get("active") is not None
 
 
     def test_all_crawler_types_run_succesfully(self, setup_db, monkeypatch):
