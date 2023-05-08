@@ -46,7 +46,7 @@ Agora você pode mexer no código à vontade.
 sudo apt-get install ./src/resources/google-chrome-stable_current_amd64.deb
 ```
 - Ou substitua o arquivo `./src/resources/chrome` para a mesma versão do Chrome instalado em sua máquina. Será preciso verificar a sua versão e baixar o driver correto https://chromedriver.chromium.org/downloads
-- Inicialize os containers manualmente (a issue (#139)[https://github.com/douglasdcm/search-jobs/issues/139] é para melhorar isso)
+- Inicialize os containers manualmente (a issue [https://github.com/douglasdcm/search-jobs/issues/139] é para melhorar isso)
 ```
 sudo docker compose up -d
 ```
