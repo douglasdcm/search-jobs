@@ -101,22 +101,22 @@ tail -f /webapp/logs/crawlers.log
 
 # Adicionando empresas
 Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos minutos você consegue fazer isso.
-- Adicione o dicionário da empresa no arquivo "src/crawler/company.py"
-- Adicione o 'locator' do link das vagas. O Selenium usa isso para descobrir as vagas da empresa
-- Adicione a url de vagas da empresa
+- Adicione o link de vagas da empresa no arquivo "src/crawler/companies_data.csv"
+- Adicione o Xpath 'locator' do link das vagas. O Selenium usa isso para descobrir as vagas da empresa. Veja os exemplos que estão no arquivo.
+- Adicione "Y" no terceiro campp do csv. Isso indica que o link está habilitado para a próxima coleta de dados.
 - Suba o container novamente
 - Rode o comando:
 ```
 python cli.py --ovewrite
 ```
-Isso irá rodar o crawler que vai pegar as informações de vagas das empresas e salvar no banco de dados. Depois disso você pode comparar o currículo com as novas vagas
+Isso irá rodar o crawler que vai pegar as informações de vagas das empresas e salvar no banco de dados. Depois disso você pode comparar o currículo com as novas vagas.
 
 
 # Especificação da API REST
 O projeto possui alguns end-points cuja documentação (Swagger) pode ser acessada em `http://localhost:5000/spec` 
 
 # Contribuindo
-Ajude este projeto a crescer adicionando novos crawlers. Que tal começar pelas empresas GPTW do Brasil de 2020? https://conteudo.gptw.com.br/150-melhores-2020.<br>
+Ajude este projeto a crescer adicionando novas empresas. Que tal começar pelas empresas GPTW do Brasil de 2020? https://conteudo.gptw.com.br/150-melhores-2020.<br>
 Pull requests são bem-vindas. Para mudanças grandes crie uma issue para discutirmos o que está sendo modificado. Adicione os testes apropriados.
 
 Dê uma estrelinha se você gostou deste projeto :)
