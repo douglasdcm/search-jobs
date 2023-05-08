@@ -6,6 +6,7 @@ Antes de começar a contribuir com o projeto, veja o nosso [Código de Conduta](
 
 # Adicionando empresas
 Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos minutos você consegue fazer isso.
+![example](https://github.com/douglasdcm/search-jobs/blob/master/add-locator-example.jpg?raw=true)
 - Faça um fork deste projeto e clone o seu repositório 
 - Adicione o link de vagas da empresa no arquivo `src/crawler/companies_data.csv`
 - Adicione o Xpath 'locator' do link das vagas. O Selenium usa isso para descobrir as vagas da empresa. Veja os exemplos que estão no arquivo.

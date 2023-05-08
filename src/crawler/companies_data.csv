@@ -155,10 +155,7 @@ none;https://santander.wd3.myworkdayjobs.com/SantanderCareers/0/refreshFacet/318
 //div[contains(@class,"route-container")]//a;https://www.nerdwallet.com/careers/product-management;Y;
 //div[contains(@class,"route-container")]//a;https://www.nerdwallet.com/careers/sales;Y;
 //div[contains(@class,"route-container")]//a;https://www.nerdwallet.com/careers/user-operations;Y;
-TBD;free;NONE;
-TBD;free;NONE;
-TBD;free;NONE;
-TBD;https://www.wise.jobs/;NONE;
+//a[contains(@class,"c-card")];https://www.wise.jobs/search/?sort=oldest/;Y;
 TBD;https://careers.doordash.com/#open-positions;NONE;
 TBD;https://www.lyft.com/careers;NONE;
 TBD;https://www.apixio.com/join-apixio/;NONE;
