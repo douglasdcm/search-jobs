@@ -6,12 +6,13 @@
         <form action="/" method="post" class="btn navbar-btn">
           {% include "components/button_flags.html" %}
         </form>
-        {% include "components/anchor_github.html" %}
+        {% include "components/image_github.html" %}
         <form action="/about" method="post" class="btn navbar-btn">
           <button style="background: none; border: none;">
             <img src="{{url_for('static', filename='images/about.png')}}"; width="25" height="25">
           </button>
         </form>
+        {% include "components/image_contact.html" %}
       </div>
     </div>
   </nav>
