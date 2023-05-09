@@ -58,7 +58,7 @@ def __check_informed_language(language):
     return language
 
 
-def __receiver(resume, condition, language={}):
+def __search(resume, condition, language={}):
     limit = 5000
     result = {}
 
@@ -121,7 +121,7 @@ def output():
         return render_template("error.html")
 
 
-@app.route('/receiver', methods=['POST'])
+@app.route('/search', methods=['POST'])
 def worker():
     try:
         language = __check_informed_language(session_data.language)
@@ -129,7 +129,7 @@ def worker():
         condition = request.form.get('condition')
 
         comparison = literal_eval(
-            __receiver(
+            __search(
                 resume,
                 condition,
                 languages[language]
