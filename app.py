@@ -38,7 +38,7 @@ DEFAULT_ERROR_MESSAGE = "Unexpected error. Try again later."
 
 class SessionData:
     def __init__(self):
-        self.__language = DEFAULT_LANGUAGE
+        self.__language = None
 
     @property
     def language(self):
@@ -52,13 +52,7 @@ class SessionData:
 session_data = SessionData()
 
 
-def __check_informed_language(language):
-    if (language not in language_keys):
-        language = DEFAULT_LANGUAGE
-    return language
-
-
-def __receiver(resume, condition, language={}):
+def __search(resume, condition, language={}):
     limit = 5000
     result = {}
 
@@ -100,16 +94,33 @@ def __receiver(resume, condition, language={}):
     return jsonify(result), 200
 
 
+def __check_informed_language(language):
+    if (language not in language_keys):
+        language = DEFAULT_LANGUAGE
+    return language
+
+
+def __set_language(request):
+    print("lang", request.form)
+
+    language = request.form.get('language')
+    if language:
+        session_data.language = language
+    else:
+        if not session_data.language:
+            session_data.language = DEFAULT_LANGUAGE
+    return __check_informed_language(session_data.language)
+
+
 @app.errorhandler(404)
 def not_found(e):
     return render_template("404.html")
 
 
 @app.route("/", methods=["GET", "POST"])
-def output():
+def home():
     try:
-        session_data.language = request.form.get('language', DEFAULT_LANGUAGE)
-        language = __check_informed_language(session_data.language)
+        language = __set_language(request)
         images_data = load_web_content()
         return render_template(
             'index.html',
@@ -121,15 +132,15 @@ def output():
         return render_template("error.html")
 
 
-@app.route('/receiver', methods=['POST'])
-def worker():
+@app.route('/search', methods=['POST'])
+def search():
     try:
-        language = __check_informed_language(session_data.language)
+        language = __set_language(request)
         resume = request.form.get('message')
         condition = request.form.get('condition')
 
         comparison = literal_eval(
-            __receiver(
+            __search(
                 resume,
                 condition,
                 languages[language]
@@ -145,6 +156,15 @@ def worker():
         exception(error)
         return render_template("error.html")
 
+
+@app.route("/about", methods=["GET", "POST"])
+def about():
+    try:
+        language = __set_language(request)
+        return render_template('about.html', **languages[language])
+    except Exception as error:
+        exception(error)
+        return render_template("error.html")
 
 @app.route("/spec")
 def spec():

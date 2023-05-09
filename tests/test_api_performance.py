@@ -15,5 +15,5 @@ class TestPerformceApp:
         })
         limite = 1000
         for _ in range(limite):
-            response = post(url=BASE_URL + "/receiver", data=payload, headers={"Content-Type": "application/json"})
+            response = post(url=BASE_URL + "/search", data=payload, headers={"Content-Type": "application/json"})
             assert response.status_code == 200

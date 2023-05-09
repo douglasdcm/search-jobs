@@ -10,5 +10,6 @@
     "api_no_condition": "Condition not informed",
     "api_invalid_curriculum": "Invalid curriculum",
     "api_invalid_condition": "Invalid condition",
-    "api_no_result": "No jobs found"
+    "api_no_result": "No jobs found",
+    "about": "This project was born from the <b>will</b> of its collaborators to <b>help people</b> to find <b>jobs</b> more easily. We went through a very difficult pandemic period for everyone in which several <b>people</b> lost their <b>jobs</b> and were unable to find a place in the job market. To change this scenario, we <b>collect and make available vacancies</b> from different companies automatically <b>so that people can compare their resumes</b> with the market positions that are most relevant to them. This includes <b>you</b>. We understand that in this way, we will be able to <b>unite</b> those who need collaborators and those who need to work. This project is completely <b>free</b> and relies on the collaboration of the community to grow and reach more <b>people</b>. If <b>you</b> like this initiative, see <a href='https://github.com/douglasdcm/search-jobs#readme' target='_blank'>here</a> how you can contribute and make the project expand."
 }
