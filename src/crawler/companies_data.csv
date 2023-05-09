@@ -1,3 +1,4 @@
+locator;carrers_url;enabled;
 //a[contains(@title,"Veja detalhes")];https://www.dqrtech.com.br/vagas/;IN_DB;
 //a[contains(@class,"wp-block-cit-block-ciandt-link")];https://ciandt.com/us/en-us/careers/open-positions;IN_DB;
 //a[contains(text(),"Candidatar")];https://www.cesar.org.br/vagas-em-aberto;IN_DB;
