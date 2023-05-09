@@ -20,6 +20,11 @@ p {
     color: black;
 }
 
+.disclaimer {
+    color: black;
+    text-align: justify;
+}
+
 a {
     color:blue
 }

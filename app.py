@@ -101,8 +101,6 @@ def __check_informed_language(language):
 
 
 def __set_language(request):
-    print("lang", request.form)
-
     language = request.form.get('language')
     if language:
         session_data.language = language
@@ -165,6 +163,25 @@ def about():
     except Exception as error:
         exception(error)
         return render_template("error.html")
+
+@app.route("/disclaimer", methods=["GET", "POST"])
+def disclaimer():
+    try:
+        return render_template('disclaimer.html')
+    except Exception as error:
+        exception(error)
+        return render_template("error.html")
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    try:
+        language = __set_language(request)
+        return render_template('contact.html', **languages[language])
+    except Exception as error:
+        exception(error)
+        return render_template("error.html")
+
 
 @app.route("/spec")
 def spec():
