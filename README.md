@@ -1,5 +1,5 @@
 # Introdução
-Este projeto utiliza um crawler genárico para buscar por vagas em diferentes empresas e lhe permite comparar o seu currículo com essas vagas para que você possa achar as que são relevantes para você.
+Este projeto utiliza um crawler genérico para buscar por vagas em diferentes empresas e lhe permite comparar o seu currículo com essas vagas para que você possa achar as que são relevantes para você.
 
 # Começando
 Antes de começar a contribuir com o projeto, veja o nosso [Código de Conduta](https://github.com/douglasdcm/crawler_of_positions/blob/master/CODE_OF_CONDUCT.md).
@@ -8,11 +8,7 @@ Antes de começar a contribuir com o projeto, veja o nosso [Código de Conduta](
 Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos minutos você consegue fazer isso. Veja o exemplo abaixo:
 ![Exemplo](https://github.com/douglasdcm/search-jobs/blob/master/static/images/add-locator-example.jpg?raw=true)
 
-- Faça um fork deste projeto e clone o seu repositório 
-- Adicione o link de vagas da empresa no arquivo [companies_data.csv](https://github.com/douglasdcm/search-jobs/blob/master/src/crawler/companies_data.csv)
-- Adicione o Xpath 'locator' do link das vagas. O Selenium usa isso para descobrir as vagas da empresa. Veja os exemplos que estão no arquivo.
-- Adicione `Y` no terceiro campo do csv. Isso indica que o link está habilitado para a próxima coleta de dados.
-- Submeta sua Merge Request para este projeto
+Veja o [passo a passo](https://github.com/douglasdcm/job-conqueror/blob/main/README.md#adicionando-empresas)
 
 # Atualizando o código fonte
 Para atualizar o código fonte, ative seu ambiente virtual e instale as dependências
