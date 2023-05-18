@@ -1,7 +1,9 @@
 {
     "python.linting.pycodestyleEnabled": true,
-    "python.linting.pycodestyleArgs": ["--ignore=E303", "--max-line-length=100"],
-    "python.linting.enabled": true,
+    "python.linting.pycodestyleArgs": [
+        "--ignore=E303", "--max-line-length=100"
+    ],
+    "python.linting.enabled": false,
     "python.linting.pylintEnabled": false,
     "files.watcherExclude": {
         "**/env_crawler/**": true,
@@ -11,5 +13,9 @@
         "**/.pytest_cache/**": true,
         "**pkg_compare_cv.egg-info**": true
     },
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
 }
