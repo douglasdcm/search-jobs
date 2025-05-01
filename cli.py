@@ -2,6 +2,7 @@
 CLI function to run the crawlers, compare curriculuns and manage the database.
 Try: 'python cli.py --help' for more information.
 """
+import asyncio
 from logging import basicConfig, INFO
 from src.settings import ROOT_DIR, LOG_FILE, RESOURCES_DIR
 from sys import argv, path
@@ -14,7 +15,7 @@ from src.crawler.company import Company
 from os import getcwd, system
 from dotenv import load_dotenv
 from src.helper.helper import Connection
-
+from caqui.easy.server import Server
 
 load_dotenv()  # take environment variables from .env.
 
@@ -28,7 +29,7 @@ basicConfig(
     filename=LOG_FILE, level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
 
 
-def main(*args):
+async def main(*args):
     try:
         for arguments in args:
             if "-h" in arguments or "--help" in arguments:
@@ -52,12 +53,22 @@ def main(*args):
                     "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
                     "active": "Y"
                 }]
-                return sanity_check(Connection.get_connection_string(), companies_fake)
+                return await sanity_check(Connection.get_connection_string(), companies_fake)
             else:
                 print("Invalid command. Try cli.py --help ")
     except Exception as error:
         print(f"Unexpected error. {str(error)}")
+        raise
 
 
 if __name__ == '__main__':
-    main(argv)
+    server = Server()
+    try:
+        server.start()
+        print(f"Server URL: {server.url}")
+        asyncio.run(main(argv))
+    except Exception as error:
+        print(f"Error: {str(error)}")
+        raise
+    finally:
+        server.dispose()

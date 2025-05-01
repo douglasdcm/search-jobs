@@ -11,20 +11,24 @@ from os import environ
 from src.crawler import generic
 
 
-def __finish_driver(chrome):
-    chrome.quit()
+async def __finish_driver(chrome):
+    await chrome.quit()
     message = "Crawler finished."
     print(message)
     info(message)
 
 
-def get_positions_data(database_string, companies):
+async def get_positions_data(database_string, companies):
     if not Connection.get_database_connection():
         return False
+    try:
+        chrome = DriverFactory().get_driver()
+    except Exception as error:
+        print(f"Error: {str(error)}")
+        raise
     for company in companies:
         if company["active"].upper() != "Y":
             continue
-        chrome = DriverFactory().get_driver()
         try:
             url = company["url"]
             message = f"Collecting data of company '{url}'"
@@ -33,12 +37,12 @@ def get_positions_data(database_string, companies):
             message = "Starting crawler for '{}'...".format(url)
             print(message)
             info(message)
-            driver_ = chrome.start(url)
+            driver_ = await chrome.start(url)
             crawler = generic.Generic(company["locator"])
             crawler.set_driver(driver_)
             crawler.set_url(url)
-            crawler.run()
-            __finish_driver(driver_)
+            await crawler.run()
+            await __finish_driver(driver_)
         # The execution need to continue even in case of errors
         except Exception as error:
             message = f"Unexpected error occurred while getting position data. {str(error)}"
@@ -47,14 +51,14 @@ def get_positions_data(database_string, companies):
                 raise CommandError(str(error))
         finally:
             try:
-                __finish_driver(chrome)
-            except Exception:
-                pass
+                await __finish_driver(chrome)
+            except Exception as error:
+                print(f"Unexected error: {str(error)}")
     return True
 
 
-def sanity_check(database_string, companies):
-    return get_positions_data(database_string, companies)
+async def sanity_check(database_string, companies):
+    return await get_positions_data(database_string, companies)
 
 
 def help_():
@@ -92,12 +96,12 @@ def compare(database_string, resume, condition):
     return result
 
 
-def overwrite(database_string, companies=None, clean_database=False):
+async def overwrite(database_string, companies=None, clean_database=False):
     message = "Updating positions"
     print(message)
     info(message)
     if clean_database:
         initialize_table(database_string)
-    get_positions_data(database_string, companies)
+    await get_positions_data(database_string, companies)
     print("Update finished")
     return True

@@ -1,7 +1,7 @@
-from src.driver.chrome import ChromeDriver
+from src.driver.chrome import Driver
 
 
 class DriverFactory:
 
     def get_driver(self):
-        return ChromeDriver()
+        return Driver()

@@ -34,11 +34,13 @@ class Connection:
 
     @classmethod
     def get_database_connection(cls, connection_string=None):
-        if not cls.connection:
-            cls.connection = create_engine(cls.get_connection_string(
-                connection_string))
-        return cls.connection
-
+        try:
+            if not cls.connection:
+                cls.connection = create_engine(cls.get_connection_string(
+                    connection_string))
+            return cls.connection
+        except Exception as error:
+            print(f"Error: {str(error)}")
 
 
 def save_description_to_database(database_string, url, description):

@@ -19,15 +19,15 @@ pip install -r requirements.txt
 pip install -r test-requirements.txt
 sudo mkdir -p /webapp/logs
 sudo cp ./src/resources/basic_page.html /webapp
-chmod -R 777 /webapp
+sudo chmod -R 777 /webapp
 ```
 Instale o Docker e Docker Compose, faça o build da imagem Docker e suba os containers. Você pode usar o utilitário na pasta `./utils`
 ```
-./utils/build_image.sh
+./utils/build_container.sh
 ```
 Copie o arquivo ".env_template" para ".env" e adicione dados de teste no banco de dados
 ```
-python add_fake_data_to_databse.py
+python ./utils/add_fake_data_to_databse.py
 ```
 Após finalizar o build, suba o container:
 ```
