@@ -3,7 +3,8 @@ CLI function to run the crawlers, compare curriculuns and manage the database.
 Try: 'python cli.py --help' for more information.
 """
 import asyncio
-from logging import basicConfig, INFO
+from os import environ
+from logging import basicConfig, INFO, info, exception
 from src.settings import ROOT_DIR, LOG_FILE, RESOURCES_DIR
 from sys import argv, path
 from src.helper.commands import (
@@ -24,30 +25,38 @@ system('export PATH="{}:$PATH"'.format(RESOURCES_DIR))
 path.append(RESOURCES_DIR)
 path.append(ROOT_DIR)
 
-basicConfig(
-    format='%(asctime)s %(levelname)-8s %(message)s',
-    filename=LOG_FILE, level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
+if environ.get("DEBUG") == "on":
+    basicConfig(
+        format='%(asctime)s %(levelname)-8s %(message)s',
+        level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
+else:
+    basicConfig(
+        format='%(asctime)s %(levelname)-8s %(message)s',
+        filename=LOG_FILE, level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
 
+SERVER = Server()
 
 async def main(*args):
     try:
         for arguments in args:
             if "-h" in arguments or "--help" in arguments:
                 output = help_()
-                print(output)
+                info(output)
                 return output
             if "--overwrite" in arguments:
                 # Get data from real companies. Not covered by automated testes
                 # to avoid overload the real sites
+                SERVER.start()
                 clean_database = False
                 if "--clean-db" in arguments:
                     clean_database = True
-                return overwrite(
+                return await overwrite(
                     Connection.get_connection_string(),
                     Company().get_all(),
                     clean_database
                 )
             elif "--sanity-check" in arguments:
+                SERVER.start()
                 companies_fake = [{
                     "locator": "//a",
                     "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
@@ -55,20 +64,17 @@ async def main(*args):
                 }]
                 return await sanity_check(Connection.get_connection_string(), companies_fake)
             else:
-                print("Invalid command. Try cli.py --help ")
+                exception("Invalid command. Try cli.py --help ")
     except Exception as error:
-        print(f"Unexpected error. {str(error)}")
+        info(f"Unexpected error. {str(error)}")
         raise
 
 
 if __name__ == '__main__':
-    server = Server()
     try:
-        server.start()
-        print(f"Server URL: {server.url}")
         asyncio.run(main(argv))
     except Exception as error:
-        print(f"Error: {str(error)}")
+        info(f"Error: {str(error)}")
         raise
     finally:
-        server.dispose()
+        SERVER.dispose()

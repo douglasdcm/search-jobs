@@ -15,7 +15,7 @@ from logging import basicConfig, INFO
 from src.settings import ROOT_DIR, LOG_FILE
 from src.crawler.company import Company
 from waitress import serve
-from logging import exception
+from logging import exception, info
 
 
 basicConfig(
@@ -241,5 +241,5 @@ if __name__ == '__main__':
         with open(language, "r", encoding="utf8") as file:
             languages[lang_code] = json.loads(file.read())
 
-    print("Server running")
+    info("Server running")
     serve(app, host="0.0.0.0", port=port)

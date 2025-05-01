@@ -15,7 +15,7 @@ services:
         source: ./app.py
         target: /webapp/app.py
     ports:
-      - 5000:5001
+      - 5001:5001
     depends_on:
       - db
     working_dir: /webapp

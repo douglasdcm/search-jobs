@@ -1,20 +1,21 @@
-from logging import info
+from logging import info, exception
+from src.driver.chrome import Driver
 from src.helper.helper import (
     search_positions_based_on_resume,
     Connection,
     initialize_table
 )
 from src.similarity.similarity import Similarity
-from src.driver.driver_factory import DriverFactory
 from src.exceptions.exceptions import CommandError
 from os import environ
 from src.crawler import generic
 
 
-async def __finish_driver(chrome):
-    await chrome.quit()
+async def __finish_driver(chrome: Driver):
+    if environ.get("DEBUG") == "on":
+        await chrome.save_screenshot_tmp()
+    chrome.quit()
     message = "Crawler finished."
-    print(message)
     info(message)
 
 
@@ -22,38 +23,34 @@ async def get_positions_data(database_string, companies):
     if not Connection.get_database_connection():
         return False
     try:
-        chrome = DriverFactory().get_driver()
+        chrome = Driver()
     except Exception as error:
-        print(f"Error: {str(error)}")
+        exception(f"Error: {str(error)}")
         raise
     for company in companies:
         if company["active"].upper() != "Y":
             continue
         try:
             url = company["url"]
-            message = f"Collecting data of company '{url}'"
-            print(message)
-            info(message)
-            message = "Starting crawler for '{}'...".format(url)
-            print(message)
-            info(message)
+            info(f"Collecting data of company '{url}'")
+            info("Starting crawler for '{}'...".format(url))
             driver_ = await chrome.start(url)
             crawler = generic.Generic(company["locator"])
             crawler.set_driver(driver_)
             crawler.set_url(url)
             await crawler.run()
-            await __finish_driver(driver_)
         # The execution need to continue even in case of errors
         except Exception as error:
-            message = f"Unexpected error occurred while getting position data. {str(error)}"
-            info(message)
+            exception(f"Unexpected error occurred while getting position data. {str(error)}")
             if environ.get("DEBUG") == "on":
-                raise CommandError(str(error))
+                raise CommandError(str(error)) from error
         finally:
             try:
-                await __finish_driver(chrome)
+                await chrome.save_screenshot()
+                chrome.quit()
+                info("Crawler finished.")
             except Exception as error:
-                print(f"Unexected error: {str(error)}")
+                exception(f"Unexected error: {str(error)}")
     return True
 
 
@@ -97,11 +94,9 @@ def compare(database_string, resume, condition):
 
 
 async def overwrite(database_string, companies=None, clean_database=False):
-    message = "Updating positions"
-    print(message)
-    info(message)
+    info("Updating positions")
     if clean_database:
         initialize_table(database_string)
     await get_positions_data(database_string, companies)
-    print("Update finished")
+    info("Update finished")
     return True

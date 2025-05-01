@@ -7,7 +7,7 @@ from nltk.stem import RSLPStemmer
 from sqlalchemy import create_engine, text
 from src.settings import TABLE_NAME, DATABASE_STRING_DEFAULT
 from src.exceptions.exceptions import DatabaseError
-from logging import info
+from logging import info, exception
 from dotenv import load_dotenv
 from os import environ
 
@@ -40,32 +40,36 @@ class Connection:
                     connection_string))
             return cls.connection
         except Exception as error:
-            print(f"Error: {str(error)}")
+            raise DatabaseError(str(error)) from error
 
 
 def save_description_to_database(database_string, url, description):
-    with Connection.get_database_connection(database_string).connect() as connection:
-        message = f"Saving data from '{url}'..."
-        print(message)
-        info(message)
-        description = data_pre_processing_portuguese(description)
-        connection.execute(text(
-            f"insert into {TABLE_NAME} (url, description) values ('{url}', '{description}')"
-        ))
+    try:
+        with Connection.get_database_connection(database_string).connect() as connection:
+            message = f"Saving data from '{url}'..."
+            info(message)
+            info(message)
+            description = data_pre_processing_portuguese(description)
+            connection.execute(text(
+                f"insert into {TABLE_NAME} (url, description) values ('{url}', '{description}')"
+            ))
+    except Exception as error:
+        raise DatabaseError(str(error)) from error
 
 
 def initialize_table(database_string):
-    with Connection.get_database_connection(database_string).connect() as connection:
-        message = "Creating table for positions"
-        print(message)
-        info(message)
-        connection.execute(text(f"drop table if exists {TABLE_NAME}"))
-        connection.execute(text(
-            f"create table {TABLE_NAME} (url VARCHAR(255) NOT NULL, description VARCHAR(50000))"
-        ))
-        print("Initialization finished")
-        return True
-
+    try:
+        with Connection.get_database_connection(database_string).connect() as connection:
+            message = "Creating table for positions"
+            info(message)
+            connection.execute(text(f"drop table if exists {TABLE_NAME}"))
+            connection.execute(text(
+                f"create table {TABLE_NAME} (url VARCHAR(255) NOT NULL, description VARCHAR(50000))"
+            ))
+            info("Initialization finished")
+            return True
+    except Exception as error:
+        raise DatabaseError(str(error)) from error
 
 def data_pre_processing_portuguese(corpus):
     # remove html tags
@@ -91,11 +95,13 @@ def data_pre_processing_portuguese(corpus):
 
 
 def get_all_positions_from_database(database_string):
-    query = f"select * from {TABLE_NAME}"
-    with Connection.get_database_connection(database_string).connect() as connection:
-        positions = connection.execute(text(query)).all()
-    return positions
-
+    try:
+        query = f"select * from {TABLE_NAME}"
+        with Connection.get_database_connection(database_string).connect() as connection:
+            positions = connection.execute(text(query)).all()
+        return positions
+    except Exception as error:
+        raise DatabaseError(str(error)) from error
 
 def select_with_like(terms, table, column, condition="OR"):
     terms = terms.split(sep=" ")
@@ -131,4 +137,4 @@ def steam_data(text):
 
 def read_file(file):
     with open(file, "r") as f:
-        return f.readlines()
+        return f.readlines()[1:]

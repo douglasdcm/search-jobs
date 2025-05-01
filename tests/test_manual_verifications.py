@@ -1,3 +1,4 @@
+from logging import info
 from src.helper.helper import data_pre_processing_portuguese
 from pytest import mark
 from tests.helper import populate_database_with_desired_jobs
@@ -47,4 +48,4 @@ class TestManualVerification:
             },
         ]
         populate_database_with_desired_jobs(positions)
-        print("Maual test: ", get_all_positions_from_database(DATABASE_STRING))
+        info("Maual test: ", get_all_positions_from_database(DATABASE_STRING))

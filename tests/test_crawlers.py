@@ -15,9 +15,9 @@ class TestCrawler:
         assert companies.get("url") == 'https://www.dqrtech.com.br/vagas/'
         assert companies.get("active") is not None
 
-
-    def test_all_crawler_types_run_succesfully(self, setup_db, monkeypatch):
+    @mark.asyncio
+    async def test_all_crawler_types_run_succesfully(self, setup_db, monkeypatch):
         monkeypatch.setattr(auto.wait, "WebDriverWait", Fake_WebDriverWait)
         crawler = Generic("any_locator")
         crawler.set_driver(FakeDriver())
-        assert crawler.run() is True
+        assert await crawler.run() is True

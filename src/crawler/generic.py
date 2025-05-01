@@ -1,4 +1,4 @@
-from logging import error as log_info
+from logging import exception, info
 from src.pages.generic.positions import Positions
 from src.exceptions.exceptions import WebDriverError, CrawlerError
 from os import environ
@@ -46,7 +46,11 @@ class Generic:
     async def _get_info_from_links(self, links):
         for link in links:
             try:
-                print(f"Collecting data from postion '{link}'")
+                # It is necessary because the function `Element.get_attribute`
+                # does not return a Coroutine
+                if not isinstance(link, str):
+                    link = await link
+                info(f"Collecting data from postion '{link}'")
                 await self._positions.go_to_page(link)
                 save_description_to_database(
                     Connection.get_connection_string(),
@@ -55,8 +59,7 @@ class Generic:
                 )
             except WebDriverError as error:
                 message = f"Skipping process. Failed to get data from {link}"
-                print(message)
-                log_info(message)
+                exception(message)
                 if environ.get("DEBUG") == "on":
                     raise CrawlerError(str(error)) from error
             except Exception as error:

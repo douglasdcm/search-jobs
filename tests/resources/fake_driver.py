@@ -18,17 +18,17 @@ class FakeDriver:
     def quit(self):
         pass
 
-    def find_elements(self, by_type=None, locator=None):
+    async def find_elements(self, by_type=None, locator=None):
         element = Fake_Element()
         return [element, element, element]
 
-    def find_element(self, by_type=None, locator=None):
+    async def find_element(self, by_type=None, locator=None):
         return Fake_Element()
 
-    def get(self, url="url"):
+    async def get(self, url="url"):
         pass
 
-    def execute_script(self, script=None, element=None):
+    async def execute_script(self, script=None, element=None):
         return True
 
 

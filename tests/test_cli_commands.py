@@ -8,7 +8,7 @@ class TestCliCommands:
     entry_point = "cli.py"
     domain = "python"
 
-    def test_sanity_check_works(self):
+    def test_sanity_check_works_cli(self):
         expected = "Crawler finished"
         params = ["--sanity-check"]
         actual = exec_command(params, self.entry_point, self.domain)

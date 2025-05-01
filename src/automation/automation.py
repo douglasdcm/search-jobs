@@ -19,19 +19,14 @@ class BaseObjects:
     async def get_all_elements(self, by_type, locator):
         try:
             info("Getting all elements '{}:{}'".format(by_type, locator))
-            elements = await self._driver.find_elements(by_type, locator)
-            if not elements:
-                message = "No elements found. Skipping process"
-                print(message)
-                info(message)
-            return elements
+            return await self._driver.find_elements(by_type, locator)
         except Exception as error:
             raise WebDriverError(f"Could not get elements. {str(error)}")
 
     async def get_attribute_from_element(self, element, attribute):
         if environ.get("DEBUG") == "on":
             info("Getting attribute {} from element {}".format(attribute, element))
-        return await element.get_attribute(attribute)
+        return element.get_attribute(attribute)
 
     async def wait_until_page_is_loaded(self, timeout=TIMEOUT):
         return await self.wait_until(

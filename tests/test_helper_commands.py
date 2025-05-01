@@ -54,16 +54,18 @@ class TestHelperCommands:
         }]
 
 
-    def test_update_get_data_from_many_links(self):
+    @mark.asyncio
+    async def test_update_get_data_from_many_links(self):
         companies = [
             {
                 "active": "Y",
                 "locator": "//a",
-                "url": "file:///" + getcwd() + "/tests/resources/p_many_links.html#",
+                "url": f"file:///{getcwd()}/tests/resources/p_many_links.html#",
             }
         ]
-        assert overwrite(DATABASE_STRING, companies) is True
+        assert await overwrite(DATABASE_STRING, companies) is True
 
+    @mark.asyncio
     def test_compare_runs_many_times(self):
         crawlers = [
             {
@@ -90,16 +92,19 @@ class TestHelperCommands:
         overwrite(DATABASE_STRING, companies)
         assert expected in str(compare(DATABASE_STRING, resume, condition="OR"))
 
-    def test_run_by_db_string(self, get_companies):
-        assert get_positions_data(
+    @mark.asyncio
+    async def test_run_by_db_string(self, get_companies):
+        assert await get_positions_data(
             database_string=DATABASE_STRING, companies=get_companies
         ) is True
 
-    def test_overwrite_database_returns_true(self, get_companies):
-        assert overwrite(DATABASE_STRING, get_companies) is True
+    @mark.asyncio
+    async def test_overwrite_database_returns_true(self, get_companies):
+        assert await overwrite(DATABASE_STRING, get_companies) is True
 
-    def test_sanity_check_works(self, setup_db, get_companies):
-        assert sanity_check(DATABASE_STRING, get_companies) is True
+    @mark.asyncio
+    async def test_sanity_check_works(self, setup_db, get_companies):
+        assert await sanity_check(DATABASE_STRING, get_companies) is True
 
     def test_help_is_opened(self):
         actual = help_()

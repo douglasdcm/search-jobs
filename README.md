@@ -13,7 +13,7 @@ Veja o [passo a passo](https://github.com/douglasdcm/job-conqueror/blob/main/REA
 # Atualizando o código fonte
 Para atualizar o código fonte, ative seu ambiente virtual e instale as dependências
 ```
-python3.6 -m venv env
+python3.7 -m venv env
 source venv/bin/activate
 pip install -r requirements.txt
 pip install -r test-requirements.txt
@@ -27,7 +27,7 @@ Instale o Docker e Docker Compose, faça o build da imagem Docker e suba os cont
 ```
 Copie o arquivo ".env_template" para ".env" e adicione dados de teste no banco de dados
 ```
-python ./utils/add_fake_data_to_databse.py
+export PYTHONPATH=$(pwd); python ./utils/add_fake_data_to_databse.py
 ```
 Após finalizar o build, suba o container:
 ```

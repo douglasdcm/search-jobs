@@ -1,3 +1,4 @@
+import asyncio
 from src.automation.automation import BaseObjects
 from selenium.webdriver.common.by import By
 from src.exceptions.exceptions import WebDriverError
@@ -8,17 +9,18 @@ class Positions:
     def __init__(self, driver) -> None:
         self._driver = driver
         self._base_objects = BaseObjects(driver)
+        self._links = None
 
     async def get_link_of_all_positons(self, locator):
         try:
             by_type = By.XPATH
             elements = await self._base_objects.get_all_elements(by_type, locator)
-            links = []
+            tasks = []
             for element in elements:
-                links.append(await self._base_objects.get_attribute_from_element(element, 'href'))
-            return links
+                tasks.append(self._base_objects.get_attribute_from_element(element, 'href'))
+            return await asyncio.gather(*tasks) 
         except Exception as error:
-            raise WebDriverError(f"Could not get element(s). {str(error)}")
+            raise WebDriverError(f"Could not get element(s). {str(error)}") from error
 
 
     async def go_to_page(self, url):
