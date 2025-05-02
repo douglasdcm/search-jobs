@@ -11,8 +11,9 @@ from caqui.easy.page import AsyncPage
 from caqui.easy.capabilities import ChromeCapabilitiesBuilder
 from caqui.easy.options import ChromeOptionsBuilder
 from caqui import synchronous
-class Driver:
 
+
+class Driver:
     def __init__(self) -> None:
         try:
             options = (
@@ -35,19 +36,16 @@ class Driver:
 
     async def start(self, url):
         try:
-            print("AAAAAAAAAA",self._driver.session,)
-            synchronous.get(
-                SERVER_URL,
+            print(
+                "AAAAAAAAAA",
                 self._driver.session,
-                url
             )
+            synchronous.get(SERVER_URL, self._driver.session, url)
             # await self._driver.get(url)
             await self._driver.implicitly_wait(TIMEOUT)
             return self._driver
         except Exception as error:
-            raise WebDriverError(
-                f"Unexpected error while starting the webdriver. {str(error)}"
-            )
+            raise WebDriverError(f"Unexpected error while starting the webdriver. {str(error)}")
 
     async def save_screenshot(self):
         try:

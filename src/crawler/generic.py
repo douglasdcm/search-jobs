@@ -6,7 +6,6 @@ from src.helper.helper import save_description_to_database, Connection
 
 
 class Generic:
-
     def __init__(self, locator):
         """
         This is what the name says: a generic crawler. It is intended to be used if the company's
@@ -55,7 +54,7 @@ class Generic:
                 save_description_to_database(
                     Connection.get_connection_string(),
                     link,
-                    await self._positions.get_description()
+                    await self._positions.get_description(),
                 )
             except WebDriverError as error:
                 message = f"Skipping process. Failed to get data from {link}"

@@ -6,7 +6,6 @@ from os import environ
 
 
 class BaseObjects:
-
     def __init__(self, driver):
         self._driver = driver
         self._wait = wait.WebDriverWait(driver, TIMEOUT)
@@ -30,8 +29,9 @@ class BaseObjects:
 
     async def wait_until_page_is_loaded(self, timeout=TIMEOUT):
         return await self.wait_until(
-            lambda _: self._driver.execute_script('return document.readyState') == 'complete',
-            timeout=timeout)
+            lambda _: self._driver.execute_script("return document.readyState") == "complete",
+            timeout=timeout,
+        )
 
     def wait_until(self, predicate, timeout=TIMEOUT, poll_frequency=0.001):
         return wait.WebDriverWait(self._driver, timeout, poll_frequency).until(predicate)

@@ -12,7 +12,7 @@ class TestCrawler:
         companies = Company().get_all()[0]
 
         assert companies.get("locator") == '//a[contains(@title,"Veja detalhes")]'
-        assert companies.get("url") == 'https://www.dqrtech.com.br/vagas/'
+        assert companies.get("url") == "https://www.dqrtech.com.br/vagas/"
         assert companies.get("active") is not None
 
     @mark.asyncio

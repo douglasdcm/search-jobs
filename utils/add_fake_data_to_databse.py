@@ -1,7 +1,4 @@
-from tests.helper import (
-    populate_database_with_thecnical_jobs,
-    initialize_table
-)
+from tests.helper import populate_database_with_thecnical_jobs, initialize_table
 from os import environ
 from dotenv import load_dotenv
 

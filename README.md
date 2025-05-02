@@ -2,7 +2,7 @@
 Este projeto utiliza um crawler genérico para buscar por vagas em diferentes empresas e lhe permite comparar o seu currículo com essas vagas para que você possa achar as que são relevantes para você.
 
 # Começando
-Antes de começar a contribuir com o projeto, veja o nosso [Código de Conduta](https://github.com/douglasdcm/crawler_of_positions/blob/master/CODE_OF_CONDUCT.md).
+Antes de começar a contribuir com o projeto, veja o nosso [Código de Conduta](https://github.com/douglasdcm/crawler_of_positions/blob/master/docs/CODE_OF_CONDUCT.md).
 
 # Adicionando empresas
 Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos minutos você consegue fazer isso. Veja o exemplo abaixo:

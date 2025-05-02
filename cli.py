@@ -7,11 +7,7 @@ from os import environ
 from logging import basicConfig, INFO, info, exception
 from src.settings import ROOT_DIR, LOG_FILE, RESOURCES_DIR
 from sys import argv, path
-from src.helper.commands import (
-    sanity_check,
-    help_,
-    overwrite
-)
+from src.helper.commands import sanity_check, help_, overwrite
 from src.crawler.company import Company
 from os import getcwd, system
 from dotenv import load_dotenv
@@ -27,14 +23,18 @@ path.append(ROOT_DIR)
 
 if environ.get("DEBUG") == "on":
     basicConfig(
-        format='%(asctime)s %(levelname)-8s %(message)s',
-        level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
+        format="%(asctime)s %(levelname)-8s %(message)s", level=INFO, datefmt="%Y-%m-%d %H:%M:%S"
+    )
 else:
     basicConfig(
-        format='%(asctime)s %(levelname)-8s %(message)s',
-        filename=LOG_FILE, level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
+        format="%(asctime)s %(levelname)-8s %(message)s",
+        filename=LOG_FILE,
+        level=INFO,
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
 
 SERVER = Server()
+
 
 async def main(*args):
     try:
@@ -51,17 +51,17 @@ async def main(*args):
                 if "--clean-db" in arguments:
                     clean_database = True
                 return await overwrite(
-                    Connection.get_connection_string(),
-                    Company().get_all(),
-                    clean_database
+                    Connection.get_connection_string(), Company().get_all(), clean_database
                 )
             elif "--sanity-check" in arguments:
                 SERVER.start()
-                companies_fake = [{
-                    "locator": "//a",
-                    "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
-                    "active": "Y"
-                }]
+                companies_fake = [
+                    {
+                        "locator": "//a",
+                        "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+                        "active": "Y",
+                    }
+                ]
                 return await sanity_check(Connection.get_connection_string(), companies_fake)
             else:
                 exception("Invalid command. Try cli.py --help ")
@@ -70,7 +70,7 @@ async def main(*args):
         raise
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         asyncio.run(main(argv))
     except Exception as error:

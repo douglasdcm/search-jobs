@@ -13,7 +13,7 @@ class TestPerformanceCommands:
             {
                 "crawler": Generic("//a"),
                 "url": "file:///" + getcwd() + "/tests/resources/p_15000_links.html#",
-                "active": "Y"
+                "active": "Y",
             }
         ]
         assert await overwrite(DATABASE_STRING, companies) is True
@@ -24,8 +24,9 @@ class TestPerformanceCommands:
             {
                 "crawler": Generic("//a"),
                 "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
-                "active": "Y"
-            }]
+                "active": "Y",
+            }
+        ]
         resume = "senior python pytest"
         expected = "basic_page"
         await overwrite(DATABASE_STRING, crawlers)

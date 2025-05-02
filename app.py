@@ -19,14 +19,17 @@ from logging import exception, info
 
 
 basicConfig(
-    format='%(asctime)s %(levelname)-8s %(message)s',
-    filename=LOG_FILE, level=INFO, datefmt='%Y-%m-%d %H:%M:%S')
+    format="%(asctime)s %(levelname)-8s %(message)s",
+    filename=LOG_FILE,
+    level=INFO,
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 load_dotenv()  # take environment variables from .env.
 
 
-app = Flask(__name__, static_folder='static', static_url_path='')
-app.config['JSON_SORT_KEYS'] = False
+app = Flask(__name__, static_folder="static", static_url_path="")
+app.config["JSON_SORT_KEYS"] = False
 cors = CORS(app)
 
 path.append(ROOT_DIR)
@@ -57,23 +60,31 @@ def __search(resume, condition, language={}):
     result = {}
 
     if not resume:
-        result = {"status": "failed", "message": language.get(
-            "api_no_curriculum", DEFAULT_ERROR_MESSAGE)}
+        result = {
+            "status": "failed",
+            "message": language.get("api_no_curriculum", DEFAULT_ERROR_MESSAGE),
+        }
         return jsonify(result), 500
 
     if not condition:
-        result = {"status": "failed", "message": language.get(
-            "api_no_condition", DEFAULT_ERROR_MESSAGE)}
+        result = {
+            "status": "failed",
+            "message": language.get("api_no_condition", DEFAULT_ERROR_MESSAGE),
+        }
         return jsonify(result), 500
 
     if len(resume.strip()) == 0:
-        result = {"status": "failed", "message": language.get(
-            "api_invalid_curriculum", DEFAULT_ERROR_MESSAGE)}
+        result = {
+            "status": "failed",
+            "message": language.get("api_invalid_curriculum", DEFAULT_ERROR_MESSAGE),
+        }
         return jsonify(result), 500
 
     if condition.lower() not in ["and", "or"]:
-        result = {"status": "failed", "message": language.get(
-            "api_invalid_condition", DEFAULT_ERROR_MESSAGE)}
+        result = {
+            "status": "failed",
+            "message": language.get("api_invalid_condition", DEFAULT_ERROR_MESSAGE),
+        }
         return jsonify(result), 500
 
     resume = (resume[:limit]) if len(resume) > limit else resume
@@ -86,8 +97,10 @@ def __search(resume, condition, language={}):
         return jsonify(result), 500
 
     if not comparison:
-        result = {"status": "failed", "message": language.get(
-            "api_no_result", DEFAULT_ERROR_MESSAGE)}
+        result = {
+            "status": "failed",
+            "message": language.get("api_no_result", DEFAULT_ERROR_MESSAGE),
+        }
         return jsonify(result), 404
 
     result = {"status": "ok", "message": comparison}
@@ -95,13 +108,13 @@ def __search(resume, condition, language={}):
 
 
 def __check_informed_language(language):
-    if (language not in language_keys):
+    if language not in language_keys:
         language = DEFAULT_LANGUAGE
     return language
 
 
 def __set_language(request):
-    language = request.form.get('language')
+    language = request.form.get("language")
     if language:
         session_data.language = language
     else:
@@ -121,7 +134,7 @@ def home():
         language = __set_language(request)
         images_data = load_web_content()
         return render_template(
-            'index.html',
+            "index.html",
             images_data=images_data,
             **languages[language],
         )
@@ -130,22 +143,19 @@ def home():
         return render_template("error.html")
 
 
-@app.route('/search', methods=['POST'])
+@app.route("/search", methods=["POST"])
 def search():
     try:
         language = __set_language(request)
-        resume = request.form.get('message')
-        condition = request.form.get('condition')
+        resume = request.form.get("message")
+        condition = request.form.get("condition")
 
         comparison = literal_eval(
-            __search(
-                resume,
-                condition,
-                languages[language]
-            )[0].response[0].decode('utf-8'))
+            __search(resume, condition, languages[language])[0].response[0].decode("utf-8")
+        )
 
         return render_template(
-            'search-result.html',
+            "search-result.html",
             comparison=comparison,
             resume=resume,
             **languages[language],
@@ -159,15 +169,16 @@ def search():
 def about():
     try:
         language = __set_language(request)
-        return render_template('about.html', **languages[language])
+        return render_template("about.html", **languages[language])
     except Exception as error:
         exception(error)
         return render_template("error.html")
 
+
 @app.route("/disclaimer", methods=["GET", "POST"])
 def disclaimer():
     try:
-        return render_template('disclaimer.html')
+        return render_template("disclaimer.html")
     except Exception as error:
         exception(error)
         return render_template("error.html")
@@ -177,7 +188,7 @@ def disclaimer():
 def contact():
     try:
         language = __set_language(request)
-        return render_template('contact.html', **languages[language])
+        return render_template("contact.html", **languages[language])
     except Exception as error:
         exception(error)
         return render_template("error.html")
@@ -185,17 +196,17 @@ def contact():
 
 @app.route("/spec")
 def spec():
-    return render_template('spec.html')
+    return render_template("spec.html")
 
 
-@app.route('/api/images')
+@app.route("/api/images")
 def api_images():
     return jsonify(load_web_content())
 
 
-@app.route('/api/overwrite', methods=['POST'])
+@app.route("/api/overwrite", methods=["POST"])
 def api_overwrite():
-    password = request.json.get('password')
+    password = request.json.get("password")
     if environ.get("PASSWORD") == password:
         try:
             overwrite(Connection.get_connection_string(), Company().get_all())
@@ -209,9 +220,9 @@ def api_overwrite():
     return jsonify(result), 404
 
 
-@app.route('/api/logs', methods=["POST"])
+@app.route("/api/logs", methods=["POST"])
 def api_logs():
-    password = request.json.get('password')
+    password = request.json.get("password")
     if environ.get("PASSWORD") == password:
         try:
             with open(LOG_FILE, "r") as log:
@@ -225,14 +236,13 @@ def api_logs():
     return jsonify(result), 404
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # run!
-    port = int(environ.get('PORT', 5001))
+    port = int(environ.get("PORT", 5001))
     languages = {}
     language_paths = glob.glob("language/*.json")
     language_keys = [
-        language.replace("language/", "").replace(".json", "")
-        for language in language_paths
+        language.replace("language/", "").replace(".json", "") for language in language_paths
     ]
 
     for language in language_paths:

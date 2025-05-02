@@ -1,10 +1,6 @@
 from logging import info, exception
 from src.driver.chrome import Driver
-from src.helper.helper import (
-    search_positions_based_on_resume,
-    Connection,
-    initialize_table
-)
+from src.helper.helper import search_positions_based_on_resume, Connection, initialize_table
 from src.similarity.similarity import Similarity
 from src.exceptions.exceptions import CommandError
 from os import environ

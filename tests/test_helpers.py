@@ -11,7 +11,7 @@ class TestUnitHelper:
         ("@#$%", ""),
         ("ãáçäx", "aacax"),
         ("", ""),
-        ("administração", "administraca")
+        ("administração", "administraca"),
     ]
 
     steamdata = [
@@ -43,6 +43,3 @@ class TestUnitHelper:
         actual = data_pre_processing_portuguese(text)
         for term in expected:
             assert term in actual
-
-
-    

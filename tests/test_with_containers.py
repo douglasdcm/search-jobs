@@ -6,7 +6,6 @@ from src.crawler.company import Company
 
 @mark.functional
 class TestEndToEnd:
-
     @fixture
     def setup(self):
         db_name = app.DB_NAME
@@ -20,8 +19,9 @@ class TestEndToEnd:
         db.salva_registro("positions", fields, "'https://rabbit.com', 'rabbit'")
         db.salva_registro("positions", fields, "'https://cat.com', 'cats dogs cows'")
         db.salva_registro("positions", fields, "'https://administrar.com', 'administraca'")
-        db.salva_registro("positions", fields, "'https://andcondition.com', 'cat dog rabbit cow cucumber'")
-
+        db.salva_registro(
+            "positions", fields, "'https://andcondition.com', 'cat dog rabbit cow cucumber'"
+        )
 
     @mark.skip("to be validated")
     def test_find_content_in_a_fresh_container(self, setup, setup_containers):

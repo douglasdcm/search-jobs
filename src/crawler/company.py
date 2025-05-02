@@ -2,7 +2,7 @@ from src.helper.helper import read_file
 from src.settings import ROOT_DIR
 
 
-class Company():
+class Company:
     def get_all(self):
         """Return the list of enabled crawlers
         Returns:
@@ -19,11 +19,7 @@ class Company():
             url = columns[1]
             active = columns[2].replace("\n", "")
 
-            company = {
-                "locator": locator,
-                "url": url,
-                "active": active
-            }
+            company = {"locator": locator, "url": url, "active": active}
 
             companies.append(company)
 

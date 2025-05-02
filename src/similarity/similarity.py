@@ -5,7 +5,6 @@ from src.helper.helper import data_pre_processing_portuguese
 
 
 class Similarity:
-
     def __init__(self):
         self.bow = CountVectorizer(binary=True)
 
@@ -42,5 +41,8 @@ class Similarity:
             urls.append(url)
         result = dict(zip(urls, similarity))
 
-        return {k: str(v) for k, v in sorted(
-            result.items(), key=lambda item: item[1], reverse=True) if v > 0}
+        return {
+            k: str(v)
+            for k, v in sorted(result.items(), key=lambda item: item[1], reverse=True)
+            if v > 0
+        }

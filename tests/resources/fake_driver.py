@@ -1,6 +1,4 @@
-
 class SwitchTo:
-
     def default_content(self):
         pass
 
@@ -36,15 +34,14 @@ class Fake_Element:
 
     text = "text_1"
 
-    def get_attribute(self, attribute=None):
+    async def get_attribute(self, attribute=None):
         return attribute
 
-    def click(self):
+    async def click(self):
         pass
 
 
 class Fake_WebDriverWait:
-
     def __init__(self, driver=None, timeout=None, poll_frequency=None):
         pass
 
