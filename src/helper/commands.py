@@ -8,8 +8,9 @@ from os import environ
 from src.crawler import generic
 
 
-async def get_positions_data(driver, company):
+async def get_positions_data(company):
     try:
+        driver=Driver()
         url = company["url"]
         info(f"Collecting data of company '{url}'")
         info("Starting crawler for '{}'...".format(url))
@@ -21,19 +22,21 @@ async def get_positions_data(driver, company):
     # The execution need to continue even in case of errors
     except Exception as error:
         exception(f"Unexpected error occurred while getting position data. {str(error)}")
-        if environ.get("DEBUG") == "on":
-            raise CommandError(str(error)) from error
     finally:
         try:
             await driver.save_screenshot()
+        except Exception as error:
+            exception(f"Unexected error: {str(error)}")
+        try:
+            driver.quit()
         except Exception as error:
             exception(f"Unexected error: {str(error)}")
         info("Crawler finished.")
     return True
 
 
-async def sanity_check_facade(driver, company):
-    return await get_positions_data(driver, company)
+async def sanity_check_facade(company):
+    return await get_positions_data(company)
 
 
 def help_facade_():
@@ -70,10 +73,10 @@ def compare_facade(resume, condition):
     return result
 
 
-async def overwrite_facade(driver=None, companies=None, clean_database=False):
+async def overwrite_facade(companies=None, clean_database=False):
     info("Updating positions")
     if clean_database:
         initialize_table()
-    await get_positions_data(driver, companies)
+    await get_positions_data(companies)
     info("Update finished")
     return True

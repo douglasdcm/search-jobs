@@ -38,10 +38,8 @@ else:
     )
 
 SERVER = Server()
-DRIVER = Driver()
 
-
-async def get_all_positions(*args, company=None, driver=None):
+async def get_all_positions(*args, company=None):
     try:
         async with semaphore:
             # Get data from real companies. Not covered by automated testes
@@ -50,7 +48,7 @@ async def get_all_positions(*args, company=None, driver=None):
                 clean_database = True
             else:
                 clean_database = False
-            return await overwrite_facade(driver, company, clean_database)
+            return await overwrite_facade(company, clean_database)
     except Exception as error:
         raise
 
@@ -69,7 +67,7 @@ async def main(*args):
                 "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
                 "active": "Y",
             }
-            return await sanity_check_facade(DRIVER, company_fake)
+            return await sanity_check_facade(company_fake)
         if "--overwrite" in arguments:
             SERVER.start()
             tasks = []
@@ -77,7 +75,7 @@ async def main(*args):
             for company in companies:
                 tasks.append(
                     asyncio.ensure_future(
-                        get_all_positions(*arguments, company=company, driver=DRIVER)
+                        get_all_positions(*arguments, company=company)
                     )
                 )
             await asyncio.gather(*tasks)
@@ -93,10 +91,6 @@ if __name__ == "__main__":
     except Exception as error:
         raise
     finally:
-        try:
-            DRIVER.quit()
-        except Exception as error:
-            exception(f"Unexected error: {str(error)}")
         info("Crawler finished.")
         SERVER.dispose()
         loop.run_until_complete(loop.shutdown_asyncgens())
