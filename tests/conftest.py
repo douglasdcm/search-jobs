@@ -20,9 +20,9 @@ def setup_db():
 
 @fixture(scope="session")
 def setup_containers():
-    info("\nprepare for test")
+    info("\nPrepare for test")
     exec_command("", "./tests/utils/make_test.sh", "sh", sudo=False)
-    info("\nstart container")
+    info("\nStart container")
     exec_command("", "./tests/utils/stop_containers.sh", "sh", sudo=False)
     exec_command("", "./tests/utils/start_containers.sh", "sh", sudo=False)
     yield

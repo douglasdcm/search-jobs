@@ -10,7 +10,7 @@ class TestSearchPostionsBasedOnResume:
         resume = "tester manager python"
         expected = 3
 
-        actual = search_positions_based_on_resume(DATABASE_STRING, condition="or", resume=resume)
+        actual = search_positions_based_on_resume(condition="or", resume=resume)
 
         assert len(actual) == expected
 
@@ -18,7 +18,7 @@ class TestSearchPostionsBasedOnResume:
         resume = "jira tester"
         expected = 1
 
-        actual = search_positions_based_on_resume(DATABASE_STRING, condition="and", resume=resume)
+        actual = search_positions_based_on_resume(condition="and", resume=resume)
 
         assert len(actual) == expected
 
@@ -26,4 +26,4 @@ class TestSearchPostionsBasedOnResume:
         resume = "jira tester"
 
         with raises(DatabaseError):
-            search_positions_based_on_resume(DATABASE_STRING, condition="invalid", resume=resume)
+            search_positions_based_on_resume(condition="invalid", resume=resume)

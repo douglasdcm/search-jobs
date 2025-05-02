@@ -1,5 +1,5 @@
 import app
-from src.helper.commands import compare, overwrite
+from src.helper.commands import compare_facade, overwrite_facade
 from pytest import mark, fixture
 from src.crawler.company import Company
 
@@ -24,17 +24,17 @@ class TestEndToEnd:
         )
 
     @mark.skip("to be validated")
-    def test_find_content_in_a_fresh_container(self, setup, setup_containers):
+    async def test_find_content_in_a_fresh_container(self, setup, setup_containers):
         setup
         dbf = DbFactory(DB_TYPE["p"])
         db = dbf.get_db(DB_NAME)
-        overwrite(db, Company().get_all())
-        assert "dog" in compare("dog", db, "or")
+        await overwrite_facade(db, Company().get_all())
+        assert "dog" in compare_facade("dog", db, "or")
 
     @mark.skip("not working")
-    def test_doesnt_find_content_in_a_fresh_container(self, setup_containers):
+    async def test_doesnt_find_content_in_a_fresh_container(self, setup_containers):
         install(DB_NAME, DB_TYPE["p"])
         dbf = DbFactory(DB_TYPE["p"])
         db = dbf.get_db(DB_NAME)
-        overwrite(db, Company().get_all())
-        assert compare("blablabla", db, "or") is None
+        await overwrite_facade(db, Company().get_all())
+        assert compare_facade("blablabla", db, "or") is None

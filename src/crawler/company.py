@@ -1,5 +1,5 @@
 from src.helper.helper import read_file
-from src.settings import ROOT_DIR
+from src.constants import ROOT_DIR
 
 
 class Company:

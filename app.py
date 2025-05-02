@@ -3,16 +3,16 @@ import glob
 import json
 from os import environ
 from sys import path
-from src.settings import ROOT_DIR
+from src.constants import ROOT_DIR
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-from src.helper.commands import compare, overwrite
+from src.helper.commands import compare_facade, overwrite_facade
 from src.helper.helper import Connection
 from src.media_content import load_web_content
 from ast import literal_eval
 from dotenv import load_dotenv
 from logging import basicConfig, INFO
-from src.settings import ROOT_DIR, LOG_FILE
+from src.constants import ROOT_DIR, LOG_FILE
 from src.crawler.company import Company
 from waitress import serve
 from logging import exception, info
@@ -90,7 +90,7 @@ def __search(resume, condition, language={}):
     resume = (resume[:limit]) if len(resume) > limit else resume
 
     try:
-        comparison = compare(Connection.get_connection_string(), resume, condition)
+        comparison = compare_facade(Connection.get_connection_string(), resume, condition)
     except Exception as error:
         exception(str(error))
         result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
@@ -209,7 +209,7 @@ def api_overwrite():
     password = request.json.get("password")
     if environ.get("PASSWORD") == password:
         try:
-            overwrite(Connection.get_connection_string(), Company().get_all())
+            overwrite_facade(Connection.get_connection_string(), Company().get_all())
             result = {"status": "ok", "message": "overwrite finished"}
             return jsonify(result), 200
         except Exception as error:

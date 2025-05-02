@@ -33,7 +33,7 @@ Após finalizar o build, suba o container:
 ```
 sudo docker compose up -d
 ```
-Acesse o link `http://localhost:5000`
+Acesse o link `http://localhost:5001`
 Agora você pode mexer no código à vontade.
 
 # Rodando os testes
@@ -93,7 +93,7 @@ tail -f /webapp/logs/crawlers.log
 ```
 
 # Especificação da API REST
-O projeto possui alguns end-points cuja documentação (Swagger) pode ser acessada em `http://localhost:5000/spec` 
+O projeto possui alguns end-points cuja documentação (Swagger) pode ser acessada em `http://localhost:5001/spec` 
 
 # Contribuindo
 Ajude este projeto a crescer adicionando novas empresas. Que tal começar pelas empresas GPTW do Brasil de 2020? https://conteudo.gptw.com.br/150-melhores-2020.<br>

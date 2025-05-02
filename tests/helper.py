@@ -6,7 +6,7 @@ from src.helper.helper import data_pre_processing_portuguese, Connection
 
 
 def populate_database_with_desired_jobs(positions):
-    initialize_table(DATABASE_STRING)
+    initialize_table()
     with Connection.get_database_connection(DATABASE_STRING).connect() as connection:
         for position in positions:
             descrition_processed = data_pre_processing_portuguese(position["description"])

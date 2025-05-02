@@ -1,6 +1,6 @@
 from logging import info
 from selenium.webdriver.support import wait
-from src.settings import TIMEOUT
+from src.constants import TIMEOUT
 from src.exceptions.exceptions import WebDriverError
 from os import environ
 

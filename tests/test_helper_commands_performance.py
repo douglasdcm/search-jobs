@@ -1,4 +1,4 @@
-from src.helper.commands import compare, overwrite
+from src.helper.commands import compare_facade, overwrite_facade
 from tests.settings import DATABASE_STRING
 from pytest import fixture, mark
 from src.crawler.generic import Generic
@@ -16,7 +16,7 @@ class TestPerformanceCommands:
                 "active": "Y",
             }
         ]
-        assert await overwrite(DATABASE_STRING, companies) is True
+        assert await overwrite_facade(DATABASE_STRING, companies) is True
 
     @mark.asyncio
     async def test_compare_runs_1000_times(self):
@@ -29,6 +29,6 @@ class TestPerformanceCommands:
         ]
         resume = "senior python pytest"
         expected = "basic_page"
-        await overwrite(DATABASE_STRING, crawlers)
+        await overwrite_facade(DATABASE_STRING, crawlers)
         for _ in range(1000):
-            assert expected in str(compare(DATABASE_STRING, resume, condition="OR"))
+            assert expected in str(compare_facade(resume, condition="OR"))

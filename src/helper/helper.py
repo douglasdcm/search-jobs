@@ -5,7 +5,7 @@ from nltk.corpus import stopwords
 from unidecode import unidecode
 from nltk.stem import RSLPStemmer
 from sqlalchemy import create_engine, text
-from src.settings import TABLE_NAME, DATABASE_STRING_DEFAULT
+from src.constants import TABLE_NAME, DATABASE_STRING_DEFAULT
 from src.exceptions.exceptions import DatabaseError
 from logging import info, exception
 from dotenv import load_dotenv
@@ -28,9 +28,7 @@ class Connection:
     def get_connection_string(cls, connection_string=None):
         if connection_string:
             return connection_string
-        if not environ.get("DATABASE_STRING"):
-            return DATABASE_STRING_DEFAULT
-        return environ.get("DATABASE_STRING")
+        return environ.get("DATABASE_STRING", DATABASE_STRING_DEFAULT)
 
     @classmethod
     def get_database_connection(cls, connection_string=None):
@@ -45,9 +43,7 @@ class Connection:
 def save_description_to_database(database_string, url, description):
     try:
         with Connection.get_database_connection(database_string).connect() as connection:
-            message = f"Saving data from '{url}'..."
-            info(message)
-            info(message)
+            info(f"Saving data from '{url}'...")
             description = data_pre_processing_portuguese(description)
             connection.execute(
                 text(
@@ -58,11 +54,12 @@ def save_description_to_database(database_string, url, description):
         raise DatabaseError(str(error)) from error
 
 
-def initialize_table(database_string):
+def initialize_table():
     try:
-        with Connection.get_database_connection(database_string).connect() as connection:
-            message = "Creating table for positions"
-            info(message)
+        with Connection.get_database_connection(
+            environ.get("DATABASE_STRING", DATABASE_STRING_DEFAULT)
+        ).connect() as connection:
+            info("Creating table for positions")
             connection.execute(text(f"drop table if exists {TABLE_NAME}"))
             connection.execute(
                 text(
@@ -124,15 +121,16 @@ def select_with_like(terms, table, column, condition="OR"):
     return query
 
 
-def search_positions_based_on_resume(database_string, condition, resume):
+def search_positions_based_on_resume(condition, resume):
     resume_processed = data_pre_processing_portuguese(resume)
     query = select_with_like(resume_processed, TABLE_NAME, "description", condition)
-    with Connection.get_database_connection(database_string).connect() as connection:
+    with Connection.get_database_connection(
+        environ.get("DATABASE_STRING", DATABASE_STRING_DEFAULT)
+    ).connect() as connection:
         try:
             positions = connection.execute(text(query)).all()
         except Exception as error:
-            info(str(error))
-            raise DatabaseError(str(error))
+            raise DatabaseError(str(error)) from error
     return positions
 
 
