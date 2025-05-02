@@ -6,12 +6,12 @@ from sys import path
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from src.helper.commands import compare_facade, overwrite_facade
-from src.helper.helper import Connection
+from src.helper.helper import Connection, initialize_table
 from src.media_content import load_web_content
 from ast import literal_eval
 from dotenv import load_dotenv
 from logging import basicConfig, INFO
-from src.constants import ROOT_DIR, LOG_FILE
+from src.constants import ROOT_DIR
 from src.crawler.company import Company
 from waitress import serve
 from logging import exception, info
@@ -19,13 +19,12 @@ from logging import exception, info
 
 basicConfig(
     format="%(asctime)s %(levelname)-8s %(message)s",
-    filename=LOG_FILE,
+    # filename=LOG_FILE,
     level=INFO,
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
 load_dotenv()  # take environment variables from .env.
-
 
 app = Flask(__name__, static_folder="static", static_url_path="")
 app.config["JSON_SORT_KEYS"] = False
@@ -89,7 +88,7 @@ def __search(resume, condition, language={}):
     resume = (resume[:limit]) if len(resume) > limit else resume
 
     try:
-        comparison = compare_facade(Connection.get_connection_string(), resume, condition)
+        comparison = compare_facade(resume, condition)
     except Exception as error:
         exception(str(error))
         result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
@@ -203,12 +202,28 @@ def api_images():
     return jsonify(load_web_content())
 
 
+@app.route("/api/init", methods=["POST"])
+def api_init():
+    password = request.json.get("password")
+    if environ.get("PASSWORD") == password:
+        try:
+            initialize_table()
+            result = {"status": "ok", "message": "initilization finished"}
+            return jsonify(result), 200
+        except Exception as error:
+            exception(error)
+            result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
+            return jsonify(result), 500
+    result = {"status": "failed", "message": "nothing to overwrite"}
+    return jsonify(result), 404
+
+
 @app.route("/api/overwrite", methods=["POST"])
 def api_overwrite():
     password = request.json.get("password")
     if environ.get("PASSWORD") == password:
         try:
-            overwrite_facade(Connection.get_connection_string(), Company().get_all())
+            overwrite_facade(Company().get_all())
             result = {"status": "ok", "message": "overwrite finished"}
             return jsonify(result), 200
         except Exception as error:
@@ -224,9 +239,9 @@ def api_logs():
     password = request.json.get("password")
     if environ.get("PASSWORD") == password:
         try:
-            with open(LOG_FILE, "r") as log:
-                result = {"status": "ok", "message": log.read()}
-                return jsonify(result), 200
+            # with open(LOG_FILE, "r") as log:
+            result = {"status": "ok", "message": ""}
+            return jsonify(result), 200
         except Exception as error:
             exception(error)
             result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}

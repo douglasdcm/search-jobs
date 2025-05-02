@@ -14,7 +14,7 @@ class Driver:
         try:
             options = (
                 ChromeOptionsBuilder()
-                # .args(["headless"])
+                .args(["headless"])
                 .to_dict()
             )
             capabilities = (

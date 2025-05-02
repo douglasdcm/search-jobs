@@ -31,7 +31,7 @@ if environ.get("DEBUG") == "on":
 else:
     basicConfig(
         format="%(asctime)s %(levelname)-8s %(message)s",
-        filename=LOG_FILE,
+        # filename=LOG_FILE,
         level=INFO,
         datefmt="%Y-%m-%d %H:%M:%S",
     )
