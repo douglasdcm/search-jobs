@@ -1,3 +1,4 @@
+from src.driver.driver import Driver
 from src.helper.commands import (
     help_facade_,
     overwrite_facade,
@@ -5,9 +6,7 @@ from src.helper.commands import (
     compare_facade,
     sanity_check_facade,
 )
-from tests.settings import DATABASE_STRING
 from pytest import fixture
-from src.crawler.generic import Generic
 from os import getcwd
 from pytest import mark
 
@@ -51,22 +50,28 @@ class TestHelperCommands:
     @fixture
     def get_company(self):
         return {
-                "active": "Y",
-                "locator": "//a",
-                "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
-            }
+            "active": "Y",
+            "locator": "//a",
+            "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+        }
+
+    @fixture
+    def setup_driver(self):
+        driver = Driver()
+        yield driver
+        driver.quit()
 
     @mark.asyncio
-    async def test_update_get_data_from_many_links(self):
+    async def test_update_get_data_from_many_links(self, setup_driver):
         companiy = {
             "active": "Y",
             "locator": "//a",
             "url": f"file:///{getcwd()}/tests/resources/p_many_links.html#",
         }
-        assert await overwrite_facade(companiy) is True
+        assert await overwrite_facade(setup_driver, companiy) is True
 
     @mark.asyncio
-    async def test_compare_runs_many_times(self):
+    async def test_compare_runs_many_times(self, setup_driver):
         company = {
             "active": "Y",
             "locator": "//a",
@@ -74,34 +79,34 @@ class TestHelperCommands:
         }
         resume = "senior python pytest"
         expected = "basic_page"
-        await overwrite_facade(company)
+        await overwrite_facade(setup_driver, company)
         for _ in range(10):
             assert expected in str(compare_facade(resume, condition="OR"))
 
     @mark.asyncio
-    async def test_compare_runs_list_of_links_ranked_by_similarity_using_or_condition(self):
+    async def test_compare_runs_list_of_links_ranked_by_similarity_using_or_condition(self, setup_driver):
         company = {
-                "active": "Y",
-                "locator": "//a",
-                "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
-            }
+            "active": "Y",
+            "locator": "//a",
+            "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+        }
 
         resume = "senior python pytest"
         expected = "basic_page"
-        await overwrite_facade(company)
+        await overwrite_facade(setup_driver, company)
         assert expected in str(compare_facade(resume, condition="OR"))
 
     @mark.asyncio
-    async def test_run_by_db_string(self, get_company):
-        assert await get_positions_data(company=get_company) is True
+    async def test_run_by_db_string(self, get_company, setup_driver):
+        assert await get_positions_data(setup_driver, company=get_company) is True
 
     @mark.asyncio
-    async def test_overwrite_database_returns_true(self, get_company):
-        assert await overwrite_facade(get_company) is True
+    async def test_overwrite_database_returns_true(self, get_company, setup_driver):
+        assert await overwrite_facade(setup_driver, get_company) is True
 
     @mark.asyncio
-    async def test_sanity_check_works(self, setup_db, get_company):
-        assert await sanity_check_facade(get_company) is True
+    async def test_sanity_check_works(self, setup_db, get_company, setup_driver):
+        assert await sanity_check_facade(setup_driver, get_company) is True
 
     def test_help_is_opened(self):
         actual = help_facade_()

@@ -8,6 +8,7 @@ from logging import basicConfig, INFO, info, exception
 from time import time
 from src.constants import ROOT_DIR, LOG_FILE, RESOURCES_DIR
 from sys import argv, path
+from src.driver.driver import Driver
 from src.helper.commands import sanity_check_facade, help_facade_, overwrite_facade
 from src.crawler.company import Company
 from os import getcwd, system
@@ -37,20 +38,19 @@ else:
     )
 
 SERVER = Server()
+DRIVER = Driver()
 
 
-async def get_all_positions(*args, company=None):
+async def get_all_positions(*args, company=None, driver=None):
     try:
         async with semaphore:
             # Get data from real companies. Not covered by automated testes
             # to avoid overload the real sites
-            SERVER.start()
-            clean_database = False
             if "--clean-db" in args:
                 clean_database = True
-            return await overwrite_facade(
-                Connection.get_connection_string(), company, clean_database
-            )
+            else:
+                clean_database = False
+            return await overwrite_facade(driver, company, clean_database)
     except Exception as error:
         raise
 
@@ -69,12 +69,17 @@ async def main(*args):
                 "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
                 "active": "Y",
             }
-            return await sanity_check_facade(company_fake)
+            return await sanity_check_facade(DRIVER, company_fake)
         if "--overwrite" in arguments:
+            SERVER.start()
             tasks = []
             companies = Company().get_all()
             for company in companies:
-                tasks.append(asyncio.ensure_future(get_all_positions(*arguments, company=company)))
+                tasks.append(
+                    asyncio.ensure_future(
+                        get_all_positions(*arguments, company=company, driver=DRIVER)
+                    )
+                )
             await asyncio.gather(*tasks)
             return
         exception("Invalid command. Try cli.py --help ")
@@ -88,6 +93,11 @@ if __name__ == "__main__":
     except Exception as error:
         raise
     finally:
+        try:
+            DRIVER.quit()
+        except Exception as error:
+            exception(f"Unexected error: {str(error)}")
+        info("Crawler finished.")
         SERVER.dispose()
         loop.run_until_complete(loop.shutdown_asyncgens())
         loop.close()
