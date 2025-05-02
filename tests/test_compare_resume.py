@@ -1,5 +1,4 @@
-from tests.settings import DATABASE_STRING
-from src.helper.helper import search_positions_based_on_resume, data_pre_processing_portuguese
+from src.helper.helper import search_positions_based_on_resume
 from pytest import mark, raises
 from src.exceptions.exceptions import DatabaseError
 

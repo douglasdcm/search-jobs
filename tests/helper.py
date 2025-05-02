@@ -11,7 +11,8 @@ def populate_database_with_desired_jobs(positions):
             descrition_processed = data_pre_processing_portuguese(position["description"])
             connection.execute(
                 text(
-                    f"insert into positions (url, description) values ('{position['url']}', '{descrition_processed}')"
+                    f"insert into positions (url, description) values ('{position['url']}"
+                    f"', '{descrition_processed}')"
                 )
             )
 
@@ -42,7 +43,10 @@ def populate_database_with_thecnical_jobs():
         {"url": "www.position2.com", "description": description2},
         {"url": "www.position3.com", "description": description3},
         {
-            "url": "www.very_looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong_url.com",
+            "url": (
+                "www.very_loooooooooooooooooooooooooooooooooooooooooooo"
+                "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong_url.com"
+            ),
             "description": description4,
         },
     ]

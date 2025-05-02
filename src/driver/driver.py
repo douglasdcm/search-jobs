@@ -7,7 +7,6 @@ from src.exceptions.exceptions import WebDriverError
 from caqui.easy.page import AsyncPage
 from caqui.easy.capabilities import ChromeCapabilitiesBuilder
 from caqui.easy.options import ChromeOptionsBuilder
-from caqui import synchronous
 
 
 class Driver:

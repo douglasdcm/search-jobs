@@ -7,7 +7,7 @@ from nltk.stem import RSLPStemmer
 from sqlalchemy import create_engine, text
 from src.constants import TABLE_NAME, DATABASE_STRING_DEFAULT
 from src.exceptions.exceptions import DatabaseError
-from logging import info, exception
+from logging import info
 from dotenv import load_dotenv
 from os import environ
 
@@ -59,7 +59,8 @@ def initialize_table():
             connection.execute(text(f"drop table if exists {TABLE_NAME}"))
             connection.execute(
                 text(
-                    f"create table {TABLE_NAME} (url VARCHAR(255) NOT NULL, description VARCHAR(50000))"
+                    f"create table {TABLE_NAME} (url VARCHAR(255) NOT NULL"
+                    ", description VARCHAR(50000))"
                 )
             )
             info("Initialization finished")
@@ -76,7 +77,7 @@ def data_pre_processing_portuguese(corpus):
     # remove non-alphanumeric characters
     corpus = sub(r"[^a-z A-Z 0-9 \s]", " ", str(corpus))
     # remove numbers
-    corpus = sub("\d+", " ", corpus)
+    corpus = sub("\d+", " ", corpus)  # noqa W605
     # remove duplicated spaces
     corpus = sub(r" +", " ", str(corpus))
     # capitalization

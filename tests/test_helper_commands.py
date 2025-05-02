@@ -1,4 +1,3 @@
-from src.driver.driver import Driver
 from src.helper.commands import (
     help_facade_,
     overwrite_facade,

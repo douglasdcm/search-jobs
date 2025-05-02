@@ -8,12 +8,11 @@ from logging import basicConfig, INFO, info, exception
 from time import time
 from src.constants import ROOT_DIR, LOG_FILE, RESOURCES_DIR
 from sys import argv, path
-from src.driver.driver import Driver
 from src.helper.commands import sanity_check_facade, help_facade_, overwrite_facade
 from src.crawler.company import Company
 from os import getcwd, system
 from dotenv import load_dotenv
-from src.helper.helper import Connection
+from src.helper.helper import initialize_table
 from caqui.easy.server import Server
 
 load_dotenv()  # take environment variables from .env.
@@ -39,6 +38,7 @@ else:
 
 SERVER = Server()
 
+
 async def get_all_positions(*args, company=None):
     try:
         async with semaphore:
@@ -49,11 +49,12 @@ async def get_all_positions(*args, company=None):
             else:
                 clean_database = False
             return await overwrite_facade(company, clean_database)
-    except Exception as error:
+    except Exception:
         raise
 
 
-# Reference: https://stackoverflow.com/questions/48483348/how-to-limit-concurrency-with-python-asyncio
+# Reference:
+# https://stackoverflow.com/questions/48483348/how-to-limit-concurrency-with-python-asyncio
 async def main(*args):
     for arguments in args:
         if "-h" in arguments or "--help" in arguments:
@@ -68,16 +69,15 @@ async def main(*args):
                 "active": "Y",
             }
             return await sanity_check_facade(company_fake)
+        if "--init" in arguments:
+            initialize_table()
+            return
         if "--overwrite" in arguments:
             SERVER.start()
             tasks = []
             companies = Company().get_all()
             for company in companies:
-                tasks.append(
-                    asyncio.ensure_future(
-                        get_all_positions(*arguments, company=company)
-                    )
-                )
+                tasks.append(asyncio.ensure_future(get_all_positions(*arguments, company=company)))
             await asyncio.gather(*tasks)
             return
         exception("Invalid command. Try cli.py --help ")
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(main(argv))
-    except Exception as error:
+    except Exception:
         raise
     finally:
         info("Crawler finished.")

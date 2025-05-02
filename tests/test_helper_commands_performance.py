@@ -1,6 +1,6 @@
 from src.helper.commands import compare_facade, overwrite_facade
 from tests.settings import DATABASE_STRING
-from pytest import fixture, mark
+from pytest import mark
 from src.crawler.generic import Generic
 from os import getcwd
 

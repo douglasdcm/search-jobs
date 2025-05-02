@@ -3,6 +3,7 @@ from pytest import fixture
 from tests.helper import exec_command
 from tests.helper import populate_database_with_thecnical_jobs
 
+
 @fixture
 def setup_db():
     populate_database_with_thecnical_jobs()

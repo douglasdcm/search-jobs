@@ -3,7 +3,6 @@ import glob
 import json
 from os import environ
 from sys import path
-from src.constants import ROOT_DIR
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from src.helper.commands import compare_facade, overwrite_facade

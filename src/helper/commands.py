@@ -1,16 +1,14 @@
 from logging import info, exception
-from src.constants import DATABASE_STRING_DEFAULT
 from src.driver.driver import Driver
-from src.helper.helper import search_positions_based_on_resume, Connection, initialize_table
+from src.helper.helper import search_positions_based_on_resume, initialize_table
 from src.similarity.similarity import Similarity
 from src.exceptions.exceptions import CommandError
-from os import environ
 from src.crawler import generic
 
 
 async def get_positions_data(company):
     try:
-        driver=Driver()
+        driver = Driver()
         url = company["url"]
         info(f"Collecting data of company '{url}'")
         info("Starting crawler for '{}'...".format(url))
@@ -42,10 +40,11 @@ async def sanity_check_facade(company):
 def help_facade_():
     return (
         "Commands:\n"
+        "--init            initialize the database\n"
         "--sanity-check    check the installtion and clean the database\n"
         "--help            open the help documentation\n"
         "--overwrite       get the new positions from companies\n"
-        "    --clean-db    clean up the database"
+        "   [--clean-db]   clean up the database"
     )
 
 

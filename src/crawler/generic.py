@@ -2,7 +2,7 @@ from logging import exception, info
 from src.pages.generic.positions import Positions
 from src.exceptions.exceptions import WebDriverError, CrawlerError
 from os import environ
-from src.helper.helper import save_description_to_database, Connection
+from src.helper.helper import save_description_to_database
 
 
 class Generic:
