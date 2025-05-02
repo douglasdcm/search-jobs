@@ -48,4 +48,4 @@ class TestManualVerification:
             },
         ]
         populate_database_with_desired_jobs(positions)
-        info("Maual test: ", get_all_positions_from_database(DATABASE_STRING))
+        info("Maual test: ", get_all_positions_from_database())

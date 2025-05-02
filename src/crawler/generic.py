@@ -52,7 +52,6 @@ class Generic:
                 info(f"Collecting data from postion '{link}'")
                 await self._positions.go_to_page(link)
                 save_description_to_database(
-                    Connection.get_connection_string(),
                     link,
                     await self._positions.get_description(),
                 )

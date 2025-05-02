@@ -25,24 +25,22 @@ class Connection:
     connection = None
 
     @classmethod
-    def get_connection_string(cls, connection_string=None):
-        if connection_string:
-            return connection_string
+    def get_connection_string(cls):
         return environ.get("DATABASE_STRING", DATABASE_STRING_DEFAULT)
 
     @classmethod
-    def get_database_connection(cls, connection_string=None):
+    def get_database_connection(cls):
         try:
             if not cls.connection:
-                cls.connection = create_engine(cls.get_connection_string(connection_string))
+                cls.connection = create_engine(cls.get_connection_string())
             return cls.connection
         except Exception as error:
             raise DatabaseError(str(error)) from error
 
 
-def save_description_to_database(database_string, url, description):
+def save_description_to_database(url, description):
     try:
-        with Connection.get_database_connection(database_string).connect() as connection:
+        with Connection.get_database_connection().connect() as connection:
             info(f"Saving data from '{url}'...")
             description = data_pre_processing_portuguese(description)
             connection.execute(
@@ -56,9 +54,7 @@ def save_description_to_database(database_string, url, description):
 
 def initialize_table():
     try:
-        with Connection.get_database_connection(
-            environ.get("DATABASE_STRING", DATABASE_STRING_DEFAULT)
-        ).connect() as connection:
+        with Connection.get_database_connection().connect() as connection:
             info("Creating table for positions")
             connection.execute(text(f"drop table if exists {TABLE_NAME}"))
             connection.execute(
@@ -95,10 +91,10 @@ def data_pre_processing_portuguese(corpus):
     return " ".join(list(set(corpus)))
 
 
-def get_all_positions_from_database(database_string):
+def get_all_positions_from_database():
     try:
         query = f"select * from {TABLE_NAME}"
-        with Connection.get_database_connection(database_string).connect() as connection:
+        with Connection.get_database_connection().connect() as connection:
             positions = connection.execute(text(query)).all()
         return positions
     except Exception as error:
@@ -124,9 +120,7 @@ def select_with_like(terms, table, column, condition="OR"):
 def search_positions_based_on_resume(condition, resume):
     resume_processed = data_pre_processing_portuguese(resume)
     query = select_with_like(resume_processed, TABLE_NAME, "description", condition)
-    with Connection.get_database_connection(
-        environ.get("DATABASE_STRING", DATABASE_STRING_DEFAULT)
-    ).connect() as connection:
+    with Connection.get_database_connection().connect() as connection:
         try:
             positions = connection.execute(text(query)).all()
         except Exception as error:

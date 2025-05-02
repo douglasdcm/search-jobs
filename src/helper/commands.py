@@ -9,9 +9,7 @@ from src.crawler import generic
 
 
 async def get_positions_data(company):
-    if not Connection.get_database_connection(
-        environ.get("DATABASE_STRING", DATABASE_STRING_DEFAULT)
-    ):
+    if not Connection.get_database_connection():
         return False
     try:
         driver = Driver()

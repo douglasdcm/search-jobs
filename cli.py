@@ -76,8 +76,8 @@ async def main(*args):
             for company in companies:
                 tasks.append(asyncio.ensure_future(get_all_positions(*arguments, company=company)))
             await asyncio.gather(*tasks)
-        else:
-            exception("Invalid command. Try cli.py --help ")
+            return
+        exception("Invalid command. Try cli.py --help ")
 
 
 if __name__ == "__main__":
