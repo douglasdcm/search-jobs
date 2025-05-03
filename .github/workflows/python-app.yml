@@ -30,3 +30,9 @@ jobs:
         run: |
           python cli.py --init
           python cli.py --sanity-check
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -f vpm.sqlite
+          git commit -m 'Update database' || echo "No changes to commit"
