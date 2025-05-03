@@ -41,12 +41,10 @@ class Driver:
 
     async def save_screenshot(self):
         try:
-            info("Taking screeshot.")
             if environ.get("DEBUG") == "on":
+                info("Taking screeshot.")
                 file = f"./captures/screenshot_{strftime('%d-%m-%H-%M-%S')}.png"
-            else:
-                file = f"{LOGS_FOLDER}/screenshot_{strftime('%d-%m-%H-%M-%S')}.png"
-            await self._driver.save_screenshot(file)
+                await self._driver.save_screenshot(file)
         except Exception as error:
             raise WebDriverError(
                 f"Unexpected error while taking screeshot. {str(error)}"
