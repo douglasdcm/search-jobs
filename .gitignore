@@ -1,3 +1,5 @@
+*.sqlite
+captures
 .env
 sqlite
 env_crawler

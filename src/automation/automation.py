@@ -25,15 +25,6 @@ class BaseObjects:
             info("Getting attribute {} from element {}".format(attribute, element))
         return element.get_attribute(attribute)
 
-    async def wait_until_page_is_loaded(self, timeout=TIMEOUT):
-        return await self.wait_until(
-            lambda _: self._driver.execute_script("return document.readyState") == "complete",
-            timeout=timeout,
-        )
-
-    def wait_until(self, predicate, timeout=TIMEOUT, poll_frequency=0.001):
-        return wait.WebDriverWait(self._driver, timeout, poll_frequency).until(predicate)
-
     async def scroll_to_element(self, by_type=None, locator=None, element=None):
         if element is None:
             element = await self._get_element(by_type, locator)

@@ -1,4 +1,5 @@
 #!flask/bin/python
+import asyncio
 import glob
 import json
 from os import environ
@@ -6,7 +7,7 @@ from sys import path
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from src.helper.commands import compare_facade, overwrite_facade
-from src.helper.helper import Connection, initialize_table
+from src.helper.helper import initialize_table
 from src.media_content import load_web_content
 from ast import literal_eval
 from dotenv import load_dotenv
@@ -15,6 +16,7 @@ from src.constants import ROOT_DIR
 from src.crawler.company import Company
 from waitress import serve
 from logging import exception, info
+from caqui.easy.server import Server
 
 
 basicConfig(
@@ -35,6 +37,9 @@ path.append(ROOT_DIR)
 
 DEFAULT_LANGUAGE = "pt_BR"
 DEFAULT_ERROR_MESSAGE = "Unexpected error. Try again later."
+SERVER = Server()
+MAX_CONCURRENCY = 5
+SEMAPHORE = asyncio.Semaphore(MAX_CONCURRENCY)
 
 
 class SessionData:
@@ -223,13 +228,19 @@ async def api_overwrite():
     password = request.json.get("password")
     if environ.get("PASSWORD") == password:
         try:
-            await overwrite_facade(Company().get_all())
-            result = {"status": "ok", "message": "overwrite finished"}
-            return jsonify(result), 200
+            SERVER.start()
+            companies = Company().get_all()
+            for company in companies:
+                await overwrite_facade(company, clean_database=False)
         except Exception as error:
             exception(error)
             result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
             return jsonify(result), 500
+        finally:
+            SERVER.dispose()
+        # await overwrite_facade(Company().get_all())
+        result = {"status": "ok", "message": "overwrite finished"}
+        return jsonify(result), 200
     result = {"status": "failed", "message": "nothing to overwrite"}
     return jsonify(result), 404
 

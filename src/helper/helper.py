@@ -20,6 +20,7 @@ nltk.download("rslp", quiet=True)
 
 load_dotenv()
 
+
 class Connection:
     connection = None
 

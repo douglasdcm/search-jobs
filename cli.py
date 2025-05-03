@@ -19,7 +19,7 @@ load_dotenv()  # take environment variables from .env.
 
 
 MAX_CONCURRENCY = 5  # number of webdriver instances running
-semaphore = asyncio.Semaphore(MAX_CONCURRENCY)
+SEMAPHORE = asyncio.Semaphore(MAX_CONCURRENCY)
 system('export PATH="{}:$PATH"'.format(RESOURCES_DIR))
 path.append(RESOURCES_DIR)
 path.append(ROOT_DIR)
@@ -41,7 +41,7 @@ SERVER = Server()
 
 async def get_all_positions(*args, company=None):
     try:
-        async with semaphore:
+        async with SEMAPHORE:
             # Get data from real companies. Not covered by automated testes
             # to avoid overload the real sites
             if "--clean-db" in args:

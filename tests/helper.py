@@ -18,6 +18,7 @@ def populate_database_with_desired_jobs(positions):
     except Exception:
         raise
 
+
 def exec_command(params, command, domain="python", sudo=False):
     try:
         cmd = []

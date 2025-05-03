@@ -3,6 +3,7 @@ from src.automation.automation import BaseObjects
 from src.exceptions.exceptions import WebDriverError
 from caqui.by import By
 
+
 class Positions:
     def __init__(self, driver) -> None:
         self._driver = driver

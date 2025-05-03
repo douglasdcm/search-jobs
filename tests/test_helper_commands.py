@@ -8,7 +8,6 @@ from src.helper.commands import (
 from pytest import fixture
 from os import getcwd
 from pytest import mark
-from caqui.easy.server import Server
 
 
 @mark.functional
@@ -53,8 +52,7 @@ class TestHelperCommands:
             "active": "Y",
             "locator": "//a",
             "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
-        }       
-
+        }
 
     @mark.asyncio
     async def test_update_get_data_from_many_links(self):

@@ -7,6 +7,7 @@ from src.crawler import generic
 
 getLogger()
 
+
 async def get_positions_data(company):
     try:
         driver = Driver()
