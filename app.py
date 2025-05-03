@@ -3,6 +3,7 @@ import asyncio
 import glob
 import json
 from os import environ
+import os
 from sys import path
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
@@ -17,6 +18,7 @@ from src.crawler.company import Company
 from waitress import serve
 from logging import exception, info
 from caqui.easy.server import Server
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 basicConfig(
@@ -37,7 +39,11 @@ path.append(ROOT_DIR)
 
 DEFAULT_LANGUAGE = "pt_BR"
 DEFAULT_ERROR_MESSAGE = "Unexpected error. Try again later."
-SERVER = Server()
+if os.getenv("DEBUG", "").upper() == "ON":
+    SERVER = Server()
+else:
+    CHROME_VERSION = "94.0.4606"  # necessary to docker
+    SERVER = Server(ChromeDriverManager(driver_version=CHROME_VERSION))
 MAX_CONCURRENCY = 5
 SEMAPHORE = asyncio.Semaphore(MAX_CONCURRENCY)
 
