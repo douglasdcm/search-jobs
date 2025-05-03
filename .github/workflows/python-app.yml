@@ -31,7 +31,7 @@ jobs:
       - name: Run crawler
         run: |
           python cli.py --init
-          python cli.py --sanity-check
+          python cli.py --overwrite
       - name: Commit changes
         run: |
           git config --global user.name 'github-actions[bot]'
