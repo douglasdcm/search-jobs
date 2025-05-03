@@ -6,7 +6,7 @@ import asyncio
 from os import environ
 from logging import basicConfig, INFO, info, exception
 from time import time
-from src.constants import ROOT_DIR, LOG_FILE, RESOURCES_DIR
+from src.constants import ROOT_DIR, RESOURCES_DIR
 from sys import argv, path
 from src.helper.commands import sanity_check_facade, help_facade_, overwrite_facade
 from src.crawler.company import Company

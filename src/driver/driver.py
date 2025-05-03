@@ -1,7 +1,7 @@
 from os import environ
 from time import strftime
 from logging import info
-from src.constants import SERVER_URL
+from src.constants import DRIVER_SERVER_URL
 from src.constants import LOGS_FOLDER, TIMEOUT
 from src.exceptions.exceptions import WebDriverError
 from caqui.easy.page import AsyncPage
@@ -14,7 +14,7 @@ class Driver:
         try:
             options = (
                 ChromeOptionsBuilder()
-                .args(["headless"])
+                # .args(["headless"])
                 .to_dict()
             )
             capabilities = (
@@ -23,7 +23,7 @@ class Driver:
                 .page_load_strategy("normal")
                 .add_options(options)
             ).to_dict()
-            self._driver = AsyncPage(SERVER_URL, capabilities)
+            self._driver = AsyncPage(DRIVER_SERVER_URL, capabilities)
 
         except Exception as error:
             raise WebDriverError(
@@ -43,7 +43,7 @@ class Driver:
         try:
             info("Taking screeshot.")
             if environ.get("DEBUG") == "on":
-                file = f"./screenshot_{strftime('%d-%m-%H-%M-%S')}.png"
+                file = f"./captures/screenshot_{strftime('%d-%m-%H-%M-%S')}.png"
             else:
                 file = f"{LOGS_FOLDER}/screenshot_{strftime('%d-%m-%H-%M-%S')}.png"
             await self._driver.save_screenshot(file)

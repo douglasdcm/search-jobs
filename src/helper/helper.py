@@ -20,7 +20,6 @@ nltk.download("rslp", quiet=True)
 
 load_dotenv()
 
-
 class Connection:
     connection = None
 
@@ -48,6 +47,7 @@ def save_description_to_database(url, description):
                     f"insert into {TABLE_NAME} (url, description) values ('{url}', '{description}')"
                 )
             )
+            connection.commit()
     except Exception as error:
         raise DatabaseError(str(error)) from error
 

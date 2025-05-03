@@ -17,7 +17,6 @@ class TestCrawler:
 
     @mark.asyncio
     async def test_all_crawler_types_run_succesfully(self, setup_db, monkeypatch):
-        monkeypatch.setattr(auto.wait, "WebDriverWait", Fake_WebDriverWait)
         crawler = Generic("any_locator")
         crawler.set_driver(FakeDriver())
         assert await crawler.run() is True

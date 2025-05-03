@@ -219,11 +219,11 @@ def api_init():
 
 
 @app.route("/api/overwrite", methods=["POST"])
-def api_overwrite():
+async def api_overwrite():
     password = request.json.get("password")
     if environ.get("PASSWORD") == password:
         try:
-            overwrite_facade(Company().get_all())
+            await overwrite_facade(Company().get_all())
             result = {"status": "ok", "message": "overwrite finished"}
             return jsonify(result), 200
         except Exception as error:

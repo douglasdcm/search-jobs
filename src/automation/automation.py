@@ -1,5 +1,4 @@
 from logging import info
-from selenium.webdriver.support import wait
 from src.constants import TIMEOUT
 from src.exceptions.exceptions import WebDriverError
 from os import environ
@@ -8,7 +7,6 @@ from os import environ
 class BaseObjects:
     def __init__(self, driver):
         self._driver = driver
-        self._wait = wait.WebDriverWait(driver, TIMEOUT)
 
     async def _get_element(self, by_type, locator):
         if environ.get("DEBUG") == "on":

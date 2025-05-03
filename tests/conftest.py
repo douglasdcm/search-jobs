@@ -1,11 +1,22 @@
 from logging import info
 from pytest import fixture
+from src.helper.helper import initialize_table
 from tests.helper import exec_command
 from tests.helper import populate_database_with_thecnical_jobs
+from caqui.easy.server import Server
+
+
+@fixture(autouse=True, scope="session")
+def setup_server():
+    server = Server.get_instance()
+    server.start()
+    yield
+    server.dispose()
 
 
 @fixture
 def setup_db():
+    initialize_table()
     populate_database_with_thecnical_jobs()
 
 

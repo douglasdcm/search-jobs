@@ -21,6 +21,7 @@ services:
     working_dir: /webapp
     environment:
       DATABASE_STRING: sqlite+pysqlite:///vpm.sqlite
+      PASSWORD: anypassword
 
   # db:
   #   image: postgres

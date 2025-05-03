@@ -1,10 +1,11 @@
-from logging import info, exception
+from logging import info, exception, getLogger
 from src.driver.driver import Driver
 from src.helper.helper import search_positions_based_on_resume, initialize_table
 from src.similarity.similarity import Similarity
 from src.exceptions.exceptions import CommandError
 from src.crawler import generic
 
+getLogger()
 
 async def get_positions_data(company):
     try:

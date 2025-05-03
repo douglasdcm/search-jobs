@@ -1,8 +1,7 @@
 import asyncio
 from src.automation.automation import BaseObjects
-from selenium.webdriver.common.by import By
 from src.exceptions.exceptions import WebDriverError
-
+from caqui.by import By
 
 class Positions:
     def __init__(self, driver) -> None:

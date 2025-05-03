@@ -1,21 +1,22 @@
 from subprocess import PIPE, STDOUT, run
-from src.helper.commands import initialize_table
 from sqlalchemy import text
 from src.helper.helper import data_pre_processing_portuguese, Connection
 
 
 def populate_database_with_desired_jobs(positions):
-    initialize_table()
-    with Connection.get_database_connection().connect() as connection:
-        for position in positions:
-            descrition_processed = data_pre_processing_portuguese(position["description"])
-            connection.execute(
-                text(
-                    f"insert into positions (url, description) values ('{position['url']}"
-                    f"', '{descrition_processed}')"
+    try:
+        with Connection.get_database_connection().connect() as connection:
+            for position in positions:
+                descrition_processed = data_pre_processing_portuguese(position["description"])
+                connection.execute(
+                    text(
+                        f"insert into positions (url, description) values ('{position['url']}'"
+                        f", '{descrition_processed}')"
+                    )
                 )
-            )
-
+                connection.commit()
+    except Exception:
+        raise
 
 def exec_command(params, command, domain="python", sudo=False):
     try:

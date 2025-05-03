@@ -17,6 +17,7 @@ python3.7 -m venv env
 source venv/bin/activate
 pip install -r requirements.txt
 pip install -r test-requirements.txt
+mkdir captures
 sudo mkdir -p /webapp/logs
 sudo cp ./src/resources/basic_page.html /webapp
 sudo chmod -R 777 /webapp
