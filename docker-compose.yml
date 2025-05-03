@@ -19,7 +19,6 @@ services:
     working_dir: /webapp
     environment:
       DATABASE_STRING: sqlite+pysqlite:///vpm.sqlite
-      PASSWORD: anypassword
 
 volumes:
   vpm-data:

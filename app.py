@@ -37,7 +37,7 @@ cors = CORS(app)
 path.append(ROOT_DIR)
 
 
-DEFAULT_LANGUAGE = "pt_BR"
+DEFAULT_LANGUAGE = "en_US"
 DEFAULT_ERROR_MESSAGE = "Unexpected error. Try again later."
 if os.getenv("DEBUG", "").upper() == "ON":
     SERVER = Server()
@@ -174,97 +174,9 @@ def search():
         return render_template("error.html")
 
 
-@app.route("/about", methods=["GET", "POST"])
-def about():
-    try:
-        language = __set_language(request)
-        return render_template("about.html", **languages[language])
-    except Exception as error:
-        exception(error)
-        return render_template("error.html")
-
-
-@app.route("/disclaimer", methods=["GET", "POST"])
-def disclaimer():
-    try:
-        return render_template("disclaimer.html")
-    except Exception as error:
-        exception(error)
-        return render_template("error.html")
-
-
-@app.route("/contact", methods=["GET", "POST"])
-def contact():
-    try:
-        language = __set_language(request)
-        return render_template("contact.html", **languages[language])
-    except Exception as error:
-        exception(error)
-        return render_template("error.html")
-
-
-@app.route("/spec")
-def spec():
-    return render_template("spec.html")
-
-
 @app.route("/api/images")
 def api_images():
     return jsonify(load_web_content())
-
-
-@app.route("/api/init", methods=["POST"])
-def api_init():
-    password = request.json.get("password")
-    if environ.get("PASSWORD") == password:
-        try:
-            initialize_table()
-            result = {"status": "ok", "message": "initilization finished"}
-            return jsonify(result), 200
-        except Exception as error:
-            exception(error)
-            result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
-            return jsonify(result), 500
-    result = {"status": "failed", "message": "nothing to overwrite"}
-    return jsonify(result), 404
-
-
-@app.route("/api/overwrite", methods=["POST"])
-async def api_overwrite():
-    password = request.json.get("password")
-    if environ.get("PASSWORD") == password:
-        try:
-            SERVER.start()
-            companies = Company().get_all()
-            for company in companies:
-                await overwrite_facade(company, clean_database=False)
-        except Exception as error:
-            exception(error)
-            result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
-            return jsonify(result), 500
-        finally:
-            SERVER.dispose()
-        # await overwrite_facade(Company().get_all())
-        result = {"status": "ok", "message": "overwrite finished"}
-        return jsonify(result), 200
-    result = {"status": "failed", "message": "nothing to overwrite"}
-    return jsonify(result), 404
-
-
-@app.route("/api/logs", methods=["POST"])
-def api_logs():
-    password = request.json.get("password")
-    if environ.get("PASSWORD") == password:
-        try:
-            # with open(LOG_FILE, "r") as log:
-            result = {"status": "ok", "message": ""}
-            return jsonify(result), 200
-        except Exception as error:
-            exception(error)
-            result = {"status": "failed", "message": DEFAULT_ERROR_MESSAGE}
-            return jsonify(result), 500
-    result = {"status": "failed", "message": "nothing to log"}
-    return jsonify(result), 404
 
 
 if __name__ == "__main__":

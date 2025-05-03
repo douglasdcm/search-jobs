@@ -2,7 +2,7 @@ body {
     background-color: white;
     position: relative;
     text-align: center;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
 .add-blanks {
@@ -11,9 +11,10 @@ body {
 }
 
 body::after {
-   content: '';
-   display: block;
-   height: 30px; /* Set same as footer's height */
+    content: '';
+    display: block;
+    height: 30px;
+    /* Set same as footer's height */
 }
 
 p {
@@ -26,7 +27,7 @@ p {
 }
 
 a {
-    color:blue
+    color: blue
 }
 
 h3 {
@@ -39,19 +40,20 @@ h3 {
 }
 
 .custom-nav {
-    position:fixed;
+    position: fixed;
     top: 1;
 }
 
 .footer {
-    position:absolute;
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
     color: black;
-    height: 30px;  /* Set same as body's height */
- }
+    height: 30px;
+    /* Set same as body's height */
+}
 
 table {
     font-family: arial, sans-serif;
@@ -59,7 +61,8 @@ table {
     width: 100%;
 }
 
-td, th {	  
+td,
+th {
     text-align: left;
 }
 
@@ -93,16 +96,16 @@ tr:nth-child(even) {
 }
 
 .truncate {
-  /**Major Properties**/
-  overflow:hidden;
-  line-height: 2rem;
-  max-height: 8rem;
-  -webkit-box-orient: vertical;
-  display: block;
-  display: -webkit-box;
-  overflow: hidden !important;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 4;
+    /**Major Properties**/
+    overflow: hidden;
+    line-height: 2rem;
+    max-height: 8rem;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
 }
 
 .truncate-url {
