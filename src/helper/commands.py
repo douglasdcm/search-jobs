@@ -1,73 +1,56 @@
-from logging import info
-from src.helper.helper import (
-    search_positions_based_on_resume,
-    Connection,
-    initialize_table
-)
+from logging import info, exception, getLogger
+from src.driver.driver import Driver
+from src.helper.helper import search_positions_based_on_resume, initialize_table
 from src.similarity.similarity import Similarity
-from src.driver.driver_factory import DriverFactory
 from src.exceptions.exceptions import CommandError
-from os import environ
 from src.crawler import generic
 
-
-def __finish_driver(chrome):
-    chrome.quit()
-    message = "Crawler finished."
-    print(message)
-    info(message)
+getLogger()
 
 
-def get_positions_data(database_string, companies):
-    if not Connection.get_database_connection():
-        return False
-    for company in companies:
-        if company["active"].upper() != "Y":
-            continue
-        chrome = DriverFactory().get_driver()
+async def get_positions_data(company):
+    try:
+        driver = Driver()
+        url = company["url"]
+        info(f"Collecting data of company '{url}'")
+        info("Starting crawler for '{}'...".format(url))
+        driver_ = await driver.start(url)
+        crawler = generic.Generic(company["locator"])
+        crawler.set_driver(driver_)
+        crawler.set_url(url)
+        await crawler.run()
+    # The execution need to continue even in case of errors
+    except Exception as error:
+        exception(f"Unexpected error occurred while getting position data. {str(error)}")
+    finally:
         try:
-            url = company["url"]
-            message = f"Collecting data of company '{url}'"
-            print(message)
-            info(message)
-            message = "Starting crawler for '{}'...".format(url)
-            print(message)
-            info(message)
-            driver_ = chrome.start(url)
-            crawler = generic.Generic(company["locator"])
-            crawler.set_driver(driver_)
-            crawler.set_url(url)
-            crawler.run()
-            __finish_driver(driver_)
-        # The execution need to continue even in case of errors
+            await driver.save_screenshot()
         except Exception as error:
-            message = f"Unexpected error occurred while getting position data. {str(error)}"
-            info(message)
-            if environ.get("DEBUG") == "on":
-                raise CommandError(str(error))
-        finally:
-            try:
-                __finish_driver(chrome)
-            except Exception:
-                pass
+            exception(f"Unexected error: {str(error)}")
+        try:
+            driver.quit()
+        except Exception as error:
+            exception(f"Unexected error: {str(error)}")
+        info("Crawler finished.")
     return True
 
 
-def sanity_check(database_string, companies):
-    return get_positions_data(database_string, companies)
+async def sanity_check_facade(company):
+    return await get_positions_data(company)
 
 
-def help_():
+def help_facade_():
     return (
         "Commands:\n"
+        "--init            initialize the database\n"
         "--sanity-check    check the installtion and clean the database\n"
         "--help            open the help documentation\n"
         "--overwrite       get the new positions from companies\n"
-        "    --clean-db    clean up the database"
+        "   [--clean-db]   clean up the database"
     )
 
 
-def compare(database_string, resume, condition):
+def compare_facade(resume, condition):
     """Returns a dictionary where the key is the positon description processes and the value is
     the similarity, like this
 
@@ -81,9 +64,8 @@ def compare(database_string, resume, condition):
     if len(resume) == 0:
         return None
     try:
-        positions = search_positions_based_on_resume(database_string, condition, resume)
+        positions = search_positions_based_on_resume(condition, resume)
     except Exception as error:
-        info({str(error)})
         raise CommandError(f"Unexpected error while getting data from database. {str(error)}")
     s = Similarity()
     result = s.return_similarity_by_cossine(resume, positions)
@@ -92,12 +74,10 @@ def compare(database_string, resume, condition):
     return result
 
 
-def overwrite(database_string, companies=None, clean_database=False):
-    message = "Updating positions"
-    print(message)
-    info(message)
+async def overwrite_facade(companies=None, clean_database=False):
+    info("Updating positions")
     if clean_database:
-        initialize_table(database_string)
-    get_positions_data(database_string, companies)
-    print("Update finished")
+        initialize_table()
+    await get_positions_data(companies)
+    info("Update finished")
     return True

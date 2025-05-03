@@ -6,7 +6,7 @@ const spec = {
 		"version": "0.1"
 	},
 	"servers": [{
-		"url": "http://localhost:5000"
+		"url": "http://localhost:5001"
 	}],
 	"paths": {
 		"/api/overwrite": {
@@ -57,7 +57,7 @@ const spec = {
 									"200 OK": {
 										"value": "{\"status\": \"ok\", \"message\": \"overwrite finished\"}"
 									},
-                                    "404 NOT FOUND": {
+									"404 NOT FOUND": {
 										"value": "{\"status\": \"failed\", \"message\": \"nothing to overwrite\"}"
 									}
 								}
@@ -68,7 +68,7 @@ const spec = {
 			}
 		},
 
-        "/api/logs": {
+		"/api/logs": {
 			"post": {
 				"description": "Get the application log (cannot be tested on container as it still uses enviroment variables)",
 				"requestBody": {
@@ -116,7 +116,7 @@ const spec = {
 									"200 OK": {
 										"value": "{\"status\": \"ok\", \"message\": \"2023-04-27 01:46:13 INFO     Serving on http://0.0.0.0:5001\n2023-04-27 01:47:40 INFO     (psycopg2.ProgrammingError) relation 'positions' does not exist\"}"
 									},
-                                    "404 NOT FOUND": {
+									"404 NOT FOUND": {
 										"value": "{\"status\": \"failed\", \"message\": \"nothing to log\"}"
 									}
 								}

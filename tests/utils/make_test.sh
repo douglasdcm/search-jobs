@@ -1,0 +1,1 @@
+export PYTHONPATH=$(pwd); python ./utils/add_fake_data_to_databse.py

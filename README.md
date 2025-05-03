@@ -2,7 +2,7 @@
 Este projeto utiliza um crawler genérico para buscar por vagas em diferentes empresas e lhe permite comparar o seu currículo com essas vagas para que você possa achar as que são relevantes para você.
 
 # Começando
-Antes de começar a contribuir com o projeto, veja o nosso [Código de Conduta](https://github.com/douglasdcm/crawler_of_positions/blob/master/CODE_OF_CONDUCT.md).
+Antes de começar a contribuir com o projeto, veja o nosso [Código de Conduta](https://github.com/douglasdcm/crawler_of_positions/blob/master/docs/CODE_OF_CONDUCT.md).
 
 # Adicionando empresas
 Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos minutos você consegue fazer isso. Veja o exemplo abaixo:
@@ -13,27 +13,28 @@ Veja o [passo a passo](https://github.com/douglasdcm/job-conqueror/blob/main/REA
 # Atualizando o código fonte
 Para atualizar o código fonte, ative seu ambiente virtual e instale as dependências
 ```
-python3.6 -m venv env
+python3.7 -m venv env
 source venv/bin/activate
 pip install -r requirements.txt
 pip install -r test-requirements.txt
+mkdir captures
 sudo mkdir -p /webapp/logs
 sudo cp ./src/resources/basic_page.html /webapp
-chmod -R 777 /webapp
+sudo chmod -R 777 /webapp
 ```
 Instale o Docker e Docker Compose, faça o build da imagem Docker e suba os containers. Você pode usar o utilitário na pasta `./utils`
 ```
-./utils/build_image.sh
+./utils/build_container.sh
 ```
 Copie o arquivo ".env_template" para ".env" e adicione dados de teste no banco de dados
 ```
-python add_fake_data_to_databse.py
+export PYTHONPATH=$(pwd); python ./utils/add_fake_data_to_databse.py
 ```
 Após finalizar o build, suba o container:
 ```
 sudo docker compose up -d
 ```
-Acesse o link `http://localhost:5000`
+Acesse o link `http://localhost:5001`
 Agora você pode mexer no código à vontade.
 
 # Rodando os testes
@@ -93,7 +94,7 @@ tail -f /webapp/logs/crawlers.log
 ```
 
 # Especificação da API REST
-O projeto possui alguns end-points cuja documentação (Swagger) pode ser acessada em `http://localhost:5000/spec` 
+O projeto possui alguns end-points cuja documentação (Swagger) pode ser acessada em `http://localhost:5001/spec` 
 
 # Contribuindo
 Ajude este projeto a crescer adicionando novas empresas. Que tal começar pelas empresas GPTW do Brasil de 2020? https://conteudo.gptw.com.br/150-melhores-2020.<br>

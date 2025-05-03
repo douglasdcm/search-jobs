@@ -1,12 +1,11 @@
-from logging import error as log_info
+from logging import exception, info
 from src.pages.generic.positions import Positions
 from src.exceptions.exceptions import WebDriverError, CrawlerError
 from os import environ
-from src.helper.helper import save_description_to_database, Connection
+from src.helper.helper import save_description_to_database
 
 
 class Generic:
-
     def __init__(self, locator):
         """
         This is what the name says: a generic crawler. It is intended to be used if the company's
@@ -36,29 +35,31 @@ class Generic:
     def set_url(self, url):
         self.url = url
 
-    def run(self):
-        links = self._get_link_by_browser()
-        return self._get_info_from_links(links)
+    async def run(self):
+        links = await self._get_link_by_browser()
+        return await self._get_info_from_links(links)
 
-    def _get_link_by_browser(self):
-        return self._positions.get_link_of_all_positons(self.locator)
+    async def _get_link_by_browser(self):
+        return await self._positions.get_link_of_all_positons(self.locator)
 
-    def _get_info_from_links(self, links):
+    async def _get_info_from_links(self, links):
         for link in links:
             try:
-                print(f"Collecting data from postion '{link}'")
-                self._positions.go_to_page(link)
+                # It is necessary because the function `Element.get_attribute`
+                # does not return a Coroutine
+                if not isinstance(link, str):
+                    link = await link
+                info(f"Collecting data from postion '{link}'")
+                await self._positions.go_to_page(link)
                 save_description_to_database(
-                    Connection.get_connection_string(),
                     link,
-                    self._positions.get_description()
+                    await self._positions.get_description(),
                 )
             except WebDriverError as error:
                 message = f"Skipping process. Failed to get data from {link}"
-                print(message)
-                log_info(message)
+                exception(message)
                 if environ.get("DEBUG") == "on":
                     raise CrawlerError(str(error)) from error
             except Exception as error:
-                raise CrawlerError(str(error))
+                raise CrawlerError(str(error)) from error
         return True

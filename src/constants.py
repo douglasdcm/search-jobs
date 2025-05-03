@@ -9,4 +9,6 @@ LOGS_FOLDER = "/webapp/logs/"
 TIMEOUT = 30
 TABLE_NAME = "positions"
 LOG_FILE = LOGS_FOLDER + "crawler.log"
-DATABASE_STRING_DEFAULT = "postgresql://postgres:postgresql@postgres/postgres"
+# DATABASE_STRING_DEFAULT = "postgresql://postgres:postgresql@postgres/postgres"
+DATABASE_STRING_DEFAULT = "sqlite+pysqlite:///vpm.sqlite"
+DRIVER_SERVER_URL = "http://localhost:9999"

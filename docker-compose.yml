@@ -15,20 +15,11 @@ services:
         source: ./app.py
         target: /webapp/app.py
     ports:
-      - 5000:5001
-    depends_on:
-      - db
+      - 5001:5001
     working_dir: /webapp
-
-  db:
-    image: postgres
-    container_name: postgres
-    volumes:
-      - vpm-data:/var/lib/pgsql
-    ports:
-      - 5432:5432
     environment:
-      POSTGRES_PASSWORD: postgresql
+      DATABASE_STRING: sqlite+pysqlite:///vpm.sqlite
+      PASSWORD: anypassword
 
 volumes:
   vpm-data:

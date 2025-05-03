@@ -1,7 +1,6 @@
 from src.crawler.generic import Generic
 from src.crawler.company import Company
-from tests.resources.fake_driver import FakeDriver, Fake_WebDriverWait
-import src.automation.automation as auto
+from tests.resources.fake_driver import FakeDriver
 from pytest import mark
 
 
@@ -12,12 +11,11 @@ class TestCrawler:
         companies = Company().get_all()[0]
 
         assert companies.get("locator") == '//a[contains(@title,"Veja detalhes")]'
-        assert companies.get("url") == 'https://www.dqrtech.com.br/vagas/'
+        assert companies.get("url") == "https://www.dqrtech.com.br/vagas/"
         assert companies.get("active") is not None
 
-
-    def test_all_crawler_types_run_succesfully(self, setup_db, monkeypatch):
-        monkeypatch.setattr(auto.wait, "WebDriverWait", Fake_WebDriverWait)
+    @mark.asyncio
+    async def test_all_crawler_types_run_succesfully(self, setup_db, monkeypatch):
         crawler = Generic("any_locator")
         crawler.set_driver(FakeDriver())
-        assert crawler.run() is True
+        assert await crawler.run() is True
