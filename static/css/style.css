@@ -82,10 +82,6 @@ tr:nth-child(even) {
     align-items: center;
 }
 
-.carousel-control {
-    height: 50px;
-}
-
 .custom-img {
     width: 100%;
     height: 100px;

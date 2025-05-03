@@ -8,7 +8,7 @@ setup(
     description="Python Distribution Utilities",
     author="Douglas Cardoso",
     author_email="email@email.com",
-    url="https://github.com/douglasdcm/crawler_of_positions",
+    url="https://github.com/douglasdcm/search-jobs",
     packages=[
         "src",
     ],

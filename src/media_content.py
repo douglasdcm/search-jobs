@@ -5,7 +5,7 @@ def load_web_content():
     return [
         {
             "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-            "link": "https://github.com/douglasdcm/crawler_of_positions",
+            "link": "https://github.com/douglasdcm/search-jobs",
             "caption": "Contribute",
             "description": (
                 ""
