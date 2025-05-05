@@ -8,7 +8,7 @@ Antes de começar a contribuir com o projeto, veja o nosso [Código de Conduta](
 Se você quiser adicionar mais empresas ao projeto é bem simples. Em poucos minutos você consegue fazer isso. Veja o exemplo abaixo:
 ![Exemplo](https://github.com/douglasdcm/search-jobs/blob/master/static/images/add-locator-example.jpg?raw=true)
 
-Veja o [passo a passo](https://github.com/douglasdcm/job-conqueror/blob/main/README.md#adicionando-empresas)
+Veja o [passo a passo](https://github.com/douglasdcm/search-jobs/blob/master/docs/STEPS.md)
 
 # Atualizando o código fonte
 Para atualizar o código fonte, ative seu ambiente virtual e instale as dependências
