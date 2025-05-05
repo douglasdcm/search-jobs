@@ -24,6 +24,7 @@ class Positions:
     async def go_to_page(self, url):
         try:
             await self._base_objects.navigate_to(url)
+            await self._base_objects.refresh()
         except Exception as error:
             raise WebDriverError(f"Could not navidate to page {url}. {str(error)}")
 

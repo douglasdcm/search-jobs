@@ -33,7 +33,10 @@ class BaseObjects:
     async def navigate_to(self, url, timeout=TIMEOUT):
         info("Navigate to '{}'".format(url))
         await self._driver.get(url)
-        # await self.wait_until_page_is_loaded(timeout=timeout)
+
+    async def refresh(self):
+        info("Refresh page")
+        await self._driver.refresh()
 
     async def get_text(self, by_type=None, locator=None):
         try:

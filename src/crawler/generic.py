@@ -28,9 +28,11 @@ class Generic:
         self._url = None
         self._positions = None
         self.locator = locator
+        self._driver = None
 
     def set_driver(self, driver):
         self._positions = Positions(driver)
+        self._driver = driver
 
     def set_url(self, url):
         self.url = url
