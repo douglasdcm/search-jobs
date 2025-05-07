@@ -20,7 +20,7 @@ class Driver:
             capabilities = (
                 ChromeCapabilitiesBuilder()
                 .accept_insecure_certs(True)
-                .page_load_strategy("normal")
+                .page_load_strategy("eager")
                 .add_options(options)
             ).to_dict()
             self._driver = AsyncPage(DRIVER_SERVER_URL, capabilities)
