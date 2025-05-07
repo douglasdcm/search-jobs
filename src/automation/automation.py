@@ -30,7 +30,7 @@ class BaseObjects:
             element = await self._get_element(by_type, locator)
         await self._driver.execute_script("arguments[0].scrollIntoView();", element)
 
-    async def navigate_to(self, url, timeout=TIMEOUT):
+    async def navigate_to(self, url):
         info("Navigate to '{}'".format(url))
         await self._driver.get(url)
 

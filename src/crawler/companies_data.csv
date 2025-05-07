@@ -1,4 +1,13 @@
 locator;carrers_url;enabled;
+//section[@id="jobs-bottom"]//a;https://ae.studio/join-us;Y;
+//div[@data-testid="offer-list-cards-desktop-display"]//a[@aria-live="off"];https://claranetitalia.recruitee.com;Y;
+//div[contains(@class,"bv-js-jobs-list")]//a;https://www.bazaarvoice.com/company/careers/#job-openings;Y;
+//li[contains(@class,"flex-col")]//a;https://www.activecampaign.com/careers/job-listings;Y;
+//td[contains(@class, "posTitle")]//a;https://adhoc.hrmdirect.com/employment/job-openings.php?search=true&&cust_sort1=245588;Y;
+//div[contains(@class,"posting")]//div[@data-qa="btn-apply"]//a;https://jobs.lever.co/1password;Y;
+//section[@id="greenhouse-open-roles"]//a;https://ably.com/careers;Y;
+//div[contains(@class,"views-row")]//a;https://www.acquia.com/;Y;
+//div[contains(@class, "cards")]//a;https://phrase.com/careers/jobs/;Y;
 //li[@data-qa="searchResultItem"]//a;https://hcml.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/AEO-Careers/jobs?lastSelectedFacet=LOCATIONS&selectedLocationsFacet=300000000300470&selectedCategoriesFacet=300000310850476;Y;
 //div[@id="job-search-results"]//a;https://www.gapinc.com/en-us/careers/job-search?brand=Gap&currentPage=1;Y;
 //section[@id="listagem-vagas"]//a;https://stellantis.empregare.com/pt-br/vagas;Y;
@@ -137,7 +146,7 @@ locator;carrers_url;enabled;
 //a[@class="font-size-mobile"];https://mercadolivre.randstad.com.br/LP_MercadoLivre_V2/;Y;
 //div[contains(@class,"vaga-wrapper")]//a;https://www.sesc-rs.com.br/trabalheconosco/vagas/;Y;No jobs indeed
 //div[contains(@id,"detalheVagaDescricao")]//a;https://www.portalsinergyrh.com.br/Portal/MeuPortal/MeuPortal?empresa=1490&master=1;FAIL;Not found elements. Investigate
-//section[@class="box"]//h3//a;http://4alltests.com.br/vagas;Y;
+//section[@class="box"]//h3//a;http://4alltests.com.br/vagas;N;
 //div[@id="vacanciesList"]//a;https://jobs.solides.com/gruposaga#;Y;
 //div[contains(@class,"p-panel")]//a[@data-tag="displayJobTitle"];https://bradesco.csod.com/ux/ats/careersite/1/home?c=bradesco;Y;
 //div[contains(@class,"bx--card__content")]//a[contains(@rel,"noopener")];https://www.ibm.com/careers/br-pt/search/?filters=primary_country:BR;Y;
