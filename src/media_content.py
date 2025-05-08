@@ -4,11 +4,59 @@ from flask import url_for
 def load_web_content():
     return [
         {
-            "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            "image": url_for("static", filename="images/android-chrome-192x192.png"),
             "link": "https://github.com/douglasdcm/search-jobs",
-            "caption": "Contribute",
+            "caption": "Star this project on GitHub!",
             "description": (
                 ""
+            ),
+        },
+        {
+            "image": url_for("static", filename="images/guara-square.png"),
+            "link": "https://github.com/douglasdcm/guara",
+            "caption": "Page Transactions for UI test automation",
+            "description": (
+                "Guará is a Python framework designed to simplify UI test automation."
+                " Inspired by design patterns like Page Objects, App Actions, and Screenplay,"
+                " Guará focuses on Page Transactions—encapsulating user interactions"
+                " (transactions) on web pages, such as Login, Logout, or Form Submissions."
+                " It’s not just a tool; it’s a programming pattern that can be adapted to"
+                " any web driver, not just Selenium."
+            ),
+        },
+        {
+            "image": url_for("static", filename="images/caqui.png"),
+            "link": "https://github.com/douglasdcm/caqui",
+            "caption": "Run synchronous and asynchronous commands in WebDrivers",
+            "description": (
+                "Caqui executes commands against Drivers synchronously and asynchronously."
+                " The intention is that the user does not worry about which Driver they're using."
+                " It can be WebDrivers like Selenium, MobileDrivers like Appium, or DesktopDrivers"
+                " like Winium. It can also be used in remote calls. The user can start the Driver"
+                " as a server in any host and provide the URL to Caqui clients."
+            ),
+        },
+        {
+            "image": ("https://miro.medium.com/v2/resize:fit:720/format:webp/"
+                      "1*3O88y8CI3cWn1quZllqI_A.jpeg"),
+            "link": "https://python.plainenglish.io/python-refactoring-to-patterns-1ca71be08a60",
+            "caption": "Python: Refactoring to Patterns",
+            "description": (
+                "After nearly a year of effort, I’ve finally completed my self-imposed goal of "
+                "writing all the refactoring examples from the book Refactoring to Patterns by "
+                "Joshua Kerievsky in Python. This book broadened my understanding of how to "
+                "apply design patterns in production code."
+            ),
+        },
+        {
+            "image": ("https://miro.medium.com/v2/resize:fit:1400/format:webp/"
+                      "1*6CYeBk_azj1c2sxpIPSajQ.jpeg"),
+            "link": "https://python.plainenglish.io/python-refactoring-to-patterns-1ca71be08a60",
+            "caption": "Building a Python CLI System with Kinde Authentication",
+            "description": (
+                "This is one of my experiments again. Now I built a CLI application in Python and"
+                " integrated it with the authentication tool called Kinde to manage the user"
+                " permissions and allow them to perform just the granted operations."
             ),
         },
         {
