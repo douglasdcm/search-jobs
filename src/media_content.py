@@ -157,7 +157,7 @@ def load_web_content():
             ),
         },
         {
-            "image": url_for("static", filename="images/mtc.jpeg"),
+            "image": url_for("static", filename="images/mtc.png"),
             "link": "https://www.youtube.com/watch?v=UTEikC3_n84",
             "caption": "MTC 2021 Conversa sobre shift left",
             "description": (

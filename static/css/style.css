@@ -1,13 +1,26 @@
 body {
-    background-color: white;
+    background-color: black;
     position: relative;
     text-align: center;
     overflow-x: hidden;
 }
 
+.navbar-text {
+    color: white;
+}
+
+.hr {
+    border-color: black;
+}
+
+.container-fluid {
+    background-color: black;
+}
+
 .add-blanks {
     width: 100%;
     margin-left: 0 auto;
+    color: black;
 }
 
 body::after {
@@ -18,30 +31,15 @@ body::after {
 }
 
 p {
-    color: black;
-}
-
-.disclaimer {
-    color: black;
-    text-align: justify;
+    color: white;
 }
 
 a {
-    color: blue
+    color: cyan
 }
 
 h3 {
-    columns: black;
-}
-
-.nav-background {
-    height: 50px;
-    background-color: pink;
-}
-
-.custom-nav {
-    position: fixed;
-    top: 1;
+    columns: white;
 }
 
 .footer {
@@ -50,7 +48,7 @@ h3 {
     bottom: 0;
     width: 100%;
     text-align: center;
-    color: black;
+    color: white;
     height: 30px;
     /* Set same as body's height */
 }
@@ -64,31 +62,6 @@ table {
 td,
 th {
     text-align: left;
-}
-
-tr:nth-child(even) {
-    /* background-color: black; */
-}
-
-.jumbotron {
-    background-color: #0c3974;
-    color: black;
-    padding: 0px 25px;
-    font-family: Montserrat, sans-serif;
-}
-
-.custom-content {
-    background-color: black;
-    align-items: center;
-}
-
-.custom-img {
-    width: 100%;
-    height: 100px;
-    margin-top: 10px;
-    text-align: center;
-    border: 1px solid;
-    border-color: black;
 }
 
 .truncate {
@@ -118,30 +91,6 @@ tr:nth-child(even) {
     border-color: black;
 }
 
-.custom-col {
-    text-align: center;
-    height: 150px;
-}
-
-.custom-col-logo {
-    text-align: left;
-    width: 30%;
-}
-
-.custom-col-logo-txt {
-    display: table-cell;
-    text-align: left;
-    color: black;
-    vertical-align: middle;
-    padding: 5px;
-    width: 70%;
-}
-
-.custom-logo {
-    width: 50px;
-    height: 50px;
-}
-
 .radio {
-    color: black;
+    color: white;
 }
