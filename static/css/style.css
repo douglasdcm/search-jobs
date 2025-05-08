@@ -34,8 +34,10 @@ p {
     color: white;
 }
 
-a {
-    color: cyan
+.position-link {
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid white;
 }
 
 h3 {
