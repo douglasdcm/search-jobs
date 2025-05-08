@@ -1,4 +1,5 @@
 locator;carrers_url;enabled;
+//a[contains(@title,"Veja detalhes")];https://www.dqrtech.com.br/vagas/;N;
 //div[contains(@class,"information")]//a;https://careers.alight.com/us/en/search-results;Y;
 //div[contains(@class,"information")]//a;https://careers.alight.com/us/en/search-results?from=100&s=1;Y;//div[@id="app"]//span//a;https://recruiting.paylocity.com/recruiting/jobs/All/df0b4c2b-4424-4d43-97ac-9cf7f31153d5/Actabl?__hstc=85647430.dc1d09f10a7d55af1efb108055f9f17b.1746651231402.1746651231402.1746651231402.1&__hssc=85647430.1.1746651231402&__hsfp=3168344640&hsCtaTracking=edcd99fe-c90c-4806-892c-73e79b6613cd%7Cf6e6c1e8-d0f7-4d59-86aa-8716827ab595;Y;
 //div[contains(@class,"job-list")]//a;https://www.datarobot.com/careers/open-positions/;Y;
@@ -34,7 +35,6 @@ locator;carrers_url;enabled;
 //div[@id="job-opening"]//div[contains(@class,"items-start")]//a;https://www.braze.com/company/careers#open-positions;Y;
 //div[@data-accordion-component="AccordionItemPanel"]//a;https://www.buzzfeed.com/about/jobs?edition=br;Y;
 //article[contains(@class, "editorial-card")]//a;https://www.elixirr.com/en-gb/job-openings/;Y;
-//a[contains(@title,"Veja detalhes")];https://www.dqrtech.com.br/vagas/;N;
 //a[contains(@class,"wp-block-cit-block-ciandt-link")];https://ciandt.com/us/en-us/careers/open-positions;Y;
 //div[@id="job-search-results"]//a;https://www.gapinc.com/en-us/careers/job-search?brand=Gap&currentPage=2;Y;
 //div[contains(@class,"information")]//a;https://careers.alight.com/us/en/search-results?from=40&s=1;Y;

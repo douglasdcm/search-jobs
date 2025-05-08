@@ -85,6 +85,11 @@ def data_pre_processing_portuguese(corpus):
     corpus = corpus.lower()
     # tokenization
     corpus = findall(r"\w+(?:'\w+)?|[^\w\s]", corpus)
+    # remove uselles words
+    USELLES_WORDS = [
+        "http", "https", "www", ".com", ".gov", ".br"
+    ]
+    corpus = [w for w in corpus if w not in USELLES_WORDS]
     # remove punctuation and remove stopwords
     stopwords_ = stopwords.words("portuguese")
     corpus = [t for t in corpus if t not in stopwords_ and t not in punctuation]

@@ -10,6 +10,9 @@ class FakeDriver:
 
     switch_to = SwitchTo()
 
+    async def refresh(self):
+        pass
+
     def start(self, url="url"):
         return self
 
