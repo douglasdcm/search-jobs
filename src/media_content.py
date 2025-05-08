@@ -51,7 +51,8 @@ def load_web_content():
         {
             "image": ("https://miro.medium.com/v2/resize:fit:1400/format:webp/"
                       "1*6CYeBk_azj1c2sxpIPSajQ.jpeg"),
-            "link": "https://python.plainenglish.io/python-refactoring-to-patterns-1ca71be08a60",
+            "link": ("https://medium.com/python-in-plain-english/python-cli-with-kinde"
+                     "-authentication-588bd46d64b3"),
             "caption": "Building a Python CLI System with Kinde Authentication",
             "description": (
                 "This is one of my experiments again. Now I built a CLI application in Python and"
