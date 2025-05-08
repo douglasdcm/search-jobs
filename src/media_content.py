@@ -4,7 +4,7 @@ from flask import url_for
 def load_web_content():
     return [
         {
-            "image": url_for("static", filename="images/android-chrome-192x192.png"),
+            "image": url_for("static", filename="images/android-chrome-1200x1200.png"),
             "link": "https://github.com/douglasdcm/search-jobs",
             "caption": "Star this project on GitHub!",
             "description": (
