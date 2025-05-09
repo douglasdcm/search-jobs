@@ -2,7 +2,7 @@ from os import environ
 from time import strftime
 from logging import info
 from src.constants import DRIVER_SERVER_URL
-from src.constants import LOGS_FOLDER, TIMEOUT
+from src.constants import TIMEOUT
 from src.exceptions.exceptions import WebDriverError
 from caqui.easy.page import AsyncPage
 from caqui.easy.capabilities import ChromeCapabilitiesBuilder
@@ -12,11 +12,7 @@ from caqui.easy.options import ChromeOptionsBuilder
 class Driver:
     def __init__(self) -> None:
         try:
-            options = (
-                ChromeOptionsBuilder()
-                .args(["headless"])
-                .to_dict()
-            )
+            options = ChromeOptionsBuilder().args(["headless"]).to_dict()
             capabilities = (
                 ChromeCapabilitiesBuilder()
                 .accept_insecure_certs(True)

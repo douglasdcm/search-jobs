@@ -1,3 +1,4 @@
+from src.crawler.company import CompanyInstance
 from src.helper.commands import (
     help_facade_,
     overwrite_facade,
@@ -12,26 +13,6 @@ from pytest import mark
 
 @mark.functional
 class TestHelperCommands:
-    @fixture
-    def get_crashed_crawlers(self):
-        return [
-            {
-                "locator": "//a",
-                "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
-                "active": "Y",
-            },
-            {
-                "locator": "//a",
-                "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
-                "active": "Y",
-            },
-            {
-                "locator": "//a",
-                "url": "file:///" + getcwd() + "/tests/resources/p_crashed_links.html#",
-                "active": "Y",
-            },
-        ]
-
     @fixture
     def populate_db(self, setup_db):
         db = setup_db
@@ -48,11 +29,13 @@ class TestHelperCommands:
 
     @fixture
     def get_company(self):
-        return {
-            "active": "Y",
-            "locator": "//a",
-            "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
-        }
+        return CompanyInstance(
+            {
+                "active": "Y",
+                "locator": "//a",
+                "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+            }
+        )
 
     @mark.asyncio
     async def test_update_get_data_from_many_links(self):
@@ -61,7 +44,7 @@ class TestHelperCommands:
             "locator": "//a",
             "url": f"file:///{getcwd()}/tests/resources/p_many_links.html#",
         }
-        assert await overwrite_facade(companiy) is True
+        assert await overwrite_facade(CompanyInstance(companiy)) is True
 
     @mark.asyncio
     async def test_compare_runs_many_times(self, setup_db):
@@ -72,7 +55,7 @@ class TestHelperCommands:
         }
         resume = "senior python pytest"
         expected = "basic_page"
-        await overwrite_facade(company)
+        await overwrite_facade(CompanyInstance(company))
         for _ in range(10):
             assert expected in str(compare_facade(resume, condition="OR"))
 
@@ -86,7 +69,7 @@ class TestHelperCommands:
 
         resume = "senior python pytest"
         expected = "basic_page"
-        await overwrite_facade(company)
+        await overwrite_facade(CompanyInstance(company))
         assert expected in str(compare_facade(resume, condition="OR"))
 
     @mark.asyncio

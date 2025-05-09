@@ -4,20 +4,21 @@ from src.helper.helper import search_positions_based_on_resume, initialize_table
 from src.similarity.similarity import Similarity
 from src.exceptions.exceptions import CommandError
 from src.crawler import generic
+from src.crawler.company import CompanyInstance
 
 getLogger()
 
 
-async def get_positions_data(company):
+async def get_positions_data(company: CompanyInstance):
     try:
         driver = Driver()
-        if company["active"] != "Y":
+        if company.active != "Y":
             return
-        url = company["url"]
+        url = company.url
         info(f"Collecting data of company '{url}'")
         info("Starting crawler for '{}'...".format(url))
         driver_ = await driver.start(url)
-        crawler = generic.Generic(company["locator"])
+        crawler = generic.Generic(company.locator)
         crawler.set_driver(driver_)
         crawler.set_url(url)
         await crawler.run()

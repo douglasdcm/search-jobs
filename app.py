@@ -7,14 +7,12 @@ import os
 from sys import path
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-from src.helper.commands import compare_facade, overwrite_facade
-from src.helper.helper import initialize_table
+from src.helper.commands import compare_facade
 from src.media_content import load_web_content
 from ast import literal_eval
 from dotenv import load_dotenv
 from logging import basicConfig, INFO
 from src.constants import ROOT_DIR
-from src.crawler.company import Company
 from waitress import serve
 from logging import exception, info
 from caqui.easy.server import Server

@@ -10,9 +10,9 @@ class TestCrawler:
 
         companies = Company().get_all()[0]
 
-        assert companies.get("locator") == '//a[contains(@title,"Veja detalhes")]'
-        assert companies.get("url") == "https://www.dqrtech.com.br/vagas/"
-        assert companies.get("active") is not None
+        assert companies.locator == '//a[contains(@title,"Veja detalhes")]'
+        assert companies.url == "https://www.dqrtech.com.br/vagas/"
+        assert companies.active is not None
 
     @mark.asyncio
     async def test_all_crawler_types_run_succesfully(self, setup_db, monkeypatch):

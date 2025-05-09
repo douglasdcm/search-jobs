@@ -7,9 +7,7 @@ def load_web_content():
             "image": url_for("static", filename="images/android-chrome-1200x1200.png"),
             "link": "https://github.com/douglasdcm/search-jobs",
             "caption": "Star this project on GitHub!",
-            "description": (
-                ""
-            ),
+            "description": (""),
         },
         {
             "image": url_for("static", filename="images/guara-square.png"),
@@ -37,8 +35,10 @@ def load_web_content():
             ),
         },
         {
-            "image": ("https://miro.medium.com/v2/resize:fit:720/format:webp/"
-                      "1*3O88y8CI3cWn1quZllqI_A.jpeg"),
+            "image": (
+                "https://miro.medium.com/v2/resize:fit:720/format:webp/"
+                "1*3O88y8CI3cWn1quZllqI_A.jpeg"
+            ),
             "link": "https://python.plainenglish.io/python-refactoring-to-patterns-1ca71be08a60",
             "caption": "Python: Refactoring to Patterns",
             "description": (
@@ -49,10 +49,14 @@ def load_web_content():
             ),
         },
         {
-            "image": ("https://miro.medium.com/v2/resize:fit:1400/format:webp/"
-                      "1*6CYeBk_azj1c2sxpIPSajQ.jpeg"),
-            "link": ("https://medium.com/python-in-plain-english/python-cli-with-kinde"
-                     "-authentication-588bd46d64b3"),
+            "image": (
+                "https://miro.medium.com/v2/resize:fit:1400/format:webp/"
+                "1*6CYeBk_azj1c2sxpIPSajQ.jpeg"
+            ),
+            "link": (
+                "https://medium.com/python-in-plain-english/python-cli-with-kinde"
+                "-authentication-588bd46d64b3"
+            ),
             "caption": "Building a Python CLI System with Kinde Authentication",
             "description": (
                 "This is one of my experiments again. Now I built a CLI application in Python and"

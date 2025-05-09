@@ -14,6 +14,7 @@ from os import getcwd, system
 from dotenv import load_dotenv
 from src.helper.helper import initialize_table
 from caqui.easy.server import Server
+from src.crawler.company import CompanyInstance
 
 load_dotenv()  # take environment variables from .env.
 
@@ -68,7 +69,7 @@ async def main(*args):
                 "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
                 "active": "Y",
             }
-            return await sanity_check_facade(company_fake)
+            return await sanity_check_facade(CompanyInstance(company_fake))
         if "--init" in arguments:
             initialize_table()
             return
