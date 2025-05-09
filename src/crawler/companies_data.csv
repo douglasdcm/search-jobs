@@ -1,7 +1,8 @@
 locator;carrers_url;enabled;
 //a[contains(@title,"Veja detalhes")];https://www.dqrtech.com.br/vagas/;N;
 //div[contains(@class,"information")]//a;https://careers.alight.com/us/en/search-results;Y;
-//div[contains(@class,"information")]//a;https://careers.alight.com/us/en/search-results?from=100&s=1;Y;//div[@id="app"]//span//a;https://recruiting.paylocity.com/recruiting/jobs/All/df0b4c2b-4424-4d43-97ac-9cf7f31153d5/Actabl?__hstc=85647430.dc1d09f10a7d55af1efb108055f9f17b.1746651231402.1746651231402.1746651231402.1&__hssc=85647430.1.1746651231402&__hsfp=3168344640&hsCtaTracking=edcd99fe-c90c-4806-892c-73e79b6613cd%7Cf6e6c1e8-d0f7-4d59-86aa-8716827ab595;Y;
+//div[contains(@class,"information")]//a;https://careers.alight.com/us/en/search-results?from=100&s=1;Y;
+//div[@id="app"]//span//a;https://recruiting.paylocity.com/recruiting/jobs/All/df0b4c2b-4424-4d43-97ac-9cf7f31153d5/Actabl?__hstc=85647430.dc1d09f10a7d55af1efb108055f9f17b.1746651231402.1746651231402.1746651231402.1&__hssc=85647430.1.1746651231402&__hsfp=3168344640&hsCtaTracking=edcd99fe-c90c-4806-892c-73e79b6613cd%7Cf6e6c1e8-d0f7-4d59-86aa-8716827ab595;Y;
 //div[contains(@class,"job-list")]//a;https://www.datarobot.com/careers/open-positions/;Y;
 //div[contains(@class,"gw_jobs-item")]//a;https://airbyte.com/company/careers#open-roles;Y;
 //li//a[contains(@class,"group")];https://www.aha.io/company/careers/current-openings;Y;
@@ -95,7 +96,7 @@ locator;carrers_url;enabled;
 //a[@data-testid="job-list__listitem-href"];https://dasaatendimento.gupy.io;Y;
 //a[@data-testid="job-list__listitem-href"];https://diversidasa.gupy.io;Y;
 //a[@data-testid="job-list__listitem-href"];https://promob.gupy.io/;Y;
-//a[@data-testid="job-list__listitem-href"];https://altamogiana.gupy.io/;Y;No jobs indeed
+//a[@data-testid="job-list__listitem-href"];https://altamogiana.gupy.io/;Y;
 //a[@data-testid="job-list__listitem-href"];https://vereda.gupy.io/;Y;
 //a[@data-testid="job-list__listitem-href"];https://pmweb.gupy.io/;Y;
 //a[@data-testid="job-list__listitem-href"];https://sicredi.gupy.io/;Y;
@@ -122,7 +123,7 @@ locator;carrers_url;enabled;
 //a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/cea;Y;
 //a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/daY;Y;
 //div[@id="job-search"]//a;https://jobs.kenoby.com/alelo;Y;
-//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/cvc;Y;No jobs indeed
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/cvc;Y;
 //ul[contains(@class, "searchbycat")]//a;https://jobs.sephora.com/viewalljobs/100/;Y;
 //a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/paguemenos;Y;
 //a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/kenoby;Y;
@@ -131,17 +132,17 @@ locator;carrers_url;enabled;
 //div[@id="job-search"]//a;https://jobs.kenoby.com/Suzano;Y;
 //a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/wiz;Y;
 //a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/i-cherry;Y;
-//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/mirum;Y;No jobs indeed
-//a[@data-testid="job-list__listitem-href"];https://carreiras.riachuelo.com.br/;Y;'Has positins, but not found; investigate'
+//a[@data-testid="job-list__listitem-href"];https://jobs.kenoby.com/mirum;Y;
+//a[@data-testid="job-list__listitem-href"];https://carreiras.riachuelo.com.br/;Y;
 //a[@class="left-link"];https://careers.astrazeneca.com/location/brazil-country-jobs/7684/3469034/2;Y;
 //a[@class="text-dark"];https://jobs.quickin.io/amplificadigital/jobs;Y;
 //a[@class="text-dark"];https://jobs.quickin.io/expertisegp/jobs;Y;
 //h3[@class="listSingleColumnItemTitle"]/a;https://rbcoats.avature.net/careers/SearchJobs/?3_47_3=898;Y;
-//a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/copa-energia/oportunidades;Y;No jobs indeed
+//a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/copa-energia/oportunidades;Y;
 //a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/hyundai/oportunidades;Y;
 //a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/icatuseguros;Y;
 //a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/libertyseguros/oportunidades;Y;
-//a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/unimedrio/oportunidades?box_link=&division_id=50787&division_name=;Y;No jobs indeed
+//a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/unimedrio/oportunidades?box_link=&division_id=50787&division_name=;Y;
 //a[contains(@class,"job-box")];https://trabalheconosco.vagas.com.br/schmersalbrasil;Y;
 //section[@id="search-results-list"]//a;https://carreiras.dell.com/search-jobs;Y;
 //section[@id="search-results-list"]//a;https://jobs.intuit.com/search-jobs/;Y;
@@ -166,8 +167,8 @@ locator;carrers_url;enabled;
 //div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/administration-support-jobs;Y;
 //div[@class="content-block"]//a[@class="au-target"];https://careers.accor.com/global/en/c/business-development-jobs;Y;
 //a[@class="font-size-mobile"];https://mercadolivre.randstad.com.br/LP_MercadoLivre_V2/;Y;
-//div[contains(@class,"vaga-wrapper")]//a;https://www.sesc-rs.com.br/trabalheconosco/vagas/;Y;No jobs indeed
-//div[contains(@id,"detalheVagaDescricao")]//a;https://www.portalsinergyrh.com.br/Portal/MeuPortal/MeuPortal?empresa=1490&master=1;FAIL;Not found elements. Investigate
+//div[contains(@class,"vaga-wrapper")]//a;https://www.sesc-rs.com.br/trabalheconosco/vagas/;Y;
+//div[contains(@id,"detalheVagaDescricao")]//a;https://www.portalsinergyrh.com.br/Portal/MeuPortal/MeuPortal?empresa=1490&master=1;Y;
 //div[@id="vacanciesList"]//a;https://jobs.solides.com/gruposaga#;Y;
 //div[contains(@class,"p-panel")]//a[@data-tag="displayJobTitle"];https://bradesco.csod.com/ux/ats/careersite/1/home?c=bradesco;Y;
 //div[contains(@class,"bx--card__content")]//a[contains(@rel,"noopener")];https://www.ibm.com/careers/br-pt/search/?filters=primary_country:BR;Y;
@@ -175,8 +176,8 @@ locator;carrers_url;enabled;
 //a[contains(@class, "course-title")];https://www.institutofecomerciodf.com.br/vagas/;Y;
 //a[contains(@class,"navbar-brand")];https://www.agiel.com.br/site/vagas/;Y;
 //a[contains(@class,"navbar-brand")];http://employerestagios.com.br/;Y;
-//div[@class="informacoes-header"]//a;https://www.vagas.com.br/vagas-de-stag-estagios?;Y;No jobs indeed
-//div[contains(@class,"multiline-data-container")]//span//a;https://oracle.taleo.net/careersection/2/jobsearch.ftl?f=LOCATION(362940031553);Y;No jobs indeed
+//div[@class="informacoes-header"]//a;https://www.vagas.com.br/vagas-de-stag-estagios?;Y;
+//div[contains(@class,"multiline-data-container")]//span//a;https://oracle.taleo.net/careersection/2/jobsearch.ftl?f=LOCATION(362940031553);Y;
 //nav[contains(@class,"menu-footer")]//a[text()="Trabalhe Conosco"];https://www.dn.senac.br/;Y;
 //td//a[contains(@class,"joblist__link job__position")];https://www.volvogroup.com/br/careers/job-openings.html#page=1&countries=Brazil;Y;
 //h2//a[contains(@class,"au-target")];https://careers.microsoft.com/us/en/search-results?keywords=brazil&_ga=2.18086970.243575399.1540493310-1941477767.1529592176&rt=professional;Y;
@@ -193,10 +194,10 @@ locator;carrers_url;enabled;
 //div[contains(@class,"opening")]//a;https://boards.greenhouse.io/Checkr;Y;
 //div[contains(@class,"opening")]//a;https://boards.greenhouse.io/Nutrabolt;Y;
 //div[contains(@class,"opening")]//a;https://boards.greenhouse.io/ebanx;Y;
-//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/invision;Y;No jobs indeed
+//div[contains(@class,"opening")]//a;https://boards.greenhouse.io/invision;Y;
 //div[contains(@class,"opening")]//a;https://boards.greenhouse.io/harrys;Y;
 //div[contains(@class,"opening")]//a;https://boards.greenhouse.io/donorschoose;Y;
-Y;https://santander.wd3.myworkdayjobs.com/SantanderCareers/0/refreshFacet/318c8bb6f553100021d223d9780d30be;No_links;
+Y;https://santander.wd3.myworkdayjobs.com/SantanderCareers/0/refreshFacet/318c8bb6f553100021d223d9780d30be;Y;
 //ul[contains(@class, "searchbycat")]//a;https://jobs.sephora.com/viewalljobs/200/;Y;
 //div[contains(@class,"careers-list__items")]//a;https://www.squarespace.com/about/careers;Y;
 //div[contains(@class,"result")]//a;https://www.jdpower.com/business/careers/jobs;Y;
