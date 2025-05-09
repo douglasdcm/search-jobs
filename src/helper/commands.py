@@ -11,6 +11,8 @@ getLogger()
 async def get_positions_data(company):
     try:
         driver = Driver()
+        if company["active"] != "Y":
+            return
         url = company["url"]
         info(f"Collecting data of company '{url}'")
         info("Starting crawler for '{}'...".format(url))
