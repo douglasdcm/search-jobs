@@ -11,22 +11,34 @@ from src.helper.commands import compare_facade
 from src.media_content import load_web_content
 from ast import literal_eval
 from dotenv import load_dotenv
-from logging import basicConfig, INFO
 from src.constants import ROOT_DIR
 from waitress import serve
 from logging import exception, info
 from caqui.easy.server import Server
 from webdriver_manager.chrome import ChromeDriverManager
-
-
-basicConfig(
-    format="%(asctime)s %(levelname)-8s %(message)s",
-    # filename=LOG_FILE,
-    level=INFO,
-    datefmt="%Y-%m-%d %H:%M:%S",
-)
+from logging.config import dictConfig
 
 load_dotenv()  # take environment variables from .env.
+
+dictConfig(
+    {
+        "version": 1,
+        "formatters": {
+            "default": {
+                "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
+            }
+        },
+        "handlers": {
+            "wsgi": {
+                "class": "logging.StreamHandler",
+                "stream": "ext://flask.logging.wsgi_errors_stream",
+                "formatter": "default",
+            }
+        },
+        "root": {"level": "INFO", "handlers": ["wsgi"]},
+    }
+)
+
 
 app = Flask(__name__, static_folder="static", static_url_path="")
 app.config["JSON_SORT_KEYS"] = False
@@ -132,12 +144,14 @@ def __set_language(request):
 
 @app.errorhandler(404)
 def not_found(e):
+    app.logger.error(e)
     return render_template("404.html")
 
 
 @app.route("/", methods=["GET", "POST"])
 def home():
     try:
+        app.logger.info("Accessing root page")
         language = __set_language(request)
         images_data = load_web_content()
         return render_template(
@@ -146,7 +160,7 @@ def home():
             **languages[language],
         )
     except Exception as error:
-        exception(error)
+        app.logger.exception(error)
         return render_template("error.html")
 
 
@@ -155,6 +169,7 @@ def search():
     try:
         language = __set_language(request)
         resume = request.form.get("message")
+        app.logger.info(f"Searching for '{resume}'")
         condition = request.form.get("condition")
 
         comparison = literal_eval(
@@ -168,7 +183,7 @@ def search():
             **languages[language],
         )
     except Exception as error:
-        exception(error)
+        app.logger.exception(error)
         return render_template("error.html")
 
 
