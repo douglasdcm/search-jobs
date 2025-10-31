@@ -186,6 +186,65 @@ def search():
         app.logger.exception(error)
         return render_template("error.html")
 
+@app.route("/privacy", methods=["GET"])
+def privacy():
+    try:
+        app.logger.info("Accessing privacy page")
+        language = __set_language(request)
+        images_data = load_web_content()
+        return render_template(
+            "privacy.html",
+            images_data=images_data,
+            **languages[language],
+        )
+    except Exception as error:
+        app.logger.exception(error)
+        return render_template("error.html")
+
+@app.route("/about", methods=["GET"])
+def about():
+    try:
+        app.logger.info("Accessing about page")
+        language = __set_language(request)
+        images_data = load_web_content()
+        return render_template(
+            "about.html",
+            images_data=images_data,
+            **languages[language],
+        )
+    except Exception as error:
+        app.logger.exception(error)
+        return render_template("error.html")
+
+@app.route("/terms", methods=["GET"])
+def terms():
+    try:
+        app.logger.info("Accessing terms page")
+        language = __set_language(request)
+        images_data = load_web_content()
+        return render_template(
+            "terms.html",
+            images_data=images_data,
+            **languages[language],
+        )
+    except Exception as error:
+        app.logger.exception(error)
+        return render_template("error.html")
+
+@app.route("/contact", methods=["GET"])
+def contact():
+    try:
+        app.logger.info("Accessing contact page")
+        language = __set_language(request)
+        images_data = load_web_content()
+        return render_template(
+            "contact.html",
+            images_data=images_data,
+            **languages[language],
+        )
+    except Exception as error:
+        app.logger.exception(error)
+        return render_template("error.html")
 
 @app.route("/api/images")
 def api_images():

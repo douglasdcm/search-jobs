@@ -67,6 +67,27 @@
 		</div>
 		{% include "footer.html" %}
 	</div>
+
+	<!-- Cookie Consent Banner -->
+	<div id="cookie-banner" style="position:fixed;bottom:20px;left:20px;right:20px;background:#222;color:#fff;padding:15px;border-radius:10px;font-size:14px;z-index:9999;display:none;">
+	We use cookies to improve your experience and show relevant ads. 
+	By continuing to browse, you agree to our 
+	<a href="/privacy.html" style="color:#ffd700;">Privacy Policy</a>.
+	<button id="accept-cookies" style="margin-left:10px;padding:5px 10px;border:none;background:#ffd700;color:#000;border-radius:5px;cursor:pointer;">Accept</button>
+	</div>
+
+	<script>
+	(function(){
+		if (!localStorage.getItem('cookiesAccepted')) {
+		document.getElementById('cookie-banner').style.display = 'block';
+		}
+		document.getElementById('accept-cookies').onclick = function(){
+		localStorage.setItem('cookiesAccepted', true);
+		document.getElementById('cookie-banner').style.display = 'none';
+		}
+	})();
+	</script>
+
 </body>
 
 </html>

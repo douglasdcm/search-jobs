@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /admin
 Allow: /
 
-Sitemap: https://vagaspramim.onrender.com/sitemap.txt
+Sitemap: https://vagaspramim.onrender.com/sitemap.xml

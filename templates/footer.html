@@ -1,4 +1,11 @@
-<!doctype html>
-<div class="footer add-blanks">
-    <p>Copyright © 2025</p>
-</div>
+<!-- ⚡ Footer -->
+<footer class="bg-dark text-light text-center py-4 mt-auto">
+    <div class="container">
+        <p class="mb-1">&copy; 2025 Vagas Pra Mim. All rights reserved.</p>
+        <small>
+        <a href="{{ url_for('privacy') }}" class="text-light text-decoration-none me-2">Privacy Policy</a> |
+        <a href="{{ url_for('terms') }}" class="text-light text-decoration-none mx-2">Terms of Use</a> |
+        <a href="{{ url_for('contact') }}" class="text-light text-decoration-none ms-2">Contact</a>
+        </small>
+    </div>
+</footer>
