@@ -4,3 +4,4 @@ pytest
 snakeviz
 pytest-asyncio
 flake8
+tox

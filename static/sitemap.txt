@@ -1,1 +1,1 @@
-https://vagaspramim.herokuapp.com
+https://vagaspramim.onrender.com/sitemap.txt
