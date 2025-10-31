@@ -95,12 +95,10 @@ def load_web_content():
         {
             "image": url_for("static", filename="images/qa_dev.jpeg"),
             "link": "https://medium.com/@douglas.dcm/qa-e-dev-parem-de-brigar-e577fa583d63",
-            "caption": "QA e Dev parem de brigar",
-            "alt": "QA e Dev parem de brigar",
+            "caption": "QA e Dev stop fighting",
+            "alt": "QA e Dev stop fighting",
             "description": (
-                "The intention of this project is to create a chatbot based on movie"
-                " reviews so that you can ask questions and have a free conversation"
-                " about this topic."
+                "QAs and Dev from all places, let's give hands and make a better world"
             ),
         },
         {
@@ -128,13 +126,13 @@ def load_web_content():
         {
             "image": url_for("static", filename="images/tdc.jpeg"),
             "link": "https://medium.com/@douglas.dcm/como-foi-palestrar-no-tdc-d13d7bebdfe2",
-            "caption": "Como foi palestrar no TDC",
-            "alt": "Como foi palestrar no TDC",
+            "caption": "What was it like speaking at TDC?",
+            "alt": "What was it like speaking at TDC?",
             "description": (
-                "Em 2019, quando ainda podíamos participar de eventos presenciais sem"
-                " nos preocupar com aglomerações, fui convidado para palestrar na maior"
-                " conferência de desenvolvedores da América Latina:"
-                " The Developer’s Conference (TDC)."
+                "In 2019, when we could still participate in in-person events without"
+                " worrying about crowds, I was invited to speak at the largest"
+                " developer conference in Latin America:"
+                "The Developer's Conference (TDC)."
             ),
         },
         {
@@ -175,12 +173,12 @@ def load_web_content():
         {
             "image": url_for("static", filename="images/mtc.png"),
             "link": "https://www.youtube.com/watch?v=UTEikC3_n84",
-            "caption": "MTC 2021 Conversa sobre shift left",
-            "alt": "MTC 2021 Conversa sobre shift left",
+            "caption": "MTC 2021 Conversation about shift left",
+            "alt": "MTC 2021 Conversation about shift left",
             "description": (
-                "Douglas Cardoso apresenta no Minas Testing Conference (MTC) os"
-                " conceitos de termo 'Shift left' que vem sendo difundido"
-                " nos últimos anos na comunidade de testes de software."
+                "Douglas Cardoso presents at the Minas Testing Conference (MTC) the"
+                " concepts of the term 'Shift left' that has been disseminated"
+                " in recent years in the software testing community."
             ),
         },
         {
@@ -213,11 +211,11 @@ def load_web_content():
                 "https://docs.google.com/spreadsheets/d/1f79chLKAfuaD-"
                 "aLbJ_9TPeyG2PTsUrlDNWkafkBxx6Q/edit?pli=1#gid=2079962305"
             ),
-            "caption": "Mais de 2000 empresas para você",
-            "alt": "Mais de 2000 empresas para você",
+            "caption": "Over 2000 companies for you.",
+            "alt": "Over 2000 companies for you.",
             "description": (
-                "Lista de mais de 2000 empresas de brasileiras para se cadastrar e"
-                " conseguir um novo emprego."
+                "List of over 2000 Brazilian companies to register with and"
+                "get a new job."
             ),
         },
         {
@@ -230,29 +228,28 @@ def load_web_content():
             "caption": "TDC Load test",
             "alt": "TDC Load test",
             "description": (
-                "Douglas Cardoso apresenta no The Developer's Conference conceitos"
-                " de teste de performance e alguns resultados reais."
+                "Douglas Cardoso presents performance testing concepts"
+                " and some real-world results at The Developer's Conference."
             ),
         },
         {
             "image": url_for("static", filename="images/strategy.jpeg"),
             "link": "https://www.youtube.com/watch?v=1N60S1w-XTE",
-            "caption": "Strategy pattern em testes de software",
-            "alt": "Strategy pattern em testes de software",
+            "caption": "Strategy pattern in software testing",
+            "alt": "Strategy pattern in software testing",
             "description": (
-                "Vídeo com um exemplo de implementação do padrão de projeto"
-                " 'Strategy' para automação de testes de software."
+                "Video with an example of implementing the design pattern"
+                "'Strategy' for software test automation."
             ),
         },
         {
             "image": url_for("static", filename="images/repository.jpeg"),
             "link": "https://www.youtube.com/watch?v=vldamqyw4BE",
-            "caption": "Object Repository usando o Selenium",
-            "alt": "Object Repository usando o Selenium",
+            "caption": "Object Repository using Selenium",
+            "alt": "Object Repository using Selenium",
             "description": (
-                "Vídeo com implementação de uma forma fácil de mapear as páginas de"
-                " uma interface gráfica para automação de testes de software."
-            ),
+                "Video demonstrating an easy way to map pages of"
+                "a graphical interface for software test automation."            ),
         },
         {
             "image": url_for("static", filename="images/ai_test_pso_ga.png"),
@@ -261,68 +258,55 @@ def load_web_content():
                 ":li:fsd_profileTreasuryMedia:(ACoAAAdISwAB2r6ESCQE2IRQ5cY0YUDoObigdjk"
                 ",1599225926667)/"
             ),
-            "caption": "IA em testes de software (PSO e GA)",
-            "alt": "IA em testes de software (PSO e GA)",
+            "caption": "IA in software testing (PSO e GA)",
+            "alt": "IA in software testing (PSO e GA)",
             "description": (
-                "Apresentação com exemplos de utilização de inteligência"
-                " artificial em testes de software."
+                "Presentation with examples of the use of artificial intelligence"
+                "in software testing."            
             ),
         },
         {
             "image": url_for("static", filename="images/poli.webp"),
             "link": "https://www.paginaseditora.com.br/product-page/poli-escolhe",
-            "caption": "Livro infantil 'Poli escolhe'",
-            "alt": "Livro infantil 'Poli escolhe'",
+            "caption": "Children's book 'Poli escolhe'",
+            "alt": "Children's book 'Poli escolhe'",
             "description": (
-                "Para abordar a temática da escolha das crianças, a autora"
-                " Cláudia Rezende, que é jornalista, pensou em uma situação"
-                " muito comum entre as gerações, que é a definição de qual vai"
-                " ser o time de futebol do coração do filho. Assim, a partir"
-                " de um encontro num parquinho, a dúvida se estabelece na"
-                " protagonista, e o enredo se desenvolve, com Poli muitas"
-                " vezes colocando os adultos contra a parede."
-                " A ideia, conforme a jornalista, é propor a reflexão sobre"
-                " as interferências que os pais fazem nas escolhas dos filhos"
-                " e a possibilidade de proporcionar a estes o desenvolvimento"
-                " da autonomia do pensar já desde a infância."
-                " O livro não deixa, também, de levar uma mensagem de paz entre"
-                " as torcidas, já que a rivalidade deve ser mesmo só nos"
-                " gramados, certo?"
-            ),
+                "To address the theme of children's choices, the author"
+                "Cláudia Rezende, who is a journalist, thought of a situation"
+                "very common among generations, which is the decision of which"
+                "football team will be their child's favorite. Thus, starting"
+                "from an encounter in a playground, the doubt arises in"
+                "the protagonist, and the plot unfolds, with Poli often"
+                "putting the adults against the wall."
+                "The idea, according to the journalist, is to encourage reflection on"
+                "the interference that parents make in their children's choices"
+                "and the possibility of providing them with the development"
+                "of independent thinking from childhood."
+                "The book also carries a message of peace between"
+                "the fans, since the rivalry should only be on"
+                "the pitch, right?"            ),
         },
         {
             "image": url_for("static", filename="images/xpath.jpg"),
             "link": "https://www.youtube.com/watch?v=x9Li9wh8H7s",
-            "caption": "Xpath para testadores",
-            "alt": "Xpath para testadores",
+            "caption": "Xpath for testers",
+            "alt": "Xpath for testers",
             "description": (
-                "Vídeo com conceitos e exemplos práticos de utilização de Xpath"
-                " em automação de testes de software."
-            ),
-        },
-        {
-            "image": url_for("static", filename="images/lasciva_lula.jpeg"),
-            "link": "https://www.youtube.com/watch?v=FyMZ-iC7Jl4",
-            "caption": "Música 'Suportar'",
-            "alt": "Música 'Suportar'",
-            "description": (
-                "'Suportar', música da banda 'Lasciva Lula' lançada no disco "
-                "Sublime Mundo Crânio (2007). Clipe inspirado na série de quarentena"
-                " do fotógrafo Lauro Machado."
+                "Video with concepts and practical examples of using XPath"
+                "in software test automation."            
             ),
         },
         {
             "image": url_for("static", filename="images/dataset.jpg"),
             "link": "https://www.kaggle.com/douglasdcm/computer-events-errors-defects-and-warnings",
-            "caption": "Dataset de defeitos",
-            "alt": "Dataset de defeitos",
+            "caption": "Dataset of defects",
+            "alt": "Dataset of defects",
             "description": (
-                "Este dataset foi criado para ser usado em um exercício de ML a fim"
-                " de ser descobrir se os eventos e errors de um computador pessoal"
-                " Windows tinham alguma relação, ou associação entre eles."
-                " Isso é uma simples extração de dados do Windows "
-                "Events Viewer de um computador pessoal."
-            ),
+                "This dataset was created to be used in a machine learning exercise in order to"
+                "discover if the events and errors of a personal computer"
+                "Windows had any relationship or association between them."
+                "This is a simple extraction of data from the Windows"
+                "Events Viewer of a personal computer."            ),
         },
         {
             "image": url_for("static", filename="images/unit.png"),
