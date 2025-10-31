@@ -13,6 +13,8 @@ Veja o [passo a passo](https://github.com/douglasdcm/search-jobs/blob/master/doc
 # Atualizando o código fonte
 Para atualizar o código fonte, ative seu ambiente virtual e instale as dependências
 ```bash
+# just a hack, because the sudo password will be necessary in further commands, so it is reused
+sudo pwd
 python3.7 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
