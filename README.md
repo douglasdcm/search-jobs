@@ -13,8 +13,9 @@ Veja o [passo a passo](https://github.com/douglasdcm/search-jobs/blob/master/doc
 # Atualizando o código fonte
 Para atualizar o código fonte, ative seu ambiente virtual e instale as dependências
 ```bash
-python3.7 -m venv env
+python3.7 -m venv venv
 source venv/bin/activate
+pip install --upgrade pip
 pip install -r requirements.txt
 pip install -r test-requirements.txt
 mkdir captures
@@ -34,7 +35,11 @@ Após finalizar o build, suba o container:
 ```bash
 sudo docker compose up -d
 ```
-Acesse o link `http://localhost:5001`
+OU execute o servidor flask manualmente
+```
+python app.py
+```
+Acesse o link `http://localhost:5001` e pesquise por `test` para garantir que está funcionando
 Agora você pode mexer no código à vontade.
 
 # CLI

@@ -78,7 +78,7 @@ def data_pre_processing_portuguese(corpus):
     # remove non-alphanumeric characters
     corpus = sub(r"[^a-z A-Z 0-9 \s]", " ", str(corpus))
     # remove numbers
-    corpus = sub("\d+", " ", corpus)  # noqa W605
+    corpus = sub("\\d+", " ", corpus)
     # remove duplicated spaces
     corpus = sub(r" +", " ", str(corpus))
     # capitalization
