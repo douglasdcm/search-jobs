@@ -8,7 +8,6 @@
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
-
 		gtag('config', 'G-1B3DHWW27B');
 	</script>
 
@@ -49,19 +48,36 @@
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-	<title">Vagas pra mim</title>
-
 		<!--Ads-->
-		<script async
+		<!-- <script async
 			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1707628226873517"
-			crossorigin="anonymous"></script>
+			crossorigin="anonymous"></script> -->
 
 </head>
 
 <body>
 	<div class="container">
 		{% include "nav.html" %}
+		<!-- Google AdSense Display Ad -->
+		<!-- <ins class="adsbygoogle"
+			style="display:block"
+			data-ad-client="ca-pub-1707628226873517"
+			data-ad-slot="G-1B3DHWW27B"
+			data-ad-format="auto"
+			data-full-width-responsive="true"></ins>
+		<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+		</script> -->
 		<div class="container" style="margin-top: 50px;">
+			<div class="text-center" style="margin-bottom:20px;">
+			<h2>Find the perfect job for you</h2>
+			<p>
+				Paste your resume below and our system will automatically search for jobs
+				that match your skills. We’ll analyze your experience and connect you with
+				opportunities that fit.
+			</p>
+			</div>
+
 			{% include "search-form.html" %}
 			{% include "media-list.html" %}
 		</div>
@@ -72,7 +88,7 @@
 	<div id="cookie-banner" style="position:fixed;bottom:20px;left:20px;right:20px;background:#222;color:#fff;padding:15px;border-radius:10px;font-size:14px;z-index:9999;display:none;">
 	We use cookies to improve your experience and show relevant ads. 
 	By continuing to browse, you agree to our 
-	<a href="/privacy.html" style="color:#ffd700;">Privacy Policy</a>.
+	<a href="/privacy" style="color:#ffd700;">Privacy Policy</a>.
 	<button id="accept-cookies" style="margin-left:10px;padding:5px 10px;border:none;background:#ffd700;color:#000;border-radius:5px;cursor:pointer;">Accept</button>
 	</div>
 
@@ -86,6 +102,27 @@
 		document.getElementById('cookie-banner').style.display = 'none';
 		}
 	})();
+
+	(function(){
+		if (!localStorage.getItem('cookiesAccepted')) {
+			document.getElementById('cookie-banner').style.display = 'block';
+		}
+		document.getElementById('accept-cookies').onclick = function(){
+			localStorage.setItem('cookiesAccepted', true);
+			document.getElementById('cookie-banner').style.display = 'none';
+
+			// Load Google AdSense dynamically after consent
+			var s = document.createElement('script');
+			s.async = true;
+			s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1707628226873517";
+			s.crossOrigin = "anonymous";
+			document.head.appendChild(s);
+
+			// Now trigger ad display
+			(adsbygoogle = window.adsbygoogle || []).push({});
+		}
+	})();
+
 	</script>
 
 </body>

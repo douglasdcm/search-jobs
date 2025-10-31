@@ -1,4 +1,3 @@
-<!doctype html>
 <div class="add-blanks">
     <h3 style="text-align: left; color: white;">{{ media_list_title }}</h3>
     {% for image in images_data %}
@@ -6,13 +5,15 @@
         <hr class="hr">
         <div class="media-left">
             <a href="{{ image.link }}" target="_blank">
-                <img class="media-img media-object img-rounded" src="{{ image.image }}">
+                <img class="media-img media-object img-rounded" src="{{ image.image }}" alt="{{ image.alt }}">
             </a>
         </div>
         <div class="media-body">
             <a href="{{ image.link }}" target="_blank" style="color: white;">
                 <u>
-                    <h4 class="text-left media-body">{{ image.caption }}</h4>
+                    <div class="media-body">
+                        <h4 class="text-left">{{ image.caption }}</h4>
+                    </div>
                 </u>
             </a>
             <p class="text-left truncate">{{ image.description }}</p>

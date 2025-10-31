@@ -7,12 +7,14 @@ def load_web_content():
             "image": url_for("static", filename="images/android-chrome-1200x1200.png"),
             "link": "https://github.com/douglasdcm/search-jobs",
             "caption": "Star this project on GitHub!",
+            "alt": "Star this project on GitHub!",
             "description": (""),
         },
         {
             "image": url_for("static", filename="images/guara-square.png"),
             "link": "https://github.com/douglasdcm/guara",
             "caption": "Page Transactions for UI test automation",
+            "alt": "Page Transactions for UI test automation",
             "description": (
                 "Guará is a Python framework designed to simplify UI test automation."
                 " Inspired by design patterns like Page Objects, App Actions, and Screenplay,"
@@ -26,6 +28,7 @@ def load_web_content():
             "image": url_for("static", filename="images/caqui.png"),
             "link": "https://github.com/douglasdcm/caqui",
             "caption": "Run synchronous and asynchronous commands in WebDrivers",
+            "alt": "Run synchronous and asynchronous commands in WebDrivers",
             "description": (
                 "Caqui executes commands against Drivers synchronously and asynchronously."
                 " The intention is that the user does not worry about which Driver they're using."
@@ -41,6 +44,7 @@ def load_web_content():
             ),
             "link": "https://python.plainenglish.io/python-refactoring-to-patterns-1ca71be08a60",
             "caption": "Python: Refactoring to Patterns",
+            "alt": "Python: Refactoring to Patterns",
             "description": (
                 "After nearly a year of effort, I’ve finally completed my self-imposed goal of "
                 "writing all the refactoring examples from the book Refactoring to Patterns by "
@@ -58,6 +62,7 @@ def load_web_content():
                 "-authentication-588bd46d64b3"
             ),
             "caption": "Building a Python CLI System with Kinde Authentication",
+            "alt": "Building a Python CLI System with Kinde Authentication",
             "description": (
                 "This is one of my experiments again. Now I built a CLI application in Python and"
                 " integrated it with the authentication tool called Kinde to manage the user"
@@ -74,6 +79,7 @@ def load_web_content():
                 "playing-with-pyscript-postgres-and-k8s-55690f0cd4da"
             ),
             "caption": "Playing with PyScript, Postgres and K8S",
+            "alt": "Playing with PyScript, Postgres and K8S",
             "description": (
                 "I’ve talked in other posts about my hobby of experimenting with "
                 "technologies"
@@ -90,6 +96,7 @@ def load_web_content():
             "image": url_for("static", filename="images/qa_dev.jpeg"),
             "link": "https://medium.com/@douglas.dcm/qa-e-dev-parem-de-brigar-e577fa583d63",
             "caption": "QA e Dev parem de brigar",
+            "alt": "QA e Dev parem de brigar",
             "description": (
                 "The intention of this project is to create a chatbot based on movie"
                 " reviews so that you can ask questions and have a free conversation"
@@ -100,6 +107,7 @@ def load_web_content():
             "image": url_for("static", filename="images/chatbot.png"),
             "link": "https://github.com/douglasdcm/chatbot_for_movies",
             "caption": "Building a Chat Bot using AI with movie scripts dataset",
+            "alt": "Building a Chat Bot using AI with movie scripts dataset",
             "description": (
                 "The intention of this project is to create a chatbot based on movie"
                 " reviews so that you can ask questions and have a free conversation"
@@ -121,6 +129,7 @@ def load_web_content():
             "image": url_for("static", filename="images/tdc.jpeg"),
             "link": "https://medium.com/@douglas.dcm/como-foi-palestrar-no-tdc-d13d7bebdfe2",
             "caption": "Como foi palestrar no TDC",
+            "alt": "Como foi palestrar no TDC",
             "description": (
                 "Em 2019, quando ainda podíamos participar de eventos presenciais sem"
                 " nos preocupar com aglomerações, fui convidado para palestrar na maior"
@@ -135,6 +144,7 @@ def load_web_content():
                 "testing-windows-apps-with-http-rest-b4e8f80f8b7e"
             ),
             "caption": "Testing Windows Apps with HTTP REST",
+            "alt": "Testing Windows Apps with HTTP REST",
             "description": (
                 "Did you already have the necessity to test a Frankenstein app that"
                 " had the operation mixed in Desktop, Web and Mobile pages?"
@@ -149,6 +159,7 @@ def load_web_content():
                 "-using-ml-and-help-people-137ff19dae3d"
             ),
             "caption": "Find jobs using ML and help people",
+            "alt": "Find jobs using ML and help people",
             "description": (
                 "Here in Brazil the situation is not good nowadays. We have more than"
                 " 500 thousands of dead people by Covid-19, many companies closed"
@@ -165,6 +176,7 @@ def load_web_content():
             "image": url_for("static", filename="images/mtc.png"),
             "link": "https://www.youtube.com/watch?v=UTEikC3_n84",
             "caption": "MTC 2021 Conversa sobre shift left",
+            "alt": "MTC 2021 Conversa sobre shift left",
             "description": (
                 "Douglas Cardoso apresenta no Minas Testing Conference (MTC) os"
                 " conceitos de termo 'Shift left' que vem sendo difundido"
@@ -179,6 +191,7 @@ def load_web_content():
                 "-scripts-dataset-f18fc1f9629e"
             ),
             "caption": "Building a Chat Bot",
+            "alt": "Building a Chat Bot",
             "description": (
                 "Recently I had to buy a new internet service, so I tried to do it"
                 " using the available chatbot of the company. I noticed the"
@@ -201,6 +214,7 @@ def load_web_content():
                 "aLbJ_9TPeyG2PTsUrlDNWkafkBxx6Q/edit?pli=1#gid=2079962305"
             ),
             "caption": "Mais de 2000 empresas para você",
+            "alt": "Mais de 2000 empresas para você",
             "description": (
                 "Lista de mais de 2000 empresas de brasileiras para se cadastrar e"
                 " conseguir um novo emprego."
@@ -214,6 +228,7 @@ def load_web_content():
                 ",1599226983384)/"
             ),
             "caption": "TDC Load test",
+            "alt": "TDC Load test",
             "description": (
                 "Douglas Cardoso apresenta no The Developer's Conference conceitos"
                 " de teste de performance e alguns resultados reais."
@@ -223,6 +238,7 @@ def load_web_content():
             "image": url_for("static", filename="images/strategy.jpeg"),
             "link": "https://www.youtube.com/watch?v=1N60S1w-XTE",
             "caption": "Strategy pattern em testes de software",
+            "alt": "Strategy pattern em testes de software",
             "description": (
                 "Vídeo com um exemplo de implementação do padrão de projeto"
                 " 'Strategy' para automação de testes de software."
@@ -232,6 +248,7 @@ def load_web_content():
             "image": url_for("static", filename="images/repository.jpeg"),
             "link": "https://www.youtube.com/watch?v=vldamqyw4BE",
             "caption": "Object Repository usando o Selenium",
+            "alt": "Object Repository usando o Selenium",
             "description": (
                 "Vídeo com implementação de uma forma fácil de mapear as páginas de"
                 " uma interface gráfica para automação de testes de software."
@@ -245,6 +262,7 @@ def load_web_content():
                 ",1599225926667)/"
             ),
             "caption": "IA em testes de software (PSO e GA)",
+            "alt": "IA em testes de software (PSO e GA)",
             "description": (
                 "Apresentação com exemplos de utilização de inteligência"
                 " artificial em testes de software."
@@ -254,6 +272,7 @@ def load_web_content():
             "image": url_for("static", filename="images/poli.webp"),
             "link": "https://www.paginaseditora.com.br/product-page/poli-escolhe",
             "caption": "Livro infantil 'Poli escolhe'",
+            "alt": "Livro infantil 'Poli escolhe'",
             "description": (
                 "Para abordar a temática da escolha das crianças, a autora"
                 " Cláudia Rezende, que é jornalista, pensou em uma situação"
@@ -275,6 +294,7 @@ def load_web_content():
             "image": url_for("static", filename="images/xpath.jpg"),
             "link": "https://www.youtube.com/watch?v=x9Li9wh8H7s",
             "caption": "Xpath para testadores",
+            "alt": "Xpath para testadores",
             "description": (
                 "Vídeo com conceitos e exemplos práticos de utilização de Xpath"
                 " em automação de testes de software."
@@ -284,6 +304,7 @@ def load_web_content():
             "image": url_for("static", filename="images/lasciva_lula.jpeg"),
             "link": "https://www.youtube.com/watch?v=FyMZ-iC7Jl4",
             "caption": "Música 'Suportar'",
+            "alt": "Música 'Suportar'",
             "description": (
                 "'Suportar', música da banda 'Lasciva Lula' lançada no disco "
                 "Sublime Mundo Crânio (2007). Clipe inspirado na série de quarentena"
@@ -294,6 +315,7 @@ def load_web_content():
             "image": url_for("static", filename="images/dataset.jpg"),
             "link": "https://www.kaggle.com/douglasdcm/computer-events-errors-defects-and-warnings",
             "caption": "Dataset de defeitos",
+            "alt": "Dataset de defeitos",
             "description": (
                 "Este dataset foi criado para ser usado em um exercício de ML a fim"
                 " de ser descobrir se os eventos e errors de um computador pessoal"
@@ -306,6 +328,7 @@ def load_web_content():
             "image": url_for("static", filename="images/unit.png"),
             "link": "https://enterprisecraftsmanship.com/posts/unit-testing-dependencies/",
             "caption": "Unit Testing Dependencies",
+            "alt": "Unit Testing Dependencies",
             "description": (
                 "Author 'Vladimir Khorikov'. In this article, we’ll review the types"
                 " of unit testing dependencies. This is more of a reference article,"
