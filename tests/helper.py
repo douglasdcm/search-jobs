@@ -1,10 +1,12 @@
 from subprocess import PIPE, STDOUT, run
 from sqlalchemy import text
 from src.helper.helper import data_pre_processing_portuguese, Connection
+from tests.constants import TEST_DB_STRING
 
 
 def populate_database_with_desired_jobs(positions):
     try:
+        Connection.set_database_string(TEST_DB_STRING)
         with Connection.get_database_connection().connect() as connection:
             for position in positions:
                 descrition_processed = data_pre_processing_portuguese(position["description"])

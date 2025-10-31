@@ -24,7 +24,7 @@ async def get_positions_data(company: CompanyInstance):
         await crawler.run()
     # The execution need to continue even in case of errors
     except Exception as error:
-        exception(f"Unexpected error occurred while getting position data. {str(error)}")
+        exception(f"Unexpected error to get data from {company}. {str(error)}")
     finally:
         try:
             await driver.save_screenshot()

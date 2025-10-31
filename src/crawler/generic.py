@@ -58,8 +58,7 @@ class Generic:
                     await self._positions.get_description(),
                 )
             except WebDriverError as error:
-                message = f"Skipping process. Failed to get data from {link}"
-                exception(message)
+                exception(f"Skipping process. Failed to get data from link {link}")
                 if environ.get("DEBUG") == "on":
                     raise CrawlerError(str(error)) from error
             except Exception as error:

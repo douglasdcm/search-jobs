@@ -22,18 +22,25 @@ load_dotenv()
 
 
 class Connection:
-    connection = None
+    _connection = None
+    _db_string = None
+
+    @classmethod
+    def set_database_string(cls, db_string):
+        cls._db_string = db_string
 
     @classmethod
     def get_connection_string(cls):
-        return environ.get("DATABASE_STRING", DATABASE_STRING_DEFAULT)
+        if not Connection._db_string:
+            return environ.get("DATABASE_STRING", DATABASE_STRING_DEFAULT)
+        return cls._db_string
 
     @classmethod
     def get_database_connection(cls):
         try:
-            if not cls.connection:
-                cls.connection = create_engine(cls.get_connection_string())
-            return cls.connection
+            if not cls._connection:
+                cls._connection = create_engine(cls.get_connection_string())
+            return cls._connection
         except Exception as error:
             raise DatabaseError(str(error)) from error
 

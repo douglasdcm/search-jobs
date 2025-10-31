@@ -1,10 +1,9 @@
 from logging import info
 from pytest import fixture
-from src.helper.helper import initialize_table
-from tests.helper import exec_command
-from tests.helper import populate_database_with_thecnical_jobs
+from src.helper.helper import initialize_table, Connection
+from tests.helper import populate_database_with_thecnical_jobs, exec_command
 from caqui.easy.server import Server
-
+from tests.constants import TEST_DB_STRING
 
 @fixture(autouse=True, scope="session")
 def setup_server():
@@ -16,6 +15,7 @@ def setup_server():
 
 @fixture
 def setup_db():
+    Connection.set_database_string(TEST_DB_STRING)
     initialize_table()
     populate_database_with_thecnical_jobs()
 
