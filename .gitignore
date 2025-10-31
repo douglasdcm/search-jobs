@@ -1,5 +1,5 @@
-vpm.sqlite
-*.sqlite
+#vpm.sqlite
+#*.sqlite
 captures
 .env
 venv*
