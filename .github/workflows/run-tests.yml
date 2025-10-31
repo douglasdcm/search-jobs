@@ -25,9 +25,5 @@ jobs:
         python-version: "3.x"
     - name: Run tests
       run: |
-        # sudo apt update
-        # sudo apt install software-properties-common
-        # sudo add-apt-repository ppa:deadsnakes/ppa
-        # sudo apt install python3.7
         pip install tox
         tox
