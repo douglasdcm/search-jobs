@@ -54,7 +54,7 @@ if os.getenv("DEBUG", "").upper() == "ON":
 else:
     CHROME_VERSION = "94.0.4606"  # necessary to docker
     SERVER = Server(ChromeDriverManager(driver_version=CHROME_VERSION))
-MAX_CONCURRENCY = 5
+MAX_CONCURRENCY = 50
 SEMAPHORE = asyncio.Semaphore(MAX_CONCURRENCY)
 
 
