@@ -30,6 +30,7 @@ jobs:
         run: |
           python cli.py --init
           python cli.py --overwrite --clean-db
+          
       # - name: Install dependencies
       #   run: pip install tox
       # - name: Run tox
