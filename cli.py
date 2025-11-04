@@ -5,7 +5,6 @@ Try: 'python cli.py --help' for more information.
 import asyncio
 from os import environ
 from logging import basicConfig, INFO, info, exception
-from time import time
 from src.constants import ROOT_DIR, RESOURCES_DIR
 from sys import argv, path
 from src.helper.commands import sanity_check_facade, help_facade_, overwrite_facade
@@ -20,7 +19,7 @@ load_dotenv()  # take environment variables from .env.
 
 
 MAX_CONCURRENCY = 5  # number of webdriver instances running
-SEMAPHORE = asyncio.Semaphore(MAX_CONCURRENCY)
+SEMAPHORE = asyncio.Semaphore(int(environ.get("MAX_CONCURRENCY", MAX_CONCURRENCY)))
 system('export PATH="{}:$PATH"'.format(RESOURCES_DIR))
 path.append(RESOURCES_DIR)
 path.append(ROOT_DIR)
@@ -44,11 +43,7 @@ async def get_all_positions(*args, company=None):
         async with SEMAPHORE:
             # Get data from real companies. Not covered by automated testes
             # to avoid overload the real sites
-            if "--clean-db" in args:
-                clean_database = True
-            else:
-                clean_database = False
-            return await overwrite_facade(company, clean_database)
+            return await overwrite_facade(company)
     except Exception:
         raise
 
@@ -80,20 +75,19 @@ async def main(*args):
                 tasks.append(asyncio.ensure_future(get_all_positions(*arguments, company=company)))
             await asyncio.gather(*tasks)
             return
+        if "--clean-db" in arguments:
+            initialize_table()
+            return
         exception("Invalid command. Try cli.py --help ")
 
 
 if __name__ == "__main__":
-    start = time()
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(main(argv))
     except Exception:
         raise
     finally:
-        info("Crawler finished.")
         SERVER.dispose()
         loop.run_until_complete(loop.shutdown_asyncgens())
         loop.close()
-        end = time()
-        print(f"Time: {end-start:.2f} sec")

@@ -46,10 +46,10 @@ def load_web_content():
             "caption": "Python: Refactoring to Patterns",
             "alt": "Python: Refactoring to Patterns",
             "description": (
-                "After nearly a year of effort, I’ve finally completed my self-imposed goal of "
-                "writing all the refactoring examples from the book Refactoring to Patterns by "
-                "Joshua Kerievsky in Python. This book broadened my understanding of how to "
-                "apply design patterns in production code."
+                "After nearly a year of effort, I've finally completed my self-imposed goal of"
+                " writing all the refactoring examples from the book Refactoring to Patterns by"
+                " Joshua Kerievsky in Python. This book broadened my understanding of how to"
+                " apply design patterns in production code."
             ),
         },
         {
@@ -81,14 +81,14 @@ def load_web_content():
             "caption": "Playing with PyScript, Postgres and K8S",
             "alt": "Playing with PyScript, Postgres and K8S",
             "description": (
-                "I’ve talked in other posts about my hobby of experimenting with "
-                "technologies"
+                "I've talked in other posts about my hobby of experimenting with"
+                " technologies"
                 " that interest me. This time I spent some time"
                 " experimenting with PyScript. I have to say that I decided to"
-                " study PyScript, because I’m a no-no with JavaScript and I wanted"
-                " to know if using PyScript it would be possible to get the same "
-                "results I get when using JavaScript. So, in my tests I used pure "
-                "Python to develop an application that integrates front-end,"
+                " study PyScript, because I'm a no-no with JavaScript and I wanted"
+                " to know if using PyScript it would be possible to get the same"
+                " results I get when using JavaScript. So, in my tests I used pure"
+                " Python to develop an application that integrates front-end,"
                 " back-end and some database."
             ),
         },
@@ -132,7 +132,7 @@ def load_web_content():
                 "In 2019, when we could still participate in in-person events without"
                 " worrying about crowds, I was invited to speak at the largest"
                 " developer conference in Latin America:"
-                "The Developer's Conference (TDC)."
+                " The Developer's Conference (TDC)."
             ),
         },
         {
@@ -215,7 +215,7 @@ def load_web_content():
             "alt": "Over 2000 companies for you.",
             "description": (
                 "List of over 2000 Brazilian companies to register with and"
-                "get a new job."
+                " get a new job."
             ),
         },
         {
@@ -239,7 +239,7 @@ def load_web_content():
             "alt": "Strategy pattern in software testing",
             "description": (
                 "Video with an example of implementing the design pattern"
-                "'Strategy' for software test automation."
+                " 'Strategy' for software test automation."
             ),
         },
         {
@@ -249,7 +249,8 @@ def load_web_content():
             "alt": "Object Repository using Selenium",
             "description": (
                 "Video demonstrating an easy way to map pages of"
-                "a graphical interface for software test automation."            ),
+                " a graphical interface for software test automation."
+            ),
         },
         {
             "image": url_for("static", filename="images/ai_test_pso_ga.png"),
@@ -262,7 +263,7 @@ def load_web_content():
             "alt": "IA in software testing (PSO e GA)",
             "description": (
                 "Presentation with examples of the use of artificial intelligence"
-                "in software testing."            
+                " in software testing."
             ),
         },
         {
@@ -272,19 +273,20 @@ def load_web_content():
             "alt": "Children's book 'Poli escolhe'",
             "description": (
                 "To address the theme of children's choices, the author"
-                "Cláudia Rezende, who is a journalist, thought of a situation"
-                "very common among generations, which is the decision of which"
-                "football team will be their child's favorite. Thus, starting"
-                "from an encounter in a playground, the doubt arises in"
-                "the protagonist, and the plot unfolds, with Poli often"
-                "putting the adults against the wall."
-                "The idea, according to the journalist, is to encourage reflection on"
-                "the interference that parents make in their children's choices"
-                "and the possibility of providing them with the development"
-                "of independent thinking from childhood."
-                "The book also carries a message of peace between"
-                "the fans, since the rivalry should only be on"
-                "the pitch, right?"            ),
+                " Cláudia Rezende, who is a journalist, thought of a situation"
+                " very common among generations, which is the decision of which"
+                " football team will be their child's favorite. Thus, starting"
+                " from an encounter in a playground, the doubt arises in"
+                " the protagonist, and the plot unfolds, with Poli often"
+                " putting the adults against the wall."
+                " The idea, according to the journalist, is to encourage reflection on"
+                " the interference that parents make in their children's choices"
+                " and the possibility of providing them with the development"
+                " of independent thinking from childhood."
+                " The book also carries a message of peace between"
+                " the fans, since the rivalry should only be on"
+                " the pitch, right?"
+            ),
         },
         {
             "image": url_for("static", filename="images/xpath.jpg"),
@@ -293,7 +295,7 @@ def load_web_content():
             "alt": "Xpath for testers",
             "description": (
                 "Video with concepts and practical examples of using XPath"
-                "in software test automation."            
+                " in software test automation."
             ),
         },
         {
@@ -303,10 +305,11 @@ def load_web_content():
             "alt": "Dataset of defects",
             "description": (
                 "This dataset was created to be used in a machine learning exercise in order to"
-                "discover if the events and errors of a personal computer"
-                "Windows had any relationship or association between them."
-                "This is a simple extraction of data from the Windows"
-                "Events Viewer of a personal computer."            ),
+                " discover if the events and errors of a personal computer"
+                " Windows had any relationship or association between them."
+                " This is a simple extraction of data from the Windows"
+                " Events Viewer of a personal computer."
+            ),
         },
         {
             "image": url_for("static", filename="images/unit.png"),
@@ -314,9 +317,9 @@ def load_web_content():
             "caption": "Unit Testing Dependencies",
             "alt": "Unit Testing Dependencies",
             "description": (
-                "Author 'Vladimir Khorikov'. In this article, we’ll review the types"
+                "Author 'Vladimir Khorikov'. In this article, we'll review the types"
                 " of unit testing dependencies. This is more of a reference article,"
-                " to which I’ll be referring in future posts. Still, this topic is"
+                " to which I'll be referring in future posts. Still, this topic is"
                 " important for establishing the common vocabulary"
             ),
         },

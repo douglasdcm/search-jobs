@@ -5,6 +5,7 @@ from tests.helper import populate_database_with_thecnical_jobs, exec_command
 from caqui.easy.server import Server
 from tests.constants import TEST_DB_STRING
 
+
 @fixture(autouse=True, scope="session")
 def setup_server():
     server = Server.get_instance()

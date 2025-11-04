@@ -1,6 +1,6 @@
 from logging import info, exception, getLogger
 from src.driver.driver import Driver
-from src.helper.helper import search_positions_based_on_resume, initialize_table
+from src.helper.helper import search_positions_based_on_resume
 from src.similarity.similarity import Similarity
 from src.exceptions.exceptions import CommandError
 from src.crawler import generic
@@ -49,7 +49,7 @@ def help_facade_():
         "--sanity-check    check the installtion and clean the database\n"
         "--help            open the help documentation\n"
         "--overwrite       get the new positions from companies\n"
-        "   [--clean-db]   clean up the database"
+        "--clean-db        clean up the database"
     )
 
 
@@ -77,10 +77,8 @@ def compare_facade(resume, condition):
     return result
 
 
-async def overwrite_facade(companies=None, clean_database=False):
+async def overwrite_facade(companies=None):
     info("Updating positions")
-    if clean_database:
-        initialize_table()
     await get_positions_data(companies)
     info("Update finished")
     return True

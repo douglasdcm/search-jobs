@@ -1,5 +1,4 @@
 #!flask/bin/python
-import asyncio
 import glob
 import json
 from os import environ
@@ -54,8 +53,6 @@ if os.getenv("DEBUG", "").upper() == "ON":
 else:
     CHROME_VERSION = "94.0.4606"  # necessary to docker
     SERVER = Server(ChromeDriverManager(driver_version=CHROME_VERSION))
-MAX_CONCURRENCY = 50
-SEMAPHORE = asyncio.Semaphore(MAX_CONCURRENCY)
 
 
 class SessionData:
@@ -186,6 +183,7 @@ def search():
         app.logger.exception(error)
         return render_template("error.html")
 
+
 @app.route("/privacy", methods=["GET"])
 def privacy():
     try:
@@ -200,6 +198,7 @@ def privacy():
     except Exception as error:
         app.logger.exception(error)
         return render_template("error.html")
+
 
 @app.route("/about", methods=["GET"])
 def about():
@@ -216,6 +215,7 @@ def about():
         app.logger.exception(error)
         return render_template("error.html")
 
+
 @app.route("/terms", methods=["GET"])
 def terms():
     try:
@@ -231,6 +231,7 @@ def terms():
         app.logger.exception(error)
         return render_template("error.html")
 
+
 @app.route("/contact", methods=["GET"])
 def contact():
     try:
@@ -245,6 +246,7 @@ def contact():
     except Exception as error:
         app.logger.exception(error)
         return render_template("error.html")
+
 
 @app.route("/api/images")
 def api_images():
