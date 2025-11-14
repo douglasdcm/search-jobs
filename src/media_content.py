@@ -219,20 +219,6 @@ def load_web_content():
             ),
         },
         {
-            "image": url_for("static", filename="images/tdc.png"),
-            "link": (
-                "https://www.linkedin.com/in/douglas-cardosom/detail/overlay-view"
-                "/urn:li:fsd_profileTreasuryMedia:(ACoAAAdISwAB2r6ESCQE2IRQ5cY0YUDoObigdjk"
-                ",1599226983384)/"
-            ),
-            "caption": "TDC Load test",
-            "alt": "TDC Load test",
-            "description": (
-                "Douglas Cardoso presents performance testing concepts"
-                " and some real-world results at The Developer's Conference."
-            ),
-        },
-        {
             "image": url_for("static", filename="images/strategy.jpeg"),
             "link": "https://www.youtube.com/watch?v=1N60S1w-XTE",
             "caption": "Strategy pattern in software testing",
@@ -253,22 +239,8 @@ def load_web_content():
             ),
         },
         {
-            "image": url_for("static", filename="images/ai_test_pso_ga.png"),
-            "link": (
-                "https://www.linkedin.com/in/douglas-cardosom/detail/overlay-view/urn"
-                ":li:fsd_profileTreasuryMedia:(ACoAAAdISwAB2r6ESCQE2IRQ5cY0YUDoObigdjk"
-                ",1599225926667)/"
-            ),
-            "caption": "IA in software testing (PSO e GA)",
-            "alt": "IA in software testing (PSO e GA)",
-            "description": (
-                "Presentation with examples of the use of artificial intelligence"
-                " in software testing."
-            ),
-        },
-        {
             "image": url_for("static", filename="images/poli.webp"),
-            "link": "https://www.paginaseditora.com.br/product-page/poli-escolhe",
+            "link": "https://www.amazon.com.br/Poli-Escolhe-Cl%C3%A1udia-Rezende/dp/8593572731",
             "caption": "Children's book 'Poli escolhe'",
             "alt": "Children's book 'Poli escolhe'",
             "description": (
