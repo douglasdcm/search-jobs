@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  update-database:
+  heart-beating:
     permissions:
       contents: write
     runs-on: ubuntu-22.04
