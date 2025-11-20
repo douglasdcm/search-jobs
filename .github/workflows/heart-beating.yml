@@ -12,8 +12,6 @@ permissions:
 
 jobs:
   heart-beating:
-    permissions:
-      contents: write
     runs-on: ubuntu-22.04
 
     steps:
