@@ -2,7 +2,7 @@ name: Heart beating
 
 on:
   schedule:
-    - cron: "5 * * * *"
+    - cron: "*/1 * * * *"
 
 permissions:
   contents: read
