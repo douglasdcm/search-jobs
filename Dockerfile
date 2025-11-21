@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.11
 
 ADD . /webapp/
 WORKDIR /webapp

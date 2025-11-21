@@ -1,3 +1,4 @@
+import numpy as np
 from math import isnan
 from scipy.spatial import distance
 from sklearn.feature_extraction.text import CountVectorizer
@@ -16,6 +17,8 @@ class Similarity:
         similarity = []
         urls = []
         resume_processed = data_pre_processing_portuguese(resume)
+        if not resume_processed:
+            return {}
 
         for row in positions:
             url = row[0]
@@ -24,15 +27,14 @@ class Similarity:
                 continue
             new_list = [resume_processed, description]
             vector_bow = self.bow.fit_transform(new_list)
-            cv_bow = vector_bow.todense()[0]
-            postion_bow = vector_bow.todense()[1]
-
+            cv_bow = np.array(vector_bow.todense()[0]).squeeze()
+            position_bow = np.array(vector_bow.todense()[1]).squeeze()
             d1_array = (1, 1)
 
-            if postion_bow.shape == d1_array and cv_bow.shape == d1_array:
-                d = 1 - distance.euclidean(cv_bow, postion_bow)
+            if position_bow.shape == d1_array and cv_bow.shape == d1_array:
+                d = 1 - distance.euclidean(cv_bow, position_bow)
             else:
-                d = 1 - distance.cosine(cv_bow, postion_bow)
+                d = 1 - distance.cosine(cv_bow, position_bow)
 
             if isnan(float(d)):
                 similarity.append(0.0)
