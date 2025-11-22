@@ -49,7 +49,7 @@ def save_description_to_database(url, description):
     try:
         with Connection.get_database_connection().connect() as connection:
             info(f"Saving data from '{url}'...")
-            description = data_pre_processing_portuguese(description)
+            description = data_pre_processing(description)
             connection.execute(
                 text(
                     f"insert into {TABLE_NAME} (url, description) values ('{url}', '{description}')"
@@ -77,7 +77,22 @@ def initialize_table():
         raise DatabaseError(str(error)) from error
 
 
-def data_pre_processing_portuguese(corpus):
+USELLES_WORDS = [
+    "http",
+    "https",
+    "www",
+    ".com",
+    ".gov",
+    ".br",
+    "job",
+    "jobs",
+    "linkedin",
+    "candidate",
+    "work",
+]
+
+
+def data_pre_processing(corpus):
     # remove html tags
     corpus = sub(r"<.*?>", " ", str(corpus))
     # replace non-ascii characters
@@ -93,13 +108,16 @@ def data_pre_processing_portuguese(corpus):
     # tokenization
     corpus = findall(r"\w+(?:'\w+)?|[^\w\s]", corpus)
     # remove uselles words
-    USELLES_WORDS = ["http", "https", "www", ".com", ".gov", ".br"]
     corpus = [w for w in corpus if w not in USELLES_WORDS]
     # remove punctuation and remove stopwords
     stopwords_ = stopwords.words("portuguese")
+    for language in ["english", "italian", "french"]:
+        stopwords_.extend(stopwords.words(language))
     corpus = [t for t in corpus if t not in stopwords_ and t not in punctuation]
     # steamming
     corpus = [steam_data(t) for t in corpus]
+    # remove small words
+    corpus = [w for w in corpus if len(w) > 2]
     return " ".join(list(set(corpus)))
 
 
@@ -130,7 +148,7 @@ def select_with_like(terms, table, column, condition="OR"):
 
 
 def search_positions_based_on_resume(condition, resume):
-    resume_processed = data_pre_processing_portuguese(resume)
+    resume_processed = data_pre_processing(resume)
     query = select_with_like(resume_processed, TABLE_NAME, "description", condition)
     with Connection.get_database_connection().connect() as connection:
         try:

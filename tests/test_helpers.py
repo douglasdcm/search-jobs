@@ -1,4 +1,4 @@
-from src.helper.helper import data_pre_processing_portuguese, steam_data
+from src.helper.helper import data_pre_processing, steam_data
 from pytest import mark
 
 
@@ -25,7 +25,7 @@ class TestUnitHelper:
 
     @mark.parametrize("message, result", testdata)
     def test_preprocessing_return_data_for_special_char(self, message, result):
-        assert data_pre_processing_portuguese(message) == result
+        assert data_pre_processing(message) == result
 
     @mark.parametrize("message, result", steamdata)
     def test_steamming_is_striping_the_text(self, message, result):
@@ -40,6 +40,6 @@ class TestUnitHelper:
     def test_preprocessing_works_with_list_of_texts(self):
         text = "cats dogs administração testes analista"
         expected = ["cat", "dog", "administraca", "test", "anal"]
-        actual = data_pre_processing_portuguese(text)
+        actual = data_pre_processing(text)
         for term in expected:
             assert term in actual

@@ -10,8 +10,8 @@ class TestCrawler:
 
         companies = Company().get_all()[0]
 
-        assert '//a' in companies.locator
-        assert 'http' in companies.url
+        assert "//a" in companies.locator
+        assert "http" in companies.url
         assert companies.active is not None
 
     @mark.asyncio

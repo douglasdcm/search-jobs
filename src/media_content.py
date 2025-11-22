@@ -214,8 +214,7 @@ def load_web_content():
             "caption": "Over 2000 companies for you.",
             "alt": "Over 2000 companies for you.",
             "description": (
-                "List of over 2000 Brazilian companies to register with and"
-                " get a new job."
+                "List of over 2000 Brazilian companies to register with and" " get a new job."
             ),
         },
         {

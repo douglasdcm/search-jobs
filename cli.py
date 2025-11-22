@@ -2,6 +2,7 @@
 CLI function to run the crawlers, compare curriculuns and manage the database.
 Try: 'python cli.py --help' for more information.
 """
+
 import asyncio
 from os import environ
 from logging import basicConfig, INFO, info, exception
