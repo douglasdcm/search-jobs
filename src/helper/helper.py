@@ -83,8 +83,10 @@ USELLES_WORDS = [
     "www",
     ".com",
     ".gov",
-    ".br" "job",
-    "jobs" "linkedin",
+    ".br",
+    "job",
+    "jobs",
+    "linkedin",
     "candidate",
     "work",
 ]
