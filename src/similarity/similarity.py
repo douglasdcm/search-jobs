@@ -2,7 +2,7 @@ import numpy as np
 from math import isnan
 from scipy.spatial import distance
 from sklearn.feature_extraction.text import CountVectorizer
-from src.helper.helper import data_pre_processing_portuguese
+from src.helper.helper import data_pre_processing
 
 
 class Similarity:
@@ -16,7 +16,7 @@ class Similarity:
 
         similarity = []
         urls = []
-        resume_processed = data_pre_processing_portuguese(resume)
+        resume_processed = data_pre_processing(resume)
         if not resume_processed:
             return {}
 

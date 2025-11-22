@@ -54,7 +54,7 @@ class TestHelperCommands:
             "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
         }
         resume = "senior python pytest"
-        expected = "basic_page"
+        expected = "www.position1.com"
         await overwrite_facade(CompanyInstance(company))
         for _ in range(10):
             assert expected in str(compare_facade(resume, condition="OR"))
@@ -68,7 +68,7 @@ class TestHelperCommands:
         }
 
         resume = "senior python pytest"
-        expected = "basic_page"
+        expected = "www.position1.com"
         await overwrite_facade(CompanyInstance(company))
         assert expected in str(compare_facade(resume, condition="OR"))
 
