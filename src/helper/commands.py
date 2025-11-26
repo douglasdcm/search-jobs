@@ -54,7 +54,7 @@ def help_facade_():
 
 
 def compare_facade(resume, condition):
-    """Returns a dictionary where the key is the positon description processes and the value is
+    """Returns a dictionary where the key is the positon description processed and the value is
     the similarity, like this
 
     {

@@ -3,6 +3,7 @@ from math import isnan
 from scipy.spatial import distance
 from sklearn.feature_extraction.text import CountVectorizer
 from src.helper.helper import data_pre_processing
+import re
 
 
 class Similarity:
@@ -13,12 +14,11 @@ class Similarity:
         """
         Return a dictionary of message and similarity sorted by highter similarity
         """
-
-        similarity = []
-        urls = []
         resume_processed = data_pre_processing(resume)
         if not resume_processed:
             return {}
+
+        result = []
 
         for row in positions:
             url = row[0]
@@ -37,14 +37,19 @@ class Similarity:
                 d = 1 - distance.cosine(cv_bow, position_bow)
 
             if isnan(float(d)):
-                similarity.append(0.0)
+                d = 0.0
             else:
-                similarity.append(round(d * 100, 1))
-            urls.append(url)
-        result = dict(zip(urls, similarity))
+                d = float(round(d * 100, 1))
 
-        return {
-            k: str(v)
-            for k, v in sorted(result.items(), key=lambda item: item[1], reverse=True)
-            if v > 0
-        }
+            # remove it
+            s = re.sub(r"[^\x00-\x7F]+", "", row[2])
+            result.append(
+                {
+                    "url": url,
+                    "similarity": d,
+                    "summary": s,
+                }
+            )
+
+        return sorted(result, key=lambda item: item["similarity"], reverse=True)
+

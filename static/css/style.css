@@ -30,14 +30,12 @@ body::after {
     /* Set same as footer's height */
 }
 
-p {
+p, h1, h2, ul, li {
     color: white;
 }
 
 .position-link {
-    color: white;
     text-decoration: none;
-    border-bottom: 1px solid white;
 }
 
 h3 {
