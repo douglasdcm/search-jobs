@@ -10,7 +10,7 @@ from src.exceptions.exceptions import DatabaseError
 from logging import info
 from dotenv import load_dotenv
 from os import environ
-
+from lxml.html import fromstring
 
 nltk.download("stopwords", quiet=True)
 nltk.download("averaged_perceptron_tagger", quiet=True)
@@ -89,12 +89,14 @@ USELLES_WORDS = [
     "linkedin",
     "candidate",
     "work",
+    "html"
 ]
 
 
 def data_pre_processing(corpus):
     # remove html tags
-    corpus = sub(r"<.*?>", " ", str(corpus))
+    if corpus:
+        corpus = fromstring(corpus).text_content()
     # replace non-ascii characters
     corpus = unidecode(corpus)
     # remove non-alphanumeric characters

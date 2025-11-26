@@ -1,4 +1,4 @@
-vpm.sqlite
+# vpm.sqlite
 *.sqlite
 captures
 .env
