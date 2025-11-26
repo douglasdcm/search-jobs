@@ -35,9 +35,7 @@ p, h1, h2, ul, li {
 }
 
 .position-link {
-    color: white;
     text-decoration: none;
-    border-bottom: 1px solid white;
 }
 
 h3 {
