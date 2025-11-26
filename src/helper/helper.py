@@ -11,12 +11,15 @@ from logging import info
 from dotenv import load_dotenv
 from os import environ
 from lxml.html import fromstring
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.summarizers.lex_rank import LexRankSummarizer
 
 nltk.download("stopwords", quiet=True)
 nltk.download("averaged_perceptron_tagger", quiet=True)
 nltk.download("wordnet", quiet=True)
 nltk.download("rslp", quiet=True)
-
+nltk.download("punkt_tab")
 
 load_dotenv()
 
@@ -49,10 +52,12 @@ def save_description_to_database(url, description):
     try:
         with Connection.get_database_connection().connect() as connection:
             info(f"Saving data from '{url}'...")
+            description_full = summarize_text(description)
             description = data_pre_processing(description)
             connection.execute(
                 text(
-                    f"insert into {TABLE_NAME} (url, description) values ('{url}', '{description}')"
+                    f"insert into {TABLE_NAME} (url, description, description_full)"
+                    f" values ('{url}', '{description}', '{description_full}')"
                 )
             )
             connection.commit()
@@ -68,7 +73,8 @@ def initialize_table():
             connection.execute(
                 text(
                     f"create table {TABLE_NAME} (url VARCHAR(255) NOT NULL"
-                    ", description VARCHAR(50000))"
+                    ", description VARCHAR(50000)"
+                    ", description_full VARCHAR(50000))"
                 )
             )
             info("Initialization finished")
@@ -89,7 +95,28 @@ USELLES_WORDS = [
     "linkedin",
     "candidate",
     "work",
-    "html"
+    "html",
+    "vag",
+    "cooki",
+    "apply",
+    "trabalh",
+    "peopl",
+    "futur",
+    "divers",
+    "pesso",
+    "empr",
+    "candidat",
+    "instagr",
+    "facebook",
+    "whatsapp",
+    "hir",
+    "oportun",
+    "experienc",
+    "join",
+    "opportunity",
+    "colabor",
+    "websit",
+    "person" "talent",
 ]
 
 
@@ -109,8 +136,6 @@ def data_pre_processing(corpus):
     corpus = corpus.lower()
     # tokenization
     corpus = findall(r"\w+(?:'\w+)?|[^\w\s]", corpus)
-    # remove uselles words
-    corpus = [w for w in corpus if w not in USELLES_WORDS]
     # remove punctuation and remove stopwords
     stopwords_ = stopwords.words("portuguese")
     for language in ["english", "italian", "french"]:
@@ -120,6 +145,8 @@ def data_pre_processing(corpus):
     corpus = [steam_data(t) for t in corpus]
     # remove small words
     corpus = [w for w in corpus if len(w) > 2]
+    # remove uselles words
+    corpus = [w for w in corpus if w not in USELLES_WORDS]
     return " ".join(list(set(corpus)))
 
 
@@ -167,3 +194,16 @@ def steam_data(text):
 def read_file(file):
     with open(file, "r") as f:
         return f.readlines()[1:]
+
+
+def summarize_text(text):
+    summarizer = LexRankSummarizer()
+    parser = PlaintextParser.from_string(text, Tokenizer("english"))
+    summary = summarizer(parser.document, sentences_count=3)
+    result = ""
+    for sentence in summary:
+        sentence = str(sentence)
+        # remove special characters
+        sentence = sub(r"[^\x00-\x7F]+", "", sentence)
+        result += f" {str(sentence)}"
+    return result.strip()

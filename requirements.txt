@@ -9,4 +9,5 @@ flask_cors
 flask[async]
 waitress
 lxml
+sumy
 # psycopg2-binary

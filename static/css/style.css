@@ -30,7 +30,7 @@ body::after {
     /* Set same as footer's height */
 }
 
-p {
+p, h1, h2, ul, li {
     color: white;
 }
 

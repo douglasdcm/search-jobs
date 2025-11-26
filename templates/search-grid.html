@@ -2,13 +2,13 @@
     {% if comparison.status == "failed" %}
     <h4 style="text-align: left; color: white;">{{ comparison.message }}</h4>
     {% else %}
-    {% for key, value in comparison.message.items() %}
+    {% for item in comparison.message %}
     <div class="row" style="text-align: left;">
         <div class="col-md-2">
-            <p>{{ search_grid_label }} {{ value }}%</p>
+            <p>{{ search_grid_label }} {{ item['similarity'] }}%</p>
         </div>
-        <div class="col-md-8 truncate-url">
-            <a class="position-link" href="{{ key }}" target="_blank" rel="noopener noreferrer"> {{ key }} </a>
+        <div class="col-md-8" style="text-align: justify;">
+            <a class="position-link" href="{{ item['url'] }}" target="_blank" rel="noopener noreferrer"> {{ item['summary'] }} </a>
         </div>
     </div>
     <br>

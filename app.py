@@ -166,12 +166,15 @@ def search():
     try:
         language = __set_language(request)
         resume = request.form.get("message")
-        app.logger.info(f"Searching for '{resume}'")
+        app.logger.info("Searching for resume")
         condition = request.form.get("condition")
 
         comparison = literal_eval(
-            __search(resume, condition, languages[language])[0].response[0].decode("utf-8")
+            __search(resume, condition, languages[language])[0]
+            .response[0]
+            .decode("ascii", errors="replace")
         )
+        # return comparison
 
         return render_template(
             "search-result.html",

@@ -5,3 +5,4 @@ snakeviz
 pytest-asyncio
 flake8
 tox
+notebook
