@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-# vpm.sqlite
-*.sqlite
-=======
-vpm.sqlite
 *.sqlite*
->>>>>>> new
 captures
 .env
 venv*
