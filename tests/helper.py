@@ -39,7 +39,7 @@ def exec_command(params, command, domain="python", sudo=False):
 
 
 def populate_database_with_thecnical_jobs():
-    description1 = "jira manager senior dashboards carrer"
+    description1 = "jira manager senior dashboards career"
     description2 = "jira developer python java postgres sql"
     description3 = "jira tester qa pytest postman jmeter"
     description4 = "ux figma design xd"

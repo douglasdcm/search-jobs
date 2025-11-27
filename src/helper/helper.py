@@ -5,9 +5,15 @@ from nltk.corpus import stopwords
 from unidecode import unidecode
 from nltk.stem import RSLPStemmer
 from sqlalchemy import create_engine, text
-from src.constants import TABLE_NAME, DATABASE_STRING_DEFAULT
+from src.constants import (
+    COMPANY_INPUT,
+    COMPANY_OUTPUT,
+    TABLE_NAME,
+    DATABASE_STRING_DEFAULT,
+)
+from src.driver.driver import Driver
 from src.exceptions.exceptions import DatabaseError
-from logging import info
+from logging import info, error
 from dotenv import load_dotenv
 from os import environ
 from lxml.html import fromstring
@@ -16,6 +22,8 @@ from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 from sumy.utils import get_stop_words
 from sumy.nlp.stemmers import Stemmer
+
+from src.url_scanner.controller import Controller
 
 nltk.download("stopwords", quiet=True)
 nltk.download("averaged_perceptron_tagger", quiet=True)
@@ -65,6 +73,21 @@ def save_description_to_database(url, description):
             connection.commit()
     except Exception as error:
         raise DatabaseError(str(error)) from error
+
+
+async def get_career_links():
+    companies_url = read_file(COMPANY_INPUT)
+    driver = Driver()
+    for url in companies_url:
+        try:
+            url = url.replace("\n", "")
+            info(f"Getting carres links from '{url}'")
+            await driver.start(url)
+            controller = Controller(driver)
+            await controller.execute()
+        except Exception as e:
+            error(str(e))
+    info(f"Finished. Saved to {COMPANY_OUTPUT}")
 
 
 def initialize_table():

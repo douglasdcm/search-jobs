@@ -1,10 +1,12 @@
 from logging import info, exception, getLogger
+from src.constants import COMPANY_INPUT
 from src.driver.driver import Driver
 from src.helper.helper import search_positions_based_on_resume
 from src.similarity.similarity import Similarity
 from src.exceptions.exceptions import CommandError
 from src.crawler import generic
 from src.crawler.company import CompanyInstance
+
 
 getLogger()
 
@@ -49,7 +51,8 @@ def help_facade_():
         "--sanity-check    check the installtion and clean the database\n"
         "--help            open the help documentation\n"
         "--overwrite       get the new positions from companies\n"
-        "--clean-db        clean up the database"
+        "--clean-db        clean up the database\n"
+        f"--getlinks        scan the URL in '{COMPANY_INPUT}' to find careers links"
     )
 
 
