@@ -17,13 +17,19 @@ class TestHelperCommands:
     def populate_db(self, setup_db):
         db = setup_db
         db.salva_registro(
-            "positions", "url, description", "'https://test_message_1.com', 'test_message_1'"
+            "positions",
+            "url, description",
+            "'https://test_message_1.com', 'test_message_1'",
         )
         db.salva_registro(
-            "positions", "url, description", "'https://test_message_2.com', 'test_message_2'"
+            "positions",
+            "url, description",
+            "'https://test_message_2.com', 'test_message_2'",
         )
         db.salva_registro(
-            "positions", "url, description", "'https://test_message_3.com', 'test_message_3'"
+            "positions",
+            "url, description",
+            "'https://test_message_3.com', 'test_message_3'",
         )
         return db
 
@@ -47,6 +53,19 @@ class TestHelperCommands:
         assert await overwrite_facade(CompanyInstance(companiy)) is True
 
     @mark.asyncio
+    async def test_higher_similarity_reported_first(self, setup_db):
+        company = {
+            "active": "Y",
+            "locator": "//a",
+            "url": "file:///" + getcwd() + "/src/resources/sanity_check.html#",
+        }
+        resume = "python pytest"
+        await overwrite_facade(CompanyInstance(company))
+        actual = compare_facade(resume, condition="OR")
+        assert actual[0]["similarity"] == 31.6
+        assert actual[1]["similarity"] == 28.9
+
+    @mark.asyncio
     async def test_compare_runs_many_times(self, setup_db):
         company = {
             "active": "Y",
@@ -60,7 +79,9 @@ class TestHelperCommands:
             assert expected in str(compare_facade(resume, condition="OR"))
 
     @mark.asyncio
-    async def test_compare_runs_list_of_links_ranked_by_similarity_using_or_condition(self):
+    async def test_compare_runs_list_of_links_ranked_by_similarity_using_or_condition(
+        self,
+    ):
         company = {
             "active": "Y",
             "locator": "//a",
