@@ -12,7 +12,7 @@ from src.helper.commands import sanity_check_facade, help_facade_, overwrite_fac
 from src.crawler.company import Company
 from os import getcwd, system
 from dotenv import load_dotenv
-from src.helper.helper import initialize_table
+from src.helper.helper import get_career_links, initialize_table
 from caqui.easy.server import Server
 from src.crawler.company import CompanyInstance
 
@@ -27,7 +27,9 @@ path.append(ROOT_DIR)
 
 if environ.get("DEBUG") == "on":
     basicConfig(
-        format="%(asctime)s %(levelname)-8s %(message)s", level=INFO, datefmt="%Y-%m-%d %H:%M:%S"
+        format="%(asctime)s %(levelname)-8s %(message)s",
+        level=INFO,
+        datefmt="%Y-%m-%d %H:%M:%S",
     )
 else:
     basicConfig(
@@ -75,6 +77,10 @@ async def main(*args):
             for company in companies:
                 tasks.append(asyncio.ensure_future(get_all_positions(*arguments, company=company)))
             await asyncio.gather(*tasks)
+            return
+        if "--getlinks" in arguments:
+            SERVER.start()
+            await get_career_links()
             return
         if "--clean-db" in arguments:
             initialize_table()
