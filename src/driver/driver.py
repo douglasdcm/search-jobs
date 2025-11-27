@@ -27,6 +27,10 @@ class Driver:
                 f"Unexpected error while initializing the webdriver. {str(e)}"
             ) from e
 
+    @property
+    def current_url(self):
+        return self._driver.current_url
+
     async def start(self, url):
         try:
             await self._driver.get(url)
@@ -34,9 +38,7 @@ class Driver:
             await self._driver.implicitly_wait(TIMEOUT)
             return self._driver
         except Exception as e:
-            raise WebDriverError(
-                f"Unexpected error while starting the webdriver. {str(e)}"
-            )
+            raise WebDriverError(f"Unexpected error while starting the webdriver. {str(e)}")
 
     async def save_screenshot(self):
         try:
@@ -45,9 +47,7 @@ class Driver:
                 file = f"./captures/screenshot_{strftime('%d-%m-%H-%M-%S')}.png"
                 await self._driver.save_screenshot(file)
         except Exception as e:
-            raise WebDriverError(
-                f"Unexpected error while taking screeshot. {str(e)}"
-            ) from e
+            raise WebDriverError(f"Unexpected error while taking screeshot. {str(e)}") from e
 
     async def get_all_links(self):
         try:
@@ -57,15 +57,11 @@ class Driver:
                 result.append(await link.get_property("href"))
             return result
         except Exception as e:
-            raise WebDriverError(
-                f"Unexpected error while getting URLs. {str(e)}"
-            ) from e
+            raise WebDriverError(f"Unexpected error while getting URLs. {str(e)}") from e
 
     def quit(self):
         try:
             info("Finishing driver.")
             self._driver.quit()
         except Exception as e:
-            raise WebDriverError(
-                f"Unexpected error while finishing the webdriver. {str(e)}"
-            ) from e
+            raise WebDriverError(f"Unexpected error while finishing the webdriver. {str(e)}") from e

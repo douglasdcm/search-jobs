@@ -8,8 +8,12 @@ class Fetcher:
     async def extracts_all_links(self):
         return await self._driver.get_all_links()
 
-    def normalizes_items(self, urls):
-        pass
-
     def return_candidate_links(self, urls):
-        return []
+        result = []
+        for url in urls:
+            original_url = url
+            url = url.lower()
+            for term in ["career", "job", "opportun"]:
+                if term in url:
+                    result.append(original_url)
+        return list(set(result))

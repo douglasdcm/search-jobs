@@ -52,4 +52,3 @@ class Similarity:
             )
 
         return sorted(result, key=lambda item: item["similarity"], reverse=True)
-

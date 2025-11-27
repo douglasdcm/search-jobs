@@ -1,4 +1,5 @@
-locator;carrers_url;enabled;
+locator;career_url;enabled;
+//a[contains(@href, 'position') or contains(@href, 'vaga') or contains(@href, 'job') or contains(@href, 'career') or contains(@href, 'carreira')];https://stefanini.gupy.io/;Y;
 //a[contains(@href, 'position') or contains(@href, 'vaga') or contains(@href, 'job') or contains(@href, 'career') or contains(@href, 'carreira')];https://fcamara.gupy.io/;Y;
 //a[contains(@href, 'position') or contains(@href, 'vaga') or contains(@href, 'job') or contains(@href, 'career') or contains(@href, 'carreira')];https://grupoprovida.com.br/trabalhe-conosco/;Y;
 //a[contains(@href, 'position') or contains(@href, 'vaga') or contains(@href, 'job') or contains(@href, 'career') or contains(@href, 'carreira')];https://locaweb.gupy.io/;Y;

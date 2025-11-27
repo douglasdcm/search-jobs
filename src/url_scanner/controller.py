@@ -1,34 +1,28 @@
+from src.constants import COMPANY_OUTPUT
+from src.driver.driver import Driver
 from src.url_scanner.fetcher import Fetcher
-from src.url_scanner.classifier import Classifier
+from logging import warning
 
 
 class Controller:
-    def __init__(self, driver):
+    def __init__(self, driver: Driver):
         self._driver = driver
 
-    def run_fetcher(self, url):
+    async def run_fetcher(self):
         fetcher = Fetcher(self._driver)
-        fetcher.download_htlm(url)
-        urls = fetcher.extracts_all_links()
-        fetcher.normalizes_items(urls)
+        urls = await fetcher.extracts_all_links()
         return fetcher.return_candidate_links(urls)
 
-    def run_classifier(self, links):
-        result = []
-        for link in links:
-            classifier = Classifier()
-            classifier.receive_link(link)
-            if classifier.is_link_of_carrer(link):
-                result.append(classifier.return_best_links(link))
-        return result
+    def save_output(self, best_links, save):
+        if not save:
+            return
+        with open(COMPANY_OUTPUT, "a") as f:
+            for link in best_links:
+                f.write(f"{link}\n")
 
-    def save_output(self, best_links):
-        with open("url-scan.csv", "w") as f:
-            pass
-
-    def execute(self, urls):
-        for url in urls:
-            candidate_links = self.run_fetcher(url)
-            best_links = self.run_classifier(candidate_links)
-            self.save_output(best_links)
+    async def execute(self, save=True):
+        best_links = await self.run_fetcher()
+        if not best_links:
+            warning(f"{self._driver.current_url} No link found")
+        self.save_output(best_links, save)
         return best_links
