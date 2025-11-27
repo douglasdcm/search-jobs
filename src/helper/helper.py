@@ -20,6 +20,8 @@ from lxml.html import fromstring
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
+from sumy.utils import get_stop_words
+from sumy.nlp.stemmers import Stemmer
 
 from src.url_scanner.controller import Controller
 
@@ -219,14 +221,21 @@ def read_file(file):
         return f.readlines()[1:]
 
 
+from sumy.summarizers.luhn import LuhnSummarizer
+
+
 def summarize_text(text):
-    summarizer = LexRankSummarizer()
+    # remove special characters
+    text = sub(r"[^\x00-\x7F]+", "", text)
+    stop_words = get_stop_words("english")
+    for language in ["portuguese", "italian", "french"]:
+        stop_words = stop_words.union(get_stop_words(language))
+    summarizer = LexRankSummarizer(Stemmer("english"))
+    summarizer.stop_words = stop_words
     parser = PlaintextParser.from_string(text, Tokenizer("english"))
-    summary = summarizer(parser.document, sentences_count=3)
+    summary = summarizer(parser.document, sentences_count=2)
     result = ""
     for sentence in summary:
         sentence = str(sentence)
-        # remove special characters
-        sentence = sub(r"[^\x00-\x7F]+", "", sentence)
         result += f" {str(sentence)}"
     return result.strip()
