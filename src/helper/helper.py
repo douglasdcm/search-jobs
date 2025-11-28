@@ -6,7 +6,6 @@ from unidecode import unidecode
 from nltk.stem import RSLPStemmer
 from sqlalchemy import create_engine, text
 from src.constants import (
-    COMPANY_INPUT,
     COMPANY_OUTPUT,
     TABLE_NAME,
     DATABASE_STRING_DEFAULT,
@@ -75,18 +74,18 @@ def save_description_to_database(url, description):
         raise DatabaseError(str(error)) from error
 
 
-async def get_career_links():
-    companies_url = read_file(COMPANY_INPUT)
+async def get_career_links(company_url):
     driver = Driver()
-    for url in companies_url:
-        try:
-            url = url.replace("\n", "")
-            info(f"Getting carres links from '{url}'")
-            await driver.start(url)
-            controller = Controller(driver)
-            await controller.execute()
-        except Exception as e:
-            error(str(e))
+    try:
+        company_url = company_url.replace("\n", "")
+        info(f"Getting carres links from '{company_url}'")
+        await driver.start(company_url)
+        controller = Controller(driver)
+        await controller.execute()
+    except Exception as e:
+        error(str(e))
+    finally:
+        driver.quit()
     info(f"Finished. Saved to {COMPANY_OUTPUT}")
 
 
@@ -141,7 +140,8 @@ USELLES_WORDS = [
     "opportunity",
     "colabor",
     "websit",
-    "person" "talent",
+    "person",
+    "talent",
 ]
 
 
@@ -216,9 +216,11 @@ def steam_data(text):
     return RSLPStemmer().stem(text)
 
 
-def read_file(file):
+def read_file(file, has_header=True):
     with open(file, "r") as f:
-        return f.readlines()[1:]
+        if has_header:
+            return f.readlines()[1:]
+        return f.readlines()
 
 
 from sumy.summarizers.luhn import LuhnSummarizer

@@ -1,6 +1,6 @@
-from os import environ
+from os import environ, getenv
 from time import strftime
-from logging import info
+from logging import info, warning
 from src.constants import DRIVER_SERVER_URL
 from src.constants import TIMEOUT
 from src.exceptions.exceptions import WebDriverError
@@ -8,12 +8,17 @@ from caqui.easy.page import AsyncPage
 from caqui.easy.capabilities import ChromeCapabilitiesBuilder
 from caqui.easy.options import ChromeOptionsBuilder
 from caqui.by import By
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class Driver:
     def __init__(self) -> None:
         try:
-            options = ChromeOptionsBuilder().args(["headless"]).to_dict()
+            options = (
+                ChromeOptionsBuilder().args([getenv("HEADLESS", "headless")]).to_dict()
+            )
             capabilities = (
                 ChromeCapabilitiesBuilder()
                 .accept_insecure_certs(True)
@@ -38,7 +43,9 @@ class Driver:
             await self._driver.implicitly_wait(TIMEOUT)
             return self._driver
         except Exception as e:
-            raise WebDriverError(f"Unexpected error while starting the webdriver. {str(e)}")
+            raise WebDriverError(
+                f"Unexpected error while starting the webdriver. {str(e)}"
+            )
 
     async def save_screenshot(self):
         try:
@@ -47,21 +54,32 @@ class Driver:
                 file = f"./captures/screenshot_{strftime('%d-%m-%H-%M-%S')}.png"
                 await self._driver.save_screenshot(file)
         except Exception as e:
-            raise WebDriverError(f"Unexpected error while taking screeshot. {str(e)}") from e
+            raise WebDriverError(
+                f"Unexpected error while taking screeshot. {str(e)}"
+            ) from e
 
     async def get_all_links(self):
         try:
             result = []
             links = await self._driver.find_elements(By.XPATH, "//a")
             for link in links:
-                result.append(await link.get_property("href"))
+                try:
+                    result.append(await link.get_property("href"))
+                except Exception as e:
+                    pass
+            if not result:
+                warning(f"{self._driver.current_url} No link found")
             return result
         except Exception as e:
-            raise WebDriverError(f"Unexpected error while getting URLs. {str(e)}") from e
+            raise WebDriverError(
+                f"Unexpected error while getting URLs. {str(e)}"
+            ) from e
 
     def quit(self):
         try:
             info("Finishing driver.")
             self._driver.quit()
         except Exception as e:
-            raise WebDriverError(f"Unexpected error while finishing the webdriver. {str(e)}") from e
+            raise WebDriverError(
+                f"Unexpected error while finishing the webdriver. {str(e)}"
+            ) from e

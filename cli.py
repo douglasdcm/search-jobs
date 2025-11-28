@@ -6,13 +6,13 @@ Try: 'python cli.py --help' for more information.
 import asyncio
 from os import environ
 from logging import basicConfig, INFO, info, exception
-from src.constants import ROOT_DIR, RESOURCES_DIR
+from src.constants import COMPANY_INPUT, ROOT_DIR, RESOURCES_DIR
 from sys import argv, path
 from src.helper.commands import sanity_check_facade, help_facade_, overwrite_facade
 from src.crawler.company import Company
 from os import getcwd, system
 from dotenv import load_dotenv
-from src.helper.helper import get_career_links, initialize_table
+from src.helper.helper import get_career_links, initialize_table, read_file
 from caqui.easy.server import Server
 from src.crawler.company import CompanyInstance
 
@@ -41,12 +41,22 @@ else:
 SERVER = Server()
 
 
-async def get_all_positions(*args, company=None):
+async def get_all_positions(company=None):
     try:
         async with SEMAPHORE:
             # Get data from real companies. Not covered by automated testes
             # to avoid overload the real sites
             return await overwrite_facade(company)
+    except Exception:
+        raise
+
+
+async def get_all_links(company):
+    try:
+        async with SEMAPHORE:
+            # Get data from real companies. Not covered by automated testes
+            # to avoid overload the real sites
+            return await get_career_links(company)
     except Exception:
         raise
 
@@ -75,12 +85,16 @@ async def main(*args):
             tasks = []
             companies = Company().get_all()
             for company in companies:
-                tasks.append(asyncio.ensure_future(get_all_positions(*arguments, company=company)))
+                tasks.append(asyncio.ensure_future(get_all_positions(company=company)))
             await asyncio.gather(*tasks)
             return
         if "--getlinks" in arguments:
             SERVER.start()
-            await get_career_links()
+            tasks = []
+            companies_url = read_file(COMPANY_INPUT, has_header=False)
+            for company in companies_url:
+                tasks.append(asyncio.ensure_future(get_all_links(company=company)))
+            await asyncio.gather(*tasks)
             return
         if "--clean-db" in arguments:
             initialize_table()
@@ -89,7 +103,7 @@ async def main(*args):
 
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
     try:
         loop.run_until_complete(main(argv))
     except Exception:
