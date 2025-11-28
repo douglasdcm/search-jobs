@@ -13,7 +13,7 @@ class Fetcher:
         for url in urls:
             original_url = url
             url = url.lower()
-            for term in ["career", "job", "opportun"]:
+            for term in ["career", "carreir", "job", "opportun", "talent"]:
                 if term in url:
                     result.append(original_url)
         return list(set(result))

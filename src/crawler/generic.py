@@ -1,4 +1,4 @@
-from logging import exception, info
+from logging import exception, info, warning
 from src.pages.generic.positions import Positions
 from src.exceptions.exceptions import WebDriverError, CrawlerError
 from os import environ
@@ -38,11 +38,11 @@ class Generic:
         self.url = url
 
     async def run(self):
-        links = await self._get_link_by_browser()
+        links = await self._positions.get_link_of_all_positons(self.locator)
+        if not links:
+            warning(f"{self.url} No positions found")
+            return
         return await self._get_info_from_links(links)
-
-    async def _get_link_by_browser(self):
-        return await self._positions.get_link_of_all_positons(self.locator)
 
     async def _get_info_from_links(self, links):
         for link in links:

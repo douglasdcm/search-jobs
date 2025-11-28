@@ -1,8 +1,7 @@
 #!flask/bin/python
 import glob
 import json
-from os import environ
-import os
+from os import environ, getenv
 from sys import path
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
@@ -48,7 +47,7 @@ path.append(ROOT_DIR)
 
 DEFAULT_LANGUAGE = "en_US"
 DEFAULT_ERROR_MESSAGE = "Unexpected error. Try again later."
-if os.getenv("DEBUG", "").upper() == "ON":
+if getenv("DEBUG", "").upper() == "ON":
     SERVER = Server()
 else:
     CHROME_VERSION = "94.0.4606"  # necessary to docker
@@ -262,7 +261,8 @@ if __name__ == "__main__":
     languages = {}
     language_paths = glob.glob("language/*.json")
     language_keys = [
-        language.replace("language/", "").replace(".json", "") for language in language_paths
+        language.replace("language/", "").replace(".json", "")
+        for language in language_paths
     ]
 
     for language in language_paths:

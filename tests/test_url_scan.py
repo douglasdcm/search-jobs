@@ -8,21 +8,15 @@ from src.url_scanner.fetcher import Fetcher
 
 
 COMPANY_PAGE = f"file:///{getcwd()}/tests/resources/basic_company_page.html#"
-COMPANY_PAGE_NO_JOBS = f"file:///{getcwd()}/tests/resources/basic_company_page_no_jobs.html#"
+COMPANY_PAGE_NO_JOBS = (
+    f"file:///{getcwd()}/tests/resources/basic_company_page_no_jobs.html#"
+)
 
 
 @mark.functional
 class TestUrlScan:
-    @fixture(scope="class")
-    def server_fixture(self):
-        server = Server()
-        server.start()
-        yield
-        sleep(3)
-        server.dispose()
-
     @fixture
-    def driver_fixture(self, server_fixture):
+    def driver_fixture(self):
         driver = Driver()
         yield driver
         driver.quit()
@@ -45,7 +39,9 @@ class TestUrlScan:
         assert sorted(Fetcher(None).return_candidate_links(links)) == expected
 
     @mark.asyncio
-    async def test_extract_all_links_return_empty_when_no_links(self, driver_fixture: Driver):
+    async def test_extract_all_links_return_empty_when_no_links(
+        self, driver_fixture: Driver
+    ):
         expected = []
         await driver_fixture.start(COMPANY_PAGE_NO_JOBS)
         assert await Fetcher(driver_fixture).extracts_all_links() == expected
