@@ -33,7 +33,6 @@ class Company:
         content = read_file(ROOT_DIR + "/crawler/companies_data.csv")
 
         for row in content:
-            print(row)
             columns = row.split(";")
             locator = columns[0]
             url = columns[1]
