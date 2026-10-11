@@ -1,3 +1,5 @@
+[![Python application](https://github.com/douglasdcm/search-jobs/actions/workflows/run-tests.yml/badge.svg)](https://github.com/douglasdcm/search-jobs/actions/workflows/run-tests.yml)
+
 # Introdução
 Este projeto utiliza um crawler genérico para buscar por vagas em diferentes empresas e lhe permite comparar o seu currículo com essas vagas para que você possa achar as que são relevantes para você.
 
